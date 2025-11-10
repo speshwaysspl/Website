@@ -53,16 +53,26 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {["Home", "About", "Services", "Portfolio"].map((link) => (
-                <li key={link}>
-                  <Link
-                    to={`/${link.toLowerCase()}`}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {link}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/portfolio" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Portfolio
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -86,17 +96,32 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
                 <MapPin size={18} className="text-primary mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-muted-foreground">
-                  123 Tech Street, Innovation City, IN 500001
-                </span>
+                <a 
+                  href="https://maps.google.com/?q=Plot+No.+1024,+4th+Floor,+Repunjaya+Building,+Madhapur+Hyderabad,+Telangana" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Plot No. 1024, 4th Floor, Repunjaya Building, Madhapur, Hyderabad, Telangana
+                </a>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={18} className="text-primary flex-shrink-0" />
-                <span className="text-sm text-muted-foreground">+91 1234567890</span>
+                <a 
+                  href="tel:+919100006020" 
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  +91 9100006020
+                </a>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={18} className="text-primary flex-shrink-0" />
-                <span className="text-sm text-muted-foreground">info@speshway.com</span>
+                <a 
+                  href="mailto:info@speshway.com" 
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  info@speshway.com
+                </a>
               </li>
             </ul>
           </div>

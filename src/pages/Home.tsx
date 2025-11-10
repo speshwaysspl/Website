@@ -94,6 +94,26 @@ const Home = () => {
         <div className="absolute top-40 right-20 w-32 h-32 bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "2s" }} />
       </section>
 
+      {/* Stats Section */}
+      <section className="py-20 bg-secondary/20">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <Card className="p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all">
+              <div className="text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">100+</div>
+              <div className="text-muted-foreground">Projects Delivered</div>
+            </Card>
+            <Card className="p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all">
+              <div className="text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">76+</div>
+              <div className="text-muted-foreground">Happy Clients</div>
+            </Card>
+            <Card className="p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all">
+              <div className="text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">300+</div>
+              <div className="text-muted-foreground">Team Members</div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-20 relative">
         <div className="container mx-auto px-4">
@@ -118,6 +138,35 @@ const Home = () => {
                 <p className="text-muted-foreground">{feature.description}</p>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Clients Section */}
+      <section className="py-20 bg-secondary/20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-foreground mb-4">Trusted By Industry Leaders</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              "Excellence in delivery, innovation in approach. Speshway transforms challenges into opportunities."
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <Card className="p-8 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all text-center group">
+              <div className="text-4xl font-bold text-primary mb-3 group-hover:scale-110 transition-transform">Adecco</div>
+              <p className="text-muted-foreground text-sm">Global Leader in HR Solutions</p>
+              <p className="text-xs text-muted-foreground/70 mt-2">Main Client Partner</p>
+            </Card>
+            <Card className="p-8 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all text-center group">
+              <div className="text-4xl font-bold text-primary mb-3 group-hover:scale-110 transition-transform">Google</div>
+              <p className="text-muted-foreground text-sm">Technology Innovation Partner</p>
+              <p className="text-xs text-muted-foreground/70 mt-2">Client Referral</p>
+            </Card>
+            <Card className="p-8 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all text-center group">
+              <div className="text-4xl font-bold text-primary mb-3 group-hover:scale-110 transition-transform">T-Hub</div>
+              <p className="text-muted-foreground text-sm">India's Leading Innovation Hub</p>
+              <p className="text-xs text-muted-foreground/70 mt-2">Strategic Partner</p>
+            </Card>
           </div>
         </div>
       </section>

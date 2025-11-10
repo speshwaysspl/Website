@@ -50,14 +50,20 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Call Us",
-      content: "+91 1234567890",
-      link: "tel:+911234567890",
+      content: "+91 9100006020",
+      link: "tel:+919100006020",
     },
     {
       icon: MapPin,
-      title: "Visit Us",
-      content: "123 Tech Street, Innovation City, IN 500001",
-      link: "#",
+      title: "India Office",
+      content: "Plot No. 1024, 4th Floor, Repunjaya Building, Madhapur, Hyderabad, Telangana & T-Hub",
+      link: "https://maps.google.com/?q=Plot+No.+1024,+4th+Floor,+Repunjaya+Building,+Madhapur+Hyderabad,+Telangana",
+    },
+    {
+      icon: MapPin,
+      title: "Australia Office",
+      content: "Level 8, 65 York Street, Sydney NSW 2000, Australia",
+      link: "https://maps.google.com/?q=Level+8,+65+York+Street,+Sydney+NSW+2000,+Australia",
     },
   ];
 
@@ -83,7 +89,7 @@ const Contact = () => {
       {/* Contact Info Cards */}
       <section className="py-12">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {contactInfo.map((info, index) => (
               <Card
                 key={index}
