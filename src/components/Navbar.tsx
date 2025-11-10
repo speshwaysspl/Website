@@ -26,6 +26,10 @@ const Navbar = () => {
     { path: "/faq", label: "FAQ" },
   ];
 
+  const adminLinks = [
+    { path: "/admin/login", label: "Admin" },
+  ];
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -66,6 +70,24 @@ const Navbar = () => {
                 />
               </Link>
             ))}
+            {adminLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`text-sm font-medium transition-colors relative group ${
+                  location.pathname === link.path
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {link.label}
+                <span
+                  className={`absolute -bottom-1 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform ${
+                    location.pathname === link.path ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                />
+              </Link>
+            ))}
             <Link to="/contact">
               <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
                 Contact Us
@@ -86,6 +108,20 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 space-y-4 animate-slide-in">
             {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`block py-2 text-sm font-medium transition-colors ${
+                  location.pathname === link.path
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            {adminLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}

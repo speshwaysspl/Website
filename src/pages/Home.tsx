@@ -146,27 +146,24 @@ const Home = () => {
       <section className="py-20 bg-secondary/20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Trusted By Industry Leaders</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-4">Our Trusted Clients</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              "Excellence in delivery, innovation in approach. Speshway transforms challenges into opportunities."
+              Proud to serve industry leaders across various sectors
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="p-8 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all text-center group">
-              <div className="text-4xl font-bold text-primary mb-3 group-hover:scale-110 transition-transform">Adecco</div>
-              <p className="text-muted-foreground text-sm">Global Leader in HR Solutions</p>
-              <p className="text-xs text-muted-foreground/70 mt-2">Main Client Partner</p>
-            </Card>
-            <Card className="p-8 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all text-center group">
-              <div className="text-4xl font-bold text-primary mb-3 group-hover:scale-110 transition-transform">Google</div>
-              <p className="text-muted-foreground text-sm">Technology Innovation Partner</p>
-              <p className="text-xs text-muted-foreground/70 mt-2">Client Referral</p>
-            </Card>
-            <Card className="p-8 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all text-center group">
-              <div className="text-4xl font-bold text-primary mb-3 group-hover:scale-110 transition-transform">T-Hub</div>
-              <p className="text-muted-foreground text-sm">India's Leading Innovation Hub</p>
-              <p className="text-xs text-muted-foreground/70 mt-2">Strategic Partner</p>
-            </Card>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {[
+              "Cloudmile", "Deccan Motors", "Zari", "Instaloan",
+              "Thrive", "Wizklub", "Cyber Eagle Management", "Sunyway Solar",
+              "Cognito", "We Save Blog", "Apollo Diagnostics", "Scaler Academy",
+              "Bridgeweave", "Shanthi Gears", "Craftsvilla", "Pepperfry",
+              "M Mart", "APTA", "Sunrisers", "Coco Loco"
+            ].map((client, index) => (
+              <Card key={index} className="p-6 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all text-center group">
+                <div className="text-2xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">{client}</div>
+                <p className="text-muted-foreground text-sm">Trusted Partner</p>
+              </Card>
+            ))}
           </div>
         </div>
       </section>

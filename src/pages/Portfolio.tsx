@@ -1,10 +1,24 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, X } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useState } from "react";
 
 const Portfolio = () => {
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openProjectDetails = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedProject(null);
+    setIsModalOpen(false);
+  };
+
   const projects = [
     {
       title: "E-Commerce Platform",
@@ -101,6 +115,7 @@ const Portfolio = () => {
                   <Button
                     variant="ghost"
                     className="w-full text-primary hover:text-primary hover:bg-primary/10 group-hover:translate-x-1 transition-transform"
+                    onClick={() => openProjectDetails(project)}
                   >
                     View Details
                     <ExternalLink size={16} className="ml-2" />
@@ -143,6 +158,101 @@ const Portfolio = () => {
       </section>
 
       <Footer />
+
+      {/* Project Details Modal */}
+      {isModalOpen && selectedProject && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-card rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-border">
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <h2 className="text-3xl font-bold text-foreground mb-2">{selectedProject.title}</h2>
+                  <div className="text-sm text-primary font-medium">{selectedProject.category}</div>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={closeModal}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  <X size={24} />
+                </Button>
+              </div>
+              
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">Project Overview</h3>
+                  <p className="text-muted-foreground leading-relaxed">{selectedProject.description}</p>
+                </div>
+                
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-3">Technologies Used</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.technologies.map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="px-3 py-1 bg-secondary/50 rounded-full text-sm text-muted-foreground border border-border"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-3">Key Features</h3>
+                  <ul className="space-y-2 text-muted-foreground">
+                    <li className="flex items-start">
+                      <span className="text-primary mr-2">•</span>
+                      Scalable architecture built for enterprise-level performance
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-2">•</span>
+                      Modern UI/UX design with responsive layouts
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-2">•</span>
+                      Advanced security measures and data protection
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-primary mr-2">•</span>
+                      Real-time performance monitoring and analytics
+                    </li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-3">Project Results</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-secondary/30 rounded-lg p-4 text-center">
+                      <div className="text-2xl font-bold text-primary mb-1">40%</div>
+                      <div className="text-sm text-muted-foreground">Performance Improvement</div>
+                    </div>
+                    <div className="bg-secondary/30 rounded-lg p-4 text-center">
+                      <div className="text-2xl font-bold text-primary mb-1">99.9%</div>
+                      <div className="text-sm text-muted-foreground">Uptime Achieved</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-8 flex gap-3">
+                <Button 
+                  variant="outline" 
+                  onClick={closeModal}
+                  className="flex-1"
+                >
+                  Close
+                </Button>
+                <Button className="flex-1">
+                  <ExternalLink size={16} className="mr-2" />
+                  View Live Demo
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

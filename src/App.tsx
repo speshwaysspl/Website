@@ -10,8 +10,11 @@ import Portfolio from "./pages/Portfolio";
 import Team from "./pages/Team";
 import Career from "./pages/Career";
 import Contact from "./pages/Contact";
+import SendResume from "./pages/SendResume";
 import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
+import Submissions from "./pages/admin/Submissions";
+import AdminLogin from "./pages/admin/Login";
 
 const queryClient = new QueryClient();
 
@@ -29,7 +32,10 @@ const App = () => (
           <Route path="/team" element={<Team />} />
           <Route path="/career" element={<Career />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/send-resume" element={<SendResume />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/submissions" element={<Submissions />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

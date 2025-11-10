@@ -94,7 +94,7 @@ const Career = () => {
               We're always on the lookout for exceptional talent. Send us your resume and let's talk about how you can
               contribute to our team.
             </p>
-            <Link to="/contact">
+            <Link to="/send-resume">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
                 Send Your Resume
               </Button>
