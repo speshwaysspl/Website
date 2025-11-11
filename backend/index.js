@@ -43,6 +43,7 @@ app.use('/api/contact', require('./routes/contact'));
 app.use('/api/services', require('./routes/services'));
 app.use('/api/portfolios', require('./routes/portfolios'));
 app.use('/api/team', require('./routes/team'));
+app.use('/api/gallery', require('./routes/gallery'));
 
 // Health check endpoint
 app.get('/', (req, res) => {

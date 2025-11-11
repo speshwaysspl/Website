@@ -17,7 +17,8 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
-    if (token) {
+    // Only add auth header for admin routes or if explicitly needed
+    if (token && (config.url?.includes('/admin') || config.url?.includes('/auth') || config.headers?.['X-Require-Auth'])) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;

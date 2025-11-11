@@ -17,6 +17,7 @@ const Career = lazy(() => import("./pages/Career"));
 const Contact = lazy(() => import("./pages/Contact"));
 const SendResume = lazy(() => import("./pages/SendResume"));
 const FAQ = lazy(() => import("./pages/FAQ"));
+const Gallery = lazy(() => import("./pages/Gallery"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Submissions = lazy(() => import("./pages/admin/Submissions"));
 const AdminLogin = lazy(() => import("./pages/admin/Login"));
@@ -24,6 +25,7 @@ const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
 const ManageServices = lazy(() => import("./pages/admin/ManageServices"));
 const ManagePortfolio = lazy(() => import("./pages/admin/ManagePortfolio"));
 const ManageTeam = lazy(() => import("./pages/admin/ManageTeam"));
+const ManageGallery = lazy(() => import("./pages/admin/ManageGallery"));
 
 // Loading component
 const PageLoader = () => (
@@ -49,11 +51,13 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/send-resume" element={<SendResume />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/gallery" element={<Gallery />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<Dashboard />} />
             <Route path="/admin/services" element={<ManageServices />} />
             <Route path="/admin/portfolio" element={<ManagePortfolio />} />
             <Route path="/admin/team" element={<ManageTeam />} />
+            <Route path="/admin/gallery" element={<ManageGallery />} />
             <Route path="/admin/submissions" element={<Submissions />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
