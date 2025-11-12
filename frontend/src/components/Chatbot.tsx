@@ -19,7 +19,7 @@ const Chatbot: React.FC = () => {
       const welcome: Msg = { id: crypto.randomUUID(), role: "bot", text: "Hi, I’m your assistant. Ask about services, portfolio, careers, or contact.", ts: Date.now() };
       setMessages([welcome]);
     }
-  }, [open]);
+  }, [open, messages.length]);
 
   useEffect(() => {
     if (listRef.current) listRef.current.scrollTop = listRef.current.scrollHeight;
@@ -50,31 +50,55 @@ const Chatbot: React.FC = () => {
         ]);
         const items: { section: string; title: string; text: string; link?: string }[] = [];
         if (services.status === "fulfilled") {
-          const list = Array.isArray(services.value.data) ? services.value.data : services.value.data?.data || [];
-          list.forEach((s: any) => items.push({ section: "Services", title: s.name || s.title || "Service", text: s.description || "", link: "/services" }));
+          const raw = services.value.data;
+          const list = Array.isArray(raw) ? (raw as unknown[]) : (raw?.data as unknown[]) || [];
+          list.forEach((s: unknown) => {
+            const obj = s as { name?: string; title?: string; description?: string };
+            items.push({ section: "Services", title: obj.name || obj.title || "Service", text: obj.description || "", link: "/services" });
+          });
         }
         if (portfolios.status === "fulfilled") {
-          const list = Array.isArray(portfolios.value.data) ? portfolios.value.data : portfolios.value.data?.data || [];
-          list.forEach((p: any) => items.push({ section: "Portfolio", title: p.name || p.title || "Portfolio", text: p.description || "", link: "/portfolio" }));
+          const raw = portfolios.value.data;
+          const list = Array.isArray(raw) ? (raw as unknown[]) : (raw?.data as unknown[]) || [];
+          list.forEach((p: unknown) => {
+            const obj = p as { name?: string; title?: string; description?: string };
+            items.push({ section: "Portfolio", title: obj.name || obj.title || "Portfolio", text: obj.description || "", link: "/portfolio" });
+          });
         }
         if (team.status === "fulfilled") {
-          const list = Array.isArray(team.value.data) ? team.value.data : team.value.data?.data || [];
-          list.forEach((t: any) => items.push({ section: "Team", title: t.name || "Team Member", text: t.role || t.bio || "", link: "/team" }));
+          const raw = team.value.data;
+          const list = Array.isArray(raw) ? (raw as unknown[]) : (raw?.data as unknown[]) || [];
+          list.forEach((t: unknown) => {
+            const obj = t as { name?: string; role?: string; bio?: string };
+            items.push({ section: "Team", title: obj.name || "Team Member", text: obj.role || obj.bio || "", link: "/team" });
+          });
         }
         if (gallery.status === "fulfilled") {
-          const list = Array.isArray(gallery.value.data) ? gallery.value.data : gallery.value.data?.data || [];
-          list.forEach((g: any) => items.push({ section: "Gallery", title: g.title || "Gallery", text: g.description || "", link: "/gallery" }));
+          const raw = gallery.value.data;
+          const list = Array.isArray(raw) ? (raw as unknown[]) : (raw?.data as unknown[]) || [];
+          list.forEach((g: unknown) => {
+            const obj = g as { title?: string; description?: string };
+            items.push({ section: "Gallery", title: obj.title || "Gallery", text: obj.description || "", link: "/gallery" });
+          });
         }
         if (clients.status === "fulfilled") {
-          const list = Array.isArray(clients.value.data) ? clients.value.data : clients.value.data?.data || [];
-          list.forEach((c: any) => items.push({ section: "Clients", title: c.name || "Client", text: c.description || "", link: c.website || "/" }));
+          const raw = clients.value.data;
+          const list = Array.isArray(raw) ? (raw as unknown[]) : (raw?.data as unknown[]) || [];
+          list.forEach((c: unknown) => {
+            const obj = c as { name?: string; description?: string; website?: string };
+            items.push({ section: "Clients", title: obj.name || "Client", text: obj.description || "", link: obj.website || "/" });
+          });
         }
         if (faq.status === "fulfilled") {
-          const list = Array.isArray(faq.value.data) ? faq.value.data : faq.value.data?.data || [];
-          list.forEach((f: any) => items.push({ section: "FAQ", title: f.title || "FAQ", text: f.content || f.description || "", link: "/faq" }));
+          const raw = faq.value.data;
+          const list = Array.isArray(raw) ? (raw as unknown[]) : (raw?.data as unknown[]) || [];
+          list.forEach((f: unknown) => {
+            const obj = f as { title?: string; content?: string; description?: string };
+            items.push({ section: "FAQ", title: obj.title || "FAQ", text: obj.content || obj.description || "", link: "/faq" });
+          });
         }
         if (!cancelled) setKb(items);
-      } catch {}
+      } catch { void 0; }
     };
     load();
     return () => {
