@@ -23,8 +23,12 @@ const ManagePortfolio = () => {
     category: '',
     description: '',
     technologies: '',
-    color: 'from-blue-500/20 to-cyan-500/20'
+    color: 'from-blue-500/20 to-cyan-500/20',
+    status: 'upcoming',
+    demoUrl: '',
+    features: ''
   });
+  const [results, setResults] = useState<{ value: string; label: string }[]>([]);
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -107,11 +111,15 @@ const ManagePortfolio = () => {
       category: '',
       description: '',
       technologies: '',
-      color: 'from-blue-500/20 to-cyan-500/20'
+      color: 'from-blue-500/20 to-cyan-500/20',
+      status: 'upcoming',
+      demoUrl: '',
+      features: ''
     });
     setEditingPortfolio(null);
     setSelectedImage(null);
     setImagePreview(null);
+    setResults([]);
   };
 
   const handleEdit = (portfolio: any) => {
@@ -121,10 +129,14 @@ const ManagePortfolio = () => {
       category: portfolio.category,
       description: portfolio.description,
       technologies: portfolio.technologies.join(', '),
-      color: portfolio.color || 'from-blue-500/20 to-cyan-500/20'
+      color: portfolio.color || 'from-blue-500/20 to-cyan-500/20',
+      status: portfolio.status || 'upcoming',
+      demoUrl: portfolio.demoUrl || '',
+      features: (portfolio.features || []).join('\n')
     });
     setImagePreview(portfolio.image?.url || null);
     setSelectedImage(null);
+    setResults(portfolio.results || []);
     setIsDialogOpen(true);
   };
 
@@ -154,6 +166,10 @@ const ManagePortfolio = () => {
     formDataToSend.append('description', formData.description);
     formDataToSend.append('technologies', JSON.stringify(formData.technologies.split(',').map(t => t.trim()).filter(t => t)));
     formDataToSend.append('color', formData.color);
+    formDataToSend.append('status', formData.status);
+    formDataToSend.append('demoUrl', formData.demoUrl);
+    formDataToSend.append('features', JSON.stringify(formData.features.split('\n').map(f => f.trim()).filter(f => f)));
+    formDataToSend.append('results', JSON.stringify(results.filter(r => r.value && r.label)));
     
     if (selectedImage) {
       formDataToSend.append('image', selectedImage);
@@ -277,6 +293,74 @@ const ManagePortfolio = () => {
                       />
                     </div>
                     <div>
+                      <Label htmlFor="demoUrl">Live Demo URL</Label>
+                      <Input
+                        id="demoUrl"
+                        value={formData.demoUrl}
+                        onChange={(e) => setFormData({ ...formData, demoUrl: e.target.value })}
+                        placeholder="https://example.com"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="features">Key Features (one per line)</Label>
+                      <Textarea
+                        id="features"
+                        value={formData.features}
+                        onChange={(e) => setFormData({ ...formData, features: e.target.value })}
+                        placeholder={"Responsive design\nRole-based access\nAnalytics dashboard"}
+                      />
+                    </div>
+                    <div>
+                      <Label>Project Results</Label>
+                      <div className="space-y-2">
+                        {results.map((r, idx) => (
+                          <div key={idx} className="grid grid-cols-2 gap-2">
+                            <Input
+                              placeholder="Value e.g. 40%"
+                              value={r.value}
+                              onChange={(e) => {
+                                const copy = [...results];
+                                copy[idx] = { ...copy[idx], value: e.target.value };
+                                setResults(copy);
+                              }}
+                            />
+                            <div className="flex gap-2">
+                              <Input
+                                placeholder="Label e.g. Performance Improvement"
+                                value={r.label}
+                                onChange={(e) => {
+                                  const copy = [...results];
+                                  copy[idx] = { ...copy[idx], label: e.target.value };
+                                  setResults(copy);
+                                }}
+                              />
+                              <Button
+                                type="button"
+                                variant="destructive"
+                                onClick={() => setResults(results.filter((_, i) => i !== idx))}
+                              >
+                                Remove
+                              </Button>
+                            </div>
+                          </div>
+                        ))}
+                        <Button type="button" variant="outline" onClick={() => setResults([...results, { value: '', label: '' }])}>Add Result</Button>
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="status">Status</Label>
+                      <select
+                        id="status"
+                        value={formData.status}
+                        onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                        className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      >
+                        <option value="upcoming">Upcoming</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                      </select>
+                    </div>
+                    <div>
                       <Label htmlFor="color">Color Gradient</Label>
                       <Input
                         id="color"
@@ -361,6 +445,11 @@ const ManagePortfolio = () => {
                     <CardDescription>{portfolio.category}</CardDescription>
                   </CardHeader>
                   <CardContent>
+                    <div className="mb-2">
+                      <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors bg-secondary text-secondary-foreground">
+                        {portfolio.status === 'in_progress' ? 'In Progress' : portfolio.status === 'completed' ? 'Completed' : 'Upcoming'}
+                      </span>
+                    </div>
                     <p className="text-sm text-muted-foreground mb-4">{portfolio.description}</p>
                     <div className="mb-4">
                       <p className="text-sm font-medium mb-2">Technologies:</p>

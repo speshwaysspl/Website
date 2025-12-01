@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
-import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal } from "@/components/animations";
+import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState<any>(null);
@@ -84,7 +84,8 @@ const Portfolio = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {projects.map((project: any, index: number) => (
                   <StaggerItem key={project._id || index}>
-                    <HoverScale>
+                    <ScrollParallaxItem direction={index % 2 === 0 ? "left" : "right"} intensity="strong">
+                      <HoverScale>
                       <Card
                         className="overflow-hidden bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all group"
                       >
@@ -106,7 +107,12 @@ const Portfolio = () => {
                     </div>
                   )}
                   <div className="p-6">
-                    <div className="text-sm text-primary font-medium mb-2">{project.category}</div>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="text-sm text-primary font-medium">{project.category}</div>
+                      <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors bg-secondary text-secondary-foreground">
+                        {project.status === 'in_progress' ? 'In Progress' : project.status === 'completed' ? 'Completed' : 'Upcoming'}
+                      </span>
+                    </div>
                     <h3 className="text-xl font-bold text-foreground mb-3">{project.title}</h3>
                     <p className="text-muted-foreground mb-4">{project.description}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
@@ -129,7 +135,8 @@ const Portfolio = () => {
                     </Button>
                   </div>
                       </Card>
-                    </HoverScale>
+                      </HoverScale>
+                    </ScrollParallaxItem>
                   </StaggerItem>
                 ))}
               </div>
@@ -224,38 +231,34 @@ const Portfolio = () => {
                 
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-3">Key Features</h3>
-                  <ul className="space-y-2 text-muted-foreground">
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      Scalable architecture built for enterprise-level performance
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      Modern UI/UX design with responsive layouts
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      Advanced security measures and data protection
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      Real-time performance monitoring and analytics
-                    </li>
-                  </ul>
+                  {selectedProject.features && selectedProject.features.length > 0 ? (
+                    <ul className="space-y-2 text-muted-foreground">
+                      {selectedProject.features.map((f: string, idx: number) => (
+                        <li key={idx} className="flex items-start">
+                          <span className="text-primary mr-2">•</span>
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-muted-foreground">No features listed</p>
+                  )}
                 </div>
                 
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-3">Project Results</h3>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-secondary/30 rounded-lg p-4 text-center">
-                      <div className="text-2xl font-bold text-primary mb-1">40%</div>
-                      <div className="text-sm text-muted-foreground">Performance Improvement</div>
+                  {selectedProject.results && selectedProject.results.length > 0 ? (
+                    <div className="grid grid-cols-2 gap-4">
+                      {selectedProject.results.map((r: any, idx: number) => (
+                        <div key={idx} className="bg-secondary/30 rounded-lg p-4 text-center">
+                          <div className="text-2xl font-bold text-primary mb-1">{r.value}</div>
+                          <div className="text-sm text-muted-foreground">{r.label}</div>
+                        </div>
+                      ))}
                     </div>
-                    <div className="bg-secondary/30 rounded-lg p-4 text-center">
-                      <div className="text-2xl font-bold text-primary mb-1">99.9%</div>
-                      <div className="text-sm text-muted-foreground">Uptime Achieved</div>
-                    </div>
-                  </div>
+                  ) : (
+                    <p className="text-muted-foreground">No results provided</p>
+                  )}
                 </div>
               </div>
               
@@ -267,7 +270,11 @@ const Portfolio = () => {
                 >
                   Close
                 </Button>
-                <Button className="flex-1">
+                <Button className="flex-1" disabled={!selectedProject.demoUrl} onClick={() => {
+                  if (selectedProject.demoUrl) {
+                    window.open(selectedProject.demoUrl, '_blank');
+                  }
+                }}>
                   <ExternalLink size={16} className="mr-2" />
                   View Live Demo
                 </Button>

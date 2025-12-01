@@ -5,7 +5,6 @@ import api from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
@@ -20,8 +19,6 @@ const ManageClients = () => {
   const [formData, setFormData] = useState({
     name: '',
     logo: '',
-    website: '',
-    description: '',
     isActive: true
   });
   const { toast } = useToast();
@@ -101,7 +98,7 @@ const ManageClients = () => {
   });
 
   const resetForm = () => {
-    setFormData({ name: '', logo: '', website: '', description: '', isActive: true });
+    setFormData({ name: '', logo: '', isActive: true });
     setEditingClient(null);
   };
 
@@ -110,8 +107,6 @@ const ManageClients = () => {
     setFormData({
       name: client.name,
       logo: client.logo || '',
-      website: client.website || '',
-      description: client.description || '',
       isActive: client.isActive
     });
     setIsDialogOpen(true);
@@ -123,8 +118,6 @@ const ManageClients = () => {
     const data = {
       name: formData.name.trim(),
       logo: formData.logo.trim() || '',
-      website: formData.website.trim() || '',
-      description: formData.description.trim() || '',
       isActive: formData.isActive
     };
 
@@ -224,24 +217,7 @@ const ManageClients = () => {
                         placeholder="https://example.com/logo.png"
                       />
                     </div>
-                    <div>
-                      <Label htmlFor="website">Website URL (optional)</Label>
-                      <Input
-                        id="website"
-                        value={formData.website}
-                        onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                        placeholder="https://example.com"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="description">Description (optional)</Label>
-                      <Textarea
-                        id="description"
-                        value={formData.description}
-                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                        placeholder="Brief description about the client"
-                      />
-                    </div>
+                    
                     <div className="flex items-center space-x-2">
                       <Switch
                         id="isActive"
@@ -287,14 +263,6 @@ const ManageClients = () => {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    {client.website && (
-                      <p className="text-sm text-muted-foreground mb-2">
-                        Website: <a href={client.website} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{client.website}</a>
-                      </p>
-                    )}
-                    {client.description && (
-                      <p className="text-sm text-muted-foreground mb-4">{client.description}</p>
-                    )}
                     <div className="flex gap-2">
                       <Button
                         variant="outline"

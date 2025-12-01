@@ -16,6 +16,23 @@ const portfolioSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  status: {
+    type: String,
+    enum: ['upcoming', 'in_progress', 'completed'],
+    default: 'upcoming'
+  },
+  demoUrl: {
+    type: String,
+    default: ''
+  },
+  features: [{
+    type: String,
+    trim: true
+  }],
+  results: [{
+    value: { type: String, trim: true },
+    label: { type: String, trim: true }
+  }],
   technologies: [{
     type: String,
     trim: true

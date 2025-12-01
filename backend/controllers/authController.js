@@ -1,5 +1,7 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const sendEmail = require('../utils/email');
+const crypto = require('crypto');
 
 // Generate JWT
 const generateToken = (id) => {
@@ -96,3 +98,78 @@ const getMe = async (req, res) => {
 };
 
 module.exports = { registerUser, authUser, getMe };
+
+const requestPasswordResetOtp = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    const otp = String(Math.floor(100000 + Math.random() * 900000));
+    user.resetOtp = otp;
+    user.resetOtpExpires = new Date(Date.now() + 10 * 60 * 1000);
+    await user.save();
+    const html = `
+      <div style="font-family:Arial,sans-serif;padding:16px">
+        <h2 style="margin:0 0 8px">Password Reset OTP</h2>
+        <p>Use the code below to reset your password. It expires in 10 minutes.</p>
+        <div style="font-size:24px;font-weight:bold;letter-spacing:2px;padding:12px 16px;border:1px solid #ddd;border-radius:8px;display:inline-block">${otp}</div>
+        <p style="margin-top:12px">If you did not request this, you can ignore this email.</p>
+      </div>`;
+    try {
+      await sendEmail({ to: email, subject: 'Your OTP Code', html });
+    } catch (e) {
+      return res.status(500).json({ message: 'Failed to send email' });
+    }
+    res.json({ message: 'OTP sent' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const verifyPasswordResetOtp = async (req, res) => {
+  const { email, otp } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user || !user.resetOtp || !user.resetOtpExpires) {
+      return res.status(400).json({ message: 'Invalid reset request' });
+    }
+    if (user.resetOtp !== String(otp)) {
+      return res.status(400).json({ message: 'Invalid OTP' });
+    }
+    if (user.resetOtpExpires.getTime() < Date.now()) {
+      return res.status(400).json({ message: 'OTP expired' });
+    }
+    return res.json({ verified: true });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const resetPasswordWithOtp = async (req, res) => {
+  const { email, otp, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user || !user.resetOtp || !user.resetOtpExpires) {
+      return res.status(400).json({ message: 'Invalid reset request' });
+    }
+    if (user.resetOtp !== String(otp)) {
+      return res.status(400).json({ message: 'Invalid OTP' });
+    }
+    if (user.resetOtpExpires.getTime() < Date.now()) {
+      return res.status(400).json({ message: 'OTP expired' });
+    }
+    user.password = password;
+    user.resetOtp = null;
+    user.resetOtpExpires = null;
+    await user.save();
+    res.json({ message: 'Password reset successful' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports.requestPasswordResetOtp = requestPasswordResetOtp;
+module.exports.verifyPasswordResetOtp = verifyPasswordResetOtp;
+module.exports.resetPasswordWithOtp = resetPasswordWithOtp;

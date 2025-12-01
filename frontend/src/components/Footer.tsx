@@ -10,13 +10,16 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {/* Company Info */}
           <div className="space-y-3 sm:space-y-4 animate-fade-in-up">
-            <div className="flex items-center space-x-2">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-primary/20 rounded-lg flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                <span className="text-xl sm:text-2xl font-bold text-primary">S</span>
+            <div className="flex items-center gap-2">
+              <img
+                src="/logo.png"
+                alt="Speshway Logo"
+                className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-lg hover:scale-110 transition-transform duration-300"
+              />
+              <div className="leading-tight">
+                <span className="block text-sm sm:text-base font-bold text-foreground uppercase">Speshway Solutions</span>
+                <span className="block text-[10px] sm:text-xs text-muted-foreground uppercase">Private Limited</span>
               </div>
-              <span className="text-lg sm:text-xl font-bold text-foreground">
-                SPESHWAY SOLUTIONS PRIVATE LIMITED<span className="text-primary"></span>
-              </span>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground">
               Delivering innovative IT solutions and driving digital transformation for businesses worldwide.

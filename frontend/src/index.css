@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.marquee-wrap { overflow: hidden; }
+.marquee { display: flex; gap: 1.5rem; white-space: nowrap; will-change: transform; animation: marquee-left 30s linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /* Ant Design CSS - Imported via ConfigProvider in App.tsx */
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
@@ -101,6 +109,14 @@ All colors MUST be HSL.
     );
     background-size: 1000px 100%;
     animation: shimmer 3s linear infinite;
+  }
+
+  /* Clients section styles */
+  .clients-section {
+    @apply relative;
+  }
+  .client-card {
+    @apply bg-transparent opacity-60 hover:opacity-90 transition-opacity duration-300 shadow-none border-0;
   }
 }
 

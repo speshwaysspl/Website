@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
-import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal } from "@/components/animations";
+import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
 
 // Icon mapping
 const iconMap: { [key: string]: any } = {
@@ -84,6 +84,7 @@ const Services = () => {
                   const IconComponent = iconMap[service.icon] || Code;
                   return (
                     <StaggerItem key={service._id || index}>
+                      <ScrollParallaxItem direction={index % 2 === 0 ? "left" : "right"} intensity="strong">
                       <HoverScale>
                         <Card
                           className="p-8 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all group hover:shadow-lg hover:shadow-primary/10"
@@ -103,6 +104,7 @@ const Services = () => {
                           </ul>
                         </Card>
                       </HoverScale>
+                      </ScrollParallaxItem>
                     </StaggerItem>
                   );
                 })}
@@ -120,6 +122,7 @@ const Services = () => {
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10" />
         <div className="container mx-auto px-4 relative z-10">
+          <ScrollParallaxItem direction="left" intensity="strong">
           <Card className="p-12 bg-card/80 backdrop-blur-sm border-border text-center max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold text-foreground mb-4">Need a Custom Solution?</h2>
             <p className="text-xl text-muted-foreground mb-8">
@@ -132,6 +135,7 @@ const Services = () => {
               </Button>
             </Link>
           </Card>
+          </ScrollParallaxItem>
         </div>
       </section>
 

@@ -20,6 +20,14 @@ const userSchema = new mongoose.Schema({
     enum: ['user', 'hr', 'admin'],
     default: 'user',
   },
+  resetOtp: {
+    type: String,
+    default: null,
+  },
+  resetOtpExpires: {
+    type: Date,
+    default: null,
+  },
 });
 
 // Encrypt password using bcrypt

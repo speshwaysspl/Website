@@ -37,9 +37,19 @@ const createPortfolio = async (req, res) => {
       title: req.body.title,
       category: req.body.category,
       description: req.body.description,
+      status: ['upcoming','in_progress','completed'].includes((req.body.status || '').toLowerCase())
+        ? (req.body.status || '').toLowerCase()
+        : 'upcoming',
+      demoUrl: req.body.demoUrl || '',
       technologies: typeof req.body.technologies === 'string' 
         ? JSON.parse(req.body.technologies) 
         : req.body.technologies,
+      features: typeof req.body.features === 'string'
+        ? JSON.parse(req.body.features)
+        : (Array.isArray(req.body.features) ? req.body.features : []),
+      results: typeof req.body.results === 'string'
+        ? JSON.parse(req.body.results)
+        : (Array.isArray(req.body.results) ? req.body.results : []),
       color: req.body.color || 'from-blue-500/20 to-cyan-500/20',
       updatedAt: Date.now()
     };
@@ -83,10 +93,27 @@ const updatePortfolio = async (req, res) => {
     if (req.body.title) portfolio.title = req.body.title;
     if (req.body.category) portfolio.category = req.body.category;
     if (req.body.description) portfolio.description = req.body.description;
+    if (typeof req.body.status !== 'undefined') {
+      const s = (req.body.status || '').toLowerCase();
+      if (['upcoming','in_progress','completed'].includes(s)) {
+        portfolio.status = s;
+      }
+    }
+    if (typeof req.body.demoUrl !== 'undefined') portfolio.demoUrl = req.body.demoUrl || '';
     if (req.body.technologies) {
       portfolio.technologies = typeof req.body.technologies === 'string' 
         ? JSON.parse(req.body.technologies) 
         : req.body.technologies;
+    }
+    if (typeof req.body.features !== 'undefined') {
+      portfolio.features = typeof req.body.features === 'string'
+        ? JSON.parse(req.body.features)
+        : (Array.isArray(req.body.features) ? req.body.features : []);
+    }
+    if (typeof req.body.results !== 'undefined') {
+      portfolio.results = typeof req.body.results === 'string'
+        ? JSON.parse(req.body.results)
+        : (Array.isArray(req.body.results) ? req.body.results : []);
     }
     if (req.body.color) portfolio.color = req.body.color;
     

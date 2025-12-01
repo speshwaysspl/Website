@@ -15,8 +15,8 @@ const users = [
   },
   {
     name: 'Super Admin',
-    email: 'superadmin@speshway.com',
-    password: 'SuperAdmin123!',
+    email: 'ct9308478@gmail.com',
+    password: 'Super',
     role: 'admin',
   },
   {

@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import heroImage from "@/assets/happyFamily.png";
-import { FadeIn, StaggerContainer, StaggerItem, HoverScale, ScrollReveal, ParallaxHero } from "@/components/animations";
+import { FadeIn, StaggerContainer, StaggerItem, HoverScale, ScrollReveal, ParallaxHero, ScrollParallaxItem } from "@/components/animations";
 import { useEffect, useState } from "react";
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
@@ -89,7 +89,7 @@ const Home = () => {
                 Welcome to the Future of IT
               </span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight drop-shadow">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight drop-shadow">
               Transform Your Business with{" "}
               <span className="text-primary bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Cutting-Edge
@@ -128,28 +128,34 @@ const Home = () => {
           <StaggerContainer staggerDelay={0.15}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <StaggerItem>
-                <HoverScale scale={1.05}>
-                  <Card className="p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all">
-                    <div className="text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">100+</div>
-                    <div className="text-muted-foreground">Projects Delivered</div>
-                  </Card>
-                </HoverScale>
+                <ScrollParallaxItem direction="left" intensity="strong" mobileOnly={false}>
+                  <HoverScale scale={1.05}>
+                    <Card className="p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all">
+                      <div className="text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">100+</div>
+                      <div className="text-muted-foreground">Projects Delivered</div>
+                    </Card>
+                  </HoverScale>
+                </ScrollParallaxItem>
               </StaggerItem>
               <StaggerItem>
-                <HoverScale scale={1.05}>
-                  <Card className="p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all">
-                    <div className="text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">76+</div>
-                    <div className="text-muted-foreground">Happy Clients</div>
-                  </Card>
-                </HoverScale>
+                <ScrollParallaxItem direction="right" intensity="strong" mobileOnly={false}>
+                  <HoverScale scale={1.05}>
+                    <Card className="p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all">
+                      <div className="text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">76+</div>
+                      <div className="text-muted-foreground">Happy Clients</div>
+                    </Card>
+                  </HoverScale>
+                </ScrollParallaxItem>
               </StaggerItem>
               <StaggerItem>
-                <HoverScale scale={1.05}>
-                  <Card className="p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all">
-                    <div className="text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">300+</div>
-                    <div className="text-muted-foreground">Team Members</div>
-                  </Card>
-                </HoverScale>
+                <ScrollParallaxItem direction="left" intensity="strong" mobileOnly={false}>
+                  <HoverScale scale={1.05}>
+                    <Card className="p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all">
+                      <div className="text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">300+</div>
+                      <div className="text-muted-foreground">Team Members</div>
+                    </Card>
+                  </HoverScale>
+                </ScrollParallaxItem>
               </StaggerItem>
             </div>
           </StaggerContainer>
@@ -168,15 +174,17 @@ const Home = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {features.map((feature, index) => (
                 <StaggerItem key={index}>
-                  <HoverScale>
-                    <Card className="p-6 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/10">
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:animate-glow transition-all">
-                        <feature.icon className="text-primary" size={24} />
-                      </div>
-                      <h3 className="text-xl font-semibold text-foreground mb-2">{feature.title}</h3>
-                      <p className="text-muted-foreground">{feature.description}</p>
-                    </Card>
-                  </HoverScale>
+                  <ScrollParallaxItem direction={index % 2 === 0 ? "left" : "right"} intensity="strong" mobileOnly={false}>
+                    <HoverScale>
+                      <Card className="p-6 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/10">
+                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:animate-glow transition-all">
+                          <feature.icon className="text-primary" size={24} />
+                        </div>
+                        <h3 className="text-xl font-semibold text-foreground mb-2">{feature.title}</h3>
+                        <p className="text-muted-foreground">{feature.description}</p>
+                      </Card>
+                    </HoverScale>
+                  </ScrollParallaxItem>
                 </StaggerItem>
               ))}
             </div>
@@ -192,27 +200,37 @@ const Home = () => {
             </p>
           </div>
           {clients && clients.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {clients.filter((client: any) => client.isActive).map((client: any) => (
-                <Card key={client._id} className="p-6 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all text-center group">
-                  {client.logo && (
-                    <img
-                      src={client.logo}
-                      alt={client.name}
-                      className="w-16 h-16 object-contain mx-auto mb-4 rounded"
-                    />
-                  )}
-                  <div className="text-xl font-semibold text-primary mb-2 group-hover:scale-110 transition-transform">{client.name}</div>
-                  {client.website && (
-                    <a href={client.website} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                      Visit Website
-                    </a>
-                  )}
-                  {client.description && (
-                    <p className="text-sm text-muted-foreground mt-2">{client.description}</p>
-                  )}
-                </Card>
-              ))}
+            <div className="marquee-wrap">
+              <div className="marquee">
+                {clients.filter((client: any) => client.isActive).map((client: any) => (
+                  <Card
+                    key={client._id}
+                    className="p-4 client-card text-center flex flex-col items-center gap-2 cursor-pointer"
+                    onClick={() => { if (client.website) window.open(client.website, '_blank'); }}
+                    role={client.website ? 'link' : 'button'}
+                    aria-label={`Open ${client.name}`}
+                  >
+                    {client.logo && (
+                      <img src={client.logo} alt={client.name} className="w-20 h-20 object-contain rounded" />
+                    )}
+                    <div className="text-primary font-semibold text-sm">{client.name}</div>
+                  </Card>
+                ))}
+                {clients.filter((client: any) => client.isActive).map((client: any) => (
+                  <Card
+                    key={`${client._id}-dup`}
+                    className="p-4 client-card text-center flex flex-col items-center gap-2 cursor-pointer"
+                    onClick={() => { if (client.website) window.open(client.website, '_blank'); }}
+                    role={client.website ? 'link' : 'button'}
+                    aria-hidden
+                  >
+                    {client.logo && (
+                      <img src={client.logo} alt={client.name} className="w-20 h-20 object-contain rounded" />
+                    )}
+                    <div className="text-primary font-semibold text-sm">{client.name}</div>
+                  </Card>
+                ))}
+              </div>
             </div>
           ) : (
             <div className="text-center">

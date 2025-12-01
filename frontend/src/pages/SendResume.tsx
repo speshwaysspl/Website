@@ -180,6 +180,7 @@ const SendResume = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
+            <ScrollParallaxItem direction="left" intensity="strong">
             <Card className="p-8 md:p-12 bg-card/50 backdrop-blur-sm border-border">
               <div className="text-center mb-8">
                 <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -329,6 +330,7 @@ const SendResume = () => {
                 </Button>
               </form>
             </Card>
+            </ScrollParallaxItem>
           </div>
         </div>
       </section>
@@ -339,3 +341,4 @@ const SendResume = () => {
 };
 
 export default SendResume;
+import { ScrollParallaxItem } from "@/components/animations";

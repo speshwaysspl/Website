@@ -19,7 +19,7 @@ import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Skeleton } from '@/components/ui/skeleton';
-import { FadeIn, StaggerContainer, StaggerItem, HoverScale, ScrollReveal } from '@/components/animations';
+import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
 
@@ -340,11 +340,13 @@ const Gallery = () => {
                           </div>
                           <StaggerContainer staggerDelay={0.1}>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                              {items.map((item) => (
+                              {items.map((item, idx) => (
                                 <StaggerItem key={item._id}>
-                                  <HoverScale>
-                                    <GalleryCard item={item} />
-                                  </HoverScale>
+                                  <ScrollParallaxItem direction={idx % 2 === 0 ? "left" : "right"} intensity="strong">
+                                    <HoverScale>
+                                      <GalleryCard item={item} />
+                                    </HoverScale>
+                                  </ScrollParallaxItem>
                                 </StaggerItem>
                               ))}
                             </div>

@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
-import { FadeIn, StaggerContainer, StaggerItem, HoverScale, ScrollReveal } from "@/components/animations";
+import { StaggerContainer, StaggerItem, HoverScale, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
 
 const Team = () => {
   const { data: team, isLoading, error } = useQuery({
@@ -41,6 +41,12 @@ const Team = () => {
     );
   }
 
+  const displayTeam = Array.isArray(team) && team.length > 0 ? team : [
+    { _id: 'demo-1', name: 'Alex Johnson', role: 'Frontend Engineer', bio: 'Building delightful UIs with React.', color: 'from-purple-500 to-pink-500', image: null, linkedin: '', email: '' },
+    { _id: 'demo-2', name: 'Priya Sharma', role: 'Backend Engineer', bio: 'Designing scalable systems and APIs.', color: 'from-blue-500 to-cyan-500', image: null, linkedin: '', email: '' },
+    { _id: 'demo-3', name: 'Daniel Kim', role: 'Product Designer', bio: 'Crafting seamless user experiences.', color: 'from-green-500 to-teal-500', image: null, linkedin: '', email: '' },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
@@ -69,12 +75,13 @@ const Team = () => {
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground">Our Team</h2>
           </div>
 
-          {team && team.length > 0 ? (
+          {displayTeam && displayTeam.length > 0 ? (
             <StaggerContainer staggerDelay={0.1}>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                {team.map((member: any, index: number) => (
+                {displayTeam.map((member: any, index: number) => (
                   <StaggerItem key={member._id || index}>
-                    <HoverScale>
+                    <ScrollParallaxItem direction={index % 2 === 0 ? "left" : "right"} intensity="strong">
+                      <HoverScale>
                       <Card
                         className="overflow-hidden bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 group hover-lift hover-glow"
                       >
@@ -123,7 +130,8 @@ const Team = () => {
                     </div>
                   </div>
                       </Card>
-                    </HoverScale>
+                      </HoverScale>
+                    </ScrollParallaxItem>
                   </StaggerItem>
                 ))}
               </div>
