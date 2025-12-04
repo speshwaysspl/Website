@@ -21,7 +21,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Skeleton } from '@/components/ui/skeleton';
 import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+const RAW_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+const API_URL = RAW_API_URL.endsWith('/api')
+  ? RAW_API_URL
+  : `${RAW_API_URL.replace(/\/+$/, '')}/api`;
 
 interface GalleryItem {
   _id: string;

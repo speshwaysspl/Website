@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-// Base API URL - can be configured via environment variable
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+const RAW_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+const API_BASE_URL = RAW_BASE_URL.endsWith('/api')
+  ? RAW_BASE_URL
+  : `${RAW_BASE_URL.replace(/\/+$/, '')}/api`;
 
 // Create axios instance with default config
 const api = axios.create({
@@ -69,7 +71,7 @@ api.interceptors.response.use(
 
 // Export base URL for file access
 export const getBaseUrl = () => {
-  return API_BASE_URL.replace('/api', '');
+  return API_BASE_URL.replace(/\/api\/?$/, '');
 };
 
 export default api;

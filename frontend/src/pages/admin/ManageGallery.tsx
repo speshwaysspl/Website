@@ -32,7 +32,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+const RAW_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+const API_URL = RAW_API_URL.endsWith('/api')
+  ? RAW_API_URL
+  : `${RAW_API_URL.replace(/\/+$/, '')}/api`;
 
 interface GalleryItem {
   _id: string;
