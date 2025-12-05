@@ -22,6 +22,8 @@ const corsOptions = {
   origin: [
     'http://localhost:8080',
     'http://localhost:8081',
+    'https://www.speshway.com',
+    'https://speshway.com',
     'http://localhost:3000',
     'http://127.0.0.1:8080',
     'http://127.0.0.1:8081',
