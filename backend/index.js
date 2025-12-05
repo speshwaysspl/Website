@@ -21,8 +21,10 @@ app.use(express.urlencoded({ extended: true }));
 const corsOptions = {
   origin: [
     'http://localhost:8080',
+    'http://localhost:8081',
     'http://localhost:3000',
     'http://127.0.0.1:8080',
+    'http://127.0.0.1:8081',
     'http://127.0.0.1:3000',
     'http://localhost:5173',
     'http://127.0.0.1:5173',
@@ -51,6 +53,7 @@ app.use('/api/gallery', require('./routes/gallery'));
 app.use('/api/clients', require('./routes/clients'));
 app.use('/api/sentences', require('./routes/sentences'));
 app.use('/api/home-banners', require('./routes/homeBanners'));
+app.use('/api/settings', require('./routes/settings'));
 
 // Health check endpoint
 app.get('/', (req, res) => {

@@ -81,13 +81,13 @@ const Portfolio = () => {
         <div className="container mx-auto px-4">
           {projects && projects.length > 0 ? (
             <StaggerContainer staggerDelay={0.1}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8">
                 {projects.map((project: any, index: number) => (
                   <StaggerItem key={project._id || index}>
                     <ScrollParallaxItem direction={index % 2 === 0 ? "left" : "right"} intensity="strong">
                       <HoverScale>
                       <Card
-                        className="overflow-hidden bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all group"
+                        className="overflow-hidden bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all group h-[380px] sm:h-[400px] lg:h-[420px] flex flex-col"
                       >
                   {project.image?.url ? (
                     <div className="h-48 relative overflow-hidden">
@@ -106,16 +106,16 @@ const Portfolio = () => {
                       </div>
                     </div>
                   )}
-                  <div className="p-6">
+                  <div className="p-4 sm:p-6 flex-1 flex flex-col">
                     <div className="flex items-center justify-between mb-2">
                       <div className="text-sm text-primary font-medium">{project.category}</div>
                       <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors bg-secondary text-secondary-foreground">
                         {project.status === 'in_progress' ? 'In Progress' : project.status === 'completed' ? 'Completed' : 'Upcoming'}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold text-foreground mb-3">{project.title}</h3>
-                    <p className="text-muted-foreground mb-4">{project.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2">{project.title}</h3>
+                    <p className="text-muted-foreground mb-3 text-sm leading-snug max-h-16 overflow-hidden">{project.description}</p>
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3">
                       {project.technologies?.map((tech: string, idx: number) => (
                         <span
                           key={idx}
@@ -125,14 +125,16 @@ const Portfolio = () => {
                         </span>
                       ))}
                     </div>
-                    <Button
-                      variant="ghost"
-                      className="w-full text-primary hover:text-primary hover:bg-primary/10 group-hover:translate-x-1 transition-transform"
-                      onClick={() => openProjectDetails(project)}
-                    >
-                      View Details
-                      <ExternalLink size={16} className="ml-2" />
-                    </Button>
+                    <div className="mt-auto">
+                      <Button
+                        variant="ghost"
+                        className="mx-auto w-[150px] justify-center text-primary hover:text-primary hover:bg-primary/10"
+                        onClick={() => openProjectDetails(project)}
+                      >
+                        View Details
+                        <ExternalLink size={16} className="ml-2" />
+                      </Button>
+                    </div>
                   </div>
                       </Card>
                       </HoverScale>

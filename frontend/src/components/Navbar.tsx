@@ -17,6 +17,16 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
+
   // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -59,13 +69,13 @@ const Navbar = () => {
             <img
               src="/logo.png"
               alt="Speshway Logo"
-              className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
+              className="w-12 h-12 sm:w-16 sm:h-16 object-contain"
             />
             <div className="leading-tight">
-              <span className="block text-sm sm:text-base md:text-lg font-bold text-foreground uppercase">
+              <span className="block text-base sm:text-lg md:text-xl font-bold text-foreground uppercase">
                 Speshway Solutions</span>
 
-              <span className="block text-[10px] sm:text-[11px] md:text-xs text-muted-foreground uppercase">
+              <span className="block text-xs sm:text-sm md:text-base text-muted-foreground uppercase">
                 Private Limited
               </span>
             </div>
@@ -150,79 +160,72 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <div className="py-4 space-y-2 border-t border-border">
-            {navLinks.map((link, index) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate(link.path);
-                  setIsMobileMenuOpen(false);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className={`block py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 transform ${
-                  isMobileMenuOpen 
-                    ? "translate-x-0 opacity-100" 
-                    : "translate-x-full opacity-0"
-                } ${
-                  isActive(link.path)
-                    ? "text-primary bg-primary/10 border-l-2 border-primary"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50 active:bg-secondary/70"
-                } ${isMobileMenuOpen ? (index === 0 ? "[transition-delay:0s]" : index === 1 ? "[transition-delay:.05s]" : index === 2 ? "[transition-delay:.1s]" : index === 3 ? "[transition-delay:.15s]" : index === 4 ? "[transition-delay:.2s]" : index === 5 ? "[transition-delay:.25s]" : index === 6 ? "[transition-delay:.3s]" : index === 7 ? "[transition-delay:.35s]" : "[transition-delay:.4s]") : ""}`}
-              >
-                {link.label}
+        {/* Mobile Menu Fullscreen Overlay */}
+        {isMobileMenuOpen && (
+          <div className="fixed inset-0 z-[60] lg:hidden bg-background/95 backdrop-blur-sm">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+              <Link to="/" className="flex items-center gap-2" onClick={(e)=>{e.preventDefault();navigate('/');}}>
+                <img src="/logo.png" alt="Speshway Logo" className="w-10 h-10 object-contain" />
+                <div className="leading-tight">
+                  <span className="block text-base font-bold text-foreground uppercase">Speshway Solutions</span>
+                  <span className="block text-xs text-muted-foreground uppercase">Private Limited</span>
+                </div>
               </Link>
-            ))}
-            {adminLinks.map((link, index) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate(link.path);
-                  setIsMobileMenuOpen(false);
-                }}
-                className={`block py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 transform ${
-                  isMobileMenuOpen 
-                    ? "translate-x-0 opacity-100" 
-                    : "translate-x-full opacity-0"
-                } ${
-                  isActive(link.path)
-                    ? "text-primary bg-primary/10 border-l-2 border-primary"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50 active:bg-secondary/70"
-                } ${isMobileMenuOpen ? ((navLinks.length + index) === 8 ? "[transition-delay:.4s]" : (navLinks.length + index) === 9 ? "[transition-delay:.45s]" : "[transition-delay:.5s]") : ""}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div 
-              className={`px-4 pt-2 transition-all duration-300 transform ${
-                isMobileMenuOpen 
-                  ? "translate-x-0 opacity-100" 
-                  : "translate-x-full opacity-0"
-              } ${isMobileMenuOpen ? "[transition-delay:.5s]" : ""}`}
-            >
+              <Button variant="ghost" size="icon" onClick={()=>setIsMobileMenuOpen(false)}>
+                <X size={20} />
+              </Button>
+            </div>
+            <div className="px-4 py-4 space-y-2">
+              {navLinks.map((link, index) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(link.path);
+                    setIsMobileMenuOpen(false);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className={`block py-3 px-4 rounded-lg text-base font-medium transition-colors ${
+                    isActive(link.path)
+                      ? 'text-primary bg-primary/10 border-l-2 border-primary'
+                      : 'text-foreground/90 hover:bg-secondary/60'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              {adminLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(link.path);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`block py-3 px-4 rounded-lg text-base font-medium transition-colors ${
+                    isActive(link.path)
+                      ? 'text-primary bg-primary/10 border-l-2 border-primary'
+                      : 'text-foreground/90 hover:bg-secondary/60'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
               <Button 
                 onClick={(e) => {
                   e.preventDefault();
-                  navigate("/contact");
+                  navigate('/contact');
                   setIsMobileMenuOpen(false);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition-all duration-300 hover:scale-105 active:scale-95"
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
               >
                 Contact Us
               </Button>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </nav>
   );

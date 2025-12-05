@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Settings, Briefcase, Users, LogOut, FileText, Image, Building2 } from 'lucide-react';
+import { Settings, Briefcase, Users, LogOut, FileText, Image, Building2, Palette } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
@@ -21,6 +21,13 @@ const Dashboard = () => {
   };
 
   const menuItems = [
+    {
+      title: 'Settings',
+      description: 'Configure site appearance',
+      icon: Palette,
+      path: '/admin/settings',
+      color: 'from-yellow-500/20 to-amber-500/20'
+    },
     {
       title: 'Services',
       description: 'Manage your services',

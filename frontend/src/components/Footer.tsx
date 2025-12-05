@@ -52,55 +52,56 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="animate-fade-in-up [animation-delay:.1s]">
-            <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/portfolio" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link to="/career" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                  Career
-                </Link>
-              </li>
-              <li>
-                <Link to="/send-resume" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                  Send Resume
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div className="animate-fade-in-up [animation-delay:.2s]">
-            <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">Services</h3>
-            <ul className="space-y-2">
-              {["Web Development", "Mobile Apps", "Cloud Solutions", "AI & ML"].map((service, index) => (
-                <li key={service}>
-                  <a href="#" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                    {service}
-                  </a>
+          {/* Quick Links + Services (side-by-side on mobile) */}
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:col-span-2">
+            <div className="animate-fade-in-up [animation-delay:.1s]">
+              <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link to="/" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                    Home
+                  </Link>
                 </li>
-              ))}
-            </ul>
+                <li>
+                  <Link to="/about" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                    Services
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/portfolio" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                    Projects
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/career" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                    Career
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/send-resume" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                    Send Resume
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div className="animate-fade-in-up [animation-delay:.2s]">
+              <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">Services</h3>
+              <ul className="space-y-2">
+                {["Web Development", "Mobile Apps", "Cloud Solutions", "AI & ML"].map((service) => (
+                  <li key={service}>
+                    <a href="#" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                      {service}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Contact Info */}

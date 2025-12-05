@@ -75,7 +75,7 @@ const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     className="w-full"
-                    placeholder="admin@speshway.com"
+                    placeholder="Please enter your email"
                   />
                 </div>
 

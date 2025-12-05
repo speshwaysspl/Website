@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { useState } from "react";
 
 // Icon mapping
 const iconMap: { [key: string]: any } = {
@@ -23,6 +25,9 @@ const Services = () => {
     queryKey: ['services'],
     queryFn: () => api.get('/services').then(res => res.data),
   });
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<any | null>(null);
 
   if (isLoading) {
     return (
@@ -79,7 +84,7 @@ const Services = () => {
         <div className="container mx-auto px-4">
           {services && services.length > 0 ? (
             <StaggerContainer staggerDelay={0.1}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {services.map((service: any, index: number) => {
                   const IconComponent = iconMap[service.icon] || Code;
                   return (
@@ -87,21 +92,33 @@ const Services = () => {
                       <ScrollParallaxItem direction={index % 2 === 0 ? "left" : "right"} intensity="strong">
                       <HoverScale>
                         <Card
-                          className="p-8 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all group hover:shadow-lg hover:shadow-primary/10"
+                          className="relative p-6 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 transform group hover:shadow-lg hover:shadow-primary/10 hover-lift hover-glow animate-fade-in-up animate-scale-in h-64 overflow-hidden"
                         >
-                          <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:animate-glow">
-                            <IconComponent className="text-primary" size={32} />
+                          <div className="flex h-full flex-col pb-12">
+                            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:animate-glow group-hover:scale-110 transition-transform duration-300">
+                              <IconComponent className="text-primary" size={24} />
+                            </div>
+                            <h3 className="text-lg font-bold text-foreground mb-2">{service.title}</h3>
+                            <div className="text-sm text-muted-foreground mb-3 overflow-hidden max-h-16">
+                              {service.description}
+                            </div>
+                            <ul className="space-y-1 mb-3 overflow-hidden max-h-16">
+                              {(service.features || []).slice(0, 3).map((feature: string, idx: number) => (
+                                <li key={idx} className="flex items-center text-xs text-muted-foreground truncate">
+                                  <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2" />
+                                  {feature}
+                                </li>
+                              ))}
+                            </ul>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="absolute bottom-4 left-4 right-4"
+                              onClick={() => { setSelectedService(service); setIsModalOpen(true); }}
+                            >
+                              See More
+                            </Button>
                           </div>
-                          <h3 className="text-2xl font-bold text-foreground mb-4">{service.title}</h3>
-                          <p className="text-muted-foreground mb-6">{service.description}</p>
-                          <ul className="space-y-2">
-                            {service.features?.map((feature: string, idx: number) => (
-                              <li key={idx} className="flex items-center text-sm text-muted-foreground">
-                                <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3" />
-                                {feature}
-                              </li>
-                            ))}
-                          </ul>
                         </Card>
                       </HoverScale>
                       </ScrollParallaxItem>
@@ -140,6 +157,30 @@ const Services = () => {
       </section>
 
       <Footer />
+
+      {isModalOpen && selectedService && (
+        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{selectedService.title}</DialogTitle>
+              <DialogDescription>
+                <div className="mt-2 text-sm text-muted-foreground">{selectedService.description}</div>
+              </DialogDescription>
+            </DialogHeader>
+            <div className="mt-4">
+              <h4 className="text-sm font-semibold mb-2">Features</h4>
+              <ul className="space-y-2">
+                {(selectedService.features || []).map((feature: string, idx: number) => (
+                  <li key={idx} className="flex items-center text-sm text-muted-foreground">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   );
 };

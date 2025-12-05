@@ -25,6 +25,11 @@ const Home = () => {
     queryFn: () => api.get('/home-banners').then(res => res.data),
   });
 
+  const { data: settings } = useQuery({
+    queryKey: ['settings'],
+    queryFn: () => api.get('/settings').then(res => res.data),
+  });
+
   const [heroIndex, setHeroIndex] = useState(0);
   const activeBanners = Array.isArray(banners)
     ? banners.filter((b: any) => b.isActive).sort((a: any, b: any) => (a.order ?? 0) - (b.order ?? 0))
@@ -89,14 +94,10 @@ const Home = () => {
                 Welcome to the Future of IT
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight drop-shadow">
-              Transform Your Business with{" "}
-              <span className="text-primary bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Cutting-Edge
-              </span>{" "}
-              Technology
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-blue-600 leading-tight drop-shadow animate-fade-in-up" style={{ color: settings?.heroTitleColor || undefined }}>
+              Transform Your Business with{" "}Advanced{" "}Technology
             </h1>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto drop-shadow">
+            <p className="text-xl text-blue-600 max-w-2xl mx-auto drop-shadow animate-fade-in-up [animation-delay:.1s]" style={{ color: settings?.heroSubtitleColor || undefined }}>
               Speshway Solutions delivers innovative IT solutions that drive digital transformation and accelerate
               business growth in the modern era.
             </p>
@@ -205,29 +206,27 @@ const Home = () => {
                 {clients.filter((client: any) => client.isActive).map((client: any) => (
                   <Card
                     key={client._id}
-                    className="p-4 client-card text-center flex flex-col items-center gap-2 cursor-pointer"
+                    className="p-4 client-card text-center flex flex-col items-center gap-0 cursor-pointer"
                     onClick={() => { if (client.website) window.open(client.website, '_blank'); }}
                     role={client.website ? 'link' : 'button'}
                     aria-label={`Open ${client.name}`}
                   >
                     {client.logo && (
-                      <img src={client.logo} alt={client.name} className="w-20 h-20 object-contain rounded" />
+                      <img src={client.logo} alt={client.name} className="w-32 h-32 object-contain rounded" />
                     )}
-                    <div className="text-primary font-semibold text-sm">{client.name}</div>
                   </Card>
                 ))}
                 {clients.filter((client: any) => client.isActive).map((client: any) => (
                   <Card
                     key={`${client._id}-dup`}
-                    className="p-4 client-card text-center flex flex-col items-center gap-2 cursor-pointer"
+                    className="p-4 client-card text-center flex flex-col items-center gap-0 cursor-pointer"
                     onClick={() => { if (client.website) window.open(client.website, '_blank'); }}
                     role={client.website ? 'link' : 'button'}
                     aria-hidden
                   >
                     {client.logo && (
-                      <img src={client.logo} alt={client.name} className="w-20 h-20 object-contain rounded" />
+                      <img src={client.logo} alt={client.name} className="w-32 h-32 object-contain rounded" />
                     )}
-                    <div className="text-primary font-semibold text-sm">{client.name}</div>
                   </Card>
                 ))}
               </div>

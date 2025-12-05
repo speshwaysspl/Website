@@ -49,11 +49,12 @@ const About = () => {
         <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal>
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
-              About <span className="text-primary">Speshway Solutions</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
+              <span className="block sm:inline">About</span>{" "}
+              <span className="block sm:inline text-primary whitespace-nowrap">Speshway Solutions</span>
             </h1>
             <p className="text-xl text-muted-foreground">
-              Pioneering digital transformation with innovative IT solutions since 2009. We're not just developers –
+              Pioneering digital transformation with innovative IT solutions since 2017. We're not just developers –
               we're your technology partners in success.
             </p>
           </div>
@@ -66,10 +67,10 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <Card className="p-8 md:p-12 bg-card/50 backdrop-blur-sm border-border">
-              <h2 className="text-3xl font-bold text-foreground mb-6">Our Story</h2>
+              <h2 className="text-3xl font-bold text-foreground mb-6">About Us </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Founded in 2009, Speshway Solutions Private Limited began with a simple yet powerful vision: to bridge
+                  Founded in 2017, Speshway Solutions Private Limited began with a simple yet powerful vision: to bridge
                   the gap between businesses and cutting-edge technology. What started as a small team of passionate
                   developers has grown into a full-service IT solutions provider serving clients across the globe.
                 </p>

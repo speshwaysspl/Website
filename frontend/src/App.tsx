@@ -28,6 +28,7 @@ const ManageGallery = lazy(() => import("./pages/admin/ManageGallery"));
 const ManageClients = lazy(() => import("./pages/admin/ManageClients"));
 const ManageHomeBanners = lazy(() => import("./pages/admin/ManageHomeBanners"));
 const ForgotPassword = lazy(() => import("./pages/admin/ForgotPassword"));
+const AdminSettings = lazy(() => import("./pages/admin/Settings"));
 
 const PageLoader = () => (
   <div className="flex items-center justify-center min-h-screen">
@@ -58,6 +59,7 @@ const RouterViews = () => {
         <Route path="/admin/team" element={<PageTransition><ManageTeam /></PageTransition>} />
         <Route path="/admin/gallery" element={<PageTransition><ManageGallery /></PageTransition>} />
         <Route path="/admin/home-banners" element={<PageTransition><ManageHomeBanners /></PageTransition>} />
+        <Route path="/admin/settings" element={<PageTransition><AdminSettings /></PageTransition>} />
         <Route path="/admin/clients" element={<PageTransition><ManageClients /></PageTransition>} />
         <Route path="/admin/submissions" element={<PageTransition><Submissions /></PageTransition>} />
         <Route path="/admin" element={<PageTransition><AdminLogin /></PageTransition>} />
