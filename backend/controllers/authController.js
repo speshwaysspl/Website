@@ -10,11 +10,11 @@ const generateToken = (id) => {
   });
 };
 
-// @desc    Register a new user
+// @desc    Register a new user (always role: user)
 // @route   POST /api/auth/register
 // @access  Public
 const registerUser = async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password } = req.body;
 
   try {
     const userExists = await User.findOne({ email });
@@ -27,7 +27,7 @@ const registerUser = async (req, res) => {
       name,
       email,
       password,
-      role,
+      role: 'user',
     });
 
     if (user) {

@@ -9,7 +9,7 @@ import { FadeIn, StaggerContainer, StaggerItem, HoverScale, ScrollReveal } from 
 const FAQ = () => {
   const faqs = [
     {
-      question: "What services does Speshway Solutions offer?",
+      question: "What services does SpeshwaySolutions offer?",
       answer:
         "We offer a comprehensive range of IT services including web development, mobile app development, cloud solutions, AI & machine learning, database management, and cybersecurity. Our team specializes in creating custom solutions tailored to your specific business needs.",
     },

@@ -3,11 +3,16 @@
 @tailwind utilities;
 
 .marquee-wrap { overflow: hidden; }
-.marquee { display: flex; gap: 1.5rem; white-space: nowrap; will-change: transform; animation: marquee-left 30s linear infinite; }
+.marquee { display: flex; gap: 1.5rem; white-space: nowrap; will-change: transform; animation: marquee-left 30s linear infinite; flex-wrap: nowrap; }
+.marquee > * { flex: 0 0 auto; }
 .marquee:hover { animation-play-state: paused; }
 @keyframes marquee-left {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 640px) {
+  .marquee { animation-duration: 20s; }
 }
 
 /* Ant Design CSS - Imported via ConfigProvider in App.tsx */
@@ -67,6 +72,10 @@ All colors MUST be HSL.
 
   html {
     scroll-behavior: smooth;
+  }
+
+  html, body {
+    overflow-x: hidden;
   }
 
   /* Apply Times New Roman to all headings */

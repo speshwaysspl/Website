@@ -76,12 +76,6 @@ const Contact = () => {
       content: "T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha, Hyderabad, Serilingampalle (M), Telangana 500032",
       link: "https://maps.google.com/?q=T-Hub,+Plot+No+1%2FC,+Sy+No+83%2F1,+Raidurgam,+Knowledge+City+Rd,+panmaktha,+Hyderabad,+Serilingampalle+(M),+Telangana+500032",
     },
-    {
-      icon: MapPin,
-      title: "Australia Office",
-      content: "Level 8, 65 York Street, Sydney NSW 2000, Australia",
-      link: "https://maps.google.com/?q=Level+8,+65+York+Street,+Sydney+NSW+2000,+Australia",
-    },
   ];
 
   return (
@@ -108,12 +102,12 @@ const Contact = () => {
       {/* Contact Info Cards */}
       <section className="py-8 sm:py-12">
         <div className="container mx-auto px-4 sm:px-6">
-          <StaggerContainer staggerDelay={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
+          <StaggerContainer staggerDelay={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 items-stretch max-w-6xl mx-auto">
             {contactInfo.map((info, index) => (
               <StaggerItem key={index}>
                 <HoverScale>
                   <Card
-                    className="p-4 sm:p-6 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 text-center group hover-lift hover-glow"
+                    className="h-full p-4 sm:p-6 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 text-center group hover-lift hover-glow flex flex-col justify-start"
                   >
                     <div className="w-12 h-12 sm:w-14 sm:h-14 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
                       <info.icon className="text-primary" size={24} />
@@ -121,7 +115,7 @@ const Contact = () => {
                     <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2">{info.title}</h3>
                     <a
                       href={info.link}
-                      className="text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors duration-300 break-words"
+                      className="text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors duration-300 break-words line-clamp-3"
                     >
                       {info.content}
                     </a>

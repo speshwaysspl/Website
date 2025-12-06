@@ -29,15 +29,22 @@ const Login = () => {
       });
 
       if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data));
-        
-        toast({
-          title: 'Login successful',
-          description: 'Welcome to the admin panel!',
-        });
-        
-        navigate('/admin/dashboard');
+        const role = response.data.role;
+        if (role === 'admin' || role === 'hr') {
+          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('user', JSON.stringify(response.data));
+          toast({ title: 'Login successful', description: 'Welcome to the admin panel!' });
+          navigate('/admin/dashboard');
+        } else {
+          // Block viewers from admin
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          toast({
+            title: 'Access denied',
+            description: 'Your account does not have admin access.',
+            variant: 'destructive',
+          });
+        }
       }
     } catch (error: any) {
       toast({

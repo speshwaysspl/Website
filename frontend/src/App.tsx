@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { PageTransition } from "@/components/animations";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -53,15 +54,15 @@ const RouterViews = () => {
         <Route path="/gallery" element={<PageTransition><Gallery /></PageTransition>} />
         <Route path="/admin/login" element={<PageTransition><AdminLogin /></PageTransition>} />
         <Route path="/admin/forgot-password" element={<PageTransition><ForgotPassword /></PageTransition>} />
-        <Route path="/admin/dashboard" element={<PageTransition><Dashboard /></PageTransition>} />
-        <Route path="/admin/services" element={<PageTransition><ManageServices /></PageTransition>} />
-        <Route path="/admin/portfolio" element={<PageTransition><ManagePortfolio /></PageTransition>} />
-        <Route path="/admin/team" element={<PageTransition><ManageTeam /></PageTransition>} />
-        <Route path="/admin/gallery" element={<PageTransition><ManageGallery /></PageTransition>} />
-        <Route path="/admin/home-banners" element={<PageTransition><ManageHomeBanners /></PageTransition>} />
-        <Route path="/admin/settings" element={<PageTransition><AdminSettings /></PageTransition>} />
-        <Route path="/admin/clients" element={<PageTransition><ManageClients /></PageTransition>} />
-        <Route path="/admin/submissions" element={<PageTransition><Submissions /></PageTransition>} />
+        <Route path="/admin/dashboard" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><Dashboard /></PageTransition></ProtectedRoute>} />
+        <Route path="/admin/services" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><ManageServices /></PageTransition></ProtectedRoute>} />
+        <Route path="/admin/portfolio" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><ManagePortfolio /></PageTransition></ProtectedRoute>} />
+        <Route path="/admin/team" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><ManageTeam /></PageTransition></ProtectedRoute>} />
+        <Route path="/admin/gallery" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><ManageGallery /></PageTransition></ProtectedRoute>} />
+        <Route path="/admin/home-banners" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><ManageHomeBanners /></PageTransition></ProtectedRoute>} />
+        <Route path="/admin/settings" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><AdminSettings /></PageTransition></ProtectedRoute>} />
+        <Route path="/admin/clients" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><ManageClients /></PageTransition></ProtectedRoute>} />
+        <Route path="/admin/submissions" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><Submissions /></PageTransition></ProtectedRoute>} />
         <Route path="/admin" element={<PageTransition><AdminLogin /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>

@@ -17,7 +17,7 @@ const Footer = () => {
                 className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-lg hover:scale-110 transition-transform duration-300"
               />
               <div className="leading-tight">
-                <span className="block text-sm sm:text-base font-bold text-foreground uppercase">Speshway Solutions</span>
+                <span className="block text-sm sm:text-base font-bold text-foreground uppercase">SpeshwaySolutions</span>
                 <span className="block text-[10px] sm:text-xs text-muted-foreground uppercase">Private Limited</span>
               </div>
             </div>
@@ -140,11 +140,15 @@ const Footer = () => {
             </ul>
           </div>
         </div>
+        <div className="block sm:hidden text-center mt-2">
+          <p className="text-xs text-muted-foreground">© {currentYear} SPESHWAYSOLUTIONS PRIVATE LIMITED.</p>
+          <p className="text-xs text-muted-foreground">All rights reserved.</p>
+        </div>
 
         <div className="mt-8 sm:mt-10 md:mt-12 pt-6 sm:pt-8 border-t border-border">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-xs sm:text-sm text-muted-foreground text-center sm:text-left">
-              © {currentYear} SPESHWAY SOLUTIONS PRIVATE LIMITED. All rights reserved.
+            <p className="hidden sm:block text-xs sm:text-sm text-muted-foreground text-center sm:text-left">
+              © {currentYear} SPESHWAYSOLUTIONS PRIVATE LIMITED. All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6">
               <Link to="#" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300">

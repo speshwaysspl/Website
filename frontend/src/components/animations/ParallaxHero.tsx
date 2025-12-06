@@ -13,7 +13,7 @@ export const ParallaxHero = ({ children, backgroundImage, className }: ParallaxH
   const bgY = useTransform(scrollYProgress, [0, 1], [0, -120]);
 
   return (
-    <section ref={ref} className={`relative h-screen w-full flex items-center justify-center overflow-hidden ${className || ""}`}>
+    <section ref={ref} className={`relative min-h-[calc(100dvh-80px)] w-full flex items-center justify-center overflow-hidden ${className || ""}`}>
       {backgroundImage && (
         <AnimatePresence mode="wait">
           <motion.div
@@ -34,7 +34,7 @@ export const ParallaxHero = ({ children, backgroundImage, className }: ParallaxH
             "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,0.45) 70%, rgba(0,0,0,0.6) 100%)",
         }}
       />
-      <div className="container mx-auto px-4 relative z-10">{children}</div>
+      <div className="container mx-auto px-4 relative z-10 pt-24 sm:pt-28 md:pt-32">{children}</div>
     </section>
   );
 };

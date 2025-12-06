@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import heroImage from "@/assets/happyFamily.png";
 import { FadeIn, StaggerContainer, StaggerItem, HoverScale, ScrollReveal, ParallaxHero, ScrollParallaxItem } from "@/components/animations";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
@@ -81,6 +82,15 @@ const Home = () => {
     },
   ];
 
+  const toRgba = (hex: string, alpha: number) => {
+    const h = hex.replace('#', '');
+    const bigint = parseInt(h.length === 3 ? h.split('').map((c) => c + c).join('') : h, 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -89,21 +99,77 @@ const Home = () => {
         
         <ScrollReveal delay={0.1}>
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="inline-block">
-              <span className="px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium animate-glow">
-                Welcome to the Future of IT
-              </span>
+            <div className="inline-block relative">
+              {(() => {
+                const effect = settings?.welcomeBadgeEffect || 'pulse';
+                const baseAnimate: any = { opacity: 1, x: 0 };
+                const pulseAnimate: any = {
+                  scale: [1, 1.05, 1],
+                  boxShadow: [
+                    `0 0 0px ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0)}`,
+                    `0 0 18px ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0.35)}`,
+                    `0 0 0px ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0)}`,
+                  ],
+                };
+                const animate = (effect === 'pulse' || effect === 'combo') ? { ...baseAnimate, ...pulseAnimate } : baseAnimate;
+                const transition = (effect === 'pulse' || effect === 'combo')
+                  ? { duration: 1.1, ease: 'easeInOut', repeat: Infinity, repeatType: 'reverse' }
+                  : { duration: 0.6, ease: 'easeOut' };
+                const showShimmer = effect === 'shimmer' || effect === 'combo';
+                const arrowAnimate = (effect === 'slide-arrow' || effect === 'combo') ? { x: [0, 3, 0] } : {};
+                const arrowTransition = (effect === 'slide-arrow' || effect === 'combo')
+                  ? { duration: 1.2, ease: 'easeInOut', repeat: Infinity }
+                  : { duration: 0.6, ease: 'easeOut' };
+
+                return (
+                  <motion.span
+                    className="relative overflow-hidden px-5 py-2.5 rounded-full text-sm font-semibold border transition-transform duration-300 hover:scale-110"
+                    style={{
+                      color: settings?.welcomeBadgeColor || undefined,
+                      borderColor: settings?.welcomeBadgeColor || undefined,
+                      backgroundColor: settings?.welcomeBadgeColor ? toRgba(settings?.welcomeBadgeColor, 0.12) : undefined,
+                    }}
+                    initial={{ opacity: 0, x: 16 }}
+                    animate={animate}
+                    transition={transition}
+                    whileHover={{ scale: 1.08 }}
+                  >
+                    <span className="inline-flex items-center gap-2">
+                      Welcome to the Future of IT
+                      <motion.span
+                        initial={{ x: 0 }}
+                        animate={arrowAnimate}
+                        transition={arrowTransition}
+                      >
+                        <ArrowRight size={16} />
+                      </motion.span>
+                    </span>
+                    {showShimmer && (
+                      <motion.div
+                        className="absolute inset-0 pointer-events-none"
+                        style={{
+                          background: `linear-gradient(90deg, transparent 0%, ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0.35)} 50%, transparent 100%)`,
+                          mixBlendMode: 'plus-lighter',
+                        }}
+                        initial={{ x: '100%' }}
+                        animate={{ x: ['100%', '-100%'] }}
+                        transition={{ duration: 2.2, ease: 'easeInOut', repeat: Infinity }}
+                      />
+                    )}
+                  </motion.span>
+                );
+              })()}
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-blue-600 leading-tight drop-shadow animate-fade-in-up" style={{ color: settings?.heroTitleColor || undefined }}>
               Transform Your Business with{" "}Advanced{" "}Technology
             </h1>
             <p className="text-xl text-blue-600 max-w-2xl mx-auto drop-shadow animate-fade-in-up [animation-delay:.1s]" style={{ color: settings?.heroSubtitleColor || undefined }}>
-              Speshway Solutions delivers innovative IT solutions that drive digital transformation and accelerate
+              SpeshwaySolutions delivers innovative IT solutions that drive digital transformation and accelerate
               business growth in the modern era.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold group">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold group transition-transform duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/30">
                   Get Started
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                 </Button>
@@ -112,7 +178,7 @@ const Home = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-primary/50 text-foreground hover:bg-primary/10 font-semibold"
+                  className="border-primary/50 text-foreground hover:bg-primary/10 font-semibold transition-transform duration-300 hover:scale-110"
                 >
                   Explore Services
                 </Button>

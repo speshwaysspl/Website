@@ -17,6 +17,8 @@ const updateSettings = async (req, res) => {
     const updates = {};
     if (typeof req.body.heroTitleColor !== 'undefined') updates.heroTitleColor = req.body.heroTitleColor;
     if (typeof req.body.heroSubtitleColor !== 'undefined') updates.heroSubtitleColor = req.body.heroSubtitleColor;
+    if (typeof req.body.welcomeBadgeColor !== 'undefined') updates.welcomeBadgeColor = req.body.welcomeBadgeColor;
+    if (typeof req.body.welcomeBadgeEffect !== 'undefined') updates.welcomeBadgeEffect = req.body.welcomeBadgeEffect;
 
     const settings = await Settings.findOneAndUpdate({}, updates, { new: true, upsert: true });
     res.json(settings);

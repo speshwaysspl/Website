@@ -264,7 +264,7 @@ const Gallery = () => {
           <ScrollReveal>
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent mb-6">
-                Our Gallery
+                Our Blogs
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
                 Explore our journey through memorable moments, achievements, and celebrations

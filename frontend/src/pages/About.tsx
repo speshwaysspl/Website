@@ -22,7 +22,7 @@ const About = () => {
       icon: Award,
       title: "Our Values",
       description:
-        "Integrity, innovation, excellence, and customer success guide everything we do at Speshway Solutions.",
+        "Integrity, innovation, excellence, and customer success guide everything we do at SpeshwaySolutions.",
     },
     {
       icon: Users,
@@ -51,7 +51,7 @@ const About = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
               <span className="block sm:inline">About</span>{" "}
-              <span className="block sm:inline text-primary whitespace-nowrap">Speshway Solutions</span>
+              <span className="block sm:inline text-primary whitespace-nowrap">SpeshwaySolutions</span>
             </h1>
             <p className="text-xl text-muted-foreground">
               Pioneering digital transformation with innovative IT solutions since 2017. We're not just developers –
@@ -70,7 +70,7 @@ const About = () => {
               <h2 className="text-3xl font-bold text-foreground mb-6">About Us </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Founded in 2017, Speshway Solutions Private Limited began with a simple yet powerful vision: to bridge
+                  Founded in 2017, SpeshwaySolutions Private Limited began with a simple yet powerful vision: to bridge
                   the gap between businesses and cutting-edge technology. What started as a small team of passionate
                   developers has grown into a full-service IT solutions provider serving clients across the globe.
                 </p>

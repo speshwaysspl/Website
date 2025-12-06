@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -9,6 +10,15 @@ import { useToast } from '@/hooks/use-toast';
 const Dashboard = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const userStr = localStorage.getItem('user');
+    const role = userStr ? (() => { try { return JSON.parse(userStr)?.role; } catch { return undefined; } })() : undefined;
+    if (!token || !(role === 'admin' || role === 'hr')) {
+      navigate('/admin/login', { replace: true });
+    }
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
