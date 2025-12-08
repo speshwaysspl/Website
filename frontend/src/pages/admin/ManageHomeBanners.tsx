@@ -101,24 +101,16 @@ const ManageHomeBanners = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <section className="pt-16 pb-16">
+      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
-              <div className="flex items-center gap-4">
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold text-foreground mb-2">Home Images</h1>
+              <p className="text-muted-foreground">Manage homepage banner images</p>
+              <div className="mt-4 flex flex-wrap items-center gap-3">
                 <Button variant="ghost" onClick={() => navigate('/admin/dashboard')}>
                   <ArrowLeft size={16} className="mr-2" />
                   Back to Dashboard
-                </Button>
-                <div>
-                  <h1 className="text-3xl font-bold text-foreground mb-2">Home Images</h1>
-                  <p className="text-muted-foreground">Manage homepage banner images</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <Button onClick={handleLogout} variant="outline" className="flex items-center gap-2">
-                  <LogOut size={16} />
-                  Logout
                 </Button>
                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                   <DialogTrigger asChild>
@@ -127,7 +119,7 @@ const ManageHomeBanners = () => {
                       Add Banner
                     </Button>
                   </DialogTrigger>
-                  <DialogContent>
+                  <DialogContent className="w-[95vw] sm:max-w-2xl">
                     <DialogHeader>
                       <DialogTitle>{editingBanner ? 'Edit Banner' : 'Add Banner'}</DialogTitle>
                     </DialogHeader>

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Settings, Briefcase, Users, LogOut, FileText, Image, Building2, Palette } from 'lucide-react';
+import { Settings, Briefcase, Users, LogOut, FileText, Image, Building2, Palette, ClipboardList } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
@@ -32,12 +32,20 @@ const Dashboard = () => {
 
   const menuItems = [
     {
-      title: 'Settings',
-      description: 'Configure site appearance',
-      icon: Palette,
-      path: '/admin/settings',
-      color: 'from-yellow-500/20 to-amber-500/20'
+      title: 'Clients',
+      description: 'Manage client testimonials',
+      icon: Building2,
+      path: '/admin/clients',
+      color: 'from-indigo-500/20 to-purple-500/20'
     },
+     {
+      title: 'Projects',
+      description: 'Manage projects',
+      icon: Briefcase,
+      path: '/admin/portfolio',
+      color: 'from-purple-500/20 to-pink-500/20'
+    },
+   
     {
       title: 'Services',
       description: 'Manage your services',
@@ -45,13 +53,7 @@ const Dashboard = () => {
       path: '/admin/services',
       color: 'from-blue-500/20 to-cyan-500/20'
     },
-    {
-      title: 'Projects',
-      description: 'Manage projects',
-      icon: Briefcase,
-      path: '/admin/portfolio',
-      color: 'from-purple-500/20 to-pink-500/20'
-    },
+   
     {
       title: 'Team',
       description: 'Manage team members',
@@ -73,19 +75,26 @@ const Dashboard = () => {
       path: '/admin/home-banners',
       color: 'from-cyan-500/20 to-teal-500/20'
     },
-    {
-      title: 'Clients',
-      description: 'Manage client testimonials',
-      icon: Building2,
-      path: '/admin/clients',
-      color: 'from-indigo-500/20 to-purple-500/20'
-    },
+    
     {
       title: 'Submissions',
       description: 'View contact submissions',
       icon: FileText,
       path: '/admin/submissions',
       color: 'from-orange-500/20 to-red-500/20'
+    }, {
+      title: 'Settings',
+      description: 'Configure site appearance',
+      icon: Palette,
+      path: '/admin/settings',
+      color: 'from-yellow-500/20 to-amber-500/20'
+    },
+    {
+      title: 'Jobs',
+      description: 'Manage job postings',
+      icon: ClipboardList,
+      path: '/admin/jobs',
+      color: 'from-teal-500/20 to-emerald-500/20'
     }
   ];
 
@@ -93,7 +102,7 @@ const Dashboard = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <section className="pt-16 pb-16">
+      <section className="pt-32 pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="flex justify-between items-center mb-8">

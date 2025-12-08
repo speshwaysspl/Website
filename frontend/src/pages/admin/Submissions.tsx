@@ -199,28 +199,18 @@ const Submissions = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <section className="pt-16 pb-16">
+      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
-              <div className="flex items-center gap-4">
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold text-foreground mb-2">Submissions</h1>
+              <p className="text-muted-foreground">Manage contact form submissions and resumes</p>
+              <div className="mt-4">
                 <Button variant="ghost" onClick={() => navigate('/admin/dashboard')}>
                   <ArrowLeft size={16} className="mr-2" />
                   Back to Dashboard
                 </Button>
-                <div>
-                  <h1 className="text-3xl font-bold text-foreground mb-2">Submissions</h1>
-                  <p className="text-muted-foreground">Manage contact form submissions and resumes</p>
-                </div>
               </div>
-              <Button
-                onClick={handleLogout}
-                variant="outline"
-                className="flex items-center gap-2"
-              >
-                <LogOut size={16} />
-                Logout
-              </Button>
             </div>
 
             <Card className="bg-card/50 backdrop-blur-sm border-border">
@@ -229,9 +219,9 @@ const Submissions = () => {
                 <CardDescription>View and manage all contact form submissions</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex gap-4 mb-6">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
                   <Select value={statusFilter} onValueChange={setStatusFilter}>
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-full sm:w-[180px]">
                       <SelectValue placeholder="Filter by status" />
                     </SelectTrigger>
                     <SelectContent>
@@ -243,7 +233,7 @@ const Submissions = () => {
                   </Select>
 
                   <Select value={typeFilter} onValueChange={setTypeFilter}>
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-full sm:w-[180px]">
                       <SelectValue placeholder="Filter by type" />
                     </SelectTrigger>
                     <SelectContent>

@@ -9,26 +9,26 @@ dotenv.config();
 const users = [
   {
     name: 'Admin User',
-    email: 'admin@speshway.com',
-    password: 'Admin123!',
+    email: 'speshwaysspl@gmail.com',
+    password: 'speshway@2017',
     role: 'admin',
   },
   {
     name: 'Super Admin',
     email: 'ct9308478@gmail.com',
-    password: 'Super',
+    password: 'Super@123',
     role: 'admin',
   },
   {
     name: 'Administrator',
-    email: 'administrator@speshway.com',
-    password: 'Admin@2024',
+    email: 'srikanthsiddani97@gmail.com',
+    password: 'Sri@2025',
     role: 'admin',
   },
   {
     name: 'HR Manager',
-    email: 'hr@speshway.com',
-    password: 'HrManager123!',
+    email: 'ramspeshway@gmail.com',
+    password: 'Ram@2025',
     role: 'hr',
   },
 ];

@@ -101,7 +101,7 @@ const ForgotPassword = () => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="admin@speshway.com"
+                        placeholder="Enter your email"
                         className="w-full pl-9"
                       />
                       <Mail size={16} className="absolute left-2 top-1/2 -translate-y-1/2 text-muted-foreground" />

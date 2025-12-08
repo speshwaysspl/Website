@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Upload, Send, User, Mail, Phone, FileText } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import api from "@/lib/api";
+import { ScrollParallaxItem } from "@/components/animations";
 
 const SendResume = () => {
   const { toast } = useToast();
@@ -20,6 +21,13 @@ const SendResume = () => {
   });
   const [selectedFile, setSelectedFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const positionParam = params.get('position');
+    if (positionParam) {
+      setFormData(prev => ({ ...prev, position: positionParam }));
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -202,7 +210,7 @@ const SendResume = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      placeholder="John Doe"
+                      placeholder="Enter your full name"
                       className="bg-background/50 border-border focus:border-primary"
                     />
                   </div>
@@ -217,7 +225,7 @@ const SendResume = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      placeholder="john@example.com"
+                      placeholder="Enter your email address"
                       className="bg-background/50 border-border focus:border-primary"
                     />
                   </div>
@@ -235,7 +243,7 @@ const SendResume = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      placeholder="+91 1234567890"
+                      placeholder="Enter your phone number"
                       className="bg-background/50 border-border focus:border-primary"
                     />
                   </div>
@@ -341,4 +349,3 @@ const SendResume = () => {
 };
 
 export default SendResume;
-import { ScrollParallaxItem } from "@/components/animations";

@@ -213,28 +213,18 @@ const ManagePortfolio = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <section className="pt-16 pb-16">
+      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
-              <div className="flex items-center gap-4">
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold text-foreground mb-2">Manage Projects</h1>
+              <p className="text-muted-foreground">Add, edit, or delete projects</p>
+              <div className="mt-4">
                 <Button variant="ghost" onClick={() => navigate('/admin/dashboard')}>
                   <ArrowLeft size={16} className="mr-2" />
                   Back to Dashboard
                 </Button>
-                <div>
-                  <h1 className="text-3xl font-bold text-foreground mb-2">Manage Projects</h1>
-                  <p className="text-muted-foreground">Add, edit, or delete projects</p>
-                </div>
               </div>
-              <Button
-                onClick={handleLogout}
-                variant="outline"
-                className="flex items-center gap-2"
-              >
-                <LogOut size={16} />
-                Logout
-              </Button>
             </div>
 
             <div className="mb-6">
@@ -248,7 +238,7 @@ const ManagePortfolio = () => {
                     Add New Project
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                <DialogContent className="w-[95vw] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle>{editingPortfolio ? 'Edit Project' : 'Add New Project'}</DialogTitle>
                     <DialogDescription>
@@ -314,7 +304,7 @@ const ManagePortfolio = () => {
                       <Label>Project Results</Label>
                       <div className="space-y-2">
                         {results.map((r, idx) => (
-                          <div key={idx} className="grid grid-cols-2 gap-2">
+                          <div key={idx} className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             <Input
                               placeholder="Value e.g. 40%"
                               value={r.value}
@@ -428,7 +418,7 @@ const ManagePortfolio = () => {
               </Dialog>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {portfolios?.map((portfolio: any) => (
                 <Card key={portfolio._id} className="bg-card/50 backdrop-blur-sm border-border overflow-hidden">
                   {portfolio.image?.url && (

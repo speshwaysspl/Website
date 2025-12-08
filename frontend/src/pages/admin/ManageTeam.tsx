@@ -198,28 +198,18 @@ const ManageTeam = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <section className="pt-16 pb-16">
+      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
-              <div className="flex items-center gap-4">
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold text-foreground mb-2">Manage Team</h1>
+              <p className="text-muted-foreground">Add, edit, or delete team members</p>
+              <div className="mt-4">
                 <Button variant="ghost" onClick={() => navigate('/admin/dashboard')}>
                   <ArrowLeft size={16} className="mr-2" />
                   Back to Dashboard
                 </Button>
-                <div>
-                  <h1 className="text-3xl font-bold text-foreground mb-2">Manage Team</h1>
-                  <p className="text-muted-foreground">Add, edit, or delete team members</p>
-                </div>
               </div>
-              <Button
-                onClick={handleLogout}
-                variant="outline"
-                className="flex items-center gap-2"
-              >
-                <LogOut size={16} />
-                Logout
-              </Button>
             </div>
 
             <div className="mb-6">
@@ -233,7 +223,7 @@ const ManageTeam = () => {
                     Add New Team Member
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                <DialogContent className="w-[95vw] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle>{editingMember ? 'Edit Team Member' : 'Add New Team Member'}</DialogTitle>
                     <DialogDescription>
@@ -354,7 +344,7 @@ const ManageTeam = () => {
               </Dialog>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {team?.map((member: any) => (
                 <Card key={member._id} className="bg-card/50 backdrop-blur-sm border-border">
                   <CardHeader>

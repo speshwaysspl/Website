@@ -19,7 +19,8 @@ import {
   ExternalLink,
   Sparkles,
   Award,
-  PartyPopper
+  PartyPopper,
+  ArrowLeft
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -411,29 +412,20 @@ const ManageGallery = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      <section className="pt-16 pb-16">
+      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
-              <div>
-                <h1 className="text-3xl font-bold text-foreground mb-2">Manage Gallery</h1>
-                <p className="text-muted-foreground">Upload and manage gallery images</p>
-              </div>
-              <div className="flex gap-4">
-                <Button
-                  onClick={() => setIsDialogOpen(true)}
-                  className="flex items-center gap-2"
-                >
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold text-foreground mb-2">Manage Gallery</h1>
+              <p className="text-muted-foreground">Upload and manage gallery images</p>
+              <div className="mt-4 flex flex-wrap gap-3 sm:gap-4">
+                <Button variant="ghost" onClick={() => navigate('/admin/dashboard')}>
+                  <ArrowLeft size={16} className="mr-2" />
+                  Back to Dashboard
+                </Button>
+                <Button onClick={() => setIsDialogOpen(true)} className="flex items-center gap-2">
                   <Plus size={16} />
                   Add New Image
-                </Button>
-                <Button
-                  onClick={handleLogout}
-                  variant="outline"
-                  className="flex items-center gap-2"
-                >
-                  <LogOut size={16} />
-                  Logout
                 </Button>
               </div>
             </div>
@@ -609,7 +601,7 @@ const ManageGallery = () => {
 
       {/* Add/Edit Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="w-[95vw] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
               {editingItem ? 'Edit Gallery Item' : 'Add New Gallery Item'}
@@ -617,7 +609,7 @@ const ManageGallery = () => {
           </DialogHeader>
           
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="title">Title *</Label>
                 <Input

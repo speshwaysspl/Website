@@ -156,28 +156,18 @@ const ManageClients = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <section className="pt-32 pb-20">
+      <section className="pt-28 sm:pt-32 pb-14 sm:pb-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
-              <div className="flex items-center gap-4">
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold text-foreground mb-2">Manage Clients</h1>
+              <p className="text-muted-foreground">Add, edit, or delete clients</p>
+              <div className="mt-4">
                 <Button variant="ghost" onClick={() => navigate('/admin/dashboard')}>
                   <ArrowLeft size={16} className="mr-2" />
                   Back to Dashboard
                 </Button>
-                <div>
-                  <h1 className="text-3xl font-bold text-foreground mb-2">Manage Clients</h1>
-                  <p className="text-muted-foreground">Add, edit, or delete clients</p>
-                </div>
               </div>
-              <Button
-                onClick={handleLogout}
-                variant="outline"
-                className="flex items-center gap-2"
-              >
-                <LogOut size={16} />
-                Logout
-              </Button>
             </div>
 
             <div className="mb-6">
@@ -242,7 +232,7 @@ const ManageClients = () => {
               </Dialog>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {clients?.map((client: any) => (
                 <Card key={client._id} className="bg-card/50 backdrop-blur-sm border-border">
                   <CardHeader>

@@ -5,8 +5,14 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { ScrollReveal } from "@/components/animations";
+import { useQuery } from '@tanstack/react-query';
+import api from '@/lib/api';
 
 const Career = () => {
+  const { data: jobs } = useQuery({
+    queryKey: ['jobs-open'],
+    queryFn: () => api.get('/jobs?status=open').then(res => res.data),
+  });
   const benefits = [
     {
       icon: "💰",
@@ -44,23 +50,40 @@ const Career = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <ScrollReveal>
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6">
-              Join Our <span className="text-primary">Team</span>
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-2">
-              Build your career with us and work on exciting projects that make a real impact. We're always looking for
-              talented individuals to join our growing team.
+      {/* Open Positions */}
+      <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16 animate-fade-in-up">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">Open Positions</h2>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
+              Explore our current job openings and apply for roles that fit your skills.
             </p>
           </div>
-          </ScrollReveal>
+          <div className="max-w-4xl mx-auto grid grid-cols-1 gap-4 sm:gap-6">
+            {jobs && jobs.length > 0 ? (
+              jobs.map((job: any) => (
+                <Link to={`/career/${job._id}`} key={job._id} className="group">
+                  <Card className="p-5 sm:p-6 bg-card/50 border-border hover:border-primary/50 transition-all duration-300 hover-lift">
+                    <div className="flex justify-between items-start">
+                      <h3 className="text-lg sm:text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{job.title}</h3>
+                      <span className="text-xs px-2 py-1 rounded bg-green-100 text-green-700">Open</span>
+                    </div>
+                    {job.experience && <p className="text-sm text-muted-foreground mt-1">Experience: {job.experience}</p>}
+                    <p className="text-sm text-muted-foreground mt-2 line-clamp-2">{job.description}</p>
+                    <div className="mt-3">
+                      <Button variant="outline">View Details</Button>
+                    </div>
+                  </Card>
+                </Link>
+              ))
+            ) : (
+              <Card className="p-6 text-center">No open positions right now</Card>
+            )}
+          </div>
         </div>
       </section>
+
+      
 
       {/* Benefits Section */}
       <section className="py-12 sm:py-16 md:py-20 bg-secondary/20">
@@ -106,6 +129,8 @@ const Career = () => {
           </Card>
         </div>
       </section>
+
+      
 
       <Footer />
     </div>

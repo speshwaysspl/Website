@@ -26,7 +26,9 @@ const Footer = () => {
             </p>
             <div className="flex space-x-3 sm:space-x-4">
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61584485021568"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               >
                 <Facebook size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-primary transition-colors" />
@@ -38,13 +40,17 @@ const Footer = () => {
                 <Twitter size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-primary transition-colors" />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               >
                 <Linkedin size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-primary transition-colors" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/speshwaysolutions?igsh=MWF0bmNmdG9nN3M3cA=="
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               >
                 <Instagram size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-primary transition-colors" />
@@ -85,6 +91,11 @@ const Footer = () => {
                 <li>
                   <Link to="/send-resume" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
                     Send Resume
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/fraud-notice" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                    Fraud Alert
                   </Link>
                 </li>
               </ul>

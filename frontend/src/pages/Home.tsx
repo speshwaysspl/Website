@@ -164,8 +164,8 @@ const Home = () => {
               Transform Your Business with{" "}Advanced{" "}Technology
             </h1>
             <p className="text-xl text-blue-600 max-w-2xl mx-auto drop-shadow animate-fade-in-up [animation-delay:.1s]" style={{ color: settings?.heroSubtitleColor || undefined }}>
-              SpeshwaySolutions delivers innovative IT solutions that drive digital transformation and accelerate
-              business growth in the modern era.
+              Speshway Solutions Delivers Innovative IT solutions that Drive Digital Transformation and Accelerate
+              Business Growth in the Modern Era.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact">

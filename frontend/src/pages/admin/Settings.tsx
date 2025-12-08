@@ -10,9 +10,12 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { ScrollReveal } from '@/components/animations';
+import { ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const SettingsPage = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { data: settings, refetch } = useQuery({
     queryKey: ['settings'],
@@ -97,6 +100,12 @@ const SettingsPage = () => {
       <Navbar />
       <section className="pt-24 pb-20">
         <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto mb-6">
+            <Button variant="ghost" onClick={() => navigate('/admin/dashboard')}>
+              <ArrowLeft size={16} className="mr-2" />
+              Back to Dashboard
+            </Button>
+          </div>
           <ScrollReveal>
             <Card className="max-w-2xl mx-auto bg-card/50 backdrop-blur-sm border-border">
               <CardHeader>
