@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ScrollReveal } from "@/components/animations";
+import { Helmet } from "react-helmet-async";
 
 const About = () => {
   const values = [
@@ -41,6 +42,28 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>About Speshway Solutions | Company, Mission, Vision</title>
+        <meta name="description" content="Learn about Speshway Solutions: our mission, vision, values, and team delivering enterprise-grade IT solutions and digital transformation." />
+        <meta name="keywords" content="Speshway, Speshway Solutions, about Speshway, IT company, mission, vision, values" />
+        <link rel="canonical" href="https://www.speshway.com/about" />
+        <meta property="og:title" content="About Speshway Solutions" />
+        <meta property="og:description" content="We empower businesses with innovative technology solutions." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.speshway.com/about" />
+        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="About Speshway Solutions" />
+        <meta name="twitter:description" content="We empower businesses with innovative technology solutions." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
+            {"@type":"ListItem","position":2,"name":"About","item":"https://www.speshway.com/about"}
+          ]
+        })}</script>
+      </Helmet>
       <Navbar />
 
       {/* Hero Section */}

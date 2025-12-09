@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { StaggerContainer, StaggerItem, HoverScale, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
+import { Helmet } from "react-helmet-async";
 
 const Team = () => {
   const { data: team, isLoading, error } = useQuery({
@@ -49,6 +50,28 @@ const Team = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Helmet>
+        <title>Team | Speshway Solutions</title>
+        <meta name="description" content="Meet the team behind Speshway Solutions: talented professionals dedicated to delivering exceptional IT solutions." />
+        <meta name="keywords" content="Speshway team, engineers, designers, developers, IT experts" />
+        <link rel="canonical" href="https://www.speshway.com/team" />
+        <meta property="og:title" content="Team | Speshway Solutions" />
+        <meta property="og:description" content="Talented professionals delivering exceptional IT solutions." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.speshway.com/team" />
+        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Team | Speshway Solutions" />
+        <meta name="twitter:description" content="Talented professionals delivering exceptional IT solutions." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context":"https://schema.org",
+          "@type":"BreadcrumbList",
+          "itemListElement":[
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
+            {"@type":"ListItem","position":2,"name":"Team","item":"https://www.speshway.com/team"}
+          ]
+        })}</script>
+      </Helmet>
       <Navbar />
       
       {/* Hero Section */}

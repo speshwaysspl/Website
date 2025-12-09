@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import heroImage from "@/assets/happyFamily.png";
 import { FadeIn, StaggerContainer, StaggerItem, HoverScale, ScrollReveal, ParallaxHero, ScrollParallaxItem } from "@/components/animations";
 import { motion } from "framer-motion";
+import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from "react";
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
@@ -93,6 +94,63 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Speshway Solutions | Leading IT Solutions Provider</title>
+        <meta name="description" content="Speshway Solutions delivers innovative IT services: custom software, cloud, mobile, AI, and secure infrastructure. Transform your business with technology." />
+        <meta name="keywords" content="speshway, speshway solutions, speshway it solutions, speshway software company, it services company in india, custom software development company, automation and testing services" />
+        <link rel="canonical" href="https://www.speshway.com/" />
+        <meta property="og:title" content="Speshway Solutions | Leading IT Solutions Provider" />
+        <meta property="og:description" content="Innovative IT solutions that drive digital transformation and growth." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.speshway.com/" />
+        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@SpeshwayM56509" />
+        <meta name="twitter:title" content="Speshway Solutions | Leading IT Solutions Provider" />
+        <meta name="twitter:description" content="Innovative IT solutions that drive digital transformation and growth." />
+        <meta name="twitter:image" content="https://www.speshway.com/logo.png" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Speshway Solutions Private Limited",
+          "url": "https://www.speshway.com/",
+          "logo": "https://www.speshway.com/logo.png",
+          "sameAs": [
+            "https://www.facebook.com/profile.php?id=61584485021568",
+            "https://www.linkedin.com/company/speshwaysolutions",
+            "https://x.com/SpeshwayM56509"
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "Speshway Solutions Private Limited",
+          "url": "https://www.speshway.com/",
+          "logo": "https://www.speshway.com/logo.png",
+          "image": "https://www.speshway.com/logo.png",
+          "telephone": "+91-0000000000",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "",
+            "addressLocality": "",
+            "addressRegion": "",
+            "postalCode": "",
+            "addressCountry": "IN"
+          },
+          "priceRange": "$$$"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Speshway Solutions",
+          "url": "https://www.speshway.com/",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.speshway.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        })}</script>
+      </Helmet>
       <Navbar />
 
       <ParallaxHero backgroundImage={heroBgSrc}>
@@ -111,11 +169,36 @@ const Home = () => {
                     `0 0 0px ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0)}`,
                   ],
                 };
-                const animate = (effect === 'pulse' || effect === 'combo') ? { ...baseAnimate, ...pulseAnimate } : baseAnimate;
-                const transition = (effect === 'pulse' || effect === 'combo')
-                  ? { duration: 1.1, ease: 'easeInOut', repeat: Infinity, repeatType: 'reverse' }
-                  : { duration: 0.6, ease: 'easeOut' };
+                const glowAnimate: any = {
+                  boxShadow: [
+                    `0 0 0px ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0)}`,
+                    `0 0 28px ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0.55)}`,
+                    `0 0 0px ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0)}`,
+                  ],
+                };
+                const bounceAnimate: any = { y: [0, -4, 0] };
+                const tiltAnimate: any = { rotate: [-1.5, 1.5, -1.5] };
+                const rotateAnimate: any = { rotate: [0, 360] };
+                const wiggleAnimate: any = { rotate: [-3, 3, -3] };
+
+                const animate =
+                  effect === 'pulse' ? { ...baseAnimate, ...pulseAnimate } :
+                  effect === 'glow' ? { ...baseAnimate, ...glowAnimate } :
+                  effect === 'bounce' ? { ...baseAnimate, ...bounceAnimate } :
+                  effect === 'tilt' ? { ...baseAnimate, ...tiltAnimate } :
+                  effect === 'rotate' ? { ...baseAnimate, ...rotateAnimate } :
+                  effect === 'wiggle' ? { ...baseAnimate, ...wiggleAnimate } :
+                  effect === 'combo' ? { ...baseAnimate, ...pulseAnimate, ...bounceAnimate } :
+                  baseAnimate;
+
+                const transition =
+                  effect === 'pulse' || effect === 'glow' || effect === 'bounce' || effect === 'tilt' || effect === 'wiggle' || effect === 'combo'
+                    ? { duration: 1.1, ease: 'easeInOut', repeat: Infinity, repeatType: 'reverse' }
+                    : effect === 'rotate'
+                      ? { duration: 6, ease: 'linear', repeat: Infinity }
+                      : { duration: 0.6, ease: 'easeOut' };
                 const showShimmer = effect === 'shimmer' || effect === 'combo';
+                const showGradientShift = effect === 'gradient-shift';
                 const arrowAnimate = (effect === 'slide-arrow' || effect === 'combo') ? { x: [0, 3, 0] } : {};
                 const arrowTransition = (effect === 'slide-arrow' || effect === 'combo')
                   ? { duration: 1.2, ease: 'easeInOut', repeat: Infinity }
@@ -131,7 +214,7 @@ const Home = () => {
                     }}
                     initial={{ opacity: 0, x: 16 }}
                     animate={animate}
-                    transition={transition}
+                    transition={transition as any}
                     whileHover={{ scale: 1.08 }}
                   >
                     <span className="inline-flex items-center gap-2">
@@ -156,21 +239,32 @@ const Home = () => {
                         transition={{ duration: 2.2, ease: 'easeInOut', repeat: Infinity }}
                       />
                     )}
+                    {showGradientShift && (
+                      <motion.div
+                        className="absolute inset-0 pointer-events-none"
+                        style={{
+                          background: `linear-gradient(90deg, ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0.15)} 0%, ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0.45)} 50%, ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0.15)} 100%)`,
+                          mixBlendMode: 'plus-lighter',
+                        }}
+                        initial={{ x: '-100%' }}
+                        animate={{ x: ['-100%', '100%'] }}
+                        transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity }}
+                      />
+                    )}
                   </motion.span>
                 );
               })()}
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-blue-600 leading-tight drop-shadow animate-fade-in-up" style={{ color: settings?.heroTitleColor || undefined }}>
-              Transform Your Business with{" "}Advanced{" "}Technology
+              {settings?.heroTitle || 'Build Reliable Digital Solutions with Speshway'}
             </h1>
             <p className="text-xl text-blue-600 max-w-2xl mx-auto drop-shadow animate-fade-in-up [animation-delay:.1s]" style={{ color: settings?.heroSubtitleColor || undefined }}>
-              Speshway Solutions Delivers Innovative IT solutions that Drive Digital Transformation and Accelerate
-              Business Growth in the Modern Era.
+              {settings?.heroSubtitle || 'Speshway Solutions helps startups and enterprises design, develop, and maintain full-stack software, automation, and IT solutions that drive real business growth.'}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold group transition-transform duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/30">
-                  Get Started
+                  Get a Free Consultation
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                 </Button>
               </Link>
@@ -180,7 +274,7 @@ const Home = () => {
                   variant="outline"
                   className="border-primary/50 text-foreground hover:bg-primary/10 font-semibold transition-transform duration-300 hover:scale-110"
                 >
-                  Explore Services
+                  View Our Services
                 </Button>
               </Link>
             </div>

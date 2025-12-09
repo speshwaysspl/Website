@@ -12,6 +12,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { useToast } from '@/hooks/use-toast';
 import { ScrollReveal } from '@/components/animations';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const ManageJobs = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -103,6 +104,11 @@ const ManageJobs = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Admin – Manage Jobs | Speshway Solutions</title>
+        <meta name="robots" content="noindex,nofollow" />
+        <link rel="canonical" href="https://www.speshway.com/admin/jobs" />
+      </Helmet>
       <Navbar />
 
       <section className="pt-28 sm:pt-32 pb-12 sm:pb-16">

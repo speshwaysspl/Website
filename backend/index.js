@@ -57,6 +57,7 @@ app.use('/api/sentences', require('./routes/sentences'));
 app.use('/api/home-banners', require('./routes/homeBanners'));
 app.use('/api/settings', require('./routes/settings'));
 app.use('/api/jobs', require('./routes/jobs'));
+app.use('/', require('./routes/sitemap'));
 
 // Health check endpoint
 app.get('/', (req, res) => {

@@ -32,6 +32,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
+import { Helmet } from 'react-helmet-async';
 
 const RAW_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
 const API_URL = RAW_API_URL.endsWith('/api')
@@ -410,8 +411,13 @@ const ManageGallery = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Admin – Manage Gallery | Speshway Solutions</title>
+        <meta name="robots" content="noindex,nofollow" />
+        <link rel="canonical" href="https://www.speshway.com/admin/gallery" />
+      </Helmet>
       <Navbar />
-      
+
       <section className="pt-28 sm:pt-32 pb-12 sm:pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">

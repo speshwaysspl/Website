@@ -12,6 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Plus, Edit, Trash2, ArrowLeft, LogOut, Upload, X } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const ManageTeam = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -196,6 +197,11 @@ const ManageTeam = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Admin – Manage Team | Speshway Solutions</title>
+        <meta name="robots" content="noindex,nofollow" />
+        <link rel="canonical" href="https://www.speshway.com/admin/team" />
+      </Helmet>
       <Navbar />
       
       <section className="pt-28 sm:pt-32 pb-12 sm:pb-16">

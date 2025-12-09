@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { FadeIn, StaggerContainer, StaggerItem, HoverScale, ScrollReveal } from "@/components/animations";
+import { Helmet } from "react-helmet-async";
 
 const FAQ = () => {
   const faqs = [
@@ -62,6 +63,37 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>FAQ | Speshway Solutions</title>
+        <meta name="description" content="Find answers to common questions about our IT services, process, security, and support." />
+        <meta name="keywords" content="Speshway FAQ, IT questions, services, process, support" />
+        <link rel="canonical" href="https://www.speshway.com/faq" />
+        <meta property="og:title" content="FAQ | Speshway Solutions" />
+        <meta property="og:description" content="Answers to common questions about our services and process." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.speshway.com/faq" />
+        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="FAQ | Speshway Solutions" />
+        <meta name="twitter:description" content="Answers to common questions about our services and process." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context":"https://schema.org",
+          "@type":"BreadcrumbList",
+          "itemListElement":[
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
+            {"@type":"ListItem","position":2,"name":"FAQ","item":"https://www.speshway.com/faq"}
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context":"https://schema.org",
+          "@type":"FAQPage",
+          "mainEntity": [
+            {"@type":"Question","name":"What services does SpeshwaySolutions offer?","acceptedAnswer":{"@type":"Answer","text":"We offer web/mobile development, cloud solutions, AI/ML, database management, and cybersecurity."}},
+            {"@type":"Question","name":"How long does it take to complete a project?","acceptedAnswer":{"@type":"Answer","text":"Timelines vary by scope; simple sites 4–6 weeks, complex apps 3–6 months."}},
+            {"@type":"Question","name":"Do you provide ongoing support?","acceptedAnswer":{"@type":"Answer","text":"Yes, maintenance and support packages are available including security updates and enhancements."}}
+          ]
+        })}</script>
+      </Helmet>
       <Navbar />
 
       {/* Hero Section */}

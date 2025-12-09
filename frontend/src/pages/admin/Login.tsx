@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 import api from '@/lib/api';
 import { Eye, EyeOff } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -59,6 +60,11 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Admin Login | Speshway Solutions</title>
+        <meta name="robots" content="noindex,nofollow" />
+        <link rel="canonical" href="https://www.speshway.com/admin/login" />
+      </Helmet>
       <Navbar />
       
       <section className="pt-32 pb-20">

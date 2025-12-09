@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { ScrollReveal } from "@/components/animations";
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
+import { Helmet } from "react-helmet-async";
 
 const Career = () => {
   const { data: jobs } = useQuery({
@@ -48,6 +49,35 @@ const Career = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Careers at Speshway Solutions | Open Positions</title>
+        <meta name="description" content="Work at Speshway Solutions. Browse open positions and join a high-growth team building innovative IT products and services." />
+        <meta name="keywords" content="Speshway careers, jobs at Speshway, IT jobs, software jobs, join Speshway" />
+        <link rel="canonical" href="https://www.speshway.com/career" />
+        <meta property="og:title" content="Careers at Speshway Solutions" />
+        <meta property="og:description" content="Browse open positions and join our team." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.speshway.com/career" />
+        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Careers at Speshway Solutions" />
+        <meta name="twitter:description" content="Browse open positions and join our team." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context":"https://schema.org",
+          "@type":"BreadcrumbList",
+          "itemListElement":[
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
+            {"@type":"ListItem","position":2,"name":"Careers","item":"https://www.speshway.com/career"}
+          ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context":"https://schema.org",
+          "@type":"Organization",
+          "name":"Speshway Solutions Private Limited",
+          "url":"https://www.speshway.com/",
+          "logo":"https://www.speshway.com/logo.png"
+        })}</script>
+      </Helmet>
       <Navbar />
 
       {/* Open Positions */}

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
+import { Helmet } from "react-helmet-async";
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState<any>(null);
@@ -57,6 +58,28 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Projects | Speshway Solutions</title>
+        <meta name="description" content="Showcasing successful projects and innovative solutions delivered by Speshway Solutions for clients worldwide." />
+        <meta name="keywords" content="Speshway projects, case studies, software solutions, client success" />
+        <link rel="canonical" href="https://www.speshway.com/projects" />
+        <meta property="og:title" content="Projects | Speshway Solutions" />
+        <meta property="og:description" content="See how we deliver reliable, scalable, and secure solutions." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.speshway.com/projects" />
+        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Projects | Speshway Solutions" />
+        <meta name="twitter:description" content="See how we deliver reliable, scalable, and secure solutions." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context":"https://schema.org",
+          "@type":"BreadcrumbList",
+          "itemListElement":[
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
+            {"@type":"ListItem","position":2,"name":"Projects","item":"https://www.speshway.com/projects"}
+          ]
+        })}</script>
+      </Helmet>
       <Navbar />
 
       {/* Hero Section */}

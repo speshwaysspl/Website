@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ScrollReveal } from '@/components/animations';
+import { Helmet } from 'react-helmet-async';
 
 const JobDetails = () => {
   const { id } = useParams();
@@ -18,6 +19,28 @@ const JobDetails = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{job ? `${job.title} – Careers | Speshway Solutions` : 'Careers | Speshway Solutions'}</title>
+        <meta name="description" content={job?.description || 'Open roles at Speshway Solutions.'} />
+        <link rel="canonical" href={`https://www.speshway.com/career/${id || ''}`} />
+        <meta property="og:title" content={job ? `${job.title} – Careers | Speshway Solutions` : 'Careers | Speshway Solutions'} />
+        <meta property="og:description" content={job?.description || 'Open roles at Speshway Solutions.'} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://www.speshway.com/career/${id || ''}`} />
+        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context":"https://schema.org",
+          "@type":"JobPosting",
+          "title": job?.title || 'Job',
+          "description": job?.description || '',
+          "datePosted": job?.postedAt || new Date().toISOString(),
+          "employmentType": job?.type || 'FULL_TIME',
+          "hiringOrganization": {"@type":"Organization","name":"Speshway Solutions","sameAs":"https://www.speshway.com/"},
+          "jobLocation": job?.location ? {"@type":"Place","address":{"@type":"PostalAddress","addressLocality": job.location}} : undefined,
+          "applicantLocationRequirements": {"@type":"Country","name":"India"}
+        })}</script>
+      </Helmet>
       <Navbar />
 
       <section className="pt-32 pb-16">

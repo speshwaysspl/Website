@@ -13,6 +13,7 @@ import { useToast } from '@/hooks/use-toast';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { LogOut, ArrowLeft, Mail, Send, MessageSquare } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const Submissions = () => {
   const [statusFilter, setStatusFilter] = useState('all');
@@ -197,6 +198,11 @@ const Submissions = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Admin – Submissions | Speshway Solutions</title>
+        <meta name="robots" content="noindex,nofollow" />
+        <link rel="canonical" href="https://www.speshway.com/admin/submissions" />
+      </Helmet>
       <Navbar />
       
       <section className="pt-28 sm:pt-32 pb-12 sm:pb-16">

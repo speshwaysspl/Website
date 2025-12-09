@@ -6,6 +6,7 @@ import { Settings, Briefcase, Users, LogOut, FileText, Image, Building2, Palette
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
+import { Helmet } from 'react-helmet-async';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -38,11 +39,11 @@ const Dashboard = () => {
       path: '/admin/clients',
       color: 'from-indigo-500/20 to-purple-500/20'
     },
-     {
+    {
       title: 'Projects',
       description: 'Manage projects',
       icon: Briefcase,
-      path: '/admin/portfolio',
+      path: '/admin/projects',
       color: 'from-purple-500/20 to-pink-500/20'
     },
    
@@ -100,6 +101,11 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Admin Dashboard | Speshway Solutions</title>
+        <meta name="robots" content="noindex,nofollow" />
+        <link rel="canonical" href="https://www.speshway.com/admin/dashboard" />
+      </Helmet>
       <Navbar />
       
       <section className="pt-32 pb-16">

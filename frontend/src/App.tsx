@@ -19,6 +19,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const SendResume = lazy(() => import("./pages/SendResume"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Gallery = lazy(() => import("./pages/Gallery"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const FraudNotice = lazy(() => import("./pages/FraudNotice"));
 const Submissions = lazy(() => import("./pages/admin/Submissions"));
@@ -51,7 +52,7 @@ const RouterViews = () => {
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
         <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
-        <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
+        <Route path="/projects" element={<PageTransition><Portfolio /></PageTransition>} />
         <Route path="/team" element={<PageTransition><Team /></PageTransition>} />
         <Route path="/career" element={<PageTransition><Career /></PageTransition>} />
         <Route path="/career/:id" element={<PageTransition><JobDetails /></PageTransition>} />
@@ -60,11 +61,13 @@ const RouterViews = () => {
         <Route path="/fraud-notice" element={<PageTransition><FraudNotice /></PageTransition>} />
         <Route path="/faq" element={<PageTransition><FAQ /></PageTransition>} />
         <Route path="/gallery" element={<PageTransition><Gallery /></PageTransition>} />
+        <Route path="/blog" element={<PageTransition><Gallery /></PageTransition>} />
+        <Route path="/blog/:id" element={<PageTransition><BlogPost /></PageTransition>} />
         <Route path="/admin/login" element={<PageTransition><AdminLogin /></PageTransition>} />
         <Route path="/admin/forgot-password" element={<PageTransition><ForgotPassword /></PageTransition>} />
         <Route path="/admin/dashboard" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><Dashboard /></PageTransition></ProtectedRoute>} />
         <Route path="/admin/services" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><ManageServices /></PageTransition></ProtectedRoute>} />
-        <Route path="/admin/portfolio" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><ManagePortfolio /></PageTransition></ProtectedRoute>} />
+        <Route path="/admin/projects" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><ManagePortfolio /></PageTransition></ProtectedRoute>} />
         <Route path="/admin/team" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><ManageTeam /></PageTransition></ProtectedRoute>} />
         <Route path="/admin/gallery" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><ManageGallery /></PageTransition></ProtectedRoute>} />
         <Route path="/admin/home-banners" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><ManageHomeBanners /></PageTransition></ProtectedRoute>} />

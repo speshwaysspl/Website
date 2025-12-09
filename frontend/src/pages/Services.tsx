@@ -9,6 +9,7 @@ import api from "@/lib/api";
 import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 // Icon mapping
 const iconMap: { [key: string]: any } = {
@@ -59,6 +60,28 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Services | Speshway Solutions</title>
+        <meta name="description" content="Explore Speshway Solutions services: custom software, mobile apps, cloud, AI, data engineering, and cybersecurity." />
+        <meta name="keywords" content="Speshway services, software development, mobile apps, cloud computing, AI solutions, data engineering, cybersecurity" />
+        <link rel="canonical" href="https://www.speshway.com/services" />
+        <meta property="og:title" content="Services | Speshway Solutions" />
+        <meta property="og:description" content="Comprehensive IT solutions tailored to your business." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.speshway.com/services" />
+        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Services | Speshway Solutions" />
+        <meta name="twitter:description" content="Comprehensive IT solutions tailored to your business." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context":"https://schema.org",
+          "@type":"BreadcrumbList",
+          "itemListElement":[
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
+            {"@type":"ListItem","position":2,"name":"Services","item":"https://www.speshway.com/services"}
+          ]
+        })}</script>
+      </Helmet>
       <Navbar />
 
       {/* Hero Section */}

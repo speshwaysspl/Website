@@ -12,6 +12,7 @@ import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
 import api from '@/lib/api';
 import { Image, Plus, Edit, Trash2, ArrowLeft, LogOut } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 interface HomeBanner {
   _id: string;
@@ -99,6 +100,11 @@ const ManageHomeBanners = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Admin – Home Images | Speshway Solutions</title>
+        <meta name="robots" content="noindex,nofollow" />
+        <link rel="canonical" href="https://www.speshway.com/admin/home-banners" />
+      </Helmet>
       <Navbar />
 
       <section className="pt-28 sm:pt-32 pb-12 sm:pb-16">

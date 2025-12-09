@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import api from "@/lib/api";
 import { Eye, EyeOff, Mail, KeyRound, ShieldCheck } from "lucide-react";
 import { ScrollReveal } from "@/components/animations";
+import { Helmet } from 'react-helmet-async';
 
 const ForgotPassword = () => {
   const { toast } = useToast();
@@ -80,6 +81,11 @@ const ForgotPassword = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Admin – Forgot Password | Speshway Solutions</title>
+        <meta name="robots" content="noindex,nofollow" />
+        <link rel="canonical" href="https://www.speshway.com/admin/forgot-password" />
+      </Helmet>
       <Navbar />
 
       <section className="pt-32 pb-20">

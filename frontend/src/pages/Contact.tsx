@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import api from "@/lib/api";
 import { FadeIn, StaggerContainer, StaggerItem, HoverScale, ScrollReveal } from "@/components/animations";
+import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -80,6 +81,31 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Contact Speshway Solutions | Get a Free Consultation</title>
+        <meta name="description" content="Contact Speshway Solutions for IT consulting, software development, and digital transformation. Get a free consultation today." />
+        <meta name="keywords" content="Speshway contact, IT consultation, software development contact, contact Speshway Solutions" />
+        <link rel="canonical" href="https://www.speshway.com/contact" />
+        <meta property="og:title" content="Contact Speshway Solutions" />
+        <meta property="og:description" content="Get a free consultation with our experts." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.speshway.com/contact" />
+        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Contact Speshway Solutions" />
+        <meta name="twitter:description" content="Get a free consultation with our experts." />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context":"https://schema.org",
+          "@type":"ContactPage",
+          "url":"https://www.speshway.com/contact",
+          "mainEntityOfPage":"https://www.speshway.com/contact",
+          "contactPoint":{
+            "@type":"ContactPoint",
+            "contactType":"customer service",
+            "email":"info@speshway.com"
+          }
+        })}</script>
+      </Helmet>
       <Navbar />
 
       {/* Hero Section */}

@@ -12,6 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Plus, Edit, Trash2, ArrowLeft, LogOut } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const ManageServices = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -28,7 +29,11 @@ const ManageServices = () => {
 
   const { data: services, isLoading } = useQuery({
     queryKey: ['services'],
-    queryFn: () => api.get('/services').then(res => res.data),
+    queryFn: () =>
+      api.get('/services').then((res) => {
+        const data = res.data;
+        return Array.isArray(data) ? data : (data?.data || []);
+      }),
   });
 
   const createMutation = useMutation({
@@ -116,7 +121,7 @@ const ManageServices = () => {
     if (editingService) {
       updateMutation.mutate({ id: editingService._id, data });
     } else {
-      createMutation.mutate(data);
+      createMutation.mutate(data as any);
     }
   };
 
@@ -146,6 +151,11 @@ const ManageServices = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Admin – Manage Services | Speshway Solutions</title>
+        <meta name="robots" content="noindex,nofollow" />
+        <link rel="canonical" href="https://www.speshway.com/admin/services" />
+      </Helmet>
       <Navbar />
       
       <section className="pt-28 sm:pt-32 pb-14 sm:pb-20">
@@ -244,7 +254,12 @@ const ManageServices = () => {
                     <div className="mb-4">
                       <p className="text-sm font-medium mb-2">Features:</p>
                       <ul className="text-sm text-muted-foreground space-y-1">
-                        {service.features?.map((feature: string, idx: number) => (
+                        {(Array.isArray(service.features)
+                          ? service.features
+                          : typeof service.features === 'string'
+                            ? service.features.split('\n').filter((f: string) => f.trim())
+                            : []
+                        ).map((feature: string, idx: number) => (
                           <li key={idx}>• {feature}</li>
                         ))}
                       </ul>
