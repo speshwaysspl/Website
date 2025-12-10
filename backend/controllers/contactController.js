@@ -111,7 +111,7 @@ const submitContact = async (req, res) => {
     // If a resume was uploaded, send a professional email to admin
     if (req.file && type === 'resume') {
       const resumeUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-      const companyName = 'Speshway Solutions Private Limited';
+      const companyName = 'Speshway Solutions';
       const submissionDate = new Date().toLocaleDateString('en-US', { 
         year: 'numeric', 
         month: 'long', 
@@ -121,7 +121,7 @@ const submitContact = async (req, res) => {
       try {
         await sendEmail({
           to: process.env.ADMIN_EMAIL,
-          subject: `New Job Application: ${subject}`,
+          subject: `Speshway Solutions - New Job Application: ${subject}`,
           html: `
             <!DOCTYPE html>
             <html>
@@ -373,10 +373,10 @@ const replyToSubmission = async (req, res) => {
     // Send email to the submitter
     try {
       const replySubject = submission.subject 
-        ? `Re: ${submission.subject}` 
-        : 'Response to Your Inquiry - Speshway Solutions Private Limited';
+        ? `Speshway Solutions - Re: ${submission.subject}` 
+        : 'Speshway Solutions';
 
-      const companyName = 'Speshway Solutions Private Limited';
+      const companyName = 'Speshway Solutions';
       const currentDate = new Date().toLocaleDateString('en-US', { 
         year: 'numeric', 
         month: 'long', 
@@ -393,23 +393,24 @@ const replyToSubmission = async (req, res) => {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
           </head>
-          <body style="margin: 0; padding: 0; font-family: 'Times New Roman', Times, serif; background-color: #f5f5f5;">
+          <body style="margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; background-color: #f5f5f5;">
             <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 40px 20px;">
               <tr>
                 <td align="center">
                   <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                     <!-- Header -->
                     <tr>
-                      <td style="padding: 40px 40px 30px 40px; border-bottom: 2px solid #00d4ff;">
+                      <td style="padding: 40px 40px 20px 40px; border-bottom: 2px solid #00d4ff;">
                         <h1 style="margin: 0; color: #1a1a1a; font-size: 24px; font-weight: bold; font-family: 'Times New Roman', Times, serif;">
                           ${companyName}
                         </h1>
+                        
                       </td>
                     </tr>
                     
                     <!-- Date -->
                     <tr>
-                      <td style="padding: 20px 40px 10px 40px;">
+                      <td style="padding: 20px 40px 10px 40px; text-align: left;">
                         <p style="margin: 0; color: #666666; font-size: 14px; font-family: 'Times New Roman', Times, serif;">
                           ${currentDate}
                         </p>
@@ -418,7 +419,7 @@ const replyToSubmission = async (req, res) => {
                     
                     <!-- Greeting -->
                     <tr>
-                      <td style="padding: 10px 40px 20px 40px;">
+                      <td style="padding: 10px 40px 20px 40px; text-align: left;">
                         <p style="margin: 0; color: #1a1a1a; font-size: 16px; line-height: 1.6; font-family: 'Times New Roman', Times, serif;">
                           Dear ${submission.name},
                         </p>
@@ -427,7 +428,7 @@ const replyToSubmission = async (req, res) => {
                     
                     <!-- Main Content -->
                     <tr>
-                      <td style="padding: 0 40px 20px 40px;">
+                      <td style="padding: 0 40px 20px 40px; text-align: left;">
                         <p style="margin: 0 0 20px 0; color: #1a1a1a; font-size: 16px; line-height: 1.8; font-family: 'Times New Roman', Times, serif;">
                           Thank you for contacting ${companyName}. We have received your inquiry and appreciate the time you took to reach out to us.
                         </p>
@@ -440,7 +441,7 @@ const replyToSubmission = async (req, res) => {
                     <!-- Reply Message Box -->
                     <tr>
                       <td style="padding: 0 40px 20px 40px;">
-                        <div style="background-color: #f8f9fa; border-left: 4px solid #00d4ff; padding: 20px; margin: 20px 0;">
+                        <div style="background-color: #f7fafc; border-left: 4px solid #00d4ff; padding: 16px 20px; margin: 16px 0; border-radius: 6px;">
                           <p style="margin: 0; color: #1a1a1a; font-size: 16px; line-height: 1.8; white-space: pre-wrap; font-family: 'Times New Roman', Times, serif;">
                             ${message.trim()}
                           </p>
@@ -450,7 +451,7 @@ const replyToSubmission = async (req, res) => {
                     
                     <!-- Reference Section -->
                     <tr>
-                      <td style="padding: 20px 40px; background-color: #f8f9fa; border-top: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0;">
+                      <td style="padding: 20px 40px; background-color: #f1f5f9; border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb; text-align: left;">
                         <p style="margin: 0 0 10px 0; color: #666666; font-size: 14px; font-weight: bold; font-family: 'Times New Roman', Times, serif;">
                           Reference Information:
                         </p>
@@ -465,31 +466,41 @@ const replyToSubmission = async (req, res) => {
                     
                     <!-- Closing -->
                     <tr>
-                      <td style="padding: 30px 40px 20px 40px;">
-                        <p style="margin: 0 0 15px 0; color: #1a1a1a; font-size: 16px; line-height: 1.8; font-family: 'Times New Roman', Times, serif;">
-                          Should you have any further questions or require additional assistance, please do not hesitate to contact us. We are here to help.
-                        </p>
-                        <p style="margin: 0 0 10px 0; color: #1a1a1a; font-size: 16px; line-height: 1.8; font-family: 'Times New Roman', Times, serif;">
-                          We look forward to the opportunity to assist you.
-                        </p>
+                      <td style="padding: 24px 40px 10px 40px; text-align: left;">
+                        <p style="margin: 0 0 12px 0; color: #1a1a1a; font-size: 16px; line-height: 1.8; font-family: 'Times New Roman', Times, serif;">If you need any further information or assistance, please do not hesitate to contact us.</p>
+                        <p style="margin: 0; color: #1a1a1a; font-size: 16px; line-height: 1.8; font-family: 'Times New Roman', Times, serif;">We look forward to assisting you.</p>
                       </td>
                     </tr>
                     
                     <!-- Signature -->
                     <tr>
-                      <td style="padding: 20px 40px 40px 40px; border-top: 1px solid #e0e0e0;">
-                        <p style="margin: 0 0 5px 0; color: #1a1a1a; font-size: 16px; font-family: 'Times New Roman', Times, serif;">
-                          Sincerely,
-                        </p>
-                        <p style="margin: 10px 0 5px 0; color: #1a1a1a; font-size: 16px; font-weight: bold; font-family: 'Times New Roman', Times, serif;">
-                          ${adminName}
-                        </p>
-                        <p style="margin: 5px 0 0 0; color: #666666; font-size: 14px; font-family: 'Times New Roman', Times, serif;">
-                          ${companyName}
-                        </p>
-                        <p style="margin: 15px 0 0 0; color: #666666; font-size: 12px; line-height: 1.6; font-family: 'Times New Roman', Times, serif;">
-                          This is an automated response. Please do not reply directly to this email.
-                        </p>
+                      <td style="padding: 20px 40px 10px 40px; border-top: 1px solid #e0e0e0; text-align: left;">
+                        <p style="margin: 0 0 6px 0; color: #1a1a1a; font-size: 16px; font-family: 'Times New Roman', Times, serif;">Regards,</p>
+                        <p style="margin: 10px 0 4px 0; color: #1a1a1a; font-size: 16px; font-weight: bold; font-family: 'Times New Roman', Times, serif;">Hiring Manager</p>
+                        <p style="margin: 4px 0 0 0; color: #666666; font-size: 14px; font-family: 'Times New Roman', Times, serif;">${companyName}</p>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="padding: 20px 40px 30px 40px; background-color: #f9fafb; border-top: 1px solid #e5e7eb; text-align: left;">
+                        <table width="100%" cellpadding="0" cellspacing="0" style="font-family: 'Times New Roman', Times, serif;">
+                          <tr>
+                            <td style="color: #1a1a1a; font-size: 14px; font-weight: bold; padding-bottom: 8px;">Contact ${companyName}</td>
+                          </tr>
+                          <tr>
+                            <td style="color: #666666; font-size: 14px; padding: 2px 0;">Email: <a href="mailto:info@speshway.com" style="color: #00d4ff; text-decoration: none;">info@speshway.com</a></td>
+                          </tr>
+                          <tr>
+                            <td style="color: #666666; font-size: 14px; padding: 2px 0;">Phone: <a href="tel:+919100006020" style="color: #00d4ff; text-decoration: none;">+91 9100006020</a></td>
+                          </tr>
+                          <tr>
+                            <td style="color: #666666; font-size: 14px; padding: 2px 0;">Website: <a href="https://www.speshway.com" style="color: #00d4ff; text-decoration: none;" target="_blank">www.speshway.com</a></td>
+                          </tr>
+                          <tr>
+                            <td style="color: #666666; font-size: 14px; padding: 2px 0;">Address: T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha, Hyderabad, Telangana 500032</td>
+                          </tr>
+                          
+                        </table>
                       </td>
                     </tr>
                   </table>

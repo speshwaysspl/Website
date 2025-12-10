@@ -13,7 +13,7 @@ const sendEmail = async (options) => {
 
   // 2) Define the email options
   const mailOptions = {
-    from: `"Speshway Showcase" <${process.env.FROM_EMAIL}>`,
+    from: `"Speshway Solutions" <${process.env.FROM_EMAIL}>`,
     to: options.to,
     subject: options.subject,
     html: options.html,
