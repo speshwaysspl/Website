@@ -34,9 +34,9 @@ const About = () => {
   ];
 
   const stats = [
-    { number: "500+", label: "Projects Completed" },
-    { number: "200+", label: "Happy Clients" },
-    { number: "50+", label: "Team Members" },
+    { number: "300+", label: "Projects Completed" },
+    { number: "150+", label: "Happy Clients" },
+    { number: "200+", label: "Team Members" },
     { number: "15+", label: "Years Experience" },
   ];
 
@@ -74,7 +74,7 @@ const About = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
               <span className="block sm:inline">About</span>{" "}
-              <span className="block sm:inline text-primary whitespace-nowrap">SpeshwaySolutions</span>
+              <span className="block sm:inline text-primary whitespace-nowrap">Speshway Solutions</span>
             </h1>
             <p className="text-xl text-muted-foreground">
               Pioneering digital transformation with innovative IT solutions since 2017. We're not just developers –

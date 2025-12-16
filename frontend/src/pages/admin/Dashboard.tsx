@@ -70,6 +70,13 @@ const Dashboard = () => {
       color: 'from-pink-500/20 to-rose-500/20'
     },
     {
+      title: 'Submissions',
+      description: 'View contact submissions',
+      icon: FileText,
+      path: '/admin/submissions',
+      color: 'from-orange-500/20 to-red-500/20'
+    },
+    {
       title: 'Home Images',
       description: 'Manage homepage banners',
       icon: Image,
@@ -78,12 +85,6 @@ const Dashboard = () => {
     },
     
     {
-      title: 'Submissions',
-      description: 'View contact submissions',
-      icon: FileText,
-      path: '/admin/submissions',
-      color: 'from-orange-500/20 to-red-500/20'
-    }, {
       title: 'Settings',
       description: 'Configure site appearance',
       icon: Palette,

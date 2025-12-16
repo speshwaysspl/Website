@@ -109,20 +109,20 @@ const Team = () => {
                         className="overflow-hidden bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 group hover-lift hover-glow"
                       >
                   {member.image?.url ? (
-                    <div className="h-48 sm:h-56 md:h-64 relative overflow-hidden">
+                    <div className={`h-64 sm:h-72 md:h-80 bg-gradient-to-br ${member.color || 'from-purple-500 to-pink-500'} flex items-center justify-center relative overflow-hidden`}>
+                      <div className="absolute inset-0 bg-background/10" />
                       <img
                         src={member.image.url}
                         alt={member.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="w-40 h-40 sm:w-48 sm:h-48 md:w-52 md:h-56 object-cover object-center rounded-full border-4 border-border shadow-md relative z-10 group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                     </div>
                   ) : (
                     <div
-                      className={`h-48 sm:h-56 md:h-64 bg-gradient-to-br ${member.color || 'from-purple-500 to-pink-500'} flex items-center justify-center relative overflow-hidden`}
+                      className={`h-56 sm:h-64 md:h-72 bg-gradient-to-br ${member.color || 'from-purple-500 to-pink-500'} flex items-center justify-center relative overflow-hidden`}
                     >
                       <div className="absolute inset-0 bg-background/20 group-hover:bg-background/10 transition-colors duration-300" />
-                      <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-primary/20 flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-36 h-36 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full bg-primary/20 flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform duration-300">
                         <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">{member.name.charAt(0)}</span>
                       </div>
                     </div>

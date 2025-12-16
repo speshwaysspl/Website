@@ -13,12 +13,19 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Plus, Edit, Trash2, ArrowLeft, LogOut, Upload, X } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import Cropper from 'react-easy-crop';
+import { Slider } from '@/components/ui/slider';
+import type { Area } from 'react-easy-crop';
 
 const ManagePortfolio = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingPortfolio, setEditingPortfolio] = useState(null);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [isCropOpen, setIsCropOpen] = useState(false);
+  const [crop, setCrop] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState<number>(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
   const [formData, setFormData] = useState({
     title: '',
     category: '',
@@ -148,6 +155,9 @@ const ManagePortfolio = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result as string);
+        setIsCropOpen(true);
+        setZoom(1);
+        setCrop({ x: 0, y: 0 });
       };
       reader.readAsDataURL(file);
     }
@@ -156,6 +166,52 @@ const ManagePortfolio = () => {
   const handleRemoveImage = () => {
     setSelectedImage(null);
     setImagePreview(null);
+    setIsCropOpen(false);
+  };
+
+  const onCropComplete = (_: any, areaPixels: Area) => {
+    setCroppedAreaPixels(areaPixels);
+  };
+
+  const createImage = (url: string) =>
+    new Promise<HTMLImageElement>((resolve, reject) => {
+      const image = new Image();
+      image.crossOrigin = 'anonymous';
+      image.src = url;
+      image.onload = () => resolve(image);
+      image.onerror = reject;
+    });
+
+  const getCroppedBlob = async (imageSrc: string, areaPixels: Area) => {
+    const image = await createImage(imageSrc);
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d')!;
+    canvas.width = areaPixels.width;
+    canvas.height = areaPixels.height;
+    ctx.drawImage(
+      image,
+      areaPixels.x,
+      areaPixels.y,
+      areaPixels.width,
+      areaPixels.height,
+      0,
+      0,
+      areaPixels.width,
+      areaPixels.height
+    );
+    return new Promise<Blob>((resolve) => {
+      canvas.toBlob((blob) => resolve(blob as Blob), 'image/jpeg', 0.92);
+    });
+  };
+
+  const applyCrop = async () => {
+    if (!imagePreview || !croppedAreaPixels) return;
+    const blob = await getCroppedBlob(imagePreview, croppedAreaPixels);
+    const name = selectedImage?.name || 'cropped.jpg';
+    const file = new File([blob], name, { type: blob.type });
+    setSelectedImage(file);
+    setImagePreview(URL.createObjectURL(file));
+    setIsCropOpen(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -372,7 +428,7 @@ const ManagePortfolio = () => {
                           <img
                             src={imagePreview}
                             alt="Preview"
-                            className="w-full h-48 object-cover rounded-lg border border-border"
+                            className="w-full h-64 object-contain rounded-lg border border-border bg-gradient-to-br from-background/20 to-background/10"
                           />
                           <Button
                             type="button"
@@ -383,6 +439,11 @@ const ManagePortfolio = () => {
                           >
                             <X size={16} />
                           </Button>
+                          <div className="mt-3">
+                            <Button type="button" variant="outline" onClick={() => setIsCropOpen(true)}>
+                              Adjust Crop
+                            </Button>
+                          </div>
                         </div>
                       ) : (
                         <div className="mt-2">
@@ -422,17 +483,53 @@ const ManagePortfolio = () => {
                   </form>
                 </DialogContent>
               </Dialog>
+              <Dialog open={isCropOpen} onOpenChange={(open) => setIsCropOpen(open)}>
+                <DialogContent className="w-[95vw] sm:max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle>Crop Project Image</DialogTitle>
+                    <DialogDescription>Trim the image to fit the banner cleanly.</DialogDescription>
+                  </DialogHeader>
+                  <div className="relative w-full h-[700px] sm:h-[840px] bg-muted rounded-md overflow-hidden">
+                    {imagePreview && (
+                      <Cropper
+                        image={imagePreview}
+                        crop={crop}
+                        zoom={zoom}
+                        aspect={4 / 5}
+                        cropShape="rect"
+                        showGrid={false}
+                        onCropChange={setCrop}
+                        onZoomChange={(z) => setZoom(z as number)}
+                        onCropComplete={onCropComplete}
+                      />
+                    )}
+                  </div>
+                  <div className="mt-4">
+                    <Slider
+                      value={[zoom]}
+                      min={1}
+                      max={3}
+                      step={0.1}
+                      onValueChange={(v) => setZoom(v[0] as number)}
+                    />
+                  </div>
+                  <div className="flex gap-2 mt-4">
+                    <Button type="button" onClick={applyCrop} className="flex-1">Apply Crop</Button>
+                    <Button type="button" variant="outline" onClick={() => setIsCropOpen(false)} className="flex-1">Cancel</Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {portfolios?.map((portfolio: any) => (
                 <Card key={portfolio._id} className="bg-card/50 backdrop-blur-sm border-border overflow-hidden">
                   {portfolio.image?.url && (
-                    <div className="w-full h-48 overflow-hidden">
+                    <div className="w-full h-56 overflow-hidden bg-gradient-to-br from-background/20 to-background/10">
                       <img
                         src={portfolio.image.url}
                         alt={portfolio.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain object-center"
                       />
                     </div>
                   )}

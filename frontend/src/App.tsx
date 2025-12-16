@@ -58,6 +58,9 @@ const RouterViews = () => {
         <Route path="/service" element={<Navigate to="/services" replace />} />
         <Route path="/services.php" element={<Navigate to="/services" replace />} />
         <Route path="/projects" element={<PageTransition><Portfolio /></PageTransition>} />
+        <Route path="/projects.php" element={<Navigate to="/projects" replace />} />
+        <Route path="/portfolio" element={<Navigate to="/projects" replace />} />
+        <Route path="/portfolio.php" element={<Navigate to="/projects" replace />} />
         <Route path="/team" element={<PageTransition><Team /></PageTransition>} />
         <Route path="/career" element={<PageTransition><Career /></PageTransition>} />
         <Route path="/careers" element={<Navigate to="/career" replace />} />
