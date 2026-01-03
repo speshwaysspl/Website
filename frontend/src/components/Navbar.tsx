@@ -59,10 +59,10 @@ const Navbar = () => {
               className="w-12 h-12 sm:w-16 sm:h-16 object-contain"
             />
             <div className="leading-tight">
-              <span className="block text-base sm:text-lg md:text-xl font-bold text-foreground uppercase">
-                SpeshwaySolutions</span>
+              <span className="block text-sm sm:text-base md:text-lg font-bold text-foreground uppercase whitespace-nowrap">
+                Speshway Solutions</span>
 
-              <span className="block text-xs sm:text-sm md:text-base text-muted-foreground uppercase">
+              <span className="block text-[10px] sm:text-xs md:text-sm text-muted-foreground uppercase whitespace-nowrap">
                 Private Limited
               </span>
             </div>

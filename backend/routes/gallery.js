@@ -39,8 +39,14 @@ router.get('/:id', getGalleryItem);
 // Admin routes (protected)
 router.post('/categories', protect, admin, createCategory);
 router.delete('/categories/:name', protect, admin, deleteCategory);
-router.post('/', protect, admin, uploadGalleryImage.single('image'), createGalleryItem);
-router.put('/:id', protect, admin, uploadGalleryImage.single('image'), updateGalleryItem);
+router.post('/', protect, admin, uploadGalleryImage.fields([
+  { name: 'image', maxCount: 1 },
+  { name: 'additionalImages', maxCount: 10 }
+]), createGalleryItem);
+router.put('/:id', protect, admin, uploadGalleryImage.fields([
+  { name: 'image', maxCount: 1 },
+  { name: 'additionalImages', maxCount: 10 }
+]), updateGalleryItem);
 router.delete('/:id', protect, admin, deleteGalleryItem);
 
 module.exports = router;

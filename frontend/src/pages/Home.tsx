@@ -261,23 +261,7 @@ const Home = () => {
             <p className="text-xl text-blue-600 max-w-2xl mx-auto drop-shadow animate-fade-in-up [animation-delay:.1s]" style={{ color: settings?.heroSubtitleColor || undefined }}>
               {settings?.heroSubtitle || 'Speshway Solutions helps startups and enterprises design, develop, and maintain full-stack software, automation, and IT solutions that drive real business growth.'}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold group transition-transform duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/30">
-                  Get a Free Consultation
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-                </Button>
-              </Link>
-              <Link to="/services">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-primary/50 text-foreground hover:bg-primary/10 font-semibold transition-transform duration-300 hover:scale-110"
-                >
-                  View Our Services
-                </Button>
-              </Link>
-            </div>
+            
           </div>
         </ScrollReveal>
       </ParallaxHero>
@@ -312,7 +296,7 @@ const Home = () => {
                 <ScrollParallaxItem direction="left" intensity="strong" mobileOnly={false}>
                   <HoverScale scale={1.05}>
                     <Card className="p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all">
-                      <div className="text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">300+</div>
+                      <div className="text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">200+</div>
                       <div className="text-muted-foreground">Team Members</div>
                     </Card>
                   </HoverScale>

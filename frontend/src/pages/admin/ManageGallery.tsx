@@ -78,12 +78,13 @@ const ManageGallery = () => {
     date: '',
     location: '',
     readMoreLink: '',
-    image: null as File | null
+    image: null as File | null,
+    additionalImages: [] as File[]
   });
 
   const [categories, setCategories] = useState<string[]>(['Fests', 'Awards', 'Fun Activities', 'Team Moments']);
   const [newCategoryName, setNewCategoryName] = useState('');
-  const [showNewCategoryInput, setShowNewCategoryInput] = useState(false);
+  const [isManageCategoriesOpen, setIsManageCategoriesOpen] = useState(false);
 
   useEffect(() => {
     fetchCategories();
@@ -157,6 +158,12 @@ const ManageGallery = () => {
     
     if (formData.image) {
       formDataToSend.append('image', formData.image);
+    }
+
+    if (formData.additionalImages && formData.additionalImages.length > 0) {
+      formData.additionalImages.forEach(file => {
+        formDataToSend.append('additionalImages', file);
+      });
     }
 
     try {
@@ -271,7 +278,8 @@ const ManageGallery = () => {
       date: '',
       location: '',
       readMoreLink: '',
-      image: null
+      image: null,
+      additionalImages: []
     });
     setEditingItem(null);
     setIsDialogOpen(false);
@@ -286,7 +294,8 @@ const ManageGallery = () => {
       date: item.date.split('T')[0],
       location: item.location || '',
       readMoreLink: item.readMoreLink || '',
-      image: null
+      image: null,
+      additionalImages: []
     });
     setIsDialogOpen(true);
   };
@@ -343,7 +352,6 @@ const ManageGallery = () => {
       });
 
       setNewCategoryName('');
-      setShowNewCategoryInput(false);
       fetchCategories();
     } catch (error) {
       console.error('Error creating category:', error);
@@ -446,76 +454,21 @@ const ManageGallery = () => {
                   <SelectItem value="all">All Categories</SelectItem>
                   {categories.map(category => (
                     <SelectItem key={category} value={category}>
-                      <div className="flex items-center justify-between w-full">
-                        <span>{category}</span>
-                        {category !== 'Fests' && category !== 'Awards' && category !== 'Fun Activities' && category !== 'Team Moments' && (
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="h-6 w-6 p-0 ml-2"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleDeleteCategory(category);
-                            }}
-                          >
-                            <Trash2 size={12} />
-                          </Button>
-                        )}
-                      </div>
+                      {category}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
               
-              {!showNewCategoryInput ? (
-                <Button
-                  onClick={() => setShowNewCategoryInput(true)}
-                  variant="outline"
-                  size="sm"
-                  className="flex items-center gap-2"
-                >
-                  <Plus size={16} />
-                  Add Category
-                </Button>
-              ) : (
-                <div className="flex items-center gap-2">
-                  <Input
-                    type="text"
-                    placeholder="Enter category name"
-                    value={newCategoryName}
-                    onChange={(e) => setNewCategoryName(e.target.value)}
-                    className="w-48"
-                    onKeyPress={(e) => {
-                      if (e.key === 'Enter') {
-                        handleAddCategory();
-                      }
-                      if (e.key === 'Escape') {
-                        setShowNewCategoryInput(false);
-                        setNewCategoryName('');
-                      }
-                    }}
-                    autoFocus
-                  />
-                  <Button
-                    onClick={handleAddCategory}
-                    size="sm"
-                    className="flex items-center gap-1"
-                  >
-                    <Plus size={14} />
-                    Add
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      setShowNewCategoryInput(false);
-                      setNewCategoryName('');
-                    }}
-                    variant="outline"
-                    size="sm"
-                  >
-                    Cancel
-                  </Button>
-                </div>
-              )}
+              <Button
+                onClick={() => setIsManageCategoriesOpen(true)}
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-2"
+              >
+                <Settings size={16} />
+                Manage Categories
+              </Button>
             </div>
 
             {/* Gallery Grid */}
@@ -702,6 +655,22 @@ const ManageGallery = () => {
               />
             </div>
 
+            <div className="space-y-2">
+              <Label htmlFor="additionalImages">Additional Images (Optional)</Label>
+              <Input
+                id="additionalImages"
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) => {
+                  if (e.target.files) {
+                    setFormData({...formData, additionalImages: Array.from(e.target.files)})
+                  }
+                }}
+              />
+              <p className="text-sm text-muted-foreground">Select multiple images to create a carousel</p>
+            </div>
+
             <div className="flex gap-4">
               <Button type="submit" className="flex-1">
                 {editingItem ? 'Update' : 'Create'}
@@ -711,6 +680,64 @@ const ManageGallery = () => {
               </Button>
             </div>
           </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Manage Categories Dialog */}
+      <Dialog open={isManageCategoriesOpen} onOpenChange={setIsManageCategoriesOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Manage Categories</DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-6 py-4">
+            {/* Add New Category */}
+            <div className="flex items-center gap-2">
+              <Input
+                placeholder="New category name"
+                value={newCategoryName}
+                onChange={(e) => setNewCategoryName(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleAddCategory();
+                  }
+                }}
+              />
+              <Button onClick={handleAddCategory} size="sm">
+                <Plus className="h-4 w-4" />
+                Add
+              </Button>
+            </div>
+
+            {/* Categories List */}
+            <div className="space-y-2 max-h-[60vh] overflow-y-auto pr-2">
+              <div className="text-sm font-medium text-muted-foreground mb-2">Existing Categories</div>
+              {categories.map((category) => (
+                <div 
+                  key={category} 
+                  className="flex items-center justify-between p-2 rounded-md border bg-card hover:bg-accent/50 transition-colors"
+                >
+                  <span className="text-sm">{category}</span>
+                  {category !== 'Fests' && category !== 'Awards' && category !== 'Fun Activities' && category !== 'Team Moments' && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 w-8 p-0 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                      onClick={() => handleDeleteCategory(category)}
+                    >
+                      <Trash2 size={14} />
+                    </Button>
+                  )}
+                </div>
+              ))}
+              {categories.length === 0 && (
+                <div className="text-center text-sm text-muted-foreground py-4">
+                  No categories found
+                </div>
+              )}
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
 

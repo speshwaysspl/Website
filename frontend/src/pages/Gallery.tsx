@@ -21,6 +21,15 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Skeleton } from '@/components/ui/skeleton';
 import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
 import { Helmet } from "react-helmet-async";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay"
+import { motion } from "framer-motion";
 
 const RAW_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
 const API_URL = RAW_API_URL.endsWith('/api')
@@ -39,6 +48,10 @@ interface GalleryItem {
     url: string;
     publicId: string;
   };
+  additionalImages?: {
+    url: string;
+    publicId: string;
+  }[];
   formattedDate?: string;
   createdAt?: string;
 }
@@ -62,6 +75,10 @@ const Gallery = () => {
       return new Set<string>();
     }
   });
+
+  const autoplayPlugin = React.useMemo(() => 
+    Autoplay({ delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true }),
+  []);
 
   useEffect(() => {
     fetchGalleryItems();
@@ -398,63 +415,122 @@ const Gallery = () => {
 
       {/* Image Detail Modal */}
       <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-[90vw] w-full max-h-[95vh] overflow-y-auto p-0 gap-0 bg-background/95 backdrop-blur-md border-none shadow-2xl">
           {selectedItem && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-2xl">{selectedItem.title}</DialogTitle>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              className="p-6 sm:p-8"
+            >
+              <DialogHeader className="mb-6">
+                <DialogTitle className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
+                  {selectedItem.title}
+                </DialogTitle>
               </DialogHeader>
               
-              <div className="space-y-6">
-                <div className="aspect-video rounded-lg overflow-hidden">
-                  <img 
-                    src={selectedItem.image.url} 
-                    alt={selectedItem.title}
-                    className="w-full h-full object-cover"
-                    onError={handleImageError}
-                  />
-                </div>
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="lg:col-span-3 aspect-video rounded-xl overflow-hidden relative group shadow-lg"
+                >
+                  {selectedItem.additionalImages && selectedItem.additionalImages.length > 0 ? (
+                    <Carousel
+                      className="w-full h-full"
+                      plugins={[autoplayPlugin]}
+                      opts={{
+                        loop: true,
+                        align: "start",
+                      }}
+                    >
+                      <CarouselContent>
+                        <CarouselItem>
+                          <div className="w-full h-full aspect-video">
+                            <img 
+                              src={selectedItem.image.url} 
+                              alt={selectedItem.title}
+                              className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                              onError={handleImageError}
+                            />
+                          </div>
+                        </CarouselItem>
+                        {selectedItem.additionalImages.map((img, index) => (
+                          <CarouselItem key={index}>
+                            <div className="w-full h-full aspect-video">
+                              <img 
+                                src={img.url} 
+                                alt={`${selectedItem.title} ${index + 1}`}
+                                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                                onError={handleImageError}
+                              />
+                            </div>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-125" />
+                      <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-125" />
+                    </Carousel>
+                  ) : (
+                    <img 
+                      src={selectedItem.image.url} 
+                      alt={selectedItem.title}
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                      onError={handleImageError}
+                    />
+                  )}
+                </motion.div>
                 
-                <div className="space-y-4">
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="lg:col-span-2 space-y-6 flex flex-col justify-center"
+                >
                   <div className="flex items-center gap-2">
-                    <Badge className={getCategoryColor(selectedItem.category)}>
+                    <Badge className={`${getCategoryColor(selectedItem.category)} text-sm py-1 px-3 shadow-sm`}>
                       {getCategoryIcon(selectedItem.category) && 
-                        React.createElement(getCategoryIcon(selectedItem.category), { size: 12, className: "mr-1" })
+                        React.createElement(getCategoryIcon(selectedItem.category), { size: 14, className: "mr-1.5" })
                       }
                       {selectedItem.category}
                     </Badge>
                   </div>
                   
-                  <p className="text-muted-foreground text-lg leading-relaxed">
+                  <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed">
                     {selectedItem.description}
                   </p>
                   
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                  <div className="flex flex-wrap items-center gap-6 text-sm sm:text-base text-muted-foreground pt-4 border-t">
                     {selectedItem.location && (
-                      <div className="flex items-center gap-2">
-                        <MapPin size={16} />
+                      <div className="flex items-center gap-2.5">
+                        <MapPin size={18} className="text-primary" />
                         <span>{selectedItem.location}</span>
                       </div>
                     )}
-                    <div className="flex items-center gap-2">
-                      <Calendar size={16} />
+                    <div className="flex items-center gap-2.5">
+                      <Calendar size={18} className="text-primary" />
                       <span>{formatDate(selectedItem.date)}</span>
                     </div>
                   </div>
                   
                   {selectedItem.readMoreLink && (
-                    <Button
-                      variant="outline"
-                      onClick={() => window.open(selectedItem.readMoreLink, '_blank')}
-                      className="w-full sm:w-auto"
-                    >
-                      <ExternalLink size={16} className="mr-2" />
-                      Read More
-                    </Button>
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="pt-4">
+                      <Button
+                        variant="default"
+                        size="lg"
+                        onClick={() => window.open(selectedItem.readMoreLink, '_blank')}
+                        className="w-full sm:w-auto shadow-md hover:shadow-lg transition-all"
+                      >
+                        <ExternalLink size={18} className="mr-2" />
+                        Read Full Story
+                      </Button>
+                    </motion.div>
                   )}
-                </div>
+                </motion.div>
               </div>
-            </>
+            </motion.div>
           )}
         </DialogContent>
       </Dialog>

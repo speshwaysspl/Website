@@ -101,12 +101,20 @@ const createGalleryItem = async (req, res) => {
     // Category validation removed - allow any category
 
     // Check if image was uploaded
-    if (!req.file) {
+    if (!req.files || !req.files['image']) {
       return res.status(400).json({
         success: false,
-        message: 'Please upload an image'
+        message: 'Please upload a main image'
       });
     }
+
+    const imageFile = req.files['image'][0];
+    const additionalFiles = req.files['additionalImages'] || [];
+
+    const additionalImages = additionalFiles.map(file => ({
+        url: file.path,
+        publicId: file.filename
+    }));
 
     // Create gallery item
     const galleryItem = await Gallery.create({
@@ -117,9 +125,10 @@ const createGalleryItem = async (req, res) => {
       location: location || '',
       readMoreLink: readMoreLink || '',
       image: {
-        url: req.file.path,
-        publicId: req.file.filename
+        url: imageFile.path,
+        publicId: imageFile.filename
       },
+      additionalImages,
       createdBy: req.user.id
     });
 
@@ -135,9 +144,16 @@ const createGalleryItem = async (req, res) => {
     console.error('Error creating gallery item:', error);
     
     // Clean up uploaded image if creation failed
-    if (req.file && req.file.filename) {
+    if (req.files) {
       try {
-        await cloudinary.uploader.destroy(req.file.filename);
+        if (req.files['image']) {
+             await cloudinary.uploader.destroy(req.files['image'][0].filename);
+        }
+        if (req.files['additionalImages']) {
+            for (const file of req.files['additionalImages']) {
+                await cloudinary.uploader.destroy(file.filename);
+            }
+        }
       } catch (cloudinaryError) {
         console.error('Error deleting image from Cloudinary:', cloudinaryError);
       }
@@ -183,11 +199,19 @@ const updateGalleryItem = async (req, res) => {
     if (isActive !== undefined) galleryItem.isActive = isActive;
 
     // Handle new image upload
-    if (req.file) {
+    if (req.files && req.files['image']) {
       galleryItem.image = {
-        url: req.file.path,
-        publicId: req.file.filename
+        url: req.files['image'][0].path,
+        publicId: req.files['image'][0].filename
       };
+    }
+
+    if (req.files && req.files['additionalImages']) {
+         const newImages = req.files['additionalImages'].map(file => ({
+            url: file.path,
+            publicId: file.filename
+        }));
+        galleryItem.additionalImages.push(...newImages);
     }
 
     await galleryItem.save();
@@ -196,7 +220,7 @@ const updateGalleryItem = async (req, res) => {
     await galleryItem.populate('createdBy', 'name email');
 
     // Delete old image from Cloudinary if new image was uploaded
-    if (req.file && oldImagePublicId) {
+    if (req.files && req.files['image'] && oldImagePublicId) {
       try {
         await cloudinary.uploader.destroy(oldImagePublicId);
       } catch (cloudinaryError) {
@@ -408,17 +432,16 @@ const deleteCategory = async (req, res) => {
   try {
     const { name } = req.params;
     
-    // Check if there are any active gallery items using this category
-    const activeItemsCount = await Gallery.countDocuments({ 
+    // Check if there are any gallery items using this category (excluding placeholder)
+    const itemsCount = await Gallery.countDocuments({ 
       category: name, 
-      isActive: true,
       title: { $ne: 'Category Placeholder' }
     });
     
-    if (activeItemsCount > 0) {
+    if (itemsCount > 0) {
       return res.status(400).json({
         success: false,
-        message: `Cannot delete category. There are ${activeItemsCount} active gallery items using this category.`
+        message: `Cannot delete category. There are ${itemsCount} gallery items (active or inactive) using this category. Please delete or reassign them first.`
       });
     }
 

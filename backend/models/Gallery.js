@@ -22,6 +22,16 @@ const gallerySchema = new mongoose.Schema({
       required: true
     }
   },
+  additionalImages: [{
+    url: {
+      type: String,
+      required: true
+    },
+    publicId: {
+      type: String,
+      required: true
+    }
+  }],
   category: {
     type: String,
     required: true,
