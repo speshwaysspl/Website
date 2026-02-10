@@ -43,18 +43,18 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>About Speshway Solutions | Company, Mission, Vision</title>
-        <meta name="description" content="Learn about Speshway Solutions: our mission, vision, values, and team delivering enterprise-grade IT solutions and digital transformation." />
-        <meta name="keywords" content="Speshway, Speshway Solutions, about Speshway, IT company, mission, vision, values" />
+        <title>About Speshway Solutions | IT Solution in Hyderabad | Software Company</title>
+        <meta name="description" content="Learn about Speshway Solutions, a leading software company in Hyderabad. Our mission, vision, values, and team delivering enterprise-grade IT solutions and digital transformation." />
+        <meta name="keywords" content="Speshway, Speshway Solutions, about Speshway, IT company in hyderabad, software company in hyderabad, mission, vision, values" />
         <link rel="canonical" href="https://www.speshway.com/about" />
-        <meta property="og:title" content="About Speshway Solutions" />
-        <meta property="og:description" content="We empower businesses with innovative technology solutions." />
+        <meta property="og:title" content="About Speshway Solutions | IT Solution in Hyderabad" />
+        <meta property="og:description" content="We empower businesses with innovative technology solutions in Hyderabad." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.speshway.com/about" />
         <meta property="og:image" content="https://www.speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="About Speshway Solutions" />
-        <meta name="twitter:description" content="We empower businesses with innovative technology solutions." />
+        <meta name="twitter:title" content="About Speshway Solutions | IT Solution in Hyderabad" />
+        <meta name="twitter:description" content="We empower businesses with innovative technology solutions in Hyderabad." />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
@@ -62,6 +62,26 @@ const About = () => {
             {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
             {"@type":"ListItem","position":2,"name":"About","item":"https://www.speshway.com/about"}
           ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "Speshway Solutions Private Limited",
+            "foundingDate": "2017",
+            "location": {
+              "@type": "Place",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Plot no 1024, 4th Floor, Repunjaya Building, Khanamet, Madhapur",
+                "addressLocality": "Hyderabad",
+                "addressRegion": "Telangana",
+                "postalCode": "500081",
+                "addressCountry": "IN"
+              }
+            }
+          }
         })}</script>
       </Helmet>
       <Navbar />

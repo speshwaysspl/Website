@@ -59,18 +59,18 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Projects | Speshway Solutions</title>
-        <meta name="description" content="Showcasing successful projects and innovative solutions delivered by Speshway Solutions for clients worldwide." />
-        <meta name="keywords" content="Speshway projects, case studies, software solutions, client success" />
+        <title>Projects | Speshway Solutions | Web & App Development Portfolio</title>
+        <meta name="description" content="Explore our portfolio of software, app, and website development projects by Speshway Solutions, a top IT company in Hyderabad." />
+        <meta name="keywords" content="Speshway projects, case studies, software solutions, client success, web development portfolio, app development projects, IT solution in hyderabad" />
         <link rel="canonical" href="https://www.speshway.com/projects" />
-        <meta property="og:title" content="Projects | Speshway Solutions" />
-        <meta property="og:description" content="See how we deliver reliable, scalable, and secure solutions." />
+        <meta property="og:title" content="Projects | Speshway Solutions | Web & App Development Portfolio" />
+        <meta property="og:description" content="See how we deliver reliable, scalable, and secure solutions in Hyderabad." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.speshway.com/projects" />
         <meta property="og:image" content="https://www.speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Projects | Speshway Solutions" />
-        <meta name="twitter:description" content="See how we deliver reliable, scalable, and secure solutions." />
+        <meta name="twitter:title" content="Projects | Speshway Solutions | Web & App Development Portfolio" />
+        <meta name="twitter:description" content="See how we deliver reliable, scalable, and secure solutions in Hyderabad." />
         <script type="application/ld+json">{JSON.stringify({
           "@context":"https://schema.org",
           "@type":"BreadcrumbList",

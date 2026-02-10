@@ -51,18 +51,18 @@ const Team = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>Team | Speshway Solutions</title>
-        <meta name="description" content="Meet the team behind Speshway Solutions: talented professionals dedicated to delivering exceptional IT solutions." />
-        <meta name="keywords" content="Speshway team, engineers, designers, developers, IT experts" />
+        <title>Team | Speshway Solutions | Software Engineer Company in Hyderabad</title>
+        <meta name="description" content="Meet the expert software engineers and developers at Speshway Solutions, a top software engineer company in Hyderabad dedicated to delivering exceptional IT solutions." />
+        <meta name="keywords" content="Speshway team, software engineer company in hyderabad, software engineers, developers, IT experts, IT solution in hyderabad, software development team" />
         <link rel="canonical" href="https://www.speshway.com/team" />
-        <meta property="og:title" content="Team | Speshway Solutions" />
-        <meta property="og:description" content="Talented professionals delivering exceptional IT solutions." />
+        <meta property="og:title" content="Team | Speshway Solutions | Software Engineer Company in Hyderabad" />
+        <meta property="og:description" content="Meet the expert team at Speshway Solutions, Hyderabad's premier software engineering company." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.speshway.com/team" />
         <meta property="og:image" content="https://www.speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Team | Speshway Solutions" />
-        <meta name="twitter:description" content="Talented professionals delivering exceptional IT solutions." />
+        <meta name="twitter:title" content="Team | Speshway Solutions | Software Engineer Company in Hyderabad" />
+        <meta name="twitter:description" content="Meet the expert team at Speshway Solutions, Hyderabad's premier software engineering company." />
         <script type="application/ld+json">{JSON.stringify({
           "@context":"https://schema.org",
           "@type":"BreadcrumbList",

@@ -95,19 +95,19 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Speshway Solutions | Leading IT Solutions Provider</title>
-        <meta name="description" content="Speshway Solutions delivers innovative IT services: custom software, cloud, mobile, AI, and secure infrastructure. Transform your business with technology." />
-        <meta name="keywords" content="speshway, speshway solutions, speshway it solutions, speshway software company, it services company in india, custom software development company, automation and testing services" />
+        <title>Speshway Solutions | IT Solution in Hyderabad | Software & App Development</title>
+        <meta name="description" content="Speshway Solutions is a leading IT solution provider in Hyderabad offering software development, app development, website development, DevOps, software testing, and more. Give your business the Speshway advantage." />
+        <meta name="keywords" content="speshway, speshway solutions, IT solution in hyderabad, software development company in hyderbad, app devlopment company in hyderbad, website devlopment company in hyderbad, devops company in hyderbad, software testing company in hyderbad, software engineer company in hyderbad, app development company in hyderbad, website development company in hyderbad, software engineer company in hyderabad, it services company in india, custom software development  company in hyderbad" />
         <link rel="canonical" href="https://www.speshway.com/" />
-        <meta property="og:title" content="Speshway Solutions | Leading IT Solutions Provider" />
-        <meta property="og:description" content="Innovative IT solutions that drive digital transformation and growth." />
+        <meta property="og:title" content="Speshway Solutions | IT Solution in Hyderabad" />
+        <meta property="og:description" content="Leading IT Solutions in Hyderabad: Software, App, Website Development, DevOps & Testing." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.speshway.com/" />
         <meta property="og:image" content="https://www.speshway.com/logo.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@SpeshwayM56509" />
-        <meta name="twitter:title" content="Speshway Solutions | Leading IT Solutions Provider" />
-        <meta name="twitter:description" content="Innovative IT solutions that drive digital transformation and growth." />
+        <meta name="twitter:title" content="Speshway Solutions | IT Solution in Hyderabad" />
+        <meta name="twitter:description" content="Leading IT Solutions in Hyderabad: Software, App, Website Development, DevOps & Testing." />
         <meta name="twitter:image" content="https://www.speshway.com/logo.png" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
@@ -128,13 +128,13 @@ const Home = () => {
           "url": "https://www.speshway.com/",
           "logo": "https://www.speshway.com/logo.png",
           "image": "https://www.speshway.com/logo.png",
-          "telephone": "+91-0000000000",
+          "telephone": "+91-9100006020",
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "",
-            "addressLocality": "",
-            "addressRegion": "",
-            "postalCode": "",
+            "streetAddress": "T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha",
+            "addressLocality": "Hyderabad",
+            "addressRegion": "Telangana",
+            "postalCode": "500032",
             "addressCountry": "IN"
           },
           "priceRange": "$$$"

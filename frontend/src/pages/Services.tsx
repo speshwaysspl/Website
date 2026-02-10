@@ -61,18 +61,18 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Services | Speshway Solutions</title>
-        <meta name="description" content="Explore Speshway Solutions services: custom software, mobile apps, cloud, AI, data engineering, and cybersecurity." />
-        <meta name="keywords" content="Speshway services, software development, mobile apps, cloud computing, AI solutions, data engineering, cybersecurity" />
+        <title>Services | Speshway Solutions | IT Services in Hyderabad</title>
+        <meta name="description" content="Explore Speshway Solutions services in Hyderabad: custom software development, mobile app development, website development, DevOps, software testing, and more." />
+        <meta name="keywords" content="Speshway services, IT solution in hyderabad, software development, app devlopment, website devlopment, devops, software testing, software engineer company in hyderbad" />
         <link rel="canonical" href="https://www.speshway.com/services" />
-        <meta property="og:title" content="Services | Speshway Solutions" />
-        <meta property="og:description" content="Comprehensive IT solutions tailored to your business." />
+        <meta property="og:title" content="Services | Speshway Solutions | IT Services in Hyderabad" />
+        <meta property="og:description" content="Comprehensive IT solutions in Hyderabad: Software, App, Web Development, DevOps & Testing." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.speshway.com/services" />
         <meta property="og:image" content="https://www.speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Services | Speshway Solutions" />
-        <meta name="twitter:description" content="Comprehensive IT solutions tailored to your business." />
+        <meta name="twitter:title" content="Services | Speshway Solutions | IT Services in Hyderabad" />
+        <meta name="twitter:description" content="Comprehensive IT solutions in Hyderabad: Software, App, Web Development, DevOps & Testing." />
         <script type="application/ld+json">{JSON.stringify({
           "@context":"https://schema.org",
           "@type":"BreadcrumbList",
@@ -80,6 +80,68 @@ const Services = () => {
             {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
             {"@type":"ListItem","position":2,"name":"Services","item":"https://www.speshway.com/services"}
           ]
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": "IT Solutions",
+          "provider": {
+             "@type": "LocalBusiness",
+             "name": "Speshway Solutions Private Limited",
+             "address": {
+               "@type": "PostalAddress",
+               "streetAddress": "T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha",
+               "addressLocality": "Hyderabad",
+               "addressRegion": "Telangana",
+               "postalCode": "500032",
+               "addressCountry": "IN"
+             }
+           },
+          "areaServed": {
+            "@type": "City",
+            "name": "Hyderabad"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "IT Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Software Development"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "App Development"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Website Development"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "DevOps Services"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Software Testing"
+                }
+              }
+            ]
+          }
         })}</script>
       </Helmet>
       <Navbar />

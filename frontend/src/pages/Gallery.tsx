@@ -276,8 +276,8 @@ const Gallery = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/30">
       <Helmet>
         <title>Blog | Speshway Solutions</title>
-        <meta name="description" content="Read Speshway Solutions blogs: product updates, company events, awards, and insights from our team." />
-        <meta name="keywords" content="Speshway blog, company news, awards, team moments, technology insights" />
+        <meta name="description" content="Read Speshway Solutions blogs: product updates, company events, awards, daily life, and insights from our team." />
+        <meta name="keywords" content="Speshway blog, company news, awards, team moments, technology insights, daily life at speshway, office culture" />
         <link rel="canonical" href="https://www.speshway.com/blog" />
         <meta property="og:title" content="Blog | Speshway Solutions" />
         <meta property="og:description" content="Company news, events and insights from Speshway Solutions." />

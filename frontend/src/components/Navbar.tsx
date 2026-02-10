@@ -69,7 +69,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center gap-3 lg:mr-8 xl:mr-16">
             <img
               src="/logo.png"
-              alt="Speshway Logo"
+              alt="Speshway Solutions - IT Services in Hyderabad"
               className="w-12 h-12 sm:w-16 sm:h-16 object-contain"
             />
             <div className="leading-tight">

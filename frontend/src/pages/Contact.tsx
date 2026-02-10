@@ -74,8 +74,8 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "India Office",
-      content: "T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha, Hyderabad, Serilingampalle (M), Telangana 500032",
-      link: "https://maps.google.com/?q=T-Hub,+Plot+No+1%2FC,+Sy+No+83%2F1,+Raidurgam,+Knowledge+City+Rd,+panmaktha,+Hyderabad,+Serilingampalle+(M),+Telangana+500032",
+      content: "Plot no 1024, 4th Floor, Repunjaya Building, Khanamet, Madhapur, Hyderabad, Telangana 500081",
+      link: "https://maps.google.com/?q=Plot+no+1024,+4th+Floor,+Repunjaya+Building,+Khanamet,+Madhapur,+Hyderabad,+Telangana+500081",
     },
   ];
 
@@ -98,11 +98,20 @@ const Contact = () => {
           "@context":"https://schema.org",
           "@type":"ContactPage",
           "url":"https://www.speshway.com/contact",
-          "mainEntityOfPage":"https://www.speshway.com/contact",
-          "contactPoint":{
-            "@type":"ContactPoint",
-            "contactType":"customer service",
-            "email":"info@speshway.com"
+          "mainEntity": {
+            "@type": "LocalBusiness",
+            "name": "Speshway Solutions Private Limited",
+            "image": "https://www.speshway.com/logo.png",
+            "telephone": "+91 9100006020",
+            "email": "info@speshway.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Plot no 1024, 4th Floor, Repunjaya Building, Khanamet, Madhapur",
+              "addressLocality": "Hyderabad",
+              "addressRegion": "Telangana",
+              "postalCode": "500081",
+              "addressCountry": "IN"
+            }
           }
         })}</script>
       </Helmet>
