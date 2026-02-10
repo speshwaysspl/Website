@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
 import { ScrollReveal } from '@/components/animations';
 import { ArrowLeft } from 'lucide-react';
@@ -27,12 +28,14 @@ const SettingsPage = () => {
   const [heroTitleColor, setHeroTitleColor] = useState('');
   const [heroSubtitleColor, setHeroSubtitleColor] = useState('');
   const [heroSubtitle, setHeroSubtitle] = useState('');
+  const [welcomeBadgeText, setWelcomeBadgeText] = useState('');
   const [welcomeBadgeColor, setWelcomeBadgeColor] = useState('');
   const [welcomeBadgeEffect, setWelcomeBadgeEffect] = useState('');
+  const [showHeroSection, setShowHeroSection] = useState(true);
   const initializedRef = useRef(false);
 
   const updateMutation = useMutation({
-    mutationFn: async (payload: { heroTitle?: string; heroTitleColor?: string; heroSubtitle?: string; heroSubtitleColor?: string; welcomeBadgeColor?: string; welcomeBadgeEffect?: string }) => {
+    mutationFn: async (payload: { heroTitle?: string; heroTitleColor?: string; heroSubtitle?: string; heroSubtitleColor?: string; welcomeBadgeText?: string; welcomeBadgeColor?: string; welcomeBadgeEffect?: string; showHeroSection?: boolean }) => {
       const res = await api.put('/settings', payload);
       return res.data;
     },
@@ -50,8 +53,10 @@ const SettingsPage = () => {
       setHeroTitleColor(settings.heroTitleColor || '');
       setHeroSubtitle(settings.heroSubtitle || 'Speshway Solutions helps startups and enterprises design, develop, and maintain full-stack software, automation, and IT solutions that drive real business growth.');
       setHeroSubtitleColor(settings.heroSubtitleColor || '');
+      setWelcomeBadgeText(settings.welcomeBadgeText || 'Welcome to the Future of IT');
       setWelcomeBadgeColor(settings.welcomeBadgeColor || '');
       setWelcomeBadgeEffect(settings.welcomeBadgeEffect || 'pulse');
+      setShowHeroSection(settings.showHeroSection !== undefined ? settings.showHeroSection : true);
       initializedRef.current = true;
     }
   }, [settings]);
@@ -91,6 +96,14 @@ const SettingsPage = () => {
   useEffect(() => {
     if (!initializedRef.current) return;
     const id = setTimeout(() => {
+      updateMutation.mutate({ welcomeBadgeText });
+    }, 300);
+    return () => clearTimeout(id);
+  }, [welcomeBadgeText]);
+
+  useEffect(() => {
+    if (!initializedRef.current) return;
+    const id = setTimeout(() => {
       updateMutation.mutate({ welcomeBadgeColor });
     }, 250);
     return () => clearTimeout(id);
@@ -108,7 +121,7 @@ const SettingsPage = () => {
 
   const handleSave = async () => {
     try {
-      await api.put('/settings', { heroTitle, heroTitleColor, heroSubtitle, heroSubtitleColor, welcomeBadgeColor, welcomeBadgeEffect });
+      await api.put('/settings', { heroTitle, heroTitleColor, heroSubtitle, heroSubtitleColor, welcomeBadgeText, welcomeBadgeColor, welcomeBadgeEffect, showHeroSection });
       toast({ title: 'Settings updated' });
       refetch();
     } catch (error: any) {
@@ -138,6 +151,20 @@ const SettingsPage = () => {
                 <CardTitle>Site Settings</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
+                <div className="flex items-center justify-between p-4 border rounded-lg">
+                  <div className="space-y-0.5">
+                    <Label className="text-base">Show Hero Section</Label>
+                    <p className="text-sm text-muted-foreground">Toggle the visibility of the hero text on the home page</p>
+                  </div>
+                  <Switch
+                    checked={showHeroSection}
+                    onCheckedChange={(checked) => {
+                      setShowHeroSection(checked);
+                      updateMutation.mutate({ showHeroSection: checked });
+                    }}
+                  />
+                </div>
+
                 <div className="space-y-2">
                   <Label htmlFor="heroTitle">Hero Title</Label>
                   <Input id="heroTitle" value={heroTitle} onChange={(e) => setHeroTitle(e.target.value)} placeholder="Build Reliable Digital Solutions with Speshway" />
@@ -196,7 +223,7 @@ const SettingsPage = () => {
                   <div className="text-sm text-muted-foreground">Preview</div>
                   <div className="mt-2 space-y-3">
                     <div>
-                      <span className="px-4 py-2 rounded-full border text-sm font-semibold" style={{ color: welcomeBadgeColor || undefined, borderColor: welcomeBadgeColor || undefined, backgroundColor: welcomeBadgeColor ? `${welcomeBadgeColor}20` : undefined }}>Welcome to the Future of IT ({welcomeBadgeEffect})</span>
+                      <span className="px-4 py-2 rounded-full border text-sm font-semibold" style={{ color: welcomeBadgeColor || undefined, borderColor: welcomeBadgeColor || undefined, backgroundColor: welcomeBadgeColor ? `${welcomeBadgeColor}20` : undefined }}>{welcomeBadgeText || 'Welcome to the Future of IT'} ({welcomeBadgeEffect})</span>
                     </div>
                     <h2 className="text-2xl font-bold" style={{ color: heroTitleColor || undefined }}>{heroTitle || 'Build Reliable Digital Solutions with Speshway'}</h2>
                     <p className="mt-1" style={{ color: heroSubtitleColor || undefined }}>{heroSubtitle || 'Speshway Solutions helps startups and enterprises design, develop, and maintain full-stack software, automation, and IT solutions that drive real business growth.'}</p>

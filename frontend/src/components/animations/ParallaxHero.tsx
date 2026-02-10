@@ -13,7 +13,7 @@ export const ParallaxHero = ({ children, backgroundImage, className }: ParallaxH
   const bgY = useTransform(scrollYProgress, [0, 1], [0, -120]);
 
   return (
-    <section ref={ref} className={`relative min-h-[calc(100dvh-80px)] w-full flex items-center justify-center overflow-hidden ${className || ""}`}>
+    <section ref={ref} className={`relative min-h-[calc(100dvh-80px)] lg:min-h-screen w-full flex items-center justify-center overflow-hidden ${className || ""}`}>
       {backgroundImage && (
         <AnimatePresence mode="wait">
           <motion.div

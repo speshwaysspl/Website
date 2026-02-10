@@ -155,11 +155,12 @@ const Home = () => {
 
       <ParallaxHero backgroundImage={heroBgSrc}>
         
-        <ScrollReveal delay={0.1}>
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="inline-block relative">
-              {(() => {
-                const effect = settings?.welcomeBadgeEffect || 'pulse';
+        {settings?.showHeroSection !== false && (
+          <ScrollReveal delay={0.1}>
+            <div className="max-w-4xl mx-auto text-center space-y-8">
+              <div className="inline-block relative">
+                {(() => {
+                  const effect = settings?.welcomeBadgeEffect || 'pulse';
                 const baseAnimate: any = { opacity: 1, x: 0 };
                 const pulseAnimate: any = {
                   scale: [1, 1.05, 1],
@@ -218,7 +219,7 @@ const Home = () => {
                     whileHover={{ scale: 1.08 }}
                   >
                     <span className="inline-flex items-center gap-2">
-                      Welcome to the Future of IT
+                      {settings?.welcomeBadgeText || 'Welcome to the Future of IT'}
                       <motion.span
                         initial={{ x: 0 }}
                         animate={arrowAnimate}
@@ -264,6 +265,7 @@ const Home = () => {
             
           </div>
         </ScrollReveal>
+        )}
       </ParallaxHero>
 
       <div className="absolute bottom-20 left-10 w-20 h-20 bg-primary/20 rounded-full blur-3xl animate-float" />

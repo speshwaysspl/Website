@@ -6,8 +6,10 @@ const SettingsSchema = new mongoose.Schema(
     heroTitleColor: { type: String, default: '' },
     heroSubtitle: { type: String, default: '' },
     heroSubtitleColor: { type: String, default: '' },
+    welcomeBadgeText: { type: String, default: 'Welcome to the Future of IT' },
     welcomeBadgeColor: { type: String, default: '' },
     welcomeBadgeEffect: { type: String, default: 'pulse' },
+    showHeroSection: { type: Boolean, default: true },
   },
   { timestamps: true }
 );

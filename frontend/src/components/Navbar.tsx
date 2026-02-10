@@ -5,8 +5,18 @@ import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   
 
@@ -36,9 +46,7 @@ const Navbar = () => {
     { path: "/faq", label: "FAQ" },
   ];
 
-  const adminLinks = [
-    { path: "/admin/login", label: "Admin" },
-  ];
+
 
   const isActive = (path: string) => {
     if (path === "/") {
@@ -47,8 +55,14 @@ const Navbar = () => {
     return location.pathname.startsWith(path);
   };
 
+  const isHome = location.pathname === "/";
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white border-b border-border shadow-lg">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isHome && !isScrolled
+        ? "lg:bg-transparent lg:border-transparent lg:shadow-none bg-white border-b border-border shadow-lg"
+        : "bg-white border-b border-border shadow-lg"
+    }`}>
       <div className="container mx-auto px-4 sm:px-6 py-1">
         {/* Top Row: Logo + Brand, Mobile Menu Toggle */}
         <div className="flex items-center justify-between">
@@ -59,10 +73,14 @@ const Navbar = () => {
               className="w-12 h-12 sm:w-16 sm:h-16 object-contain"
             />
             <div className="leading-tight">
-              <span className="block text-sm sm:text-base md:text-lg font-bold text-foreground uppercase whitespace-nowrap">
+              <span className={`block text-sm sm:text-base md:text-lg font-bold uppercase whitespace-nowrap ${
+                isHome && !isScrolled ? "lg:text-white text-foreground" : "text-foreground"
+              }`}>
                 Speshway Solutions</span>
 
-              <span className="block text-[10px] sm:text-xs md:text-sm text-muted-foreground uppercase whitespace-nowrap">
+              <span className={`block text-[10px] sm:text-xs md:text-sm uppercase whitespace-nowrap ${
+                isHome && !isScrolled ? "lg:text-white/80 text-muted-foreground" : "text-muted-foreground"
+              }`}>
                 Private Limited
               </span>
             </div>
@@ -81,46 +99,24 @@ const Navbar = () => {
                   }}
                   className={`relative px-3 py-2 text-base font-bold transition-all duration-300 ease-out group hover:-translate-y-0.5 hover:scale-[1.05] animate-fade-in-up ${
                     isActive(link.path)
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? (isHome && !isScrolled ? "lg:text-white text-primary" : "text-primary")
+                      : (isHome && !isScrolled ? "lg:text-white/90 lg:hover:text-white text-muted-foreground hover:text-foreground" : "text-muted-foreground hover:text-foreground")
                   } ${index === 0 ? "[animation-delay:0s]" : index === 1 ? "[animation-delay:.05s]" : index === 2 ? "[animation-delay:.1s]" : index === 3 ? "[animation-delay:.15s]" : index === 4 ? "[animation-delay:.2s]" : index === 5 ? "[animation-delay:.25s]" : index === 6 ? "[animation-delay:.3s]" : "[animation-delay:.35s]"}`}
                 >
                   <span className="relative z-10">{link.label}</span>
                   <span
-                    className={`absolute bottom-0 left-0 right-0 h-0.5 bg-primary transform origin-left transition-all duration-300 ${
+                    className={`absolute bottom-0 left-0 right-0 h-0.5 transform origin-left transition-all duration-300 ${
                       isActive(link.path) 
                         ? "scale-x-100 opacity-100" 
                         : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
-                    }`}
+                    } ${isHome && !isScrolled ? "lg:bg-white bg-primary" : "bg-primary"}`}
                   />
-                  <span className="absolute inset-0 bg-primary/10 rounded-md scale-0 group-hover:scale-100 transition-transform duration-300 origin-center opacity-0 group-hover:opacity-100" />
+                  <span className={`absolute inset-0 rounded-md scale-0 group-hover:scale-100 transition-transform duration-300 origin-center opacity-0 group-hover:opacity-100 ${
+                    isHome && !isScrolled ? "lg:bg-white/10 bg-primary/10" : "bg-primary/10"
+                  }`} />
                 </Link>
               ))}
-              {adminLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate(link.path);
-                  }}
-                  className={`relative px-3 py-2 text-sm font-bold transition-all duration-300 ease-out group animate-fade-in-up ${
-                    isActive(link.path)
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  <span className="relative z-10">{link.label}</span>
-                  <span
-                    className={`absolute bottom-0 left-0 right-0 h-0.5 bg-primary transform origin-left transition-all duration-300 ${
-                      isActive(link.path) 
-                        ? "scale-x-100 opacity-100" 
-                        : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
-                    }`}
-                  />
-                  <span className="absolute inset-0 bg-primary/5 rounded-md scale-0 group-hover:scale-100 transition-transform duration-300 origin-center opacity-0 group-hover:opacity-100" />
-                </Link>
-              ))}
+
               <Button 
                 onClick={(e) => {
                   e.preventDefault();
@@ -134,7 +130,11 @@ const Navbar = () => {
             </div>
 
             <button
-              className="lg:hidden text-foreground p-2 rounded-lg hover:bg-secondary/50 transition-all duration-300 active:scale-95"
+              className={`lg:hidden p-2 rounded-lg transition-all duration-300 active:scale-95 ${
+                isHome && !isScrolled
+                  ? "text-white hover:bg-white/10"
+                  : "text-foreground hover:bg-secondary/50"
+              }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -182,24 +182,7 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              {adminLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate(link.path);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className={`block py-3 px-4 rounded-lg text-base font-bold transition-colors ${
-                    isActive(link.path)
-                      ? 'text-primary bg-primary/10 border-l-2 border-primary'
-                      : 'text-foreground/90 hover:bg-secondary/60'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+
               <Button 
                 onClick={(e) => {
                   e.preventDefault();
