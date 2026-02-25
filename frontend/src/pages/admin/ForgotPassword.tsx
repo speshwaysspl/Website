@@ -88,7 +88,7 @@ const ForgotPassword = () => {
       </Helmet>
       <Navbar />
 
-      <section className="pt-32 pb-20">
+      <section className="pt-40 pb-20">
         <div className="container mx-auto px-4">
           <div className="max-w-md mx-auto">
             <ScrollReveal>

@@ -205,7 +205,7 @@ const Submissions = () => {
       </Helmet>
       <Navbar />
       
-      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16">
+      <section className="pt-36 sm:pt-40 pb-12 sm:pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="mb-8">

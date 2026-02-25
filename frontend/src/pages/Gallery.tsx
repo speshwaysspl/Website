@@ -448,22 +448,22 @@ const Gallery = () => {
                     >
                       <CarouselContent>
                         <CarouselItem>
-                          <div className="w-full h-full aspect-video">
+                          <div className="w-full h-full aspect-video bg-black/5 rounded-lg overflow-hidden">
                             <img 
                               src={selectedItem.image.url} 
                               alt={selectedItem.title}
-                              className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                              className="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
                               onError={handleImageError}
                             />
                           </div>
                         </CarouselItem>
                         {selectedItem.additionalImages.map((img, index) => (
                           <CarouselItem key={index}>
-                            <div className="w-full h-full aspect-video">
+                            <div className="w-full h-full aspect-video bg-black/5 rounded-lg overflow-hidden">
                               <img 
                                 src={img.url} 
                                 alt={`${selectedItem.title} ${index + 1}`}
-                                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                                className="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
                                 onError={handleImageError}
                               />
                             </div>
@@ -474,12 +474,14 @@ const Gallery = () => {
                       <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-125" />
                     </Carousel>
                   ) : (
-                    <img 
-                      src={selectedItem.image.url} 
-                      alt={selectedItem.title}
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                      onError={handleImageError}
-                    />
+                    <div className="w-full h-full aspect-video bg-black/5 rounded-lg overflow-hidden">
+                      <img 
+                        src={selectedItem.image.url} 
+                        alt={selectedItem.title}
+                        className="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
+                        onError={handleImageError}
+                      />
+                    </div>
                   )}
                 </motion.div>
                 

@@ -60,13 +60,13 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isHome && !isScrolled
-        ? "lg:bg-transparent lg:border-transparent lg:shadow-none bg-white border-b border-border shadow-lg"
-        : "bg-white border-b border-border shadow-lg"
+        ? "lg:bg-transparent lg:border-transparent lg:shadow-none bg-transparent border-none shadow-none"
+        : "lg:bg-white lg:border-b lg:border-border lg:shadow-lg bg-transparent border-none shadow-none"
     }`}>
       <div className="container mx-auto px-4 sm:px-6 py-1">
         {/* Top Row: Logo + Brand, Mobile Menu Toggle */}
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 lg:mr-8 xl:mr-16">
+          <Link to="/" className="hidden lg:flex items-center gap-3 lg:mr-8 xl:mr-16">
             <img
               src="/logo.png"
               alt="Speshway Solutions - IT Services in Hyderabad"
@@ -86,7 +86,7 @@ const Navbar = () => {
             </div>
           </Link>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-end w-full lg:w-auto gap-2">
             <div className="hidden lg:flex items-center gap-2 xl:gap-4">
               {navLinks.map((link, index) => (
                 <Link
@@ -130,39 +130,30 @@ const Navbar = () => {
             </div>
 
             <button
-              className={`lg:hidden p-2 rounded-lg transition-all duration-300 active:scale-95 ${
-                isHome && !isScrolled
-                  ? "text-white hover:bg-white/10"
-                  : "text-foreground hover:bg-secondary/50"
-              }`}
+              className={`lg:hidden fixed top-6 right-6 z-[70] p-4 rounded-full shadow-2xl transition-all duration-300 active:scale-95 bg-primary text-white hover:bg-primary/90 flex items-center justify-center`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
-                <X size={24} className="transition-transform duration-300 rotate-0" />
+                <X size={28} className="transition-transform duration-300 rotate-0" />
               ) : (
-                <Menu size={24} className="transition-transform duration-300" />
+                <Menu size={28} className="transition-transform duration-300" />
               )}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu Fullscreen Overlay */}
-        {isMobileMenuOpen && (
-          <div className="fixed inset-0 z-[60] lg:hidden bg-background/95 backdrop-blur-sm">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-              <Link to="/" className="flex items-center gap-2" onClick={(e)=>{e.preventDefault();navigate('/');}}>
-                <img src="/logo.png" alt="Speshway Logo" className="w-10 h-10 object-contain" />
-                <div className="leading-tight">
-                  <span className="block text-base font-bold text-foreground uppercase">SpeshwaySolutions</span>
-                  <span className="block text-xs text-muted-foreground uppercase">Private Limited</span>
-                </div>
-              </Link>
+        {/* Mobile Sidebar Overlay */}
+        <div className={`fixed inset-0 z-[60] lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
+          <div className={`absolute top-0 right-0 h-full w-[280px] bg-background shadow-2xl transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
+            <div className="flex items-center justify-between px-6 py-8 border-b border-border">
+              <span className="text-xl font-bold text-primary">Menu</span>
               <Button variant="ghost" size="icon" onClick={()=>setIsMobileMenuOpen(false)}>
-                <X size={20} />
+                <X size={24} />
               </Button>
             </div>
-            <div className="px-4 py-4 space-y-2">
+            <div className="px-4 py-6 space-y-2">
               {navLinks.map((link, index) => (
                 <Link
                   key={link.path}
@@ -173,9 +164,9 @@ const Navbar = () => {
                     setIsMobileMenuOpen(false);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className={`block py-3 px-4 rounded-lg text-base font-bold transition-colors ${
+                  className={`block py-4 px-6 rounded-xl text-lg font-semibold transition-all ${
                     isActive(link.path)
-                      ? 'text-primary bg-primary/10 border-l-2 border-primary'
+                      ? 'text-primary bg-primary/10 border-r-4 border-primary'
                       : 'text-foreground/90 hover:bg-secondary/60'
                   }`}
                 >
@@ -183,19 +174,21 @@ const Navbar = () => {
                 </Link>
               ))}
 
-              <Button 
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/contact');
-                  setIsMobileMenuOpen(false);
-                }}
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
-              >
-                Contact Us
-              </Button>
+              <div className="pt-6">
+                <Button 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate('/contact');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-6 rounded-xl text-lg shadow-lg shadow-primary/20"
+                >
+                  Contact Us
+                </Button>
+              </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );

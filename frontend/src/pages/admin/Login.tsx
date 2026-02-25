@@ -48,6 +48,7 @@ const Login = () => {
         }
       }
     } catch (error: any) {
+      console.error('Login error:', error);
       toast({
         title: 'Login failed',
         description: error.response?.data?.message || 'Invalid email or password',
@@ -67,7 +68,7 @@ const Login = () => {
       </Helmet>
       <Navbar />
       
-      <section className="pt-32 pb-20">
+      <section className="pt-40 pb-20">
         <div className="container mx-auto px-4">
           <div className="max-w-md mx-auto">
             <Card className="p-8 bg-card/50 backdrop-blur-sm border-border">

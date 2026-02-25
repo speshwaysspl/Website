@@ -162,7 +162,7 @@ const ManageClients = () => {
       </Helmet>
       <Navbar />
 
-      <section className="pt-28 sm:pt-32 pb-14 sm:pb-20">
+      <section className="pt-36 sm:pt-40 pb-14 sm:pb-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="mb-8">

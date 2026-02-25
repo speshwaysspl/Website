@@ -273,13 +273,13 @@ const Home = () => {
       <section className="py-20 bg-secondary/20">
         <div className="container mx-auto px-4">
           <StaggerContainer staggerDelay={0.15}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-3 md:grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto">
               <StaggerItem>
                 <ScrollParallaxItem direction="left" intensity="strong" mobileOnly={false}>
                   <HoverScale scale={1.05}>
-                    <Card className="p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all">
-                      <div className="text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">100+</div>
-                      <div className="text-muted-foreground">Projects Delivered</div>
+                    <Card className="p-4 sm:p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all h-full flex flex-col justify-center">
+                      <div className="text-2xl sm:text-5xl font-bold text-primary mb-1 sm:mb-2 group-hover:scale-110 transition-transform">100+</div>
+                      <div className="text-[10px] sm:text-base text-muted-foreground leading-tight">Projects Delivered</div>
                     </Card>
                   </HoverScale>
                 </ScrollParallaxItem>
@@ -287,9 +287,9 @@ const Home = () => {
               <StaggerItem>
                 <ScrollParallaxItem direction="right" intensity="strong" mobileOnly={false}>
                   <HoverScale scale={1.05}>
-                    <Card className="p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all">
-                      <div className="text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">76+</div>
-                      <div className="text-muted-foreground">Happy Clients</div>
+                    <Card className="p-4 sm:p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all h-full flex flex-col justify-center">
+                      <div className="text-2xl sm:text-5xl font-bold text-primary mb-1 sm:mb-2 group-hover:scale-110 transition-transform">76+</div>
+                      <div className="text-[10px] sm:text-base text-muted-foreground leading-tight">Happy Clients</div>
                     </Card>
                   </HoverScale>
                 </ScrollParallaxItem>
@@ -297,9 +297,9 @@ const Home = () => {
               <StaggerItem>
                 <ScrollParallaxItem direction="left" intensity="strong" mobileOnly={false}>
                   <HoverScale scale={1.05}>
-                    <Card className="p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all">
-                      <div className="text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">200+</div>
-                      <div className="text-muted-foreground">Team Members</div>
+                    <Card className="p-4 sm:p-8 bg-card/50 backdrop-blur-sm border-border text-center group hover:border-primary/50 transition-all h-full flex flex-col justify-center">
+                      <div className="text-2xl sm:text-5xl font-bold text-primary mb-1 sm:mb-2 group-hover:scale-110 transition-transform">200+</div>
+                      <div className="text-[10px] sm:text-base text-muted-foreground leading-tight">Team Members</div>
                     </Card>
                   </HoverScale>
                 </ScrollParallaxItem>

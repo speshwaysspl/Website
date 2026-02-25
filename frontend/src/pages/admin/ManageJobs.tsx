@@ -111,7 +111,7 @@ const ManageJobs = () => {
       </Helmet>
       <Navbar />
 
-      <section className="pt-28 sm:pt-32 pb-12 sm:pb-16">
+      <section className="pt-36 sm:pt-40 pb-12 sm:pb-16">
         <div className="container mx-auto px-4">
           <div className="mb-6">
             <h1 className="text-3xl font-bold text-foreground">Manage Jobs</h1>

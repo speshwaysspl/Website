@@ -23,6 +23,30 @@ const users = [
     password: 'HrManager123!',
     role: 'hr',
   },
+  {
+    name: 'Speshway Admin',
+    email: 'speshwaysspl@gmail.com',
+    password: 'speshway@2017',
+    role: 'admin',
+  },
+  {
+    name: 'CT Admin',
+    email: 'ct9308478@gmail.com',
+    password: 'Super@123',
+    role: 'admin',
+  },
+  {
+    name: 'Srikanth Admin',
+    email: 'srikanthsiddani97@gmail.com',
+    password: 'Sri@2025',
+    role: 'admin',
+  },
+  {
+    name: 'Ram HR',
+    email: 'ramspeshway@gmail.com',
+    password: 'Ram@2025',
+    role: 'hr',
+  },
 ];
 
 module.exports = users;

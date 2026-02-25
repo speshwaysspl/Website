@@ -101,7 +101,7 @@ const createGalleryItem = async (req, res) => {
     // Category validation removed - allow any category
 
     // Check if image was uploaded
-    if (!req.files || !req.files['image']) {
+    if (!req.files || !req.files['image'] || !req.files['image'][0]) {
       return res.status(400).json({
         success: false,
         message: 'Please upload a main image'
@@ -116,12 +116,21 @@ const createGalleryItem = async (req, res) => {
         publicId: file.filename
     }));
 
+    // Parse date and check if valid
+    const galleryDate = date ? new Date(date) : new Date();
+    if (isNaN(galleryDate.getTime())) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide a valid date'
+      });
+    }
+
     // Create gallery item
     const galleryItem = await Gallery.create({
       title,
       description,
       category,
-      date: date || new Date(),
+      date: galleryDate,
       location: location || '',
       readMoreLink: readMoreLink || '',
       image: {
@@ -129,11 +138,14 @@ const createGalleryItem = async (req, res) => {
         publicId: imageFile.filename
       },
       additionalImages,
-      createdBy: req.user.id
+      createdBy: req.user._id
     });
 
     // Populate createdBy field for response
-    await galleryItem.populate('createdBy', 'name email');
+    await galleryItem.populate({
+      path: 'createdBy',
+      select: 'name email'
+    });
 
     res.status(201).json({
       success: true,
@@ -157,6 +169,15 @@ const createGalleryItem = async (req, res) => {
       } catch (cloudinaryError) {
         console.error('Error deleting image from Cloudinary:', cloudinaryError);
       }
+    }
+
+    // Provide more specific error message if it's a validation error
+    if (error.name === 'ValidationError') {
+      const messages = Object.values(error.errors).map(val => val.message);
+      return res.status(400).json({
+        success: false,
+        message: messages.join(', ')
+      });
     }
 
     res.status(500).json({
@@ -217,7 +238,10 @@ const updateGalleryItem = async (req, res) => {
     await galleryItem.save();
 
     // Populate createdBy field for response
-    await galleryItem.populate('createdBy', 'name email');
+    await galleryItem.populate({
+      path: 'createdBy',
+      select: 'name email'
+    });
 
     // Delete old image from Cloudinary if new image was uploaded
     if (req.files && req.files['image'] && oldImagePublicId) {
@@ -236,13 +260,29 @@ const updateGalleryItem = async (req, res) => {
   } catch (error) {
     console.error('Error updating gallery item:', error);
 
-    // Clean up uploaded image if update failed
-    if (req.file && req.file.filename) {
+    // Clean up uploaded images if update failed
+    if (req.files) {
       try {
-        await cloudinary.uploader.destroy(req.file.filename);
+        if (req.files['image']) {
+             await cloudinary.uploader.destroy(req.files['image'][0].filename);
+        }
+        if (req.files['additionalImages']) {
+            for (const file of req.files['additionalImages']) {
+                await cloudinary.uploader.destroy(file.filename);
+            }
+        }
       } catch (cloudinaryError) {
         console.error('Error deleting image from Cloudinary:', cloudinaryError);
       }
+    }
+
+    // Provide more specific error message if it's a validation error
+    if (error.name === 'ValidationError') {
+      const messages = Object.values(error.errors).map(val => val.message);
+      return res.status(400).json({
+        success: false,
+        message: messages.join(', ')
+      });
     }
 
     res.status(500).json({
