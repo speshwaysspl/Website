@@ -1,4 +1,5 @@
 const Service = require('../models/Service');
+const { clearCache } = require('../config/redis');
 
 // @desc    Get all services
 // @route   GET /api/services
@@ -37,6 +38,7 @@ const createService = async (req, res) => {
       updatedAt: Date.now()
     });
     const createdService = await service.save();
+    await clearCache('__express__/api/services*');
     res.status(201).json(createdService);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -56,6 +58,7 @@ const updateService = async (req, res) => {
     Object.assign(service, req.body);
     service.updatedAt = Date.now();
     const updatedService = await service.save();
+    await clearCache('__express__/api/services*');
     res.json(updatedService);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -73,6 +76,7 @@ const deleteService = async (req, res) => {
     }
 
     await service.deleteOne();
+    await clearCache('__express__/api/services*');
     res.json({ message: 'Service removed' });
   } catch (error) {
     res.status(500).json({ message: error.message });

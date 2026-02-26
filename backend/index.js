@@ -4,15 +4,24 @@ const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
 const compression = require('compression');
+const helmet = require('helmet');
 const connectDB = require('./config/db');
+const { connectRedis } = require('./config/redis');
 
 // Load env vars
 dotenv.config();
 
-// Connect to database
+// Connect to databases
 connectDB();
+connectRedis();
 
 const app = express();
+
+// Security headers
+app.use(helmet({
+  contentSecurityPolicy: false, // Disable CSP for now to avoid breaking existing frontend loads, or configure it properly
+  crossOriginEmbedderPolicy: false
+}));
 
 // Body parser
 app.use(express.json());
@@ -53,19 +62,22 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 const frontendPath = path.join(__dirname, '../frontend/dist');
 
 // Serve static files with efficient caching strategy
-// This single middleware handles all static assets including those in /assets
 app.use(express.static(frontendPath, {
-  maxAge: '1y', // Default long cache duration
+  maxAge: '1y',
   setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.html')) {
-      // Never cache HTML files to ensure updates are seen immediately
+    const fileName = path.basename(filePath);
+    const relativePath = path.relative(frontendPath, filePath);
+    
+    if (fileName.endsWith('.html')) {
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    } else if (filePath.includes(path.sep + 'assets' + path.sep)) {
-      // Cache assets in the 'assets' folder (JS, CSS, images) which are hashed by Vite
+    } else if (relativePath.includes('assets') || fileName.match(/\.[a-f0-9]{8,}\./)) {
+      // Vite assets are hashed, so they can be cached forever
       res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    } else if (fileName.match(/\.(woff2?|eot|ttf|otf|png|jpe?g|gif|svg|ico)$/i)) {
+      // Fonts and images - cache for 1 month
+      res.setHeader('Cache-Control', 'public, max-age=2592000');
     } else {
-      // Default cache for other root files (favicon, logo, robots.txt)
-      // These might not be hashed, so use a shorter cache duration (1 day)
+      // Default for other files
       res.setHeader('Cache-Control', 'public, max-age=86400');
     }
   }

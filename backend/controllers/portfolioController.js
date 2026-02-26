@@ -1,5 +1,6 @@
 const Portfolio = require('../models/Portfolio');
 const { cloudinary } = require('../config/cloudinary');
+const { clearCache } = require('../config/redis');
 
 // @desc    Get all portfolios
 // @route   GET /api/portfolios
@@ -64,6 +65,7 @@ const createPortfolio = async (req, res) => {
 
     const portfolio = new Portfolio(portfolioData);
     const createdPortfolio = await portfolio.save();
+    await clearCache('__express__/api/portfolios*');
     res.status(201).json(createdPortfolio);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -127,6 +129,7 @@ const updatePortfolio = async (req, res) => {
 
     portfolio.updatedAt = Date.now();
     const updatedPortfolio = await portfolio.save();
+    await clearCache('__express__/api/portfolios*');
     res.json(updatedPortfolio);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -153,6 +156,7 @@ const deletePortfolio = async (req, res) => {
     }
 
     await portfolio.deleteOne();
+    await clearCache('__express__/api/portfolios*');
     res.json({ message: 'Portfolio removed' });
   } catch (error) {
     res.status(500).json({ message: error.message });
