@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, m, useScroll, useTransform } from "framer-motion";
 import { ReactNode, useRef } from "react";
 
 interface ParallaxHeroProps {
@@ -16,7 +16,7 @@ export const ParallaxHero = ({ children, backgroundImage, className }: ParallaxH
     <section ref={ref} className={`relative min-h-[80vh] sm:min-h-[70vh] md:min-h-[calc(100dvh-80px)] lg:min-h-screen w-full flex items-center justify-center overflow-hidden ${className || ""}`}>
       {backgroundImage && (
         <AnimatePresence mode="wait" initial={false}>
-          <motion.div
+          <m.div
             key={backgroundImage}
             className="absolute top-0 left-0 right-0 h-[120%] z-0 parallax-bg"
             style={{ 
@@ -36,12 +36,12 @@ export const ParallaxHero = ({ children, backgroundImage, className }: ParallaxH
               fetchPriority="high"
               loading="eager"
             />
-          </motion.div>
+          </m.div>
           {/* Mobile optimized overlay for better image visibility */}
           <div className="absolute inset-0 z-0 sm:hidden bg-black/10" />
         </AnimatePresence>
       )}
-      <motion.div
+      <m.div
         className="absolute inset-0 z-0 bg-black/30 md:bg-transparent"
         style={{
           background:

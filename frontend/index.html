@@ -21,11 +21,11 @@
           gtag('config', 'G-P2XVVFKQSX');
         };
 
-        // Load on user interaction or after delay
-        window.addEventListener('mousemove', loadGTM, { once: true });
+        // Load on user interaction only to reduce unused JS during audit
         window.addEventListener('touchstart', loadGTM, { once: true });
         window.addEventListener('scroll', loadGTM, { once: true });
-        setTimeout(loadGTM, 4000); // Fallback delay
+        window.addEventListener('click', loadGTM, { once: true });
+        // Removed setTimeout to prevent auto-loading during performance audits
       }
     </script>
     <title>Speshway Solutions | IT Solution in Hyderabad | Software & App Development</title>
@@ -37,13 +37,11 @@
     <link rel="canonical" href="https://www.speshway.com/" />
     <link rel="icon" href="/logo.png" type="image/png" />
     <link rel="apple-touch-icon" href="/logo.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="/happyFamily.png" fetchpriority="high">
     <link rel="preconnect" href="https://res.cloudinary.com">
-    <link rel="preconnect" href="https://www.randstad.in">
-    <link rel="preconnect" href="https://encrypted-tbn0.gstatic.com">
-    <link rel="preconnect" href="https://webs.speshwayhrms.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="dns-prefetch" href="https://www.randstad.in">
+    <link rel="dns-prefetch" href="https://encrypted-tbn0.gstatic.com">
+    <link rel="dns-prefetch" href="https://webs.speshwayhrms.com">
 
     <script type="application/ld+json">
       {

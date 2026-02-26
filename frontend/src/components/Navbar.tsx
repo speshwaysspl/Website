@@ -66,7 +66,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 py-1">
         {/* Top Row: Logo + Brand, Mobile Menu Toggle */}
         <div className="flex items-center justify-between">
-          <Link to="/" className="hidden lg:flex items-center gap-3 lg:mr-8 xl:mr-16">
+          <Link to="/" aria-label="Speshway Solutions Home" className="hidden lg:flex items-center gap-3 lg:mr-8 xl:mr-16">
             <img
               src="/logo.png"
               alt="Speshway Solutions - IT Services in Hyderabad"

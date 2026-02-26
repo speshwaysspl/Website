@@ -52,25 +52,20 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Serve frontend static files
 const frontendPath = path.join(__dirname, '../frontend/dist');
 
-// 1. Explicitly serve assets folder with long cache
-// Note: We use maxAge + setHeaders to be doubly sure
-app.use('/assets', express.static(path.join(frontendPath, 'assets'), {
-  maxAge: '1y',
-  immutable: true,
-  setHeaders: (res) => {
-    // Force header in case maxAge is ignored by some proxy
-    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-  }
-}));
-
-// 2. Serve root files (favicon, robots.txt, etc)
+// Serve static files with efficient caching strategy
+// This single middleware handles all static assets including those in /assets
 app.use(express.static(frontendPath, {
+  maxAge: '1y', // Default long cache duration
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
-      // Never cache index.html so updates are immediate
+      // Never cache HTML files to ensure updates are seen immediately
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    } else if (filePath.includes(path.sep + 'assets' + path.sep)) {
+      // Cache assets in the 'assets' folder (JS, CSS, images) which are hashed by Vite
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
     } else {
-      // Default cache for other root files
+      // Default cache for other root files (favicon, logo, robots.txt)
+      // These might not be hashed, so use a shorter cache duration (1 day)
       res.setHeader('Cache-Control', 'public, max-age=86400');
     }
   }
@@ -91,7 +86,7 @@ app.use('/api/jobs', require('./routes/jobs'));
 app.use('/', require('./routes/sitemap'));
 
 // Handle SPA fallback - serve index.html for any unknown routes
-app.get('*splat', (req, res) => {
+app.get(/(.*)/, (req, res) => {
   // If request is for API, don't serve index.html
   if (req.path.startsWith('/api')) {
     return res.status(404).json({

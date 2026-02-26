@@ -4,9 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import heroImage from "@/assets/happyFamily.png";
 import { FadeIn, StaggerContainer, StaggerItem, HoverScale, ScrollReveal, ParallaxHero, ScrollParallaxItem } from "@/components/animations";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from "react";
 import { useQuery } from '@tanstack/react-query';
@@ -14,6 +13,7 @@ import api from '@/lib/api';
 import { getOptimizedImageUrl } from "@/lib/utils";
 
 const Home = () => {
+  const heroImage = "/happyFamily.png";
   const { data: clients } = useQuery({
     queryKey: ['clients'],
     queryFn: () => api.get('/clients').then(res => {
@@ -209,7 +209,7 @@ const Home = () => {
                   : { duration: 0.6, ease: 'easeOut' };
 
                 return (
-                  <motion.span
+                  <m.span
                     className="relative overflow-hidden px-5 py-2.5 rounded-full text-sm font-semibold border transition-transform duration-300 hover:scale-110"
                     style={{
                       color: settings?.welcomeBadgeColor || undefined,
@@ -223,16 +223,16 @@ const Home = () => {
                   >
                     <span className="inline-flex items-center gap-2">
                       {settings?.welcomeBadgeText || 'Welcome to the Future of IT'}
-                      <motion.span
+                      <m.span
                         initial={{ x: 0 }}
                         animate={arrowAnimate}
                         transition={arrowTransition}
                       >
                         <ArrowRight size={16} />
-                      </motion.span>
+                      </m.span>
                     </span>
                     {showShimmer && (
-                      <motion.div
+                      <m.div
                         className="absolute inset-0 pointer-events-none"
                         style={{
                           background: `linear-gradient(90deg, transparent 0%, ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0.35)} 50%, transparent 100%)`,
@@ -244,7 +244,7 @@ const Home = () => {
                       />
                     )}
                     {showGradientShift && (
-                      <motion.div
+                      <m.div
                         className="absolute inset-0 pointer-events-none"
                         style={{
                           background: `linear-gradient(90deg, ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0.15)} 0%, ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0.45)} 50%, ${toRgba(settings?.welcomeBadgeColor || '#3b82f6', 0.15)} 100%)`,
@@ -255,7 +255,7 @@ const Home = () => {
                         transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity }}
                       />
                     )}
-                  </motion.span>
+                  </m.span>
                 );
               })()}
             </div>

@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, LazyMotion, domAnimation } from "framer-motion";
 import { PageTransition } from "@/components/animations";
 import ProtectedRoute from "@/components/ProtectedRoute";
 
@@ -98,15 +98,17 @@ const RouterViews = () => {
 };
 
 const App = () => (
-  <TooltipProvider>
-    <Toaster />
-    <Sonner />
-    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <Suspense fallback={<PageLoader />}>
-        <RouterViews />
-      </Suspense>
-    </BrowserRouter>
-  </TooltipProvider>
+  <LazyMotion features={domAnimation}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <Suspense fallback={<PageLoader />}>
+          <RouterViews />
+        </Suspense>
+      </BrowserRouter>
+    </TooltipProvider>
+  </LazyMotion>
 );
 
 export default App;
