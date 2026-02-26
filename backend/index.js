@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
+const compression = require('compression');
 const connectDB = require('./config/db');
 
 // Load env vars
@@ -16,6 +17,9 @@ const app = express();
 // Body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Enable compression
+app.use(compression());
 
 // CORS Configuration
 const corsOptions = {

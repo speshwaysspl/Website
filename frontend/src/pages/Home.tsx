@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from "react";
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
+import { getOptimizedImageUrl } from "@/lib/utils";
 
 const Home = () => {
   const { data: clients } = useQuery({
@@ -50,11 +51,11 @@ const Home = () => {
     }
   }, [activeBanners.length]);
 
-  const heroBgSrc = activeBanners.length > 0
+  const heroBgSrc = getOptimizedImageUrl(activeBanners.length > 0
     ? activeBanners[heroIndex]?.image?.url
-    : heroImage;
+    : heroImage);
 
-  const firstBanner = activeBanners.length > 0 ? activeBanners[0]?.image?.url : heroImage;
+  const firstBanner = getOptimizedImageUrl(activeBanners.length > 0 ? activeBanners[0]?.image?.url : heroImage);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

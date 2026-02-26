@@ -15,7 +15,7 @@ export const ParallaxHero = ({ children, backgroundImage, className }: ParallaxH
   return (
     <section ref={ref} className={`relative min-h-[80vh] sm:min-h-[70vh] md:min-h-[calc(100dvh-80px)] lg:min-h-screen w-full flex items-center justify-center overflow-hidden ${className || ""}`}>
       {backgroundImage && (
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={backgroundImage}
             className="absolute top-0 left-0 right-0 h-[120%] z-0 parallax-bg"
@@ -23,10 +23,10 @@ export const ParallaxHero = ({ children, backgroundImage, className }: ParallaxH
               y: bgY, 
               willChange: "transform" 
             }}
-            initial={{ x: 80, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -80, opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             <img 
               src={backgroundImage} 

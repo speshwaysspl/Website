@@ -22,6 +22,7 @@ export default defineConfig(({ mode }) => ({
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'query-vendor': ['@tanstack/react-query'],
           'animation-vendor': ['framer-motion'],
+          'ui-vendor': ['lucide-react', 'clsx', 'tailwind-merge', 'class-variance-authority'],
         },
       },
     },

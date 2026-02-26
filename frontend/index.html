@@ -3,18 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) - Delayed Loading -->
     <script>
       if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-P2XVVFKQSX';
-        document.head.appendChild(script);
+        const loadGTM = () => {
+          if (window.gtmLoaded) return;
+          window.gtmLoaded = true;
+          
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-P2XVVFKQSX';
+          document.head.appendChild(script);
 
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-P2XVVFKQSX');
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-P2XVVFKQSX');
+        };
+
+        // Load on user interaction or after delay
+        window.addEventListener('mousemove', loadGTM, { once: true });
+        window.addEventListener('touchstart', loadGTM, { once: true });
+        window.addEventListener('scroll', loadGTM, { once: true });
+        setTimeout(loadGTM, 4000); // Fallback delay
       }
     </script>
     <title>Speshway Solutions | IT Solution in Hyderabad | Software & App Development</title>
@@ -28,6 +39,10 @@
     <link rel="apple-touch-icon" href="/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://res.cloudinary.com">
+    <link rel="preconnect" href="https://www.randstad.in">
+    <link rel="preconnect" href="https://encrypted-tbn0.gstatic.com">
+    <link rel="preconnect" href="https://webs.speshwayhrms.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <script type="application/ld+json">
