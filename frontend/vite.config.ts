@@ -19,14 +19,13 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true, // Split CSS into chunks for better caching and smaller initial load
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            // Put ALL node_modules into a single vendor chunk.
-            // This is the most stable way to avoid "createContext" errors
-            // while still keeping the vendor code separate from your app logic.
-            return 'vendor';
-          }
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-framer': ['framer-motion'],
+          'vendor-icons': ['lucide-react'],
+          'vendor-query': ['@tanstack/react-query'],
         },
+        // Optimize asset naming for better caching on Nginx/EC2
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
         assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
