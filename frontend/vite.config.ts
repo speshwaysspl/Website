@@ -21,20 +21,10 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            // Group React and core vendors together for stability
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom') || id.includes('@tanstack/react-query')) {
-              return 'vendor-core';
-            }
-            // Group animations separately
-            if (id.includes('framer-motion')) {
-              return 'vendor-animation';
-            }
-            // Group other UI-related stuff
-            if (id.includes('lucide-react') || id.includes('clsx') || id.includes('tailwind-merge')) {
-              return 'vendor-ui';
-            }
-            // Catch-all for other vendors
-            return 'vendor-others';
+            // Put ALL node_modules into a single vendor chunk.
+            // This is the most stable way to avoid "createContext" errors
+            // while still keeping the vendor code separate from your app logic.
+            return 'vendor';
           }
         },
         chunkFileNames: 'assets/js/[name]-[hash].js',
