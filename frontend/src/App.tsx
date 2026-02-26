@@ -34,6 +34,8 @@ const ManageHomeBanners = lazy(() => import("./pages/admin/ManageHomeBanners"));
 const ForgotPassword = lazy(() => import("./pages/admin/ForgotPassword"));
 const AdminSettings = lazy(() => import("./pages/admin/Settings"));
 const ManageJobs = lazy(() => import("./pages/admin/ManageJobs"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 
 const PageLoader = () => (
   <div className="flex items-center justify-center min-h-screen">
@@ -70,6 +72,8 @@ const RouterViews = () => {
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/send-resume" element={<PageTransition><SendResume /></PageTransition>} />
         <Route path="/fraud-notice" element={<PageTransition><FraudNotice /></PageTransition>} />
+        <Route path="/privacy-policy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
+        <Route path="/terms-of-service" element={<PageTransition><TermsOfService /></PageTransition>} />
         <Route path="/faq" element={<PageTransition><FAQ /></PageTransition>} />
         <Route path="/gallery" element={<PageTransition><Gallery /></PageTransition>} />
         <Route path="/blog" element={<PageTransition><Gallery /></PageTransition>} />

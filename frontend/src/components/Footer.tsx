@@ -50,7 +50,7 @@ const Footer = () => {
                 <Linkedin size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-primary transition-colors" />
               </a>
               <a
-                href="https://www.instagram.com/speshwaysolutions?igsh=MWF0bmNmdG9nN3M3cA=="
+                href="https://www.instagram.com/speshwaysolutionsofficial/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
@@ -108,9 +108,9 @@ const Footer = () => {
               <ul className="space-y-2">
                 {["Web Development", "Mobile Apps", "Cloud Solutions", "AI & ML"].map((service) => (
                   <li key={service}>
-                    <a href="#" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                    <Link to="/services" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
                       {service}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -164,10 +164,10 @@ const Footer = () => {
               © {currentYear} SPESHWAY SOLUTIONS PRIVATE LIMITED. All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6">
-              <Link to="#" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+              <Link to="/privacy-policy" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
                 Privacy Policy
               </Link>
-              <Link to="#" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
+              <Link to="/terms-of-service" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
                 Terms of Service
               </Link>
             </div>
