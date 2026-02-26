@@ -54,7 +54,7 @@ const Home = () => {
     ? activeBanners[heroIndex]?.image?.url
     : heroImage;
 
-  
+  const firstBanner = activeBanners.length > 0 ? activeBanners[0]?.image?.url : heroImage;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -99,6 +99,8 @@ const Home = () => {
         <meta name="description" content="Speshway Solutions is a leading IT solution provider in Hyderabad offering software development, app development, website development, DevOps, software testing, and more. Give your business the Speshway advantage." />
         <meta name="keywords" content="speshway, speshway solutions, IT solution in hyderabad, software development company in hyderbad, app devlopment company in hyderbad, website devlopment company in hyderbad, devops company in hyderbad, software testing company in hyderbad, software engineer company in hyderbad, app development company in hyderbad, website development company in hyderbad, software engineer company in hyderabad, it services company in india, custom software development  company in hyderbad" />
         <link rel="canonical" href="https://www.speshway.com/" />
+        {/* Preload the first banner or hero image */}
+        <link rel="preload" as="image" href={firstBanner} fetchPriority="high" />
         <meta property="og:title" content="Speshway Solutions | IT Solution in Hyderabad" />
         <meta property="og:description" content="Leading IT Solutions in Hyderabad: Software, App, Website Development, DevOps & Testing." />
         <meta property="og:type" content="website" />

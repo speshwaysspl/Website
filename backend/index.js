@@ -45,6 +45,20 @@ app.use(cors(corsOptions));
 // Serve static files from uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Serve frontend static files
+const frontendPath = path.join(__dirname, '../frontend/dist');
+app.use(express.static(frontendPath, {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      // Never cache index.html so updates are immediate
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    } else {
+      // Cache static assets for 1 year (JS, CSS, Images, Fonts)
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    }
+  }
+}));
+
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/contact', require('./routes/contact'));
@@ -59,13 +73,23 @@ app.use('/api/settings', require('./routes/settings'));
 app.use('/api/jobs', require('./routes/jobs'));
 app.use('/', require('./routes/sitemap'));
 
-// Health check endpoint
-app.get('/', (req, res) => {
-  res.json({ 
-    message: 'API is running...',
-    status: 'ok',
-    timestamp: new Date().toISOString()
-  });
+// Handle SPA fallback - serve index.html for any unknown routes
+app.get('*splat', (req, res) => {
+  // If request is for API, don't serve index.html
+  if (req.path.startsWith('/api')) {
+    return res.status(404).json({
+      success: false,
+      message: 'API route not found'
+    });
+  }
+  
+  // Check if frontend build exists
+  const indexFile = path.join(__dirname, '../frontend/dist/index.html');
+  if (require('fs').existsSync(indexFile)) {
+    res.sendFile(indexFile);
+  } else {
+    res.status(404).send('Frontend build not found. Please run "npm run build" in the frontend directory.');
+  }
 });
 
 // API health check

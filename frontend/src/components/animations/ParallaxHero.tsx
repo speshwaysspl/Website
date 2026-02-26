@@ -18,20 +18,25 @@ export const ParallaxHero = ({ children, backgroundImage, className }: ParallaxH
         <AnimatePresence mode="wait">
           <motion.div
             key={backgroundImage}
-            className="absolute inset-0 z-0 parallax-bg"
+            className="absolute top-0 left-0 right-0 h-[120%] z-0 parallax-bg"
             style={{ 
               y: bgY, 
-              backgroundImage: `url(${backgroundImage})`, 
-              backgroundSize: "cover", 
-              backgroundPosition: "center center", 
-              backgroundRepeat: "no-repeat", 
               willChange: "transform" 
             }}
             initial={{ x: 80, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -80, opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-          />
+          >
+            <img 
+              src={backgroundImage} 
+              alt="Hero Background" 
+              className="w-full h-full object-cover"
+              // @ts-ignore
+              fetchPriority="high"
+              loading="eager"
+            />
+          </motion.div>
           {/* Mobile optimized overlay for better image visibility */}
           <div className="absolute inset-0 z-0 sm:hidden bg-black/10" />
         </AnimatePresence>
