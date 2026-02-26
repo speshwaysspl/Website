@@ -18,18 +18,15 @@ export default defineConfig(({ mode }) => ({
   build: {
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('framer-motion')) return 'framer-motion';
-            if (id.includes('lucide-react')) return 'lucide-icons';
-            if (id.includes('recharts')) return 'recharts';
-            if (id.includes('@tanstack/react-query')) return 'query-vendor';
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) return 'react-vendor';
-            return 'vendor';
-          }
-          if (id.includes('src/pages/admin') || id.includes('src/components/ProtectedRoute')) {
-            return 'admin-bundle';
-          }
+        manualChunks: {
+          'vendor': [
+            'react', 
+            'react-dom', 
+            'react-router-dom', 
+            'framer-motion', 
+            'lucide-react', 
+            '@tanstack/react-query'
+          ],
         },
       },
     },
