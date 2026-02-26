@@ -38,10 +38,24 @@
     <link rel="icon" href="/logo.png" type="image/png" />
     <link rel="apple-touch-icon" href="/logo.png" />
     
-    <!-- Critical CSS Strategy: Preload CSS and load it asynchronously -->
+    <!-- Critical CSS: Inlined to prevent FOUC while main CSS loads async -->
+    <style>
+      :root {
+        --background: 0 0% 100%;
+        --foreground: 222 47% 11%;
+        --primary: 221 83% 53%;
+        --border: 214 32% 91%;
+      }
+      body { background: hsl(var(--background)); color: hsl(var(--foreground)); font-family: sans-serif; margin: 0; }
+    </style>
+
+    <!-- Async CSS Loading Strategy -->
     <link rel="preload" href="/src/index.css" as="style">
     <link rel="stylesheet" href="/src/index.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
+
+    <!-- Module Preload: Start downloading main JS in parallel with CSS -->
+    <link rel="modulepreload" href="/src/main.tsx">
 
     <!-- Preload Critical Fonts (Inter) -->
     <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>

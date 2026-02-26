@@ -19,11 +19,22 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true, // Split CSS into chunks for better caching and smaller initial load
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-framer': ['framer-motion'],
-          'vendor-icons': ['lucide-react'],
-          'vendor-query': ['@tanstack/react-query'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+              return 'vendor-core';
+            }
+            if (id.includes('framer-motion')) {
+              return 'vendor-animation';
+            }
+            if (id.includes('lucide-react')) {
+              return 'vendor-icons';
+            }
+            if (id.includes('@tanstack/react-query')) {
+              return 'vendor-query';
+            }
+            return 'vendor-others';
+          }
         },
         // Optimize asset naming for better caching on Nginx/EC2
         chunkFileNames: 'assets/js/[name]-[hash].js',
