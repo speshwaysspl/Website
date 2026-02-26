@@ -1,6 +1,5 @@
 const Team = require('../models/Team');
 const { cloudinary } = require('../config/cloudinary');
-const { clearCache } = require('../config/redis');
 
 // @desc    Get all team members
 // @route   GET /api/team
@@ -49,7 +48,6 @@ const createTeamMember = async (req, res) => {
 
     const member = new Team(memberData);
     const createdMember = await member.save();
-    await clearCache('__express__/api/team*');
     res.status(201).json(createdMember);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -87,7 +85,6 @@ const updateTeamMember = async (req, res) => {
 
     member.updatedAt = Date.now();
     const updatedMember = await member.save();
-    await clearCache('__express__/api/team*');
     res.json(updatedMember);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -114,7 +111,6 @@ const deleteTeamMember = async (req, res) => {
     }
 
     await member.deleteOne();
-    await clearCache('__express__/api/team*');
     res.json({ message: 'Team member removed' });
   } catch (error) {
     res.status(500).json({ message: error.message });

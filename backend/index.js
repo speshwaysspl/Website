@@ -4,24 +4,15 @@ const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
 const compression = require('compression');
-const helmet = require('helmet');
 const connectDB = require('./config/db');
-const { connectRedis } = require('./config/redis');
 
 // Load env vars
 dotenv.config();
 
-// Connect to databases
+// Connect to database
 connectDB();
-connectRedis();
 
 const app = express();
-
-// Security headers
-app.use(helmet({
-  contentSecurityPolicy: false, // Disable CSP for now to avoid breaking existing frontend loads, or configure it properly
-  crossOriginEmbedderPolicy: false
-}));
 
 // Body parser
 app.use(express.json());
@@ -55,29 +46,35 @@ const corsOptions = {
 // Enable CORS (handles preflight requests automatically)
 app.use(cors(corsOptions));
 
-// Serve static files from uploads directory
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Serve static files from uploads directory with caching
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
+  maxAge: '30d',
+  immutable: true
+}));
 
 // Serve frontend static files
 const frontendPath = path.join(__dirname, '../frontend/dist');
 
 // Serve static files with efficient caching strategy
+// This single middleware handles all static assets including those in /assets
 app.use(express.static(frontendPath, {
-  maxAge: '1y',
+  maxAge: '1y', // Default long cache duration
   setHeaders: (res, filePath) => {
-    const fileName = path.basename(filePath);
-    const relativePath = path.relative(frontendPath, filePath);
+    // Convert backslashes to forward slashes for consistent path matching
+    const normalizedPath = filePath.replace(/\\/g, '/');
     
-    if (fileName.endsWith('.html')) {
+    if (normalizedPath.endsWith('.html')) {
+      // Never cache HTML files to ensure updates are seen immediately
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    } else if (relativePath.includes('assets') || fileName.match(/\.[a-f0-9]{8,}\./)) {
-      // Vite assets are hashed, so they can be cached forever
+    } else if (normalizedPath.includes('/assets/') || normalizedPath.includes('/fonts/')) {
+      // Cache assets in 'assets' and 'fonts' folders (JS, CSS, images, fonts)
+      // These are either hashed by Vite or stable enough for long caching
       res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-    } else if (fileName.match(/\.(woff2?|eot|ttf|otf|png|jpe?g|gif|svg|ico)$/i)) {
-      // Fonts and images - cache for 1 month
-      res.setHeader('Cache-Control', 'public, max-age=2592000');
+    } else if (normalizedPath.match(/\.(jpg|jpeg|png|gif|svg|ico|webp)$/i)) {
+      // Cache images for a long time as they don't change often
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
     } else {
-      // Default for other files
+      // Default cache for other root files (robots.txt, etc.)
       res.setHeader('Cache-Control', 'public, max-age=86400');
     }
   }
