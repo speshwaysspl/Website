@@ -49,14 +49,6 @@
       body { background: hsl(var(--background)); color: hsl(var(--foreground)); font-family: sans-serif; margin: 0; }
     </style>
 
-    <!-- Async CSS Loading Strategy -->
-    <link rel="preload" href="/src/index.css" as="style">
-    <link rel="stylesheet" href="/src/index.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
-
-    <!-- Module Preload: Start downloading main JS in parallel with CSS -->
-    <link rel="modulepreload" href="/src/main.tsx">
-
     <!-- Preload Critical Fonts (Inter) -->
     <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
