@@ -9,7 +9,10 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [
+    react(),
+    mode === "development" && componentTagger(),
+  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -19,11 +22,14 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true, // Split CSS into chunks for better caching and smaller initial load
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-framer': ['framer-motion'],
-          'vendor-icons': ['lucide-react'],
-          'vendor-query': ['@tanstack/react-query'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('framer-motion')) return 'vendor-framer';
+            if (id.includes('lucide-react')) return 'vendor-icons';
+            if (id.includes('@tanstack/react-query')) return 'vendor-query';
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) return 'vendor-react';
+            return 'vendor';
+          }
         },
         // Optimize asset naming for better caching on Nginx/EC2
         chunkFileNames: 'assets/js/[name]-[hash].js',
@@ -38,7 +44,14 @@ export default defineConfig(({ mode }) => ({
       compress: {
         drop_console: mode === 'production',
         drop_debugger: mode === 'production',
-        pure_funcs: mode === 'production' ? ['console.log', 'console.info'] : [], // Deep clean logs
+        pure_funcs: mode === 'production' ? ['console.log', 'console.info', 'console.debug'] : [], // Deep clean logs
+        passes: 2, // Multiple passes for better compression
+      },
+      mangle: {
+        safari10: true,
+      },
+      format: {
+        comments: false, // Remove all comments
       },
     },
     // CSS Minification tuning

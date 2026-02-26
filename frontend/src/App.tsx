@@ -4,9 +4,11 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { AnimatePresence, LazyMotion, domAnimation } from "framer-motion";
+import { AnimatePresence, LazyMotion } from "framer-motion";
 import { PageTransition } from "@/components/animations/PageTransition";
 import ProtectedRoute from "@/components/ProtectedRoute";
+
+const loadFeatures = () => import("./lib/framer-features").then(res => res.default);
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -98,7 +100,7 @@ const RouterViews = () => {
 };
 
 const App = () => (
-  <LazyMotion features={domAnimation}>
+  <LazyMotion features={loadFeatures}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
