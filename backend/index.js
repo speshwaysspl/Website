@@ -47,14 +47,27 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Serve frontend static files
 const frontendPath = path.join(__dirname, '../frontend/dist');
+
+// 1. Explicitly serve assets folder with long cache
+// Note: We use maxAge + setHeaders to be doubly sure
+app.use('/assets', express.static(path.join(frontendPath, 'assets'), {
+  maxAge: '1y',
+  immutable: true,
+  setHeaders: (res) => {
+    // Force header in case maxAge is ignored by some proxy
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+  }
+}));
+
+// 2. Serve root files (favicon, robots.txt, etc)
 app.use(express.static(frontendPath, {
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html')) {
       // Never cache index.html so updates are immediate
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     } else {
-      // Cache static assets for 1 year (JS, CSS, Images, Fonts)
-      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      // Default cache for other root files
+      res.setHeader('Cache-Control', 'public, max-age=86400');
     }
   }
 }));
