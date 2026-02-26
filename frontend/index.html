@@ -37,6 +37,17 @@
     <link rel="canonical" href="https://www.speshway.com/" />
     <link rel="icon" href="/logo.png" type="image/png" />
     <link rel="apple-touch-icon" href="/logo.png" />
+    
+    <!-- Critical CSS Strategy: Preload CSS and load it asynchronously -->
+    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="stylesheet" href="/src/index.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
+
+    <!-- Preload Critical Fonts (Inter) -->
+    <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
     <link rel="preload" as="image" href="/happyFamily.png" fetchpriority="high">
     <link rel="preconnect" href="https://res.cloudinary.com">
     <link rel="dns-prefetch" href="https://www.randstad.in">

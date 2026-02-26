@@ -14,6 +14,8 @@ const Footer = () => {
               <img
                 src="/logo.png"
                 alt="Speshway Logo"
+                width="48"
+                height="48"
                 className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-lg hover:scale-110 transition-transform duration-300"
               />
               <div className="leading-tight">

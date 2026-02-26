@@ -70,6 +70,8 @@ const Navbar = () => {
             <img
               src="/logo.png"
               alt="Speshway Solutions - IT Services in Hyderabad"
+              width="64"
+              height="64"
               className="w-12 h-12 sm:w-16 sm:h-16 object-contain"
             />
             <div className="leading-tight">

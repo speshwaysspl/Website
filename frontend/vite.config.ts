@@ -16,18 +16,19 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    cssCodeSplit: true, // Split CSS into chunks for better caching and smaller initial load
     rollupOptions: {
       output: {
         manualChunks: {
-          'vendor': [
-            'react', 
-            'react-dom', 
-            'react-router-dom', 
-            'framer-motion', 
-            'lucide-react', 
-            '@tanstack/react-query'
-          ],
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-framer': ['framer-motion'],
+          'vendor-icons': ['lucide-react'],
+          'vendor-query': ['@tanstack/react-query'],
         },
+        // Optimize asset naming for better caching on Nginx/EC2
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
       },
     },
     chunkSizeWarningLimit: 1000,
@@ -37,8 +38,11 @@ export default defineConfig(({ mode }) => ({
       compress: {
         drop_console: mode === 'production',
         drop_debugger: mode === 'production',
+        pure_funcs: mode === 'production' ? ['console.log', 'console.info'] : [], // Deep clean logs
       },
     },
+    // CSS Minification tuning
+    cssMinify: true,
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],

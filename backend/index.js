@@ -48,7 +48,7 @@ app.use(cors(corsOptions));
 
 // Serve static files from uploads directory with caching
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
-  maxAge: '30d',
+  maxAge: '1y',
   immutable: true
 }));
 
@@ -56,28 +56,36 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
 const frontendPath = path.join(__dirname, '../frontend/dist');
 
 // Serve static files with efficient caching strategy
-// This single middleware handles all static assets including those in /assets
 app.use(express.static(frontendPath, {
-  maxAge: '1y', // Default long cache duration
+  maxAge: '1y',
   setHeaders: (res, filePath) => {
-    // Convert backslashes to forward slashes for consistent path matching
-    const normalizedPath = filePath.replace(/\\/g, '/');
-    
-    if (normalizedPath.endsWith('.html')) {
-      // Never cache HTML files to ensure updates are seen immediately
-      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    } else if (normalizedPath.includes('/assets/') || normalizedPath.includes('/fonts/')) {
-      // Cache assets in 'assets' and 'fonts' folders (JS, CSS, images, fonts)
-      // These are either hashed by Vite or stable enough for long caching
-      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-    } else if (normalizedPath.match(/\.(jpg|jpeg|png|gif|svg|ico|webp)$/i)) {
-      // Cache images for a long time as they don't change often
-      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-    } else {
-      // Default cache for other root files (robots.txt, etc.)
-      res.setHeader('Cache-Control', 'public, max-age=86400');
+      // Normalize path for consistent checking (works on Windows/Linux)
+      const normalizedPath = filePath.replace(/\\/g, '/').toLowerCase();
+      
+      // 1. NEVER cache HTML files
+      if (normalizedPath.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
+      } 
+      // 2. Cache hashed assets (JS/CSS in /assets/) and fonts
+      // Vite adds hashes like index-B0SagDFc.css, these are safe to cache forever
+      else if (
+        normalizedPath.includes('/assets/') || 
+        normalizedPath.includes('/fonts/') ||
+        normalizedPath.match(/-[a-z0-9]{8,}\.(js|css|woff2|woff|ttf)$/i)
+      ) {
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      }
+      // 3. Cache static images in the root dist folder or anywhere else
+      else if (normalizedPath.match(/\.(jpg|jpeg|png|gif|svg|ico|webp|avif)$/i)) {
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      }
+      // 4. Everything else (robots.txt, sitemap.xml)
+      else {
+        res.setHeader('Cache-Control', 'public, max-age=86400');
+      }
     }
-  }
 }));
 
 // Routes
@@ -104,13 +112,14 @@ app.get(/(.*)/, (req, res) => {
     });
   }
   
-  // Check if frontend build exists
   const indexFile = path.join(__dirname, '../frontend/dist/index.html');
-  if (require('fs').existsSync(indexFile)) {
-    res.sendFile(indexFile);
-  } else {
-    res.status(404).send('Frontend build not found. Please run "npm run build" in the frontend directory.');
-  }
+  
+  // Set headers for SPA fallback too
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  
+  res.sendFile(indexFile);
 });
 
 // API health check
