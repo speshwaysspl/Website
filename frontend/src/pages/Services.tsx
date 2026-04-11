@@ -61,12 +61,12 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Services | Speshway Solutions | IT Services in Hyderabad</title>
-        <meta name="description" content="Explore Speshway Solutions services in Hyderabad: custom software development, mobile app development, website development, DevOps, software testing, and more." />
-        <meta name="keywords" content="Speshway services, IT solution in hyderabad, software development, app devlopment, website devlopment, devops, software testing, software engineer company in hyderbad" />
+        <title>IT Services in Hyderabad | Official Speshway Solutions | T-Hub | Services | Speshway Solutions | Top Software Company in Hyderabad</title>
+        <meta name="description" content="Explore official IT services from Speshway Solutions at T-Hub Hyderabad: custom software, mobile apps, and cloud solutions. Verify us on Instagram @speshwaysolutionsofficial." />
+        <meta name="keywords" content="Speshway services, official speshway solutions,software company near me, custom software development, mobile app development, software company hyderabad,best IT services Hyderabad, software engineer Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad, custom software development, mobile app development,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad, top-rated IT consultancy Hyderabad,T-Hub IT services, official instagram @speshwaysolutionsofficial" />
         <link rel="canonical" href="https://www.speshway.com/services" />
-        <meta property="og:title" content="Services | Speshway Solutions | IT Services in Hyderabad" />
-        <meta property="og:description" content="Comprehensive IT solutions in Hyderabad: Software, App, Web Development, DevOps & Testing." />
+        <meta property="og:title" content="IT Services | Official Speshway Solutions | Hyderabad" />
+        <meta property="og:description" content="Official IT solutions at T-Hub Hyderabad: Software, App, Web Development, DevOps & Testing." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.speshway.com/services" />
         <meta property="og:image" content="https://www.speshway.com/logo.png" />
@@ -91,10 +91,15 @@ const Services = () => {
              "address": {
                "@type": "PostalAddress",
                "streetAddress": "T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha",
-               "addressLocality": "Hyderabad",
+               "addressLocality": "Hyderabad, Serilingampalle (M)",
                "addressRegion": "Telangana",
                "postalCode": "500032",
                "addressCountry": "IN"
+             },
+             "geo": {
+               "@type": "GeoCoordinates",
+               "latitude": "17.4340",
+               "longitude": "78.3844"
              }
            },
           "areaServed": {

@@ -23,7 +23,7 @@ const About = () => {
       icon: Award,
       title: "Our Values",
       description:
-        "Integrity, innovation, excellence, and customer success guide everything we do at SpeshwaySolutions.",
+        "Integrity, innovation, excellence, and customer success guide everything we do at Speshway Solutions.",
     },
     {
       icon: Users,
@@ -34,8 +34,8 @@ const About = () => {
   ];
 
   const stats = [
-    { number: "300+", label: "Projects Completed" },
-    { number: "150+", label: "Happy Clients" },
+    { number: "100+", label: "Projects Completed" },
+    { number: "100+", label: "Happy Clients" },
     { number: "200+", label: "Team Members" },
     { number: "15+", label: "Years Experience" },
   ];
@@ -43,18 +43,19 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>About Speshway Solutions | IT Solution in Hyderabad | Software Company</title>
-        <meta name="description" content="Learn about Speshway Solutions, a leading software company in Hyderabad. Our mission, vision, values, and team delivering enterprise-grade IT solutions and digital transformation." />
-        <meta name="keywords" content="Speshway, Speshway Solutions, about Speshway, IT company in hyderabad, software company in hyderabad, mission, vision, values" />
+        <title>About Speshway Solutions | Best Software Company in Hyderabad | T-Hub</title>
+        <meta name="description" content="Learn about Speshway Solutions Private Limited, a top software company in Hyderabad based in T-Hub. Discover our mission, values, and why we are the best choice for your digital needs." />
+        <meta name="keywords" content="about Speshway, software company in hyderabad, best IT company Hyderabad, Speshway Solutions T-Hub, software development team, registered IT firm India,mobile app development company in Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
         <link rel="canonical" href="https://www.speshway.com/about" />
-        <meta property="og:title" content="About Speshway Solutions | IT Solution in Hyderabad" />
-        <meta property="og:description" content="We empower businesses with innovative technology solutions in Hyderabad." />
+        <meta property="og:title" content="About Speshway Solutions | Best Software Company in Hyderabad" />
+        <meta property="og:description" content="Speshway Solutions is a registered IT services provider at T-Hub, Hyderabad. Learn more about our professional journey since 2017." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.speshway.com/about" />
         <meta property="og:image" content="https://www.speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="About Speshway Solutions | IT Solution in Hyderabad" />
-        <meta name="twitter:description" content="We empower businesses with innovative technology solutions in Hyderabad." />
+        <meta name="twitter:title" content="About Speshway Solutions | Top IT Company" />
+        <meta name="twitter:description" content="Speshway Solutions is a real and registered IT services provider in Hyderabad." />
+        <link rel="me" href="https://www.instagram.com/speshwaysolutionsofficial/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
@@ -67,19 +68,31 @@ const About = () => {
           "@context": "https://schema.org",
           "@type": "AboutPage",
           "mainEntity": {
-            "@type": "Organization",
+            "@type": "LocalBusiness",
             "name": "Speshway Solutions Private Limited",
+            "alternateName": "Speshway Solutions",
             "foundingDate": "2017",
-            "location": {
-              "@type": "Place",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Plot no 1024, 4th Floor, Repunjaya Building, Khanamet, Madhapur",
-                "addressLocality": "Hyderabad",
-                "addressRegion": "Telangana",
-                "postalCode": "500081",
-                "addressCountry": "IN"
-              }
+            "url": "https://www.speshway.com",
+            "logo": "https://www.speshway.com/logo.png",
+            "image": "https://www.speshway.com/logo.png",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha",
+              "addressLocality": "Hyderabad, Serilingampalle (M)",
+              "addressRegion": "Telangana",
+              "postalCode": "500032",
+              "addressCountry": "IN"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "17.4340",
+              "longitude": "78.3844"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+91 9100006020",
+              "contactType": "customer service",
+              "email": "info@speshway.com"
             }
           }
         })}</script>
@@ -97,8 +110,7 @@ const About = () => {
               <span className="block sm:inline text-primary whitespace-nowrap">Speshway Solutions</span>
             </h1>
             <p className="text-xl text-muted-foreground">
-              Pioneering digital transformation with innovative IT solutions since 2017. We're not just developers –
-              we're your technology partners in success.
+              A registered and trusted digital transformation partner since 2017. We pride ourselves on being a real, transparent, and innovative IT solutions provider.
             </p>
           </div>
           </ScrollReveal>
@@ -110,22 +122,20 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <Card className="p-8 md:p-12 bg-card/50 backdrop-blur-sm border-border">
-              <h2 className="text-3xl font-bold text-foreground mb-6">About Us </h2>
+              <h2 className="text-3xl font-bold text-foreground mb-6">A Legacy of Trust</h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Founded in 2017, SpeshwaySolutions Private Limited began with a simple yet powerful vision: to bridge
-                  the gap between businesses and cutting-edge technology. What started as a small team of passionate
-                  developers has grown into a full-service IT solutions provider serving clients across the globe.
+                  Founded in 2017, <strong>Speshway Solutions Private Limited</strong> is a legally registered IT services company headquartered in the tech hub of Hyderabad. We began with a simple yet powerful vision: to bridge
+                  the gap between businesses and cutting-edge technology with complete integrity.
                 </p>
                 <p>
-                  Over the years, we've evolved alongside the rapidly changing technology landscape, continuously
-                  expanding our expertise and service offerings. From web development to AI-powered solutions, we've
-                  remained committed to delivering innovation that matters.
+                  As a legitimate player in the IT industry, we have grown from a small passionate team into a full-service provider serving global clients. Our physical presence in Hyderabad and our transparent business practices are a testament to our commitment to being a reliable partner.
                 </p>
                 <p>
-                  Today, we're proud to be a trusted partner for businesses of all sizes, from ambitious startups to
-                  established enterprises. Our success is measured not just by the projects we complete, but by the
-                  lasting relationships we build and the tangible results we deliver.
+                  We are aware of fraudulent activities where individuals misuse our name. We want to reassure our clients and job seekers that Speshway Solutions is a real company with a track record of over 300+ successful projects and a dedicated team of 200+ professionals.
+                </p>
+                <p>
+                  Today, we continue to deliver tangible results, building lasting relationships based on trust, excellence, and innovation.
                 </p>
               </div>
             </Card>

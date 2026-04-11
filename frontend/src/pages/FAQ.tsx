@@ -10,7 +10,12 @@ import { Helmet } from "react-helmet-async";
 const FAQ = () => {
   const faqs = [
     {
-      question: "What services does SpeshwaySolutions offer?",
+      question: "Is Speshway Solutions a real or fake company?",
+      answer:
+        "Speshway Solutions Private Limited is a legitimate, registered IT services company based in Hyderabad, India. We have been operating since 2017, serving over 150+ happy clients and completing 300+ projects. You can verify our physical presence at our registered office in T-Hub, Raidurgam, Hyderabad.",
+    },
+    {
+      question: "What services does Speshway Solutions offer?",
       answer:
         "We offer a comprehensive range of IT services including web development, mobile app development, cloud solutions, AI & machine learning, database management, and cybersecurity. Our team specializes in creating custom solutions tailored to your specific business needs.",
     },
@@ -64,17 +69,17 @@ const FAQ = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>FAQ | Speshway Solutions</title>
-        <meta name="description" content="Find answers to common questions about our IT services, process, security, and support." />
-        <meta name="keywords" content="Speshway FAQ, IT questions, services, process, support" />
+        <title>FAQ | Is Speshway Solutions Real? | IT Services Questions</title>
+        <meta name="description" content="Find answers to common questions about Speshway Solutions, our legitimacy, IT services, project process, security, and support." />
+        <meta name="keywords" content="Speshway Solutions real or fake, is speshway real, Speshway FAQ, IT questions, services, process, support,mobile app development company in Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
         <link rel="canonical" href="https://www.speshway.com/faq" />
-        <meta property="og:title" content="FAQ | Speshway Solutions" />
-        <meta property="og:description" content="Answers to common questions about our services and process." />
+        <meta property="og:title" content="FAQ | Is Speshway Solutions Real? | Official Answers" />
+        <meta property="og:description" content="Answers to common questions about our legitimacy, services, and project process." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.speshway.com/faq" />
         <meta property="og:image" content="https://www.speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="FAQ | Speshway Solutions" />
+        <meta name="twitter:title" content="FAQ | Is Speshway Solutions Real?" />
         <meta name="twitter:description" content="Answers to common questions about our services and process." />
         <script type="application/ld+json">{JSON.stringify({
           "@context":"https://schema.org",
@@ -88,7 +93,8 @@ const FAQ = () => {
           "@context":"https://schema.org",
           "@type":"FAQPage",
           "mainEntity": [
-            {"@type":"Question","name":"What services does SpeshwaySolutions offer?","acceptedAnswer":{"@type":"Answer","text":"We offer web/mobile development, cloud solutions, AI/ML, database management, and cybersecurity."}},
+            {"@type":"Question","name":"Is Speshway Solutions a real or fake company?","acceptedAnswer":{"@type":"Answer","text":"Speshway Solutions Private Limited is a legitimate, registered IT services company based in Hyderabad, India, operating since 2017."}},
+            {"@type":"Question","name":"What services does Speshway Solutions offer?","acceptedAnswer":{"@type":"Answer","text":"We offer web/mobile development, cloud solutions, AI/ML, database management, and cybersecurity."}},
             {"@type":"Question","name":"How long does it take to complete a project?","acceptedAnswer":{"@type":"Answer","text":"Timelines vary by scope; simple sites 4–6 weeks, complex apps 3–6 months."}},
             {"@type":"Question","name":"Do you provide ongoing support?","acceptedAnswer":{"@type":"Answer","text":"Yes, maintenance and support packages are available including security updates and enhancements."}}
           ]

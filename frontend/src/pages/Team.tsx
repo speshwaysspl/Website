@@ -51,12 +51,12 @@ const Team = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>Team | Speshway Solutions | Software Engineer Company in Hyderabad</title>
-        <meta name="description" content="Meet the expert software engineers and developers at Speshway Solutions, a top software engineer company in Hyderabad dedicated to delivering exceptional IT solutions." />
-        <meta name="keywords" content="Speshway team, software engineer company in hyderabad, software engineers, developers, IT experts, IT solution in hyderabad, software development team" />
+        <title>Our Expert Team | Speshway Solutions | Top IT Company in Hyderabad | Software Engineer Company in Hyderabad</title>
+        <meta name="description" content="Meet the official expert software engineers and developers at Speshway Solutions. Our team in T-Hub Hyderabad delivers top-tier IT solutions. Follow our official Instagram @speshwaysolutionsofficial." />
+        <meta name="keywords" content="Speshway team, official speshway solutions,  software engineer company in hyderabad,software company hyderabad, software engineers, developers, IT experts, T-Hub IT company, official instagram @speshwaysolutionsofficial" />
         <link rel="canonical" href="https://www.speshway.com/team" />
-        <meta property="og:title" content="Team | Speshway Solutions | Software Engineer Company in Hyderabad" />
-        <meta property="og:description" content="Meet the expert team at Speshway Solutions, Hyderabad's premier software engineering company." />
+        <meta property="og:title" content="Our Expert Team | Speshway Solutions | Official  | Software Engineer Company in Hyderabad" />
+        <meta property="og:description" content="Meet the official expert team at Speshway Solutions, Hyderabad's premier software engineering company." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.speshway.com/team" />
         <meta property="og:image" content="https://www.speshway.com/logo.png" />
@@ -114,6 +114,8 @@ const Team = () => {
                       <img
                         src={member.image.url}
                         alt={member.name}
+                        width="208"
+                        height="224"
                         className="w-40 h-40 sm:w-48 sm:h-48 md:w-52 md:h-56 object-cover object-center rounded-full border-4 border-border shadow-md relative z-10 group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
@@ -137,6 +139,7 @@ const Team = () => {
                           href={member.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`${member.name}'s LinkedIn Profile`}
                           className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
                         >
                           <Linkedin size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-primary transition-colors" />
@@ -145,6 +148,7 @@ const Team = () => {
                       {member.email && (
                         <a
                           href={`mailto:${member.email}`}
+                          aria-label={`Email ${member.name}`}
                           className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
                         >
                           <Mail size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-primary transition-colors" />

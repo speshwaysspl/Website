@@ -50,12 +50,12 @@ const Career = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Careers at Speshway Solutions | Open Positions</title>
-        <meta name="description" content="Work at Speshway Solutions. Browse open positions and join a high-growth team building innovative IT products and services." />
-        <meta name="keywords" content="Speshway careers, jobs at Speshway, IT jobs, software jobs, join Speshway" />
+        <title>Careers | Official Speshway Solutions | Join T-Hub Hyderabad Team</title>
+        <meta name="description" content="Join the official team at Speshway Solutions, T-Hub Hyderabad. Browse open positions for software engineers and IT professionals. Follow @speshwaysolutionsofficial for real job alerts." />
+        <meta name="keywords" content="Speshway careers, official speshway solutions, jobs in hyderabad, T-Hub jobs, software engineer jobs, official instagram @speshwaysolutionsofficial" />
         <link rel="canonical" href="https://www.speshway.com/career" />
-        <meta property="og:title" content="Careers at Speshway Solutions" />
-        <meta property="og:description" content="Browse open positions and join our team." />
+        <meta property="og:title" content="Careers | Official Speshway Solutions" />
+        <meta property="og:description" content="Join the official best software company in Hyderabad at T-Hub. Browse open positions." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.speshway.com/career" />
         <meta property="og:image" content="https://www.speshway.com/logo.png" />

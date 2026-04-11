@@ -1,0 +1,12 @@
+/* TEAM */
+Chef: Speshway Solutions Team
+Contact: info@speshway.com
+Twitter: @SpeshwayM56509
+Location: Hyderabad, India
+
+/* SITE */
+Last update: 2026/04/11
+Language: English
+Standards: HTML5, CSS3, React, Vite
+Components: Shadcn UI, Framer Motion
+Software: VS Code, Git

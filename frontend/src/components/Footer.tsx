@@ -13,7 +13,7 @@ const Footer = () => {
             <div className="flex items-center gap-2">
               <img
                 src="/logo.png"
-                alt="Speshway Logo"
+                alt="Speshway Solutions - IT Services & Software Company in Hyderabad"
                 width="48"
                 height="48"
                 className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-lg hover:scale-110 transition-transform duration-300"
@@ -30,7 +30,7 @@ const Footer = () => {
               <a
                 href="https://www.facebook.com/profile.php?id=61584485021568"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer me"
                 aria-label="Facebook"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               >
@@ -39,7 +39,7 @@ const Footer = () => {
               <a
                 href="https://x.com/SpeshwayM56509"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer me"
                 aria-label="Twitter (X)"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               >
@@ -48,7 +48,7 @@ const Footer = () => {
               <a
                 href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer me"
                 aria-label="LinkedIn"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               >
@@ -57,7 +57,7 @@ const Footer = () => {
               <a
                 href="https://www.instagram.com/speshwaysolutionsofficial/"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer me"
                 aria-label="Instagram"
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               >
@@ -92,8 +92,28 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/blog" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/gallery" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                    Gallery
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/team" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                    Team
+                  </Link>
+                </li>
+                <li>
                   <Link to="/career" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
                     Career
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/faq" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                    FAQ
                   </Link>
                 </li>
                 <li>
@@ -135,7 +155,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 break-words"
                 >
-                  T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha, Hyderabad, Serilingampalle (M), Telangana 500032 
+                  T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha, Hyderabad, Serilingampalle (M), Telangana 500032
                 </a>
               </li>
               <li className="flex items-center space-x-2 sm:space-x-3">

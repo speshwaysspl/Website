@@ -497,7 +497,7 @@ const replyToSubmission = async (req, res) => {
                             <td style="color: #666666; font-size: 14px; padding: 2px 0;">Website: <a href="https://www.speshway.com" style="color: #00d4ff; text-decoration: none;" target="_blank">www.speshway.com</a></td>
                           </tr>
                           <tr>
-                            <td style="color: #666666; font-size: 14px; padding: 2px 0;">Address: T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha, Hyderabad, Telangana 500032</td>
+                            <td style="color: #666666; font-size: 14px; padding: 2px 0;">Address: T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha, Hyderabad, Serilingampalle (M), Telangana 500032</td>
                           </tr>
                           
                         </table>

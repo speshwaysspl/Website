@@ -101,14 +101,14 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Speshway Solutions | IT Solution in Hyderabad | Software & App Development</title>
-        <meta name="description" content="Speshway Solutions is a leading IT solution provider in Hyderabad offering software development, app development, website development, DevOps, software testing, and more. Give your business the Speshway advantage." />
-        <meta name="keywords" content="speshway, speshway solutions, IT solution in hyderabad, software development company in hyderbad, app devlopment company in hyderbad, website devlopment company in hyderbad, devops company in hyderbad, software testing company in hyderbad, software engineer company in hyderbad, app development company in hyderbad, website development company in hyderbad, software engineer company in hyderabad, it services company in india, custom software development  company in hyderbad" />
+        <title>Speshway Solutions | Best Software Company in Hyderabad | T-Hub IT Services</title>
+        <meta name="description" content="Speshway Solutions is an official top-rated software company in Hyderabad at T-Hub. We specialize in custom software development, mobile apps, and cloud solutions. Follow our official Instagram @speshwaysolutionsofficial for real updates. Find the best IT services near you." />
+        <meta name="keywords" content="speshway solutions, software company in hyderabad, IT services hyderabad, software company near me, custom software development hyderabad, app development company hyderabad, T-Hub IT company, best software company for startups, IT solutions India,mobile app development company in Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
         <link rel="canonical" href="https://www.speshway.com/" />
         {/* Preload the first banner or hero image */}
         <link rel="preload" as="image" href={firstBanner} fetchPriority="high" />
-        <meta property="og:title" content="Speshway Solutions | IT Solution in Hyderabad" />
-        <meta property="og:description" content="Leading IT Solutions in Hyderabad: Software, App, Website Development, DevOps & Testing." />
+        <meta property="og:title" content="Speshway Solutions | Best Software Company in Hyderabad" />
+        <meta property="og:description" content="Leading IT Solutions in Hyderabad: Software, App, Website Development, DevOps & Testing at T-Hub." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.speshway.com/" />
         <meta property="og:image" content="https://www.speshway.com/logo.png" />
@@ -117,18 +117,10 @@ const Home = () => {
         <meta name="twitter:title" content="Speshway Solutions | IT Solution in Hyderabad" />
         <meta name="twitter:description" content="Leading IT Solutions in Hyderabad: Software, App, Website Development, DevOps & Testing." />
         <meta name="twitter:image" content="https://www.speshway.com/logo.png" />
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Speshway Solutions Private Limited",
-          "url": "https://www.speshway.com/",
-          "logo": "https://www.speshway.com/logo.png",
-          "sameAs": [
-            "https://www.facebook.com/profile.php?id=61584485021568",
-            "https://www.linkedin.com/company/speshwaysolutions",
-            "https://x.com/SpeshwayM56509"
-          ]
-        })}</script>
+        <link rel="me" href="https://www.facebook.com/profile.php?id=61584485021568" />
+        <link rel="me" href="https://x.com/SpeshwayM56509" />
+        <link rel="me" href="https://www.linkedin.com/company/speshwaysolutions/" />
+        <link rel="me" href="https://www.instagram.com/speshwaysolutionsofficial/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
@@ -136,16 +128,39 @@ const Home = () => {
           "url": "https://www.speshway.com/",
           "logo": "https://www.speshway.com/logo.png",
           "image": "https://www.speshway.com/logo.png",
-          "telephone": "+91-9100006020",
+          "telephone": "+91 9100006020",
+          "email": "info@speshway.com",
+          "priceRange": "$$$",
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "10:00",
+            "closes": "18:00"
+          },
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha",
-            "addressLocality": "Hyderabad",
+            "addressLocality": "Hyderabad, Serilingampalle (M)",
             "addressRegion": "Telangana",
             "postalCode": "500032",
             "addressCountry": "IN"
           },
-          "priceRange": "$$$"
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "17.4340",
+            "longitude": "78.3844"
+          },
+          "sameAs": [
+            "https://www.facebook.com/profile.php?id=61584485021568",
+            "https://www.linkedin.com/company/speshwaysolutions",
+            "https://x.com/SpeshwayM56509"
+          ]
         })}</script>
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
@@ -358,30 +373,37 @@ const Home = () => {
             <div className="marquee-wrap">
               <div className="marquee">
                 {clients.filter((client: any) => client.isActive).map((client: any) => (
-                  <Card
+                  <a
                     key={client._id}
-                    className="p-4 client-card text-center flex flex-col items-center gap-0 cursor-pointer"
-                    onClick={() => { if (client.website) window.open(client.website, '_blank'); }}
-                    role={client.website ? 'link' : 'button'}
-                    aria-label={`Open ${client.name}`}
+                    href={client.website || "#"}
+                    target={client.website ? "_blank" : undefined}
+                    rel={client.website ? "noopener noreferrer" : undefined}
+                    className="block"
+                  >
+                  <Card
+                    className="p-4 client-card text-center flex flex-col items-center gap-0 cursor-pointer hover:shadow-lg transition-shadow"
+                    aria-label={`Visit ${client.name} website`}
                   >
                     {client.logo && (
-                      <img src={client.logo} alt={client.name} className="w-32 h-32 object-contain rounded" />
+                      <img src={client.logo} alt={client.name} width="128" height="128" className="w-32 h-32 object-contain rounded" />
                     )}
                   </Card>
+                  </a>
                 ))}
                 {clients.filter((client: any) => client.isActive).map((client: any) => (
-                  <Card
+                  <div
                     key={`${client._id}-dup`}
-                    className="p-4 client-card text-center flex flex-col items-center gap-0 cursor-pointer"
-                    onClick={() => { if (client.website) window.open(client.website, '_blank'); }}
-                    role={client.website ? 'link' : 'button'}
-                    aria-hidden
+                    className="block"
+                    aria-hidden="true"
+                  >
+                  <Card
+                    className="p-4 client-card text-center flex flex-col items-center gap-0"
                   >
                     {client.logo && (
-                      <img src={client.logo} alt={client.name} className="w-32 h-32 object-contain rounded" />
+                      <img src={client.logo} alt={client.name} width="128" height="128" className="w-32 h-32 object-contain rounded" />
                     )}
                   </Card>
+                  </div>
                 ))}
               </div>
             </div>

@@ -61,7 +61,7 @@ const Portfolio = () => {
       <Helmet>
         <title>Projects | Speshway Solutions | Web & App Development Portfolio</title>
         <meta name="description" content="Explore our portfolio of software, app, and website development projects by Speshway Solutions, a top IT company in Hyderabad." />
-        <meta name="keywords" content="Speshway projects, case studies, software solutions, client success, web development portfolio, app development projects, IT solution in hyderabad" />
+        <meta name="keywords" content="Speshway projects, case studies, software solutions, client success, web development portfolio, app development projects, IT solution in hyderabad,mobile app development company in Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
         <link rel="canonical" href="https://www.speshway.com/projects" />
         <meta property="og:title" content="Projects | Speshway Solutions | Web & App Development Portfolio" />
         <meta property="og:description" content="See how we deliver reliable, scalable, and secure solutions in Hyderabad." />
@@ -117,6 +117,8 @@ const Portfolio = () => {
                       <img
                         src={project.image.url}
                         alt={project.title}
+                        width="800"
+                        height="600"
                         className="w-full h-full object-contain object-center group-hover:scale-[1.02] transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
@@ -231,6 +233,8 @@ const Portfolio = () => {
                     <img
                       src={selectedProject.image.url}
                       alt={selectedProject.title}
+                      width="800"
+                      height="600"
                       className="w-full h-full object-contain object-center"
                     />
                   </div>

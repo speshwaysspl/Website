@@ -74,20 +74,20 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "India Office",
-      content: "Plot no 1024, 4th Floor, Repunjaya Building, Khanamet, Madhapur, Hyderabad, Telangana 500081",
-      link: "https://maps.google.com/?q=Plot+no+1024,+4th+Floor,+Repunjaya+Building,+Khanamet,+Madhapur,+Hyderabad,+Telangana+500081",
+      content: "T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha, Hyderabad, Serilingampalle (M), Telangana 500032",
+      link: "https://maps.google.com/?q=T-Hub,+Plot+No+1%2FC,+Sy+No+83%2F1,+Raidurgam,+Knowledge+City+Rd,+panmaktha,+Hyderabad,+Serilingampalle+(M),+Telangana+500032",
     },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Contact Speshway Solutions | Get a Free Consultation</title>
-        <meta name="description" content="Contact Speshway Solutions for IT consulting, software development, and digital transformation. Get a free consultation today." />
-        <meta name="keywords" content="Speshway contact, IT consultation, software development contact, contact Speshway Solutions" />
+        <title>Contact Us | Official Speshway Solutions | T-Hub Hyderabad | Software Company in Hyderabad</title>
+        <meta name="description" content="Contact the official Speshway Solutions team at T-Hub Hyderabad. Get in touch for software development, app development, and IT consulting.Get a free consultation for your project today. Follow @speshwaysolutionsofficial." />
+        <meta name="keywords" content="Speshway contact, software company near me, IT consultation Hyderabad,official speshway solutions, software company hyderabad, IT consultation,mobile app development company in Hyderaba, T-Hub office, official instagram @speshwaysolutionsofficial,best web developers in Hyderabad,cybersecurity company Hyderabad,,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
         <link rel="canonical" href="https://www.speshway.com/contact" />
-        <meta property="og:title" content="Contact Speshway Solutions" />
-        <meta property="og:description" content="Get a free consultation with our experts." />
+        <meta property="og:title" content="Contact Official Speshway Solutions" />
+        <meta property="og:description" content="Get a free consultation with the official best software company in Hyderabad at T-Hub." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.speshway.com/contact" />
         <meta property="og:image" content="https://www.speshway.com/logo.png" />
@@ -104,13 +104,31 @@ const Contact = () => {
             "image": "https://www.speshway.com/logo.png",
             "telephone": "+91 9100006020",
             "email": "info@speshway.com",
+            "priceRange": "$$$",
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "09:00",
+              "closes": "18:00"
+            },
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "Plot no 1024, 4th Floor, Repunjaya Building, Khanamet, Madhapur",
-              "addressLocality": "Hyderabad",
+              "streetAddress": "T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha",
+              "addressLocality": "Hyderabad, Serilingampalle (M)",
               "addressRegion": "Telangana",
-              "postalCode": "500081",
+              "postalCode": "500032",
               "addressCountry": "IN"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "17.4340",
+              "longitude": "78.3844"
             }
           }
         })}</script>

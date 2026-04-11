@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -195,19 +196,15 @@ const Gallery = () => {
   const GalleryCard = ({ item }: { item: GalleryItem }) => {
 
     return (
-      <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group">
+      <Link to={`/blog/${item._id}`} className="block">
+      <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group h-full">
         <div className="aspect-video relative overflow-hidden">
           <img 
             src={item.image.url} 
             alt={item.title}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 cursor-pointer"
-            onClick={() => {
-              setSelectedItem(item);
-              const next = new Set(readIds);
-              next.add(item._id);
-              setReadIds(next);
-              localStorage.setItem('galleryReadIds', JSON.stringify(Array.from(next)));
-            }}
+            width="400"
+            height="300"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
             onError={handleImageError}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -215,14 +212,7 @@ const Gallery = () => {
               <Button
                 size="sm"
                 variant="secondary"
-                onClick={() => {
-                  setSelectedItem(item);
-                  const next = new Set(readIds);
-                  next.add(item._id);
-                  setReadIds(next);
-                  localStorage.setItem('galleryReadIds', JSON.stringify(Array.from(next)));
-                }}
-                className="w-full"
+                className="w-full pointer-events-none"
               >
                 <Eye size={16} className="mr-2" />
                 View Details
@@ -251,6 +241,7 @@ const Gallery = () => {
           </div>
         </CardContent>
       </Card>
+      </Link>
     );
   };
 
@@ -275,12 +266,12 @@ const Gallery = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/30">
       <Helmet>
-        <title>Blog | Speshway Solutions</title>
-        <meta name="description" content="Read Speshway Solutions blogs: product updates, company events, awards, daily life, and insights from our team." />
-        <meta name="keywords" content="Speshway blog, company news, awards, team moments, technology insights, daily life at speshway, office culture" />
+        <title>Blog & Gallery | Official Speshway Solutions | Life at T-Hub</title>
+        <meta name="description" content="Read the official Speshway Solutions blog. Stay updated with our product launches, company events, and insights from our team at T-Hub. Follow @speshwaysolutionsofficial." />
+        <meta name="keywords" content="Speshway blog, official speshway solutions, company news, awards, team moments, technology insights, official instagram @speshwaysolutionsofficial" />
         <link rel="canonical" href="https://www.speshway.com/blog" />
-        <meta property="og:title" content="Blog | Speshway Solutions" />
-        <meta property="og:description" content="Company news, events and insights from Speshway Solutions." />
+        <meta property="og:title" content="Blog & Gallery | Official Speshway Solutions" />
+        <meta property="og:description" content="Official company news, events and insights from Speshway Solutions at T-Hub." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.speshway.com/blog" />
         <meta property="og:image" content="https://www.speshway.com/logo.png" />
@@ -452,6 +443,8 @@ const Gallery = () => {
                             <img 
                               src={selectedItem.image.url} 
                               alt={selectedItem.title}
+                              width="800"
+                              height="450"
                               className="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
                               onError={handleImageError}
                             />
@@ -463,6 +456,8 @@ const Gallery = () => {
                               <img 
                                 src={img.url} 
                                 alt={`${selectedItem.title} ${index + 1}`}
+                                width="800"
+                                height="450"
                                 className="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
                                 onError={handleImageError}
                               />
@@ -478,6 +473,8 @@ const Gallery = () => {
                       <img 
                         src={selectedItem.image.url} 
                         alt={selectedItem.title}
+                        width="800"
+                        height="450"
                         className="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
                         onError={handleImageError}
                       />

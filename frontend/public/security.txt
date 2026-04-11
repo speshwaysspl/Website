@@ -1,0 +1,6 @@
+Contact: mailto:info@speshway.com
+Expires: 2027-01-01T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.speshway.com/.well-known/security.txt
+Policy: https://www.speshway.com/privacy-policy
+Hiring: https://www.speshway.com/career

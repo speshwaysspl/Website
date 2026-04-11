@@ -4,6 +4,9 @@ const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
 const compression = require('compression');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const mongoose = require('mongoose');
 const connectDB = require('./config/db');
 
 // Load env vars
@@ -13,6 +16,25 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+// Set security headers
+app.use(helmet({
+  contentSecurityPolicy: false, // Disable for now to avoid breaking Vite/Cloudinary
+  crossOriginEmbedderPolicy: false,
+}));
+
+// Rate limiting to prevent DoS attacks and maintain uptime
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: {
+    success: false,
+    message: 'Too many requests, please try again later'
+  }
+});
+
+// Apply rate limiter to all API routes
+app.use('/api/', limiter);
 
 // Body parser
 app.use(express.json());
@@ -45,6 +67,9 @@ const corsOptions = {
 
 // Enable CORS (handles preflight requests automatically)
 app.use(cors(corsOptions));
+
+// Routes - Place dynamic routes before static files if they should take precedence
+app.use('/', require('./routes/sitemap'));
 
 // Serve static files from uploads directory with caching
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
@@ -88,7 +113,7 @@ app.use(express.static(frontendPath, {
     }
 }));
 
-// Routes
+// API Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/services', require('./routes/services'));
@@ -100,7 +125,6 @@ app.use('/api/sentences', require('./routes/sentences'));
 app.use('/api/home-banners', require('./routes/homeBanners'));
 app.use('/api/settings', require('./routes/settings'));
 app.use('/api/jobs', require('./routes/jobs'));
-app.use('/', require('./routes/sitemap'));
 
 // Handle SPA fallback - serve index.html for any unknown routes
 app.get(/(.*)/, (req, res) => {
@@ -124,11 +148,23 @@ app.get(/(.*)/, (req, res) => {
 
 // API health check
 app.get('/api/health', (req, res) => {
+  const dbStatus = mongoose.connection.readyState === 1 ? 'connected' : 'disconnected';
+  
+  if (dbStatus === 'disconnected') {
+    return res.status(503).json({
+      status: 'degraded',
+      message: 'Database is disconnected',
+      timestamp: new Date().toISOString(),
+      database: dbStatus
+    });
+  }
+
   res.json({ 
     status: 'ok',
     message: 'Backend API is healthy',
     timestamp: new Date().toISOString(),
-    database: 'connected' // You can check DB connection status here
+    database: dbStatus,
+    uptime: process.uptime()
   });
 });
 
@@ -159,4 +195,18 @@ app.use((error, req, res, next) => {
 
 const PORT = process.env.PORT || 5001;
 
-app.listen(PORT, console.log(`Server running on port ${PORT}`));
+const server = app.listen(PORT, console.log(`Server running on port ${PORT}`));
+
+// Handle unhandled promise rejections to prevent process crash
+process.on('unhandledRejection', (err, promise) => {
+  console.error(`Error: ${err.message}`);
+  // Close server & exit process if it's a critical error
+  // But in production, we might want to just log it and keep running
+  // server.close(() => process.exit(1));
+});
+
+// Handle uncaught exceptions
+process.on('uncaughtException', (err) => {
+  console.error(`Uncaught Exception: ${err.message}`);
+  // server.close(() => process.exit(1));
+});
