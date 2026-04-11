@@ -69,9 +69,9 @@ const FAQ = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>FAQ | Is Speshway Solutions Real? | IT Services Questions</title>
-        <meta name="description" content="Find answers to common questions about Speshway Solutions, our legitimacy, IT services, project process, security, and support." />
-        <meta name="keywords" content="Speshway Solutions real or fake, is speshway real, Speshway FAQ, IT questions, services, process, support,mobile app development company in Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
+        <title>FAQ | IT Services Questions | Is Speshway Solutions Real? | Official FAQ & Verification</title>
+        <meta name="description" content="Get answers to common questions about Speshway Solutions. Is Speshway Solutions real or fake? Find official verification, project details, and service information." />
+        <meta name="keywords" content="Speshway Solutions real or fake, is speshway real, Speshway FAQ, IT questions, speshway solutions legitimacy, speshway solutions reviews, speshway solutions Hyderabad real,Speshway Solutions real or fake, is speshway real, Speshway FAQ, IT questions, services, process, support,mobile app development company in Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
         <link rel="canonical" href="https://www.speshway.com/faq" />
         <meta property="og:title" content="FAQ | Is Speshway Solutions Real? | Official Answers" />
         <meta property="og:description" content="Answers to common questions about our legitimacy, services, and project process." />

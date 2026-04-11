@@ -43,6 +43,7 @@ const Navbar = () => {
     { path: "/blog", label: "Blog" },
     { path: "/team", label: "Team" },
     { path: "/career", label: "Career" },
+    { path: "/fraud-notice", label: "Fraud Alert" },
     { path: "/faq", label: "FAQ" },
   ];
 
@@ -99,7 +100,7 @@ const Navbar = () => {
                     navigate(link.path);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className={`relative px-3 py-2 text-base font-bold transition-all duration-300 ease-out group hover:-translate-y-0.5 hover:scale-[1.05] animate-fade-in-up ${
+                  className={`relative px-3 py-2 text-base font-bold transition-all duration-300 ease-out group hover:-translate-y-0.5 hover:scale-[1.05] animate-fade-in-up whitespace-nowrap ${
                     isActive(link.path)
                       ? (isHome && !isScrolled ? "lg:text-white text-primary" : "text-primary")
                       : (isHome && !isScrolled ? "lg:text-white/90 lg:hover:text-white text-muted-foreground hover:text-foreground" : "text-muted-foreground hover:text-foreground")
