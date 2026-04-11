@@ -68,7 +68,7 @@ const corsOptions = {
 // Enable CORS (handles preflight requests automatically)
 app.use(cors(corsOptions));
 
-// Routes - Place dynamic routes before static files if they should take precedence
+// Routes - Place dynamic routes before static files ifdddd they should take precedence
 app.use('/', require('./routes/sitemap'));
 
 // Serve static files from uploads directory with caching
