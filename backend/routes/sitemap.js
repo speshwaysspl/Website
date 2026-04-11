@@ -14,11 +14,16 @@ router.get('/sitemap.xml', async (req, res) => {
       '/about',
       '/services',
       '/projects',
-      '/blog',
       '/team',
       '/career',
       '/contact',
+      '/send-resume',
+      '/fraud-notice',
+      '/privacy-policy',
+      '/terms-of-service',
       '/faq',
+      '/gallery',
+      '/blog',
     ];
 
     const galleryItems = await Gallery.find({ isActive: true }).select('_id updatedAt createdAt').lean();
