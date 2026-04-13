@@ -125,6 +125,9 @@ app.use('/api/sentences', require('./routes/sentences'));
 app.use('/api/home-banners', require('./routes/homeBanners'));
 app.use('/api/settings', require('./routes/settings'));
 app.use('/api/jobs', require('./routes/jobs'));
+app.use('/api/reviews', require('./routes/reviews'));
+app.use('/api/testimonials', require('./routes/testimonials'));
+app.use('/api/company', require('./routes/company'));
 
 // Handle SPA fallback - serve index.html for any unknown routes
 app.get(/(.*)/, (req, res) => {

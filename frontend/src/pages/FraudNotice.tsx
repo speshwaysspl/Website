@@ -195,7 +195,7 @@ const FraudNotice = () => {
                 <p className="text-muted-foreground mb-4">
                   If you receive any job offers or messages that you suspect are fraudulent, please report them to us immediately:
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <a href="mailto:info@speshway.com" aria-label="Email General Inquiries" className="flex items-center gap-3 p-4 rounded-lg bg-secondary/50 hover:bg-secondary/80 transition-colors">
                     <Mail className="text-primary" size={24} />
                     <div>
@@ -210,6 +210,15 @@ const FraudNotice = () => {
                       <div className="text-sm text-muted-foreground">info@speshway.com</div>
                     </div>
                   </a>
+                </div>
+                
+                <div className="bg-primary/5 p-6 rounded-xl border border-primary/20">
+                  <h4 className="font-bold mb-3">More Resources for Verification:</h4>
+                  <ul className="space-y-2">
+                    <li><Link to="/is-speshway-solutions-real" className="text-primary hover:underline flex items-center gap-2">Is Speshway Solutions Real? <span className="text-xs bg-primary/20 px-2 py-0.5 rounded">Detailed Guide</span></Link></li>
+                    <li><Link to="/speshway-hyderabad-company-details" className="text-primary hover:underline flex items-center gap-2">Official Company Details & Address</Link></li>
+                    <li><Link to="/speshway-solutions-review" className="text-primary hover:underline flex items-center gap-2">Verified Speshway Reviews</Link></li>
+                  </ul>
                 </div>
               </div>
 

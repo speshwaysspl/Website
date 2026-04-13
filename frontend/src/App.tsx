@@ -37,6 +37,23 @@ const ManageJobs = lazy(() => import("./pages/admin/ManageJobs"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 
+// SEO Pages
+const IsSpeshwayRealOrFake = lazy(() => import("./pages/seo/IsSpeshwayRealOrFake"));
+const SpeshwayReview2026 = lazy(() => import("./pages/seo/SpeshwayReview2026"));
+const SpeshwayJobScamTruth = lazy(() => import("./pages/seo/SpeshwayJobScamTruth"));
+const IsSpeshwayLegit = lazy(() => import("./pages/seo/IsSpeshwayLegit"));
+const SpeshwayHyderabadReview = lazy(() => import("./pages/seo/SpeshwayHyderabadReview"));
+const SpeshwayCareerReview = lazy(() => import("./pages/seo/SpeshwayCareerReview"));
+const SpeshwayTrustScore = lazy(() => import("./pages/seo/SpeshwayTrustScore"));
+const SpeshwayClientTestimonials = lazy(() => import("./pages/seo/SpeshwayClientTestimonials"));
+const SpeshwayEmployeeFeedback = lazy(() => import("./pages/seo/SpeshwayEmployeeFeedback"));
+const SpeshwayVerification = lazy(() => import("./pages/seo/SpeshwayVerification"));
+const IdentifyFakeJobOffersIndia = lazy(() => import("./pages/seo/IdentifyFakeJobOffersIndia"));
+const SpeshwayVsFakeRecruiters = lazy(() => import("./pages/seo/SpeshwayVsFakeRecruiters"));
+const SpeshwayScamExplained = lazy(() => import("./pages/seo/SpeshwayScamExplained"));
+const ScammersMisusingNames = lazy(() => import("./pages/seo/ScammersMisusingNames"));
+const FakeRecruitmentWarning = lazy(() => import("./pages/seo/FakeRecruitmentWarning"));
+
 const PageLoader = () => (
   <div className="flex items-center justify-center min-h-screen">
     <div className="h-12 w-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />
@@ -78,6 +95,32 @@ const RouterViews = () => {
         <Route path="/gallery" element={<PageTransition><Gallery /></PageTransition>} />
         <Route path="/blog" element={<PageTransition><Gallery /></PageTransition>} />
         <Route path="/blog/:id" element={<PageTransition><BlogPost /></PageTransition>} />
+        
+        {/* Search Domination Cluster - SEO Pages */}
+        <Route path="/is-speshway-real-or-fake" element={<PageTransition><IsSpeshwayRealOrFake /></PageTransition>} />
+        <Route path="/speshway-solutions-review-2026" element={<PageTransition><SpeshwayReview2026 /></PageTransition>} />
+        <Route path="/speshway-job-scam-truth" element={<PageTransition><SpeshwayJobScamTruth /></PageTransition>} />
+        <Route path="/is-speshway-legit-company" element={<PageTransition><IsSpeshwayLegit /></PageTransition>} />
+        <Route path="/speshway-hyderabad-company-review" element={<PageTransition><SpeshwayHyderabadReview /></PageTransition>} />
+        <Route path="/speshway-career-review" element={<PageTransition><SpeshwayCareerReview /></PageTransition>} />
+        <Route path="/speshway-solutions-trust-score" element={<PageTransition><SpeshwayTrustScore /></PageTransition>} />
+        <Route path="/speshway-client-testimonials" element={<PageTransition><SpeshwayClientTestimonials /></PageTransition>} />
+        <Route path="/speshway-employee-feedback" element={<PageTransition><SpeshwayEmployeeFeedback /></PageTransition>} />
+        <Route path="/speshway-company-verification" element={<PageTransition><SpeshwayVerification /></PageTransition>} />
+        <Route path="/top-10-ways-to-identify-fake-job-offers-india" element={<PageTransition><IdentifyFakeJobOffersIndia /></PageTransition>} />
+        <Route path="/speshway-solutions-vs-fake-recruiters-full-guide" element={<PageTransition><SpeshwayVsFakeRecruiters /></PageTransition>} />
+        <Route path="/why-people-search-speshway-scam-explained" element={<PageTransition><SpeshwayScamExplained /></PageTransition>} />
+        <Route path="/how-scammers-misuse-company-names" element={<PageTransition><ScammersMisusingNames /></PageTransition>} />
+        <Route path="/fake-recruitment-warning" element={<PageTransition><FakeRecruitmentWarning /></PageTransition>} />
+
+        {/* Legacy SEO Redirects */}
+        <Route path="/is-speshway-solutions-real" element={<Navigate to="/is-speshway-real-or-fake" replace />} />
+        <Route path="/speshway-solutions-review" element={<Navigate to="/speshway-solutions-review-2026" replace />} />
+        <Route path="/speshway-hyderabad-company-details" element={<Navigate to="/speshway-hyderabad-company-review" replace />} />
+        <Route path="/blog/is-speshway-legit-company" element={<Navigate to="/is-speshway-legit-company" replace />} />
+        <Route path="/blog/speshway-review-2026" element={<Navigate to="/speshway-solutions-review-2026" replace />} />
+        <Route path="/blog/how-to-identify-job-scams" element={<Navigate to="/speshway-job-scam-truth" replace />} />
+        
         <Route path="/admin/login" element={<PageTransition><AdminLogin /></PageTransition>} />
         <Route path="/admin/forgot-password" element={<PageTransition><ForgotPassword /></PageTransition>} />
         <Route path="/admin/dashboard" element={<ProtectedRoute roles={["admin","hr"]}><PageTransition><Dashboard /></PageTransition></ProtectedRoute>} />

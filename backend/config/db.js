@@ -1,4 +1,9 @@
 const mongoose = require('mongoose');
+const dns = require('dns');
+
+// Set DNS servers to Google Public DNS to avoid querySrv ECONNREFUSED issues
+// especially in environments with restrictive or misconfigured local DNS servers
+dns.setServers(['8.8.8.8', '8.8.4.4']);
 
 const connectDB = async () => {
   try {

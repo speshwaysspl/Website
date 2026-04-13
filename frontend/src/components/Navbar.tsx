@@ -43,8 +43,15 @@ const Navbar = () => {
     { path: "/blog", label: "Blog" },
     { path: "/team", label: "Team" },
     { path: "/career", label: "Career" },
-    { path: "/fraud-notice", label: "Fraud Alert" },
-    { path: "/faq", label: "FAQ" },
+    {
+      label: "Company Insights",
+      children: [
+        { path: "/is-speshway-solutions-real", label: "Is Speshway Real?" },
+        { path: "/speshway-solutions-review", label: "Reviews" },
+        { path: "/fraud-notice", label: "Fraud Alert" },
+        { path: "/faq", label: "FAQ" },
+      ],
+    },
   ];
 
 
@@ -92,32 +99,61 @@ const Navbar = () => {
           <div className="flex items-center justify-end w-full lg:w-auto gap-2">
             <div className="hidden lg:flex items-center gap-2 xl:gap-4">
               {navLinks.map((link, index) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate(link.path);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className={`relative px-3 py-2 text-base font-bold transition-all duration-300 ease-out group hover:-translate-y-0.5 hover:scale-[1.05] animate-fade-in-up whitespace-nowrap ${
-                    isActive(link.path)
-                      ? (isHome && !isScrolled ? "lg:text-white text-primary" : "text-primary")
-                      : (isHome && !isScrolled ? "lg:text-white/90 lg:hover:text-white text-muted-foreground hover:text-foreground" : "text-muted-foreground hover:text-foreground")
-                  } ${index === 0 ? "[animation-delay:0s]" : index === 1 ? "[animation-delay:.05s]" : index === 2 ? "[animation-delay:.1s]" : index === 3 ? "[animation-delay:.15s]" : index === 4 ? "[animation-delay:.2s]" : index === 5 ? "[animation-delay:.25s]" : index === 6 ? "[animation-delay:.3s]" : "[animation-delay:.35s]"}`}
-                >
-                  <span className="relative z-10">{link.label}</span>
-                  <span
-                    className={`absolute bottom-0 left-0 right-0 h-0.5 transform origin-left transition-all duration-300 ${
-                      isActive(link.path) 
-                        ? "scale-x-100 opacity-100" 
-                        : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
-                    } ${isHome && !isScrolled ? "lg:bg-white bg-primary" : "bg-primary"}`}
-                  />
-                  <span className={`absolute inset-0 rounded-md scale-0 group-hover:scale-100 transition-transform duration-300 origin-center opacity-0 group-hover:opacity-100 ${
-                    isHome && !isScrolled ? "lg:bg-white/10 bg-primary/10" : "bg-primary/10"
-                  }`} />
-                </Link>
+                link.children ? (
+                  <div
+                    key={link.label}
+                    className="relative group px-3 py-2 text-base font-bold transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.05] animate-fade-in-up whitespace-nowrap"
+                  >
+                    <span className={`relative z-10 cursor-pointer ${
+                      isHome && !isScrolled ? "lg:text-white/90 lg:hover:text-white text-muted-foreground hover:text-foreground" : "text-muted-foreground hover:text-foreground"
+                    }`}>
+                      {link.label}
+                    </span>
+                    <div className="absolute left-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                      {link.children.map((childLink) => (
+                        <Link
+                          key={childLink.path}
+                          to={childLink.path}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            navigate(childLink.path);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap"
+                        >
+                          {childLink.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(link.path);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className={`relative px-3 py-2 text-base font-bold transition-all duration-300 ease-out group hover:-translate-y-0.5 hover:scale-[1.05] animate-fade-in-up whitespace-nowrap ${
+                      isActive(link.path)
+                        ? (isHome && !isScrolled ? "lg:text-white text-primary" : "text-primary")
+                        : (isHome && !isScrolled ? "lg:text-white/90 lg:hover:text-white text-muted-foreground hover:text-foreground" : "text-muted-foreground hover:text-foreground")
+                    } ${index === 0 ? "[animation-delay:0s]" : index === 1 ? "[animation-delay:.05s]" : index === 2 ? "[animation-delay:.1s]" : index === 3 ? "[animation-delay:.15s]" : index === 4 ? "[animation-delay:.2s]" : index === 5 ? "[animation-delay:.25s]" : index === 6 ? "[animation-delay:.3s]" : "[animation-delay:.35s]"}`}
+                  >
+                    <span className="relative z-10">{link.label}</span>
+                    <span
+                      className={`absolute bottom-0 left-0 right-0 h-0.5 transform origin-left transition-all duration-300 ${
+                        isActive(link.path) 
+                          ? "scale-x-100 opacity-100" 
+                          : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
+                      } ${isHome && !isScrolled ? "lg:bg-white bg-primary" : "bg-primary"}`}
+                    />
+                    <span className={`absolute inset-0 rounded-md scale-0 group-hover:scale-100 transition-transform duration-300 origin-center opacity-0 group-hover:opacity-100 ${
+                      isHome && !isScrolled ? "lg:bg-white/10 bg-primary/10" : "bg-primary/10"
+                    }`} />
+                  </Link>
+                )
               ))}
 
               <Button 
@@ -157,24 +193,53 @@ const Navbar = () => {
               </Button>
             </div>
             <div className="px-4 py-6 space-y-2">
-              {navLinks.map((link, index) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate(link.path);
-                    setIsMobileMenuOpen(false);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className={`block py-4 px-6 rounded-xl text-lg font-semibold transition-all ${
-                    isActive(link.path)
-                      ? 'text-primary bg-primary/10 border-r-4 border-primary'
-                      : 'text-foreground/90 hover:bg-secondary/60'
-                  }`}
-                >
-                  {link.label}
-                </Link>
+              {navLinks.map((link) => (
+                link.children ? (
+                  <div key={link.label} className="space-y-2">
+                    <span className="block py-4 px-6 rounded-xl text-lg font-semibold text-foreground/90">
+                      {link.label}
+                    </span>
+                    <div className="pl-8 space-y-2">
+                      {link.children.map((childLink) => (
+                        <Link
+                          key={childLink.path}
+                          to={childLink.path}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            navigate(childLink.path);
+                            setIsMobileMenuOpen(false);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
+                          className={`block py-3 px-4 rounded-xl text-base font-medium transition-all ${
+                            isActive(childLink.path)
+                              ? 'text-primary bg-primary/10 border-r-4 border-primary'
+                              : 'text-foreground/70 hover:bg-secondary/60'
+                          }`}
+                        >
+                          {childLink.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(link.path);
+                      setIsMobileMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className={`block py-4 px-6 rounded-xl text-lg font-semibold transition-all ${
+                      isActive(link.path)
+                        ? 'text-primary bg-primary/10 border-r-4 border-primary'
+                        : 'text-foreground/90 hover:bg-secondary/60'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
 
               <div className="pt-6">

@@ -24,6 +24,16 @@ router.get('/sitemap.xml', async (req, res) => {
       { path: '/faq', priority: '0.8', changefreq: 'weekly' },
       { path: '/gallery', priority: '0.8', changefreq: 'weekly' },
       { path: '/blog', priority: '0.8', changefreq: 'weekly' },
+      { path: '/is-speshway-real-or-fake', priority: '1.0', changefreq: 'daily' },
+      { path: '/speshway-solutions-review-2026', priority: '1.0', changefreq: 'daily' },
+      { path: '/speshway-job-scam-truth', priority: '1.0', changefreq: 'daily' },
+      { path: '/is-speshway-legit-company', priority: '1.0', changefreq: 'daily' },
+      { path: '/speshway-hyderabad-company-review', priority: '1.0', changefreq: 'daily' },
+      { path: '/speshway-career-review', priority: '1.0', changefreq: 'daily' },
+      { path: '/speshway-solutions-trust-score', priority: '1.0', changefreq: 'daily' },
+      { path: '/speshway-client-testimonials', priority: '1.0', changefreq: 'daily' },
+      { path: '/speshway-employee-feedback', priority: '1.0', changefreq: 'daily' },
+      { path: '/speshway-company-verification', priority: '1.0', changefreq: 'daily' },
     ];
 
     const galleryItems = await Gallery.find({ isActive: true }).select('_id updatedAt createdAt').lean();

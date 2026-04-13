@@ -112,6 +112,16 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/is-speshway-solutions-real" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                    Is Speshway Real?
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/speshway-solutions-review" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
+                    Company Reviews
+                  </Link>
+                </li>
+                <li>
                   <Link to="/faq" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
                     FAQ
                   </Link>

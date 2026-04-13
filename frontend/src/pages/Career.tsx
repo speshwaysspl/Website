@@ -115,6 +115,24 @@ const Career = () => {
 
       
 
+      {/* Zero Fee Hiring Alert */}
+      <section className="py-10 bg-red-50/50 dark:bg-red-950/10 border-y border-red-100 dark:border-red-900/30">
+        <div className="container mx-auto px-4 sm:px-6 max-w-4xl text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinelinejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">We do NOT charge money for jobs</h2>
+          <p className="text-base sm:text-lg text-muted-foreground mb-6">
+            Speshway Solutions has a strict <strong>Zero-Fee Hiring Policy</strong>. We never ask candidates for any registration fees, security deposits, or training charges. If someone asks you for money promising a job at Speshway, it is a scam.
+          </p>
+          <Link to="/is-speshway-solutions-real">
+            <Button variant="outline" className="border-red-200 hover:bg-red-50 dark:border-red-900/50 dark:hover:bg-red-900/20">
+              Read Our Fraud Alert & Verification Guide
+            </Button>
+          </Link>
+        </div>
+      </section>
+
       {/* Benefits Section */}
       <section className="py-12 sm:py-16 md:py-20 bg-secondary/20">
         <div className="container mx-auto px-4 sm:px-6">

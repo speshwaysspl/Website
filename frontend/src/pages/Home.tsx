@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Code, Zap, Shield, TrendingUp } from "lucide-react";
+import { ArrowRight, Code, Zap, Shield, TrendingUp, CheckCircle, MapPin, Briefcase, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
@@ -290,6 +290,30 @@ const Home = () => {
         </ScrollReveal>
         )}
       </ParallaxHero>
+
+      {/* UI Trust Signals Section */}
+      <section className="py-8 bg-muted/30 border-b border-border">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-12">
+            <div className="flex items-center gap-3 text-sm md:text-base font-semibold text-muted-foreground hover:text-primary transition-colors">
+              <CheckCircle className="w-6 h-6 text-green-500" />
+              Registered Company
+            </div>
+            <div className="flex items-center gap-3 text-sm md:text-base font-semibold text-muted-foreground hover:text-primary transition-colors">
+              <MapPin className="w-6 h-6 text-primary" />
+              T-Hub, Hyderabad
+            </div>
+            <div className="flex items-center gap-3 text-sm md:text-base font-semibold text-muted-foreground hover:text-primary transition-colors">
+              <Briefcase className="w-6 h-6 text-blue-500" />
+              Zero-Fee Hiring Policy
+            </div>
+            <div className="flex items-center gap-3 text-sm md:text-base font-semibold text-muted-foreground hover:text-primary transition-colors">
+              <PhoneCall className="w-6 h-6 text-orange-500" />
+              +91 9100006020
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div className="absolute bottom-20 left-10 w-20 h-20 bg-primary/20 rounded-full blur-3xl animate-float" />
       <div className="absolute top-40 right-20 w-32 h-32 bg-accent/20 rounded-full blur-3xl animate-float [animation-delay:2s]" />

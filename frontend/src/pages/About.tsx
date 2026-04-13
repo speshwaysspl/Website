@@ -143,6 +143,69 @@ const About = () => {
         </div>
       </section>
 
+      {/* Official Company Details Section */}
+      <section className="py-16 bg-muted/30 border-y border-border">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Official Company Details</h2>
+            <p className="text-lg text-muted-foreground">Speshway Solutions Pvt Ltd is a fully registered and compliant IT firm in India.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="p-8 border-primary/20 bg-card">
+              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <Award className="text-primary w-6 h-6" /> Registration Proof
+              </h3>
+              <ul className="space-y-3 text-muted-foreground">
+                <li><strong>Company Name:</strong> Speshway Solutions Private Limited</li>
+                <li><strong>Entity Type:</strong> Private Limited Company</li>
+                <li><strong>Incorporation Year:</strong> 2017</li>
+                <li><strong>Status:</strong> Active & Compliant</li>
+              </ul>
+            </Card>
+
+            <Card className="p-8 border-primary/20 bg-card">
+              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <Target className="text-primary w-6 h-6" /> Head Office
+              </h3>
+              <address className="not-italic text-muted-foreground space-y-2">
+                <p><strong>T-Hub</strong></p>
+                <p>Plot No 1/C, Sy No 83/1, Raidurgam,</p>
+                <p>Knowledge City Rd, panmaktha,</p>
+                <p>Hyderabad, Serilingampalle (M),</p>
+                <p>Telangana 500032, India</p>
+              </address>
+            </Card>
+          </div>
+
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-center mb-8">Our Journey</h3>
+            <div className="relative border-l-2 border-primary/30 pl-6 space-y-8 ml-4 md:ml-auto md:mr-auto md:w-fit">
+              <div className="relative">
+                <div className="absolute -left-[31px] bg-primary w-4 h-4 rounded-full mt-1.5"></div>
+                <h4 className="text-lg font-bold">2017 - Inception</h4>
+                <p className="text-muted-foreground">Speshway Solutions Pvt Ltd was officially registered and commenced operations.</p>
+              </div>
+              <div className="relative">
+                <div className="absolute -left-[31px] bg-primary w-4 h-4 rounded-full mt-1.5"></div>
+                <h4 className="text-lg font-bold">2019 - Expansion</h4>
+                <p className="text-muted-foreground">Expanded our team to 50+ experts and acquired global clients.</p>
+              </div>
+              <div className="relative">
+                <div className="absolute -left-[31px] bg-primary w-4 h-4 rounded-full mt-1.5"></div>
+                <h4 className="text-lg font-bold">2022 - T-Hub Move</h4>
+                <p className="text-muted-foreground">Moved our headquarters to T-Hub, Hyderabad, India's premier innovation hub.</p>
+              </div>
+              <div className="relative">
+                <div className="absolute -left-[31px] bg-primary w-4 h-4 rounded-full mt-1.5"></div>
+                <h4 className="text-lg font-bold">2026 - Present</h4>
+                <p className="text-muted-foreground">Leading the industry with 300+ successful projects and a 200+ strong workforce.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Values Section */}
       <section className="py-20 bg-secondary/20">
         <div className="container mx-auto px-4">

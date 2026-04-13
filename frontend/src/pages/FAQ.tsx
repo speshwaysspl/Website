@@ -15,6 +15,11 @@ const FAQ = () => {
         "Speshway Solutions Private Limited is a legitimate, registered IT services company based in Hyderabad, India. We have been operating since 2017, serving over 150+ happy clients and completing 300+ projects. You can verify our physical presence at our registered office in T-Hub, Raidurgam, Hyderabad.",
     },
     {
+      question: "Is Speshway fake or a scam?",
+      answer:
+        "No, Speshway Solutions is absolutely NOT a scam or fake. We are a fully verified, registered, and operational software development company. Unfortunately, some fraudsters misuse our name to offer fake jobs and demand money. Please note that we NEVER charge candidates for jobs, training, or security deposits. Always verify communications through our official @speshway.com email addresses.",
+    },
+    {
       question: "What services does Speshway Solutions offer?",
       answer:
         "We offer a comprehensive range of IT services including web development, mobile app development, cloud solutions, AI & machine learning, database management, and cybersecurity. Our team specializes in creating custom solutions tailored to your specific business needs.",
