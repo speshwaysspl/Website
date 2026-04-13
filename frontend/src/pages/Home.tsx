@@ -102,8 +102,8 @@ const Home = () => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Speshway Solutions | Best Software Company in Hyderabad | T-Hub IT Services</title>
-        <meta name="description" content="Speshway Solutions is an official top-rated software company in Hyderabad at T-Hub. We specialize in custom software development, mobile apps, and cloud solutions. Verify our official status and avoid fake reports or recruitment scams. Follow our official Instagram @speshwaysolutionsofficial.  Find the best IT services near you." />
-        <meta name="keywords" content="speshway solutions, software company in hyderabad, IT services hyderabad, is speshway solutions real or fake, speshway solutions scam reports verification,software company near me, custom software development hyderabad, app development company hyderabad, official speshway solutions website, T-Hub IT company, registered software company Hyderabad, speshway solutions authenticity, recruitment fraud alert speshway, best software company for startups, IT solutions India,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad,,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
+        <meta name="description" content="Speshway Solutions is an official top-rated software company in Hyderabad at T-Hub. We specialize in custom software development, mobile apps, and cloud solutions. Verify our official status and avoid fake reports or recruitment scams. Follow our official Instagram @speshwaysolutionsofficial for daily updates and career news." />
+        <meta name="keywords" content="speshway solutions, software company in hyderabad, IT services hyderabad, is speshway solutions real or fake, speshway solutions scam reports verification, speshway instagram official, speshway solutions instagram, speshway solutions private limited hyderabad reviews, software company near me, custom software development hyderabad, app development company hyderabad, official speshway solutions website, T-Hub IT company, registered software company Hyderabad, speshway solutions authenticity, recruitment fraud alert speshway" />
         <link rel="canonical" href="https://speshway.com/" />
         {/* Preload the first banner or hero image */}
         <link rel="preload" as="image" href={firstBanner} fetchPriority="high" />
@@ -158,8 +158,9 @@ const Home = () => {
           },
           "sameAs": [
             "https://www.facebook.com/profile.php?id=61584485021568",
-            "https://www.linkedin.com/company/speshwaysolutions",
-            "https://x.com/SpeshwayM56509"
+            "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
+            "https://x.com/SpeshwayM56509",
+            "https://www.instagram.com/speshwaysolutionsofficial/"
           ]
         })}</script>
         <script type="application/ld+json">{JSON.stringify({

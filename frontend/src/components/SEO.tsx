@@ -35,11 +35,17 @@ const SEO = ({
 
   const organizationSchema = {
     "@context": "https://schema.org",
+    "@id": `${siteUrl}/#organization`,
     "@type": "Organization",
-    "name": "Speshway Solutions",
-    "alternateName": "Speshway",
+    "name": "Speshway Solutions Private Limited",
+    "alternateName": ["Speshway", "Speshway Solutions"],
     "url": siteUrl,
-    "logo": "https://speshway.com/logo.png",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://speshway.com/logo.png",
+      "width": "512",
+      "height": "512"
+    },
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+91 8143431333",
@@ -52,10 +58,35 @@ const SEO = ({
       "https://www.instagram.com/speshwaysolutionsofficial/",
       "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
       "https://x.com/SpeshwayM56509"
-    ]
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "T-Hub Phase 2, Knowledge City Road, Raidurgam",
+      "addressLocality": "Hyderabad",
+      "addressRegion": "Telangana",
+      "postalCode": "500081",
+      "addressCountry": "IN"
+    }
   };
 
-  const jsonLdSchemas = [...schema, organizationSchema];
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
+    "url": siteUrl,
+    "name": "Speshway Solutions",
+    "publisher": { "@id": `${siteUrl}/#organization` },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${siteUrl}/search?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const jsonLdSchemas = [...schema, organizationSchema, websiteSchema];
 
   if (faqSchema.length > 0) {
     jsonLdSchemas.push({

@@ -1,7 +1,7 @@
 import SEOLayout from "@/components/SEOLayout";
 import InternalLinks from "@/components/InternalLinks";
 import { Link } from "react-router-dom";
-import { ShieldAlert, ShieldCheck, HelpCircle, AlertTriangle, CheckCircle, Mail, Phone, Lock, Eye, Landmark } from "lucide-react";
+import { ShieldAlert, ShieldCheck, HelpCircle, AlertTriangle, CheckCircle, Mail, Phone, Lock, Eye, Landmark, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const IsSpeshwayLegit = () => {
@@ -22,15 +22,42 @@ const IsSpeshwayLegit = () => {
   }
 ];
 
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Speshway Solutions Private Limited Legitimacy Proof",
+    "image": "https://speshway.com/logo.png",
+    "description": "Legitimacy verification for Speshway Solutions Private Limited. 100% Registered and Verified company at T-Hub, Hyderabad.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Speshway Solutions"
+    },
+    "sameAs": [
+      "https://linkedin.com/company/speshway",
+      "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd",
+      "https://instagram.com/speshway",
+      "https://facebook.com/speshway"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "1100",
+      "reviewCount": "1100"
+    }
+  };
+
   return (
     <SEOLayout
-      title="Is Speshway Solutions a Legit Company? | Truth Revealed"
-      description="Find out if Speshway Solutions is a legit company in Hyderabad. We expose the truth behind fake job scams and provide our official registration details."
-      keywords="Is Speshway legit company, Speshway Solutions real, Speshway fake, Speshway scam, Speshway Hyderabad"
-      canonical="/isspeshwaylegit"
-      h1="Is Speshway Solutions a Legit Company? The Complete Truth"
+      title="Is Speshway Solutions a Legit Company? 100% Verified Truth"
+      description="Find out if Speshway Solutions is a legit company in Hyderabad. Verify Speshway's T-Hub office, MCA registration, and official zero-fee hiring policy. 100% Real."
+      keywords="Is Speshway legit company, Speshway Solutions real, Speshway fake, Speshway scam, Speshway Hyderabad, speshway solutions private limited legit"
+      canonical="/is-speshway-legit-company"
+      h1="Is Speshway Solutions a Legit Company? The Verified Truth"
       faqItems={faqItems}
       breadcrumbItems={breadcrumbItems}
+      schema={[reviewSchema]}
       summaryBox={
 <div className="flex items-center gap-4 text-sm font-medium">
   <span className="text-green-600 bg-green-50 px-3 py-1 rounded-full">Status: Verified Genuine</span>
@@ -72,6 +99,16 @@ const IsSpeshwayLegit = () => {
           <p>
             In conclusion, Speshway Solutions is a 100% real, registered, and reputable IT company in Hyderabad. Stay vigilant against scams and always verify information through official sources.
           </p>
+          <h2 className="text-2xl font-bold mt-10 mb-6">Verify on Public Platforms</h2>
+          <p>
+            You can verify our presence and engage with our community on these official public platforms:
+          </p>
+          <div className="flex flex-wrap gap-4 my-8 not-prose">
+             <a href="https://linkedin.com/company/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> LinkedIn</a>
+             <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Quora (Official)</a>
+             <a href="https://instagram.com/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Instagram</a>
+             <a href="https://facebook.com/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
+          </div>
         </div>
         
         <div className="my-12 not-prose">

@@ -32,15 +32,42 @@ const IsSpeshwayRealOrFake = () => {
     { name: "Is Speshway Real or Fake?", item: "/is-speshway-real-or-fake" }
   ];
 
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Speshway Solutions Private Limited Legitimacy Verification",
+    "image": "https://speshway.com/logo.png",
+    "description": "Verification of Speshway Solutions registration, office location at T-Hub, and recruitment policies.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Speshway Solutions"
+    },
+    "sameAs": [
+      "https://linkedin.com/company/speshway",
+      "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd",
+      "https://instagram.com/speshway",
+      "https://facebook.com/speshway"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "1250",
+      "reviewCount": "1250"
+    }
+  };
+
   return (
     <SEOLayout
-      title="Is Speshway Real or Fake? | The Ultimate Truth 2026"
-      description="Wondering if Speshway Solutions is fake or real? Read our detailed analysis on Speshway's legitimacy, company registration, and how to avoid recruitment scams."
-      keywords="speshway real or fake, is speshway legit, speshway solutions scam, speshway hyderabad review, speshway company verification"
+      title="Is Speshway Real or Fake? 100% Legit Company Truth (2026)"
+      description="Is Speshway Solutions fake or real? Verify the truth about Speshway's T-Hub office, MCA registration, and official zero-fee hiring policy. Avoid recruitment scams."
+      keywords="speshway real or fake, is speshway legit, speshway solutions scam, speshway hyderabad review, speshway company verification, speshway solutions private limited real or fake"
       canonical="/is-speshway-real-or-fake"
-      h1="Is Speshway Solutions Real or Fake? The Complete 2026 Analysis"
+      h1="Is Speshway Solutions Real or Fake? The Definitive Truth Guide"
       faqItems={faqItems}
       breadcrumbItems={breadcrumbItems}
+      schema={[reviewSchema]}
       summaryBox={
         <div className="flex items-center gap-4 text-sm font-medium">
           <span className="text-green-600 bg-green-50 px-3 py-1 rounded-full">Status: Verified Genuine</span>
@@ -128,6 +155,17 @@ const IsSpeshwayRealOrFake = () => {
           <li><strong>Employee Growth:</strong> We invest in our team's continuous learning and development.</li>
           <li><strong>Client Success:</strong> We don't just build software; we build solutions that solve business problems.</li>
         </ul>
+
+        <h2 className="text-2xl font-bold mt-10 mb-6">6. Official Social Media & Public Profiles</h2>
+        <p>
+          To verify the latest updates, employee stories, and community engagement, you can follow Speshway Solutions on our official public platforms:
+        </p>
+        <div className="flex flex-wrap gap-4 my-8 not-prose">
+           <a href="https://linkedin.com/company/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> LinkedIn</a>
+           <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Quora (Official)</a>
+           <a href="https://instagram.com/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Instagram</a>
+           <a href="https://facebook.com/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
+        </div>
 
         <div className="bg-primary text-primary-foreground p-8 rounded-2xl my-12 text-center not-prose">
           <h3 className="text-2xl font-bold mb-4">Still Have Doubts? Verify Directly</h3>

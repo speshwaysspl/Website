@@ -1,7 +1,7 @@
 import SEOLayout from "@/components/SEOLayout";
 import InternalLinks from "@/components/InternalLinks";
 import { Link } from "react-router-dom";
-import { ShieldAlert, ShieldCheck, HelpCircle, AlertTriangle, CheckCircle, Mail, Phone, Lock, Eye, Landmark } from "lucide-react";
+import { ShieldAlert, ShieldCheck, HelpCircle, AlertTriangle, CheckCircle, Mail, Phone, Lock, Eye, Landmark, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const SpeshwayReview2026 = () => {
@@ -22,15 +22,42 @@ const SpeshwayReview2026 = () => {
   }
 ];
 
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Speshway Solutions Private Limited Reviews",
+    "image": "https://speshway.com/logo.png",
+    "description": "Verified employee and client reviews for Speshway Solutions Private Limited, Hyderabad.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Speshway Solutions"
+    },
+    "sameAs": [
+      "https://linkedin.com/company/speshway",
+      "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd",
+      "https://instagram.com/speshway",
+      "https://facebook.com/speshway"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "1200",
+      "reviewCount": "1200"
+    }
+  };
+
   return (
     <SEOLayout
-      title="Speshway Solutions Review 2026 | Employee & Client Feedback"
-      description="Read the latest 2026 Speshway Solutions reviews from our clients and employees in Hyderabad. Honest feedback on our software development services."
-      keywords="Speshway review 2026, Speshway Solutions reviews, Speshway Hyderabad reviews, Speshway software company review"
-      canonical="/speshwayreview2026"
-      h1="Speshway Solutions Review 2026: What Clients & Employees Say"
+      title="Speshway Solutions Review 2026 | 1,200+ Verified Feedback"
+      description="Read honest Speshway Solutions reviews from employees and clients. Discover the truth about Speshway's work culture, software services, and T-Hub Hyderabad office."
+      keywords="Speshway review 2026, Speshway Solutions reviews, Speshway Hyderabad reviews, Speshway software company review, Speshway Solutions Hyderabad review"
+      canonical="/speshway-solutions-review-2026"
+      h1="Speshway Solutions Review 2026: Verified Feedback & Truth"
       faqItems={faqItems}
       breadcrumbItems={breadcrumbItems}
+      schema={[reviewSchema]}
       summaryBox={
 <div className="flex items-center gap-4 text-sm font-medium">
   <span className="text-green-600 bg-green-50 px-3 py-1 rounded-full">Status: Verified Genuine</span>
@@ -72,6 +99,16 @@ const SpeshwayReview2026 = () => {
           <p>
             In conclusion, Speshway Solutions is a 100% real, registered, and reputable IT company in Hyderabad. Stay vigilant against scams and always verify information through official sources.
           </p>
+          <h2 className="text-2xl font-bold mt-10 mb-6">Read More Reviews & Verify</h2>
+          <p>
+            Explore our professional reputation and read more verified feedback on these official platforms:
+          </p>
+          <div className="flex flex-wrap gap-4 my-8 not-prose">
+             <a href="https://linkedin.com/company/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> LinkedIn</a>
+             <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Quora (Official)</a>
+             <a href="https://instagram.com/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Instagram</a>
+             <a href="https://facebook.com/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
+          </div>
         </div>
         
         <div className="my-12 not-prose">

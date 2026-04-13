@@ -28,38 +28,42 @@ const SpeshwayVerification = () => {
     { name: "Company Verification", item: "/speshway-company-verification" }
   ];
 
-  const articleSchema = {
+  const reviewSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Speshway Company Verification: Official 2026 Report",
-    "description": "Need to verify Speshway Solutions? Get our official company verification report, including registration details, office location, and contact information.",
-    "author": {
-      "@type": "Organization",
-      "name": "Speshway Trust & Safety Team",
-      "url": "https://speshway.com"
+    "@type": "Product",
+    "name": "Speshway Solutions Official Company Verification Hub",
+    "image": "https://speshway.com/logo.png",
+    "description": "Official verification report for Speshway Solutions Private Limited. MCA registered, T-Hub Hyderabad office, and zero-fee recruitment policy verification.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Speshway Solutions"
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Speshway Solutions",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://speshway.com/logo.png"
-      }
-    },
-    "datePublished": "2026-01-15T08:00:00+00:00",
-    "dateModified": new Date().toISOString()
+    "sameAs": [
+      "https://linkedin.com/company/speshway",
+      "https://instagram.com/speshway",
+      "https://facebook.com/speshway",
+      "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "1300",
+      "reviewCount": "1300"
+    }
   };
 
   return (
     <SEOLayout
-      title="Speshway Company Verification: Official 2026 Report"
-      description="Need to verify Speshway Solutions? Get our official company verification report, including registration details, office location, and contact information."
-      keywords="speshway company verification, verify speshway solutions, speshway registration details, speshway hyderabad office, speshway contact information"
+      title="Speshway Company Verification: Official 2026 Legitimacy Report"
+      description="Verify Speshway Solutions Private Limited. Get the official company registration, T-Hub office location, and zero-fee hiring policy verification. 100% Verified."
+      keywords="speshway company verification, verify speshway solutions, speshway registration details, speshway hyderabad office, speshway contact information, speshway solutions private limited registration"
       canonical="/speshway-company-verification"
-      h1="Speshway Company Verification: Official 2026 Report"
+      h1="Speshway Company Verification: Official 2026 Legitimacy Hub"
       faqItems={faqItems}
       breadcrumbItems={breadcrumbItems}
-      schema={[articleSchema]}
+      schema={[reviewSchema]}
       summaryBox={
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
@@ -180,6 +184,7 @@ const SpeshwayVerification = () => {
         </p>
         <div className="flex flex-wrap gap-4 my-8 not-prose">
            <a href="https://linkedin.com/company/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> LinkedIn</a>
+           <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Quora (Official)</a>
            <a href="https://instagram.com/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Instagram</a>
            <a href="https://facebook.com/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
         </div>

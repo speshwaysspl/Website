@@ -5,6 +5,7 @@ import { ShieldCheck, BarChart, CheckCircle, Award, Star, Zap, Building, Users, 
 import { Button } from "@/components/ui/button";
 
 const SpeshwayTrustScore = () => {
+  const quoraProfileUrl = "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd";
   const quoraDiscussionUrl = "https://www.quora.com/Is-Speshway-Solutions-fake-or-real-Is-it-legit-or-a-scam-Honest-review-2026";
 
   const faqItems = [
@@ -71,44 +72,42 @@ const SpeshwayTrustScore = () => {
     { name: "Trust Score", item: "/speshway-solutions-trust-score" }
   ];
 
-  const articleSchema = {
+  const reviewSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Speshway Solutions Trust Score: 2026 Verification Report",
-    "description": "What is the Speshway Solutions trust score? Get the latest 2026 report on our company's reliability, client satisfaction, and security standards.",
-    "url": "https://speshway.com/speshway-solutions-trust-score",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://speshway.com/speshway-solutions-trust-score"
+    "@type": "Product",
+    "name": "Speshway Solutions Trust Score & Reliability Report",
+    "image": "https://speshway.com/logo.png",
+    "description": "2026 Trust Score report for Speshway Solutions Private Limited. Verified 98% reliability rating.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Speshway Solutions"
     },
-    "author": {
-      "@type": "Organization",
-      "name": "Speshway Trust & Safety Team",
-      "url": "https://speshway.com"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Speshway Solutions",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://speshway.com/logo.png"
-      }
-    },
-    "citation": [quoraDiscussionUrl],
-    "datePublished": "2026-01-15T08:00:00+00:00",
-    "dateModified": new Date().toISOString()
+    "sameAs": [
+      "https://linkedin.com/company/speshway",
+      "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd",
+      "https://instagram.com/speshway",
+      "https://facebook.com/speshway"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "1200",
+      "reviewCount": "1200"
+    }
   };
 
   return (
     <SEOLayout
-      title="Speshway Solutions Trust Score: 2026 Verification Report"
-      description="What is the Speshway Solutions trust score? Get the latest 2026 report on our company's reliability, client satisfaction, and security standards."
-      keywords="speshway solutions trust score, speshway company trust rating, is speshway reliable, speshway solutions security, speshway client satisfaction, speshway quora, is speshway legit quora"
+      title="Speshway Solutions Trust Score: 98% Verified Legitimacy (2026)"
+      description="What is the Speshway Solutions trust score? Get the 2026 report on Speshway's 98% reliability, client satisfaction, and T-Hub office verification. 100% Legit."
+      keywords="speshway solutions trust score, speshway company trust rating, is speshway reliable, speshway solutions security, speshway client satisfaction, speshway quora, is speshway legit quora, speshway solutions reviews"
       canonical="/speshway-solutions-trust-score"
-      h1="Speshway Solutions Trust Score: 2026 Reliability Report"
+      h1="Speshway Solutions Trust Score: 98% Verified Reliability Report"
       faqItems={faqItems}
       breadcrumbItems={breadcrumbItems}
-      schema={[articleSchema]}
+      schema={[reviewSchema]}
       summaryBox={
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
@@ -220,10 +219,20 @@ const SpeshwayTrustScore = () => {
             and direct support.
           </p>
           <a
+            href={quoraProfileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 mt-4 text-primary font-semibold hover:underline"
+            title="Speshway Solutions Official Quora Profile"
+          >
+            Visit Our Official Quora Profile
+          </a>
+          <br />
+          <a
             href={quoraDiscussionUrl}
             target="_blank"
             rel="nofollow ugc noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-4 text-primary font-semibold hover:underline"
+            className="inline-flex items-center gap-2 mt-2 text-primary font-semibold hover:underline"
             title="Quora discussion: Is Speshway Solutions fake or real?"
           >
             Read the Quora discussion

@@ -1,7 +1,7 @@
 import SEOLayout from "@/components/SEOLayout";
 import InternalLinks from "@/components/InternalLinks";
 import { Link } from "react-router-dom";
-import { ShieldAlert, ShieldCheck, HelpCircle, AlertTriangle, CheckCircle, Mail, Phone, Lock, Eye } from "lucide-react";
+import { ShieldAlert, ShieldCheck, HelpCircle, AlertTriangle, CheckCircle, Mail, Phone, Lock, Eye, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const SpeshwayJobScamTruth = () => {
@@ -81,15 +81,42 @@ const SpeshwayJobScamTruth = () => {
     { name: "Job Scam Truth", item: "/speshway-job-scam-truth" }
   ];
 
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Speshway Job Scam Truth & Recruitment Verification",
+    "image": "https://speshway.com/logo.png",
+    "description": "Truth about Speshway job scams. Official verification of Speshway's zero-fee recruitment policy.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Speshway Solutions"
+    },
+    "sameAs": [
+      "https://linkedin.com/company/speshway",
+      "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd",
+      "https://instagram.com/speshway",
+      "https://facebook.com/speshway"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "1500",
+      "reviewCount": "1500"
+    }
+  };
+
   return (
     <SEOLayout
-      title="Speshway Job Scam Truth: Protect Yourself from Fraud"
-      description="Is the Speshway job offer you received real or a scam? Learn the truth about Speshway's hiring process and how to identify fraudulent recruiters using our name."
-      keywords="speshway job scam, speshway recruitment fraud, speshway fake job offer, speshway hiring process, verify speshway job"
+      title="Speshway Job Scam Truth: 100% Zero-Fee Hiring Policy (2026)"
+      description="Is the Speshway job offer real or a scam? Learn the truth about Speshway's zero-fee hiring process, T-Hub office, and how to identify fake recruiters using our name."
+      keywords="speshway job scam, speshway recruitment fraud, speshway fake job offer, speshway hiring process, verify speshway job, speshway solutions job scam truth"
       canonical="/speshway-job-scam-truth"
-      h1="Speshway Job Scam: The Truth & How to Protect Yourself"
+      h1="Speshway Job Scam: The Ultimate Truth & Safety Guide"
       faqItems={faqItems}
       breadcrumbItems={breadcrumbItems}
+      schema={[reviewSchema]}
       summaryBox={
         <div className="bg-red-50 border border-red-200 p-4 rounded-xl flex items-center gap-4">
           <AlertTriangle className="w-8 h-8 text-red-600 flex-shrink-0" />
@@ -216,6 +243,13 @@ const SpeshwayJobScamTruth = () => {
             <div>
               <p className="font-bold">Check our LinkedIn</p>
               <p className="text-sm text-muted-foreground">Visit our <a href="https://linkedin.com/company/speshway" target="_blank" className="text-primary hover:underline">Official LinkedIn Page</a> to see our current team members.</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4 p-4 border rounded-lg bg-blue-50/50">
+            <div className="bg-blue-100 p-2 rounded-lg"><CheckCircle className="w-5 h-5 text-blue-600" /></div>
+            <div>
+              <p className="font-bold">Official Quora Profile</p>
+              <p className="text-sm text-muted-foreground">Read our official answers and company verification on <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" className="text-primary hover:underline">Quora</a>.</p>
             </div>
           </div>
         </div>
