@@ -16,7 +16,7 @@ User-agent: CCBot
 Disallow: /
 
 # Sitemap location
-Sitemap: https://www.speshway.com/sitemap.xml
+Sitemap: https://speshway.com/sitemap.xml
 
 # Host
 Host: https://speshway.com
