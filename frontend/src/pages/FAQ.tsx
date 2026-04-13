@@ -77,12 +77,12 @@ const FAQ = () => {
         <title>FAQ | IT Services Questions | Is Speshway Solutions Real? | Official FAQ & Verification</title>
         <meta name="description" content="Get answers to common questions about Speshway Solutions. Is Speshway Solutions real or fake? Find official verification, project details, and service information." />
         <meta name="keywords" content="Speshway Solutions real or fake, is speshway real, Speshway FAQ, IT questions, speshway solutions legitimacy, speshway solutions reviews, speshway solutions Hyderabad real,Speshway Solutions real or fake, is speshway real, Speshway FAQ, IT questions, services, process, support,mobile app development company in Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
-        <link rel="canonical" href="https://www.speshway.com/faq" />
+        <link rel="canonical" href="https://speshway.com/faq" />
         <meta property="og:title" content="FAQ | Is Speshway Solutions Real? | Official Answers" />
         <meta property="og:description" content="Answers to common questions about our legitimacy, services, and project process." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.speshway.com/faq" />
-        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta property="og:url" content="https://speshway.com/faq" />
+        <meta property="og:image" content="https://speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="FAQ | Is Speshway Solutions Real?" />
         <meta name="twitter:description" content="Answers to common questions about our services and process." />
@@ -90,8 +90,8 @@ const FAQ = () => {
           "@context":"https://schema.org",
           "@type":"BreadcrumbList",
           "itemListElement":[
-            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
-            {"@type":"ListItem","position":2,"name":"FAQ","item":"https://www.speshway.com/faq"}
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://speshway.com/"},
+            {"@type":"ListItem","position":2,"name":"FAQ","item":"https://speshway.com/faq"}
           ]
         })}</script>
         <script type="application/ld+json">{JSON.stringify({

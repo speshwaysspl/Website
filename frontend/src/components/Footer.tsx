@@ -97,11 +97,6 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/gallery" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                    Gallery
-                  </Link>
-                </li>
-                <li>
                   <Link to="/team" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
                     Team
                   </Link>

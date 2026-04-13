@@ -22,12 +22,12 @@ const JobDetails = () => {
       <Helmet>
         <title>{job ? `${job.title} – Careers | Speshway Solutions` : 'Careers | Speshway Solutions'}</title>
         <meta name="description" content={job?.description || 'Open roles at Speshway Solutions.'} />
-        <link rel="canonical" href={`https://www.speshway.com/career/${id || ''}`} />
+        <link rel="canonical" href={`https://speshway.com/career/${id || ''}`} />
         <meta property="og:title" content={job ? `${job.title} – Careers | Speshway Solutions` : 'Careers | Speshway Solutions'} />
         <meta property="og:description" content={job?.description || 'Open roles at Speshway Solutions.'} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://www.speshway.com/career/${id || ''}`} />
-        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta property="og:url" content={`https://speshway.com/career/${id || ''}`} />
+        <meta property="og:image" content="https://speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
         <script type="application/ld+json">{JSON.stringify({
           "@context":"https://schema.org",
@@ -36,7 +36,7 @@ const JobDetails = () => {
           "description": job?.description || '',
           "datePosted": job?.postedAt || new Date().toISOString(),
           "employmentType": job?.type || 'FULL_TIME',
-          "hiringOrganization": {"@type":"Organization","name":"Speshway Solutions","sameAs":"https://www.speshway.com/"},
+          "hiringOrganization": {"@type":"Organization","name":"Speshway Solutions","sameAs":"https://speshway.com/"},
           "jobLocation": job?.location ? {"@type":"Place","address":{"@type":"PostalAddress","addressLocality": job.location}} : undefined,
           "applicantLocationRequirements": {"@type":"Country","name":"India"}
         })}</script>

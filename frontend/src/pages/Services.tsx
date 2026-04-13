@@ -64,12 +64,12 @@ const Services = () => {
         <title>IT Services in Hyderabad | Official Speshway Solutions | T-Hub | Services | Speshway Solutions | Top Software Company in Hyderabad</title>
         <meta name="description" content="Explore official IT services from Speshway Solutions at T-Hub Hyderabad: custom software, mobile apps, and cloud solutions. Verify us on Instagram @speshwaysolutionsofficial." />
         <meta name="keywords" content="Speshway services, official speshway solutions,software company near me, custom software development, mobile app development, software company hyderabad,best IT services Hyderabad, software engineer Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad, custom software development, mobile app development,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad, top-rated IT consultancy Hyderabad,T-Hub IT services, official instagram @speshwaysolutionsofficial" />
-        <link rel="canonical" href="https://www.speshway.com/services" />
+        <link rel="canonical" href="https://speshway.com/services" />
         <meta property="og:title" content="IT Services | Official Speshway Solutions | Hyderabad" />
         <meta property="og:description" content="Official IT solutions at T-Hub Hyderabad: Software, App, Web Development, DevOps & Testing." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.speshway.com/services" />
-        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta property="og:url" content="https://speshway.com/services" />
+        <meta property="og:image" content="https://speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Services | Speshway Solutions | IT Services in Hyderabad" />
         <meta name="twitter:description" content="Comprehensive IT solutions in Hyderabad: Software, App, Web Development, DevOps & Testing." />
@@ -77,8 +77,8 @@ const Services = () => {
           "@context":"https://schema.org",
           "@type":"BreadcrumbList",
           "itemListElement":[
-            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
-            {"@type":"ListItem","position":2,"name":"Services","item":"https://www.speshway.com/services"}
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://speshway.com/"},
+            {"@type":"ListItem","position":2,"name":"Services","item":"https://speshway.com/services"}
           ]
         })}</script>
         <script type="application/ld+json">{JSON.stringify({

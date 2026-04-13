@@ -3,7 +3,7 @@ const router = express.Router();
 const Gallery = require('../models/Gallery');
 const Job = require('../models/Job');
 
-const BASE_URL = 'https://www.speshway.com';
+const BASE_URL = 'https://speshway.com';
 
 const xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>';
 
@@ -22,7 +22,6 @@ router.get('/sitemap.xml', async (req, res) => {
       { path: '/privacy-policy', priority: '0.5', changefreq: 'monthly' },
       { path: '/terms-of-service', priority: '0.5', changefreq: 'monthly' },
       { path: '/faq', priority: '0.8', changefreq: 'weekly' },
-      { path: '/gallery', priority: '0.8', changefreq: 'weekly' },
       { path: '/blog', priority: '0.8', changefreq: 'weekly' },
       { path: '/is-speshway-real-or-fake', priority: '1.0', changefreq: 'daily' },
       { path: '/speshway-solutions-review-2026', priority: '1.0', changefreq: 'daily' },

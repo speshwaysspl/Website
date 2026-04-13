@@ -46,12 +46,12 @@ const About = () => {
         <title>About Speshway Solutions | Best Software Company in Hyderabad | T-Hub</title>
         <meta name="description" content="Learn about Speshway Solutions Private Limited, a top software company in Hyderabad based in T-Hub. Discover our mission, values, and why we are the best choice for your digital needs." />
         <meta name="keywords" content="about Speshway, software company in hyderabad, best IT company Hyderabad, Speshway Solutions T-Hub, software development team, registered IT firm India,mobile app development company in Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
-        <link rel="canonical" href="https://www.speshway.com/about" />
+        <link rel="canonical" href="https://speshway.com/about" />
         <meta property="og:title" content="About Speshway Solutions | Best Software Company in Hyderabad" />
         <meta property="og:description" content="Speshway Solutions is a registered IT services provider at T-Hub, Hyderabad. Learn more about our professional journey since 2017." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.speshway.com/about" />
-        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta property="og:url" content="https://speshway.com/about" />
+        <meta property="og:image" content="https://speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="About Speshway Solutions | Top IT Company" />
         <meta name="twitter:description" content="Speshway Solutions is a real and registered IT services provider in Hyderabad." />
@@ -60,8 +60,8 @@ const About = () => {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [
-            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
-            {"@type":"ListItem","position":2,"name":"About","item":"https://www.speshway.com/about"}
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://speshway.com/"},
+            {"@type":"ListItem","position":2,"name":"About","item":"https://speshway.com/about"}
           ]
         })}</script>
         <script type="application/ld+json">{JSON.stringify({
@@ -72,9 +72,9 @@ const About = () => {
             "name": "Speshway Solutions Private Limited",
             "alternateName": "Speshway Solutions",
             "foundingDate": "2017",
-            "url": "https://www.speshway.com",
-            "logo": "https://www.speshway.com/logo.png",
-            "image": "https://www.speshway.com/logo.png",
+            "url": "https://speshway.com",
+            "logo": "https://speshway.com/logo.png",
+            "image": "https://speshway.com/logo.png",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "T-Hub, Plot No 1/C, Sy No 83/1, Raidurgam, Knowledge City Rd, panmaktha",

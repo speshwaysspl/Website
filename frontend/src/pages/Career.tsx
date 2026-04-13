@@ -53,12 +53,12 @@ const Career = () => {
         <title>Careers | Official Speshway Solutions | Join T-Hub Hyderabad Team</title>
         <meta name="description" content="Join the official team at Speshway Solutions, T-Hub Hyderabad. Verify official job alerts and avoid recruitment scams. Speshway Solutions never charges for job offers." />
         <meta name="keywords" content="Speshway careers, official speshway solutions, jobs in hyderabad, T-Hub jobs, software engineer jobs, speshway recruitment scam alert, verify speshway jobs" />
-        <link rel="canonical" href="https://www.speshway.com/career" />
+        <link rel="canonical" href="https://speshway.com/career" />
         <meta property="og:title" content="Careers | Official Speshway Solutions" />
         <meta property="og:description" content="Join the official best software company in Hyderabad at T-Hub. Browse open positions." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.speshway.com/career" />
-        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta property="og:url" content="https://speshway.com/career" />
+        <meta property="og:image" content="https://speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Careers at Speshway Solutions" />
         <meta name="twitter:description" content="Browse open positions and join our team." />
@@ -66,16 +66,16 @@ const Career = () => {
           "@context":"https://schema.org",
           "@type":"BreadcrumbList",
           "itemListElement":[
-            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
-            {"@type":"ListItem","position":2,"name":"Careers","item":"https://www.speshway.com/career"}
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://speshway.com/"},
+            {"@type":"ListItem","position":2,"name":"Careers","item":"https://speshway.com/career"}
           ]
         })}</script>
         <script type="application/ld+json">{JSON.stringify({
           "@context":"https://schema.org",
           "@type":"Organization",
           "name":"Speshway Solutions Private Limited",
-          "url":"https://www.speshway.com/",
-          "logo":"https://www.speshway.com/logo.png"
+          "url":"https://speshway.com/",
+          "logo":"https://speshway.com/logo.png"
         })}</script>
       </Helmet>
       <Navbar />

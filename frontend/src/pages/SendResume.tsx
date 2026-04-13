@@ -172,20 +172,20 @@ const SendResume = () => {
         <title>Send Resume | Career | Speshway Solutions | IT Jobs in Hyderabad</title>
         <meta name="description" content="Apply for exciting career opportunities at Speshway Solutions. Upload your resume and join our team of innovators in Hyderabad." />
         <meta name="keywords" content="Speshway careers, IT jobs Hyderabad, software developer jobs, apply for job, send resume, Speshway recruitment, T-Hub jobs,mobile app development company in Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
-        <link rel="canonical" href="https://www.speshway.com/send-resume" />
+        <link rel="canonical" href="https://speshway.com/send-resume" />
         <meta property="og:title" content="Send Resume | Career | Speshway Solutions" />
         <meta property="og:description" content="Join our team of experts and build the future of IT with Speshway Solutions." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.speshway.com/send-resume" />
-        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta property="og:url" content="https://speshway.com/send-resume" />
+        <meta property="og:image" content="https://speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.speshway.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Career", "item": "https://www.speshway.com/career" },
-            { "@type": "ListItem", "position": 3, "name": "Send Resume", "item": "https://www.speshway.com/send-resume" }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://speshway.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Career", "item": "https://speshway.com/career" },
+            { "@type": "ListItem", "position": 3, "name": "Send Resume", "item": "https://speshway.com/send-resume" }
           ]
         })}</script>
       </Helmet>

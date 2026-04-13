@@ -269,12 +269,12 @@ const Gallery = () => {
         <title>Blog & Gallery | Official Speshway Solutions | Life at T-Hub</title>
         <meta name="description" content="Read the official Speshway Solutions blog. Stay updated with our product launches, company events, and insights from our team at T-Hub. Follow @speshwaysolutionsofficial." />
         <meta name="keywords" content="Speshway blog, official speshway solutions, company news, awards, team moments, technology insights, official instagram @speshwaysolutionsofficial" />
-        <link rel="canonical" href="https://www.speshway.com/blog" />
+        <link rel="canonical" href="https://speshway.com/blog" />
         <meta property="og:title" content="Blog & Gallery | Official Speshway Solutions" />
         <meta property="og:description" content="Official company news, events and insights from Speshway Solutions at T-Hub." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.speshway.com/blog" />
-        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta property="og:url" content="https://speshway.com/blog" />
+        <meta property="og:image" content="https://speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Blog | Speshway Solutions" />
         <meta name="twitter:description" content="Company news, events and insights from Speshway Solutions." />
@@ -282,14 +282,14 @@ const Gallery = () => {
           "@context":"https://schema.org",
           "@type":"BreadcrumbList",
           "itemListElement":[
-            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
-            {"@type":"ListItem","position":2,"name":"Blog","item":"https://www.speshway.com/blog"}
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://speshway.com/"},
+            {"@type":"ListItem","position":2,"name":"Blog","item":"https://speshway.com/blog"}
           ]
         })}</script>
         <script type="application/ld+json">{JSON.stringify({
           "@context":"https://schema.org",
           "@type":"Blog",
-          "url":"https://www.speshway.com/blog",
+          "url":"https://speshway.com/blog",
           "name":"Speshway Solutions Blog"
         })}</script>
       </Helmet>

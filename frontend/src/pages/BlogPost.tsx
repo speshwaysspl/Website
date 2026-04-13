@@ -45,7 +45,7 @@ const BlogPost = () => {
     if (id) fetchItem();
   }, [id]);
 
-  const canonical = `https://www.speshway.com/blog/${id}`;
+  const canonical = `https://speshway.com/blog/${id}`;
 
   return (
     <div className="min-h-screen bg-background">
@@ -58,20 +58,20 @@ const BlogPost = () => {
         <meta property="og:description" content={item?.description || 'Latest update from Speshway Solutions.'} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={canonical} />
-        <meta property="og:image" content={item?.image?.url || 'https://www.speshway.com/logo.png'} />
+        <meta property="og:image" content={item?.image?.url || 'https://speshway.com/logo.png'} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={item ? `${item.title} | Speshway Blog` : 'Speshway Blog Post'} />
         <meta name="twitter:description" content={item?.description || 'Latest update from Speshway Solutions.'} />
-        <meta name="twitter:image" content={item?.image?.url || 'https://www.speshway.com/logo.png'} />
+        <meta name="twitter:image" content={item?.image?.url || 'https://speshway.com/logo.png'} />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BlogPosting",
           "headline": item?.title || 'Speshway Blog Post',
           "description": item?.description || 'Latest update from Speshway Solutions.',
-          "image": item?.image?.url || 'https://www.speshway.com/logo.png',
+          "image": item?.image?.url || 'https://speshway.com/logo.png',
           "datePublished": item?.date || new Date().toISOString(),
           "author": {"@type":"Organization","name":"Speshway Solutions"},
-          "publisher": {"@type":"Organization","name":"Speshway Solutions","logo":{"@type":"ImageObject","url":"https://www.speshway.com/logo.png"}},
+          "publisher": {"@type":"Organization","name":"Speshway Solutions","logo":{"@type":"ImageObject","url":"https://speshway.com/logo.png"}},
           "mainEntityOfPage": canonical,
           "url": canonical
         })}</script>

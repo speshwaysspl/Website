@@ -62,12 +62,12 @@ const Portfolio = () => {
         <title>Projects | Speshway Solutions | Web & App Development Portfolio</title>
         <meta name="description" content="Explore our portfolio of software, app, and website development projects by Speshway Solutions, a top IT company in Hyderabad." />
         <meta name="keywords" content="Speshway projects, case studies, software solutions, client success, web development portfolio, app development projects, IT solution in hyderabad,mobile app development company in Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
-        <link rel="canonical" href="https://www.speshway.com/projects" />
+        <link rel="canonical" href="https://speshway.com/projects" />
         <meta property="og:title" content="Projects | Speshway Solutions | Web & App Development Portfolio" />
         <meta property="og:description" content="See how we deliver reliable, scalable, and secure solutions in Hyderabad." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.speshway.com/projects" />
-        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta property="og:url" content="https://speshway.com/projects" />
+        <meta property="og:image" content="https://speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Projects | Speshway Solutions | Web & App Development Portfolio" />
         <meta name="twitter:description" content="See how we deliver reliable, scalable, and secure solutions in Hyderabad." />
@@ -75,8 +75,8 @@ const Portfolio = () => {
           "@context":"https://schema.org",
           "@type":"BreadcrumbList",
           "itemListElement":[
-            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
-            {"@type":"ListItem","position":2,"name":"Projects","item":"https://www.speshway.com/projects"}
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://speshway.com/"},
+            {"@type":"ListItem","position":2,"name":"Projects","item":"https://speshway.com/projects"}
           ]
         })}</script>
       </Helmet>

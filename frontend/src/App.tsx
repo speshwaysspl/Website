@@ -92,7 +92,7 @@ const RouterViews = () => {
         <Route path="/privacy-policy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
         <Route path="/terms-of-service" element={<PageTransition><TermsOfService /></PageTransition>} />
         <Route path="/faq" element={<PageTransition><FAQ /></PageTransition>} />
-        <Route path="/gallery" element={<PageTransition><Gallery /></PageTransition>} />
+        <Route path="/gallery" element={<Navigate to="/blog" replace />} />
         <Route path="/blog" element={<PageTransition><Gallery /></PageTransition>} />
         <Route path="/blog/:id" element={<PageTransition><BlogPost /></PageTransition>} />
         

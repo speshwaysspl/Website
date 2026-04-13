@@ -14,7 +14,7 @@ const NotFound = () => {
       <Helmet>
         <title>404 Not Found | Speshway Solutions</title>
         <meta name="robots" content="noindex, nofollow" />
-        <link rel="canonical" href="https://www.speshway.com/" />
+        <link rel="canonical" href="https://speshway.com/" />
       </Helmet>
       <div className="text-center">
         <h1 className="mb-4 text-4xl font-bold">404</h1>

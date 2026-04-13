@@ -54,12 +54,12 @@ const Team = () => {
         <title>Our Expert Team | Speshway Solutions | Top IT Company in Hyderabad | Software Engineer Company in Hyderabad</title>
         <meta name="description" content="Meet the official expert software engineers and developers at Speshway Solutions. Our team in T-Hub Hyderabad delivers top-tier IT solutions. Follow our official Instagram @speshwaysolutionsofficial." />
         <meta name="keywords" content="Speshway team, official speshway solutions,  software engineer company in hyderabad,software company hyderabad, software engineers, developers, IT experts, T-Hub IT company, official instagram @speshwaysolutionsofficial" />
-        <link rel="canonical" href="https://www.speshway.com/team" />
+        <link rel="canonical" href="https://speshway.com/team" />
         <meta property="og:title" content="Our Expert Team | Speshway Solutions | Official  | Software Engineer Company in Hyderabad" />
         <meta property="og:description" content="Meet the official expert team at Speshway Solutions, Hyderabad's premier software engineering company." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.speshway.com/team" />
-        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta property="og:url" content="https://speshway.com/team" />
+        <meta property="og:image" content="https://speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Team | Speshway Solutions | Software Engineer Company in Hyderabad" />
         <meta name="twitter:description" content="Meet the expert team at Speshway Solutions, Hyderabad's premier software engineering company." />
@@ -67,8 +67,8 @@ const Team = () => {
           "@context":"https://schema.org",
           "@type":"BreadcrumbList",
           "itemListElement":[
-            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
-            {"@type":"ListItem","position":2,"name":"Team","item":"https://www.speshway.com/team"}
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://speshway.com/"},
+            {"@type":"ListItem","position":2,"name":"Team","item":"https://speshway.com/team"}
           ]
         })}</script>
       </Helmet>

@@ -14,12 +14,12 @@ const FraudNotice = () => {
         <title>Speshway Solutions: Real or Fake? | Official Verification & Fraud Alert</title>
         <meta name="description" content="Is Speshway Solutions real or fake? Get official verification here. Learn how to identify fraudulent job offers and avoid recruitment scams. Speshway Solutions is a registered IT company in Hyderabad." />
         <meta name="keywords" content="Speshway Solutions real or fake, is speshway real, speshway solutions legitimacy, speshway solutions fake, recruitment scam, Speshway Solutions, job offer verification, speshway solutions official verification, speshway hyderabad scam alert, speshway recruitment fraud, payment collection scam speshway, speshway solutions reviews, speshway solutions hyderabad real, speshway solutions authentic" />
-        <link rel="canonical" href="https://www.speshway.com/fraud-notice" />
+        <link rel="canonical" href="https://speshway.com/fraud-notice" />
         <meta property="og:title" content="Is Speshway Solutions Real or Fake? | Official Fraud Alert" />
         <meta property="og:description" content="Beware of fraudulent job offers and fake reports. Learn how to identify and report scams and verify Speshway Solutions legitimacy." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.speshway.com/fraud-notice" />
-        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta property="og:url" content="https://speshway.com/fraud-notice" />
+        <meta property="og:image" content="https://speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Is Speshway Solutions Real or Fake? | Official Fraud Alert" />
         <meta name="twitter:description" content="Beware of fraudulent job offers and fake reports. Learn how to identify and report scams." />
@@ -28,8 +28,8 @@ const FraudNotice = () => {
           "@context": "https://schema.org",
           "@type": "Organization",
           "name": "Speshway Solutions Private Limited",
-          "url": "https://www.speshway.com/",
-          "logo": "https://www.speshway.com/logo.png",
+          "url": "https://speshway.com/",
+          "logo": "https://speshway.com/logo.png",
           "sameAs": [
             "https://www.facebook.com/profile.php?id=61584485021568",
             "https://x.com/SpeshwayM56509",
@@ -46,8 +46,8 @@ const FraudNotice = () => {
           "@context":"https://schema.org",
           "@type":"BreadcrumbList",
           "itemListElement":[
-            {"@type":"ListItem","position":1,"name":"Home","item":"https://www.speshway.com/"},
-            {"@type":"ListItem","position":2,"name":"Fraud Alert","item":"https://www.speshway.com/fraud-notice"}
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://speshway.com/"},
+            {"@type":"ListItem","position":2,"name":"Fraud Alert","item":"https://speshway.com/fraud-notice"}
           ]
         })}</script>
         <script type="application/ld+json">{JSON.stringify({
@@ -130,7 +130,7 @@ const FraudNotice = () => {
                 <ul className="list-disc pl-6 space-y-3 text-muted-foreground">
                   <li><strong>Official Email Domains:</strong> All official communications from us will come from <code className="bg-muted px-1 rounded">@speshway.com</code>. We do not use generic email services like Gmail, Yahoo, or Outlook for official recruitment unless specified on our careers page.</li>
                   <li><strong>No Fees:</strong> Speshway Solutions **never** charges any fees for recruitment, interviews, or job placements. If you are asked for money, it is a scam.</li>
-                  <li><strong>Official Website:</strong> Always verify job listings on our official website: <a href="https://www.speshway.com" className="text-primary hover:underline">www.speshway.com</a>.</li>
+                  <li><strong>Official Website:</strong> Always verify job listings on our official website: <a href="https://speshway.com" className="text-primary hover:underline">speshway.com</a>.</li>
                   <li><strong>Physical Presence:</strong> We are located at our registered office in Hyderabad. You can visit us or contact us via our official phone numbers.</li>
                 </ul>
               </div>

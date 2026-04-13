@@ -85,23 +85,23 @@ const Contact = () => {
         <title>Contact Us | Official Speshway Solutions | T-Hub Hyderabad | Software Company in Hyderabad</title>
         <meta name="description" content="Contact the official Speshway Solutions team at T-Hub Hyderabad. Get in touch for software development, app development, and IT consulting.Get a free consultation for your project today. Follow @speshwaysolutionsofficial." />
         <meta name="keywords" content="Speshway contact, software company near me, IT consultation Hyderabad,official speshway solutions, software company hyderabad, IT consultation,mobile app development company in Hyderaba, T-Hub office, official instagram @speshwaysolutionsofficial,best web developers in Hyderabad,cybersecurity company Hyderabad,,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
-        <link rel="canonical" href="https://www.speshway.com/contact" />
+        <link rel="canonical" href="https://speshway.com/contact" />
         <meta property="og:title" content="Contact Official Speshway Solutions" />
         <meta property="og:description" content="Get a free consultation with the official best software company in Hyderabad at T-Hub." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.speshway.com/contact" />
-        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta property="og:url" content="https://speshway.com/contact" />
+        <meta property="og:image" content="https://speshway.com/logo.png" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Contact Speshway Solutions" />
         <meta name="twitter:description" content="Get a free consultation with our experts." />
         <script type="application/ld+json">{JSON.stringify({
           "@context":"https://schema.org",
           "@type":"ContactPage",
-          "url":"https://www.speshway.com/contact",
+          "url":"https://speshway.com/contact",
           "mainEntity": {
             "@type": "LocalBusiness",
             "name": "Speshway Solutions Private Limited",
-            "image": "https://www.speshway.com/logo.png",
+            "image": "https://speshway.com/logo.png",
             "telephone": "+91 9100006020",
             "email": "info@speshway.com",
             "priceRange": "$$$",
@@ -114,7 +114,7 @@ const Contact = () => {
                 "Thursday",
                 "Friday"
               ],
-              "opens": "09:00",
+              "opens": "10:00",
               "closes": "18:00"
             },
             "address": {

@@ -104,19 +104,19 @@ const Home = () => {
         <title>Speshway Solutions | Best Software Company in Hyderabad | T-Hub IT Services</title>
         <meta name="description" content="Speshway Solutions is an official top-rated software company in Hyderabad at T-Hub. We specialize in custom software development, mobile apps, and cloud solutions. Verify our official status and avoid fake reports or recruitment scams. Follow our official Instagram @speshwaysolutionsofficial.  Find the best IT services near you." />
         <meta name="keywords" content="speshway solutions, software company in hyderabad, IT services hyderabad, is speshway solutions real or fake, speshway solutions scam reports verification,software company near me, custom software development hyderabad, app development company hyderabad, official speshway solutions website, T-Hub IT company, registered software company Hyderabad, speshway solutions authenticity, recruitment fraud alert speshway, best software company for startups, IT solutions India,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad,,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
-        <link rel="canonical" href="https://www.speshway.com/" />
+        <link rel="canonical" href="https://speshway.com/" />
         {/* Preload the first banner or hero image */}
         <link rel="preload" as="image" href={firstBanner} fetchPriority="high" />
         <meta property="og:title" content="Speshway Solutions | Best Software Company in Hyderabad" />
         <meta property="og:description" content="Leading IT Solutions in Hyderabad: Software, App, Website Development, DevOps & Testing at T-Hub." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.speshway.com/" />
-        <meta property="og:image" content="https://www.speshway.com/logo.png" />
+        <meta property="og:url" content="https://speshway.com/" />
+        <meta property="og:image" content="https://speshway.com/logo.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@SpeshwayM56509" />
         <meta name="twitter:title" content="Speshway Solutions | IT Solution in Hyderabad" />
         <meta name="twitter:description" content="Leading IT Solutions in Hyderabad: Software, App, Website Development, DevOps & Testing." />
-        <meta name="twitter:image" content="https://www.speshway.com/logo.png" />
+        <meta name="twitter:image" content="https://speshway.com/logo.png" />
         <link rel="me" href="https://www.facebook.com/profile.php?id=61584485021568" />
         <link rel="me" href="https://x.com/SpeshwayM56509" />
         <link rel="me" href="https://www.linkedin.com/company/speshwaysolutions/" />
@@ -125,9 +125,9 @@ const Home = () => {
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           "name": "Speshway Solutions Private Limited",
-          "url": "https://www.speshway.com/",
-          "logo": "https://www.speshway.com/logo.png",
-          "image": "https://www.speshway.com/logo.png",
+          "url": "https://speshway.com/",
+          "logo": "https://speshway.com/logo.png",
+          "image": "https://speshway.com/logo.png",
           "telephone": "+91 9100006020",
           "email": "info@speshway.com",
           "priceRange": "$$$",
@@ -166,10 +166,10 @@ const Home = () => {
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": "Speshway Solutions",
-          "url": "https://www.speshway.com/",
+          "url": "https://speshway.com/",
           "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://www.speshway.com/?q={search_term_string}",
+            "target": "https://speshway.com/?q={search_term_string}",
             "query-input": "required name=search_term_string"
           }
         })}</script>

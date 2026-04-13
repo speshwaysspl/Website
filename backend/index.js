@@ -17,6 +17,8 @@ connectDB();
 
 const app = express();
 
+app.set('trust proxy', 1);
+
 // Set security headers
 app.use(helmet({
   contentSecurityPolicy: false, // Disable for now to avoid breaking Vite/Cloudinary
@@ -67,6 +69,35 @@ const corsOptions = {
 
 // Enable CORS (handles preflight requests automatically)
 app.use(cors(corsOptions));
+
+// Canonical redirects (production only)
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV !== 'production') return next();
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+
+  const originalHost = (req.headers.host || '').toLowerCase();
+  const canonicalHost = originalHost.startsWith('www.') ? originalHost.slice(4) : originalHost;
+
+  const url = new URL(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
+
+  if (url.pathname === '/gallery' || url.pathname === '/gallery/') {
+    url.pathname = '/blog';
+  } else if (url.pathname.startsWith('/gallery/')) {
+    url.pathname = `/blog/${url.pathname.slice('/gallery/'.length)}`;
+  }
+
+  url.protocol = 'https:';
+  url.host = canonicalHost;
+
+  const current = `${req.protocol}://${req.headers.host}${req.originalUrl}`;
+  const target = url.toString();
+
+  if (target !== current) {
+    return res.redirect(301, target);
+  }
+
+  next();
+});
 
 // Routes - Place dynamic routes before static files ifdddd they should take precedence
 app.use('/', require('./routes/sitemap'));
