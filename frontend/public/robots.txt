@@ -19,5 +19,5 @@ Disallow: /
 Sitemap: https://www.speshway.com/sitemap.xml
 
 # Host
-Host: https://www.speshway.com
+Host: https://speshway.com
 
