@@ -67,7 +67,7 @@ const SettingsPage = () => {
       updateMutation.mutate({ heroTitle });
     }, 300);
     return () => clearTimeout(id);
-  }, [heroTitle]);
+  }, [heroTitle, updateMutation]);
 
   useEffect(() => {
     if (!initializedRef.current) return;
@@ -75,7 +75,7 @@ const SettingsPage = () => {
       updateMutation.mutate({ heroTitleColor });
     }, 250);
     return () => clearTimeout(id);
-  }, [heroTitleColor]);
+  }, [heroTitleColor, updateMutation]);
 
   useEffect(() => {
     if (!initializedRef.current) return;
@@ -83,7 +83,7 @@ const SettingsPage = () => {
       updateMutation.mutate({ heroSubtitle });
     }, 300);
     return () => clearTimeout(id);
-  }, [heroSubtitle]);
+  }, [heroSubtitle, updateMutation]);
 
   useEffect(() => {
     if (!initializedRef.current) return;
@@ -91,7 +91,7 @@ const SettingsPage = () => {
       updateMutation.mutate({ heroSubtitleColor });
     }, 250);
     return () => clearTimeout(id);
-  }, [heroSubtitleColor]);
+  }, [heroSubtitleColor, updateMutation]);
 
   useEffect(() => {
     if (!initializedRef.current) return;
@@ -99,7 +99,7 @@ const SettingsPage = () => {
       updateMutation.mutate({ welcomeBadgeText });
     }, 300);
     return () => clearTimeout(id);
-  }, [welcomeBadgeText]);
+  }, [welcomeBadgeText, updateMutation]);
 
   useEffect(() => {
     if (!initializedRef.current) return;
@@ -107,7 +107,7 @@ const SettingsPage = () => {
       updateMutation.mutate({ welcomeBadgeColor });
     }, 250);
     return () => clearTimeout(id);
-  }, [welcomeBadgeColor]);
+  }, [welcomeBadgeColor, updateMutation]);
 
   useEffect(() => {
     if (!initializedRef.current) return;
@@ -115,7 +115,7 @@ const SettingsPage = () => {
       updateMutation.mutate({ welcomeBadgeEffect });
     }, 250);
     return () => clearTimeout(id);
-  }, [welcomeBadgeEffect]);
+  }, [welcomeBadgeEffect, updateMutation]);
 
   
 

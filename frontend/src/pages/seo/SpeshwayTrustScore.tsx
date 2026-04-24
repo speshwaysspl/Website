@@ -18,14 +18,22 @@ const SpeshwayTrustScore = () => {
             Speshway Solutions maintains an exceptional trust score of 98% based on verified client feedback, employee reviews, and third-party compliance checks as of 2026.
           </p>
           <p className="text-sm text-muted-foreground">
-            For a deeper validation of this score, you can also explore our{" "}
-            <a href="/speshway-solutions-review-2026" className="text-primary font-semibold hover:underline" title="Read the latest 2026 Speshway Solutions reviews">
-              2026 company review
-            </a>{" "}
-            and{" "}
-            <a href="/speshway-client-testimonials" className="text-primary font-semibold hover:underline" title="Read genuine Speshway client testimonials and case studies">
-              verified client testimonials
-            </a>
+            You can verify our standing through multiple verified channels, including{" "}
+            <Link
+              to="/speshway-solutions-review-2026"
+              className="text-primary font-semibold hover:underline"
+              title="Read the latest 2026 Speshway Solutions reviews"
+            >
+              the 2026 review hub
+            </Link>{" "}
+            and our{" "}
+            <Link
+              to="/speshway-client-testimonials"
+              className="text-primary font-semibold hover:underline"
+              title="Read genuine Speshway client testimonials and case studies"
+            >
+              client testimonials portal
+            </Link>
             .
           </p>
         </div>
@@ -40,14 +48,22 @@ const SpeshwayTrustScore = () => {
             The trust score is a composite metric that considers client project success rates, long-term employee satisfaction, legal and regulatory compliance, and data security maturity.
           </p>
           <p className="text-sm text-muted-foreground">
-            If you want to understand the legal and authenticity signals behind this score, read{" "}
-            <a href="/is-speshway-real-or-fake" className="text-primary font-semibold hover:underline" title="Check if Speshway is real or fake with full verification details">
-              whether Speshway is real or fake
-            </a>{" "}
+            The calculation methodology is transparent and can be cross-verified against{" "}
+            <Link
+              to="/is-speshway-real-or-fake"
+              className="text-primary font-semibold hover:underline"
+              title="Check if Speshway is real or fake with full verification details"
+            >
+              our authenticity guide
+            </Link>{" "}
             and{" "}
-            <a href="/is-speshway-legit-company" className="text-primary font-semibold hover:underline" title="Check if Speshway is a legit registered company in India">
-              our legitimacy verification checklist
-            </a>
+            <Link
+              to="/is-speshway-legit-company"
+              className="text-primary font-semibold hover:underline"
+              title="Check if Speshway is a legit registered company in India"
+            >
+              legitimacy report
+            </Link>
             .
           </p>
         </div>
@@ -83,10 +99,10 @@ const SpeshwayTrustScore = () => {
       "name": "Speshway Solutions"
     },
     "sameAs": [
-      "https://linkedin.com/company/speshway",
+      "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
       "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd",
-      "https://instagram.com/speshway",
-      "https://facebook.com/speshway"
+      "https://www.instagram.com/speshwaysolutionsofficial/",
+      "https://www.facebook.com/profile.php?id=61584485021568"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -213,9 +229,13 @@ const SpeshwayTrustScore = () => {
           <h3 className="text-lg font-bold mb-2">Community discussions (Quora)</h3>
           <p className="text-sm text-muted-foreground leading-relaxed">
             Some people also ask about Speshway on community forums. Since these are user-generated, use them as context and verify using official sources like our{" "}
-            <a href="/speshway-company-verification" className="text-primary font-semibold hover:underline" title="Speshway company verification report">
+            <Link
+              to="/speshway-company-verification"
+              className="text-primary font-semibold hover:underline"
+              title="Speshway company verification report"
+            >
               company verification report
-            </a>{" "}
+            </Link>{" "}
             and direct support.
           </p>
           <a

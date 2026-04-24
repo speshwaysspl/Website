@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ReactNode } from "react";
 
 interface SlideInProps {
@@ -24,14 +24,14 @@ export const SlideIn = ({
   };
 
   return (
-    <motion.div
+    <m.div
       initial={variants[direction]}
       animate={{ x: 0, y: 0, opacity: 1 }}
       transition={{ duration, delay, ease: "easeOut" }}
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 };
 

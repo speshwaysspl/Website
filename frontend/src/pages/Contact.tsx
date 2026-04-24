@@ -204,8 +204,9 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div className="animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                    <label className="block text-sm font-medium text-foreground mb-2">Name *</label>
+                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">Name *</label>
                     <Input
+                      id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
@@ -215,8 +216,9 @@ const Contact = () => {
                     />
                   </div>
                   <div className="animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-                    <label className="block text-sm font-medium text-foreground mb-2">Email *</label>
+                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">Email *</label>
                     <Input
+                      id="email"
                       type="email"
                       name="email"
                       value={formData.email}
@@ -230,8 +232,9 @@ const Contact = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div className="animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-                    <label className="block text-sm font-medium text-foreground mb-2">Phone</label>
+                    <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">Phone</label>
                     <Input
+                      id="phone"
                       type="tel"
                       name="phone"
                       value={formData.phone}
@@ -241,8 +244,9 @@ const Contact = () => {
                     />
                   </div>
                   <div className="animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-                    <label className="block text-sm font-medium text-foreground mb-2">Subject *</label>
+                    <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">Subject *</label>
                     <Input
+                      id="subject"
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
@@ -254,8 +258,9 @@ const Contact = () => {
                 </div>
 
                 <div className="animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
-                  <label className="block text-sm font-medium text-foreground mb-2">Message *</label>
+                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">Message *</label>
                   <Textarea
+                    id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}

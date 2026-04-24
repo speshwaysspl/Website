@@ -39,9 +39,9 @@ const SpeshwayVerification = () => {
       "name": "Speshway Solutions"
     },
     "sameAs": [
-      "https://linkedin.com/company/speshway",
-      "https://instagram.com/speshway",
-      "https://facebook.com/speshway",
+      "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
+      "https://www.instagram.com/speshwaysolutionsofficial/",
+      "https://www.facebook.com/profile.php?id=61584485021568",
       "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd"
     ],
     "aggregateRating": {
@@ -183,11 +183,11 @@ const SpeshwayVerification = () => {
           You can further verify our existence and impact through our active social media profiles and industry recognitions. We encourage you to follow our journey on:
         </p>
         <div className="flex flex-wrap gap-4 my-8 not-prose">
-           <a href="https://linkedin.com/company/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> LinkedIn</a>
-           <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Quora (Official)</a>
-           <a href="https://instagram.com/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Instagram</a>
-           <a href="https://facebook.com/speshway" target="_blank" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
-        </div>
+             <a href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> LinkedIn</a>
+             <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Quora</a>
+             <a href="https://www.instagram.com/speshwaysolutionsofficial/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Instagram</a>
+             <a href="https://www.facebook.com/profile.php?id=61584485021568" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
+          </div>
 
         <div className="bg-primary text-primary-foreground p-12 rounded-[3rem] my-16 text-center not-prose shadow-2xl relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-tr from-primary via-primary/95 to-primary/90"></div>

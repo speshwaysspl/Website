@@ -13,6 +13,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Plus, Edit, Trash2, ArrowLeft, LogOut, Upload, X } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { getOptimizedImageUrl } from '@/lib/utils';
 import Cropper from 'react-easy-crop';
 import { Slider } from '@/components/ui/slider';
 import type { Area } from 'react-easy-crop';
@@ -354,6 +355,8 @@ const ManageTeam = () => {
                           <img
                             src={imagePreview}
                             alt="Preview"
+                            width="128"
+                            height="128"
                             className="w-32 h-32 object-cover rounded-full border-4 border-border mx-auto"
                           />
                           <Button
@@ -456,8 +459,10 @@ const ManageTeam = () => {
                         <>
                           <div className="absolute inset-0 bg-background/10" />
                           <img
-                            src={member.image.url}
+                            src={getOptimizedImageUrl(member.image.url)}
                             alt={member.name}
+                            width="80"
+                            height="80"
                             className="w-20 h-20 object-cover object-center rounded-full border-4 border-border shadow-md relative z-10"
                           />
                         </>

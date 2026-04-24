@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
 import { Helmet } from "react-helmet-async";
+import { getOptimizedImageUrl } from "@/lib/utils";
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState<any>(null);
@@ -115,7 +116,7 @@ const Portfolio = () => {
                   {project.image?.url ? (
                     <div className="h-64 sm:h-72 md:h-80 relative overflow-hidden bg-gradient-to-br from-background/20 to-background/10">
                       <img
-                        src={project.image.url}
+                        src={getOptimizedImageUrl(project.image.url)}
                         alt={project.title}
                         width="800"
                         height="600"
@@ -222,6 +223,7 @@ const Portfolio = () => {
                   size="icon"
                   onClick={closeModal}
                   className="text-muted-foreground hover:text-foreground"
+                  aria-label="Close project details"
                 >
                   <X size={24} />
                 </Button>
@@ -231,7 +233,7 @@ const Portfolio = () => {
                 {selectedProject.image?.url && (
                   <div className="w-full h-72 rounded-lg overflow-hidden bg-gradient-to-br from-background/20 to-background/10">
                     <img
-                      src={selectedProject.image.url}
+                      src={getOptimizedImageUrl(selectedProject.image.url)}
                       alt={selectedProject.title}
                       width="800"
                       height="600"

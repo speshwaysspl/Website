@@ -89,7 +89,8 @@ const Home = () => {
     },
   ];
 
-  const toRgba = (hex: string, alpha: number) => {
+  const toRgba = (hex: string | undefined, alpha: number) => {
+    if (!hex) return `rgba(0, 0, 0, ${alpha})`;
     const h = hex.replace('#', '');
     const bigint = parseInt(h.length === 3 ? h.split('').map((c) => c + c).join('') : h, 16);
     const r = (bigint >> 16) & 255;
@@ -106,7 +107,7 @@ const Home = () => {
         <meta name="keywords" content="speshway solutions, software company in hyderabad, IT services hyderabad, is speshway solutions real or fake, speshway solutions scam reports verification, speshway instagram official, speshway solutions instagram, speshway solutions private limited hyderabad reviews, software company near me, custom software development hyderabad, app development company hyderabad, official speshway solutions website, T-Hub IT company, registered software company Hyderabad, speshway solutions authenticity, recruitment fraud alert speshway" />
         <link rel="canonical" href="https://speshway.com/" />
         {/* Preload the first banner or hero image */}
-        <link rel="preload" as="image" href={firstBanner} fetchPriority="high" />
+        <link rel="preload" as="image" href={firstBanner} fetchpriority="high" />
         <meta property="og:title" content="Speshway Solutions | Best Software Company in Hyderabad" />
         <meta property="og:description" content="Leading IT Solutions in Hyderabad: Software, App, Website Development, DevOps & Testing at T-Hub." />
         <meta property="og:type" content="website" />
@@ -119,7 +120,7 @@ const Home = () => {
         <meta name="twitter:image" content="https://speshway.com/logo.png" />
         <link rel="me" href="https://www.facebook.com/profile.php?id=61584485021568" />
         <link rel="me" href="https://x.com/SpeshwayM56509" />
-        <link rel="me" href="https://www.linkedin.com/company/speshwaysolutions/" />
+        <link rel="me" href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" />
         <link rel="me" href="https://www.instagram.com/speshwaysolutionsofficial/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
@@ -397,24 +398,33 @@ const Home = () => {
           {clients && clients.length > 0 ? (
             <div className="marquee-wrap">
               <div className="marquee">
-                {clients.filter((client: any) => client.isActive).map((client: any) => (
-                  <a
-                    key={client._id}
-                    href={client.website || "#"}
-                    target={client.website ? "_blank" : undefined}
-                    rel={client.website ? "noopener noreferrer" : undefined}
-                    className="block"
-                  >
-                  <Card
-                    className="p-4 client-card text-center flex flex-col items-center gap-0 cursor-pointer hover:shadow-lg transition-shadow"
-                    aria-label={`Visit ${client.name} website`}
-                  >
-                    {client.logo && (
-                      <img src={client.logo} alt={client.name} width="128" height="128" className="w-32 h-32 object-contain rounded" />
-                    )}
-                  </Card>
-                  </a>
-                ))}
+                {clients.filter((client: any) => client.isActive).map((client: any) => {
+                  const content = (
+                    <Card
+                      className={`p-4 client-card text-center flex flex-col items-center gap-0 ${client.website ? 'cursor-pointer hover:shadow-lg transition-shadow' : ''}`}
+                    >
+                      {client.logo && (
+                        <img src={client.logo} alt={client.name} width="128" height="128" className="w-32 h-32 object-contain rounded" />
+                      )}
+                    </Card>
+                  );
+
+                  return client.website ? (
+                    <a
+                      key={client._id}
+                      href={client.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    <div key={client._id} className="block">
+                      {content}
+                    </div>
+                  );
+                })}
                 {clients.filter((client: any) => client.isActive).map((client: any) => (
                   <div
                     key={`${client._id}-dup`}

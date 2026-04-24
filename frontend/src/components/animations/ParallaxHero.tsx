@@ -31,6 +31,8 @@ export const ParallaxHero = ({ children, backgroundImage, className }: ParallaxH
             <img 
               src={backgroundImage} 
               alt="Hero Background" 
+              width="1920"
+              height="1080"
               className="w-full h-full object-cover"
               // @ts-expect-error fetchPriority is not included in TS img element props
               fetchPriority="high"

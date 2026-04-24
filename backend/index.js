@@ -17,7 +17,7 @@ connectDB();
 
 const app = express();
 
-app.set('trust proxy', 1);
+app.set('trust proxy', true);
 
 // Set security headers
 app.use(helmet({
@@ -28,7 +28,12 @@ app.use(helmet({
 // Rate limiting to prevent DoS attacks and maintain uptime
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  max: 1000, // Increased limit to avoid blocking uptime monitors
+  skip: (req) => req.path === '/api/health' || req.path === '/health',
+  handler: (req, res, next, options) => {
+    console.warn(`Rate limit exceeded for IP: ${req.ip} on path: ${req.path}`);
+    res.status(options.statusCode).json(options.message);
+  },
   message: {
     success: false,
     message: 'Too many requests, please try again later'
@@ -37,6 +42,34 @@ const limiter = rateLimit({
 
 // Apply rate limiter to all API routes
 app.use('/api/', limiter);
+
+// Root health check (fastest response for uptime monitors)
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
+// API health check
+app.get('/api/health', (req, res) => {
+  const dbStatus = mongoose.connection.readyState === 1 ? 'connected' : 'disconnected';
+  
+  if (dbStatus === 'disconnected') {
+    return res.status(503).json({
+      status: 'degraded',
+      message: 'Database is disconnected',
+      timestamp: new Date().toISOString(),
+      database: dbStatus
+    });
+  }
+
+  res.json({ 
+    status: 'ok',
+    message: 'Backend API is healthy',
+    timestamp: new Date().toISOString(),
+    database: dbStatus,
+    uptime: process.uptime(),
+    memory: process.memoryUsage()
+  });
+});
 
 // Body parser
 app.use(express.json());
@@ -75,31 +108,38 @@ app.use((req, res, next) => {
   if (process.env.NODE_ENV !== 'production') return next();
   if (req.method !== 'GET' && req.method !== 'HEAD') return next();
 
-  const originalHost = (req.headers.host || '').toLowerCase();
+  const host = req.headers.host;
+  if (!host) return next();
+
+  const originalHost = host.toLowerCase();
   const canonicalHost = originalHost.startsWith('www.') ? originalHost.slice(4) : originalHost;
 
-  const url = new URL(`${req.protocol}://${req.headers.host}${req.originalUrl}`);
+  try {
+    const url = new URL(`${req.protocol}://${host}${req.originalUrl}`);
 
-  if (url.pathname === '/gallery' || url.pathname === '/gallery/') {
-    url.pathname = '/blog';
-  } else if (url.pathname.startsWith('/gallery/')) {
-    url.pathname = `/blog/${url.pathname.slice('/gallery/'.length)}`;
-  }
+    if (url.pathname === '/gallery' || url.pathname === '/gallery/') {
+      url.pathname = '/blog';
+    } else if (url.pathname.startsWith('/gallery/')) {
+      url.pathname = `/blog/${url.pathname.slice('/gallery/'.length)}`;
+    }
 
-  url.protocol = 'https:';
-  url.host = canonicalHost;
+    url.protocol = 'https:';
+    url.host = canonicalHost;
 
-  const current = `${req.protocol}://${req.headers.host}${req.originalUrl}`;
-  const target = url.toString();
+    const current = `${req.protocol}://${host}${req.originalUrl}`;
+    const target = url.toString();
 
-  if (target !== current) {
-    return res.redirect(301, target);
+    if (target !== current) {
+      return res.redirect(301, target);
+    }
+  } catch (err) {
+    console.error('Error in canonical redirect:', err);
   }
 
   next();
 });
 
-// Routes - Place dynamic routes before static files ifdddd they should take precedence
+// Routes - Place dynamic routes before static files if they should take precedence
 app.use('/', require('./routes/sitemap'));
 
 // Serve static files from uploads directory with caching
@@ -178,28 +218,6 @@ app.get(/(.*)/, (req, res) => {
   res.setHeader('Expires', '0');
   
   res.sendFile(indexFile);
-});
-
-// API health check
-app.get('/api/health', (req, res) => {
-  const dbStatus = mongoose.connection.readyState === 1 ? 'connected' : 'disconnected';
-  
-  if (dbStatus === 'disconnected') {
-    return res.status(503).json({
-      status: 'degraded',
-      message: 'Database is disconnected',
-      timestamp: new Date().toISOString(),
-      database: dbStatus
-    });
-  }
-
-  res.json({ 
-    status: 'ok',
-    message: 'Backend API is healthy',
-    timestamp: new Date().toISOString(),
-    database: dbStatus,
-    uptime: process.uptime()
-  });
 });
 
 // Error handling middleware

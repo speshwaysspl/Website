@@ -16,21 +16,21 @@ const SpeshwayJobScamTruth = () => {
           </p>
           <p className="text-sm text-muted-foreground">
             To double-check our policies, you can review{" "}
-            <a
-              href="/speshway-company-verification"
+            <Link
+              to="/speshway-company-verification"
               className="text-primary font-semibold hover:underline"
               title="Use the Speshway company verification hub to confirm official policies"
             >
               the official company verification page
-            </a>{" "}
+            </Link>{" "}
             and our{" "}
-            <a
-              href="/speshway-career-review"
+            <Link
+              to="/speshway-career-review"
               className="text-primary font-semibold hover:underline"
               title="Read how Speshway handles careers and recruitment"
             >
               career review for job seekers
-            </a>
+            </Link>
             .
           </p>
         </div>
@@ -46,21 +46,21 @@ const SpeshwayJobScamTruth = () => {
           </p>
           <p className="text-sm text-muted-foreground">
             If you are unsure about an offer, compare details with{" "}
-            <a
-              href="/is-speshway-real-or-fake"
+            <Link
+              to="/is-speshway-real-or-fake"
               className="text-primary font-semibold hover:underline"
               title="Check if Speshway is real or fake before trusting any job offer"
             >
               our authenticity guide
-            </a>{" "}
+            </Link>{" "}
             and{" "}
-            <a
-              href="/speshway-company-verification"
+            <Link
+              to="/speshway-company-verification"
               className="text-primary font-semibold hover:underline"
               title="Verify a Speshway job offer against official company records"
             >
               the company verification hub
-            </a>
+            </Link>
             .
           </p>
         </div>
@@ -92,10 +92,10 @@ const SpeshwayJobScamTruth = () => {
       "name": "Speshway Solutions"
     },
     "sameAs": [
-      "https://linkedin.com/company/speshway",
+      "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
       "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd",
-      "https://instagram.com/speshway",
-      "https://facebook.com/speshway"
+      "https://www.instagram.com/speshwaysolutionsofficial/",
+      "https://www.facebook.com/profile.php?id=61584485021568"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -242,14 +242,14 @@ const SpeshwayJobScamTruth = () => {
             <div className="bg-blue-100 p-2 rounded-lg"><CheckCircle className="w-5 h-5 text-blue-600" /></div>
             <div>
               <p className="font-bold">Check our LinkedIn</p>
-              <p className="text-sm text-muted-foreground">Visit our <a href="https://linkedin.com/company/speshway" target="_blank" className="text-primary hover:underline">Official LinkedIn Page</a> to see our current team members.</p>
+              <p className="text-sm text-muted-foreground">Visit our <a href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Official LinkedIn Page</a> to see our current team members.</p>
             </div>
           </div>
           <div className="flex items-start gap-4 p-4 border rounded-lg bg-blue-50/50">
             <div className="bg-blue-100 p-2 rounded-lg"><CheckCircle className="w-5 h-5 text-blue-600" /></div>
             <div>
               <p className="font-bold">Official Quora Profile</p>
-              <p className="text-sm text-muted-foreground">Read our official answers and company verification on <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" className="text-primary hover:underline">Quora</a>.</p>
+              <p className="text-sm text-muted-foreground">Read our official answers and company verification on <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Quora</a>.</p>
             </div>
           </div>
         </div>

@@ -13,6 +13,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Plus, Edit, Trash2, ArrowLeft, LogOut, Upload, X } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { getOptimizedImageUrl } from '@/lib/utils';
 import Cropper from 'react-easy-crop';
 import { Slider } from '@/components/ui/slider';
 import type { Area } from 'react-easy-crop';
@@ -428,6 +429,8 @@ const ManagePortfolio = () => {
                           <img
                             src={imagePreview}
                             alt="Preview"
+                            width="800"
+                            height="600"
                             className="w-full h-64 object-contain rounded-lg border border-border bg-gradient-to-br from-background/20 to-background/10"
                           />
                           <Button
@@ -527,8 +530,10 @@ const ManagePortfolio = () => {
                   {portfolio.image?.url && (
                     <div className="w-full h-56 overflow-hidden bg-gradient-to-br from-background/20 to-background/10">
                       <img
-                        src={portfolio.image.url}
+                        src={getOptimizedImageUrl(portfolio.image.url)}
                         alt={portfolio.title}
+                        width="800"
+                        height="600"
                         className="w-full h-full object-contain object-center"
                       />
                     </div>

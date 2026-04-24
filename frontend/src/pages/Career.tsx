@@ -125,7 +125,7 @@ const Career = () => {
           <p className="text-base sm:text-lg text-muted-foreground mb-6">
             Speshway Solutions has a strict <strong>Zero-Fee Hiring Policy</strong>. We never ask candidates for any registration fees, security deposits, or training charges. If someone asks you for money promising a job at Speshway, it is a scam.
           </p>
-          <Link to="/is-speshway-solutions-real">
+          <Link to="/is-speshway-real-or-fake">
             <Button variant="outline" className="border-red-200 hover:bg-red-50 dark:border-red-900/50 dark:hover:bg-red-900/20">
               Read Our Fraud Alert & Verification Guide
             </Button>

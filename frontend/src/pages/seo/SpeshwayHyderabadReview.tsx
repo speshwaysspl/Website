@@ -16,21 +16,21 @@ const SpeshwayHyderabadReview = () => {
           </p>
           <p className="text-sm text-muted-foreground">
             To understand how this location contributes to our reputation, you can read{" "}
-            <a
-              href="/speshway-solutions-review-2026"
+            <Link
+              to="/speshway-solutions-review-2026"
               className="text-primary font-semibold hover:underline"
               title="See how Speshway's Hyderabad presence impacts its 2026 review"
             >
               the 2026 company review
-            </a>{" "}
+            </Link>{" "}
             and{" "}
-            <a
-              href="/speshway-employee-feedback"
+            <Link
+              to="/speshway-employee-feedback"
               className="text-primary font-semibold hover:underline"
               title="Read what Hyderabad-based employees say about working at Speshway"
             >
               Hyderabad employee feedback
-            </a>
+            </Link>
             .
           </p>
         </div>
@@ -46,21 +46,21 @@ const SpeshwayHyderabadReview = () => {
           </p>
           <p className="text-sm text-muted-foreground">
             For more insight into our legitimacy and trust, explore{" "}
-            <a
-              href="/is-speshway-legit-company"
+            <Link
+              to="/is-speshway-legit-company"
               className="text-primary font-semibold hover:underline"
               title="Check if Speshway is a legit registered IT company in Hyderabad"
             >
               our legitimacy report
-            </a>{" "}
+            </Link>{" "}
             and{" "}
-            <a
-              href="/speshway-solutions-trust-score"
+            <Link
+              to="/speshway-solutions-trust-score"
               className="text-primary font-semibold hover:underline"
               title="See the 2026 Speshway Solutions trust score and ratings"
             >
               latest trust score
-            </a>
+            </Link>
             .
           </p>
         </div>

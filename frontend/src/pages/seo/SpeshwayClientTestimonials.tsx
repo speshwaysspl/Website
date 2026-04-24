@@ -16,21 +16,21 @@ const SpeshwayClientTestimonials = () => {
           </p>
           <p className="text-sm text-muted-foreground">
             You can see this reflected in{" "}
-            <a
-              href="/speshway-solutions-review-2026"
+            <Link
+              to="/speshway-solutions-review-2026"
               className="text-primary font-semibold hover:underline"
               title="Read the detailed Speshway Solutions review for 2026"
             >
               our 2026 company review
-            </a>{" "}
+            </Link>{" "}
             and{" "}
-            <a
-              href="/speshway-solutions-trust-score"
+            <Link
+              to="/speshway-solutions-trust-score"
               className="text-primary font-semibold hover:underline"
               title="Check the Speshway Solutions trust score based on client satisfaction"
             >
               verified trust score report
-            </a>
+            </Link>
             .
           </p>
         </div>

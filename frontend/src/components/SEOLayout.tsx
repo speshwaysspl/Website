@@ -6,7 +6,8 @@ import { CheckCircle, ShieldCheck, Star, ArrowRight, MessageSquare, Briefcase, M
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import SEO from "./SEO";
-import InternalLinks, { buildSpeshwaySiteNavigationSchema } from "./InternalLinks";
+import InternalLinks from "./InternalLinks";
+import { buildSpeshwaySiteNavigationSchema } from "@/lib/seo-utils";
 
 interface FAQItem {
   question: string;

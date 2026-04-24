@@ -53,6 +53,16 @@ const SpeshwayVsFakeRecruiters = lazy(() => import("./pages/seo/SpeshwayVsFakeRe
 const SpeshwayScamExplained = lazy(() => import("./pages/seo/SpeshwayScamExplained"));
 const ScammersMisusingNames = lazy(() => import("./pages/seo/ScammersMisusingNames"));
 const FakeRecruitmentWarning = lazy(() => import("./pages/seo/FakeRecruitmentWarning"));
+const SpeshwayInternshipReviews = lazy(() => import("./pages/seo/SpeshwayInternshipReviews"));
+const SpeshwayRegistrationDetails = lazy(() => import("./pages/seo/SpeshwayRegistrationDetails"));
+const SpeshwayOfficialContact = lazy(() => import("./pages/seo/SpeshwayOfficialContact"));
+const SpeshwayTechnologyStack = lazy(() => import("./pages/seo/SpeshwayTechnologyStack"));
+const SpeshwayWorkCulture = lazy(() => import("./pages/seo/SpeshwayWorkCulture"));
+const SpeshwayLeadershipVision = lazy(() => import("./pages/seo/SpeshwayLeadershipVision"));
+const SpeshwayClientSuccess = lazy(() => import("./pages/seo/SpeshwayClientSuccess"));
+const SpeshwaySecurityMeasures = lazy(() => import("./pages/seo/SpeshwaySecurityMeasures"));
+const SpeshwayHyderabadOfficeTour = lazy(() => import("./pages/seo/SpeshwayHyderabadOfficeTour"));
+const SpeshwayCompanyAwards = lazy(() => import("./pages/seo/SpeshwayCompanyAwards"));
 
 const PageLoader = () => (
   <div className="flex items-center justify-center min-h-screen">
@@ -112,6 +122,16 @@ const RouterViews = () => {
         <Route path="/why-people-search-speshway-scam-explained" element={<PageTransition><SpeshwayScamExplained /></PageTransition>} />
         <Route path="/how-scammers-misuse-company-names" element={<PageTransition><ScammersMisusingNames /></PageTransition>} />
         <Route path="/fake-recruitment-warning" element={<PageTransition><FakeRecruitmentWarning /></PageTransition>} />
+        <Route path="/speshway-internship-program-reviews-hyderabad" element={<PageTransition><SpeshwayInternshipReviews /></PageTransition>} />
+        <Route path="/speshway-solutions-pvt-ltd-registration-details" element={<PageTransition><SpeshwayRegistrationDetails /></PageTransition>} />
+        <Route path="/speshway-solutions-official-contact-and-address" element={<PageTransition><SpeshwayOfficialContact /></PageTransition>} />
+        <Route path="/speshway-solutions-technology-stack-and-services" element={<PageTransition><SpeshwayTechnologyStack /></PageTransition>} />
+        <Route path="/life-at-speshway-solutions-work-culture-reviews" element={<PageTransition><SpeshwayWorkCulture /></PageTransition>} />
+        <Route path="/speshway-solutions-leadership-team-and-vision" element={<PageTransition><SpeshwayLeadershipVision /></PageTransition>} />
+        <Route path="/speshway-solutions-client-success-stories-and-reviews" element={<PageTransition><SpeshwayClientSuccess /></PageTransition>} />
+        <Route path="/speshway-solutions-data-security-and-privacy-policy" element={<PageTransition><SpeshwaySecurityMeasures /></PageTransition>} />
+        <Route path="/speshway-solutions-hyderabad-office-location-tour" element={<PageTransition><SpeshwayHyderabadOfficeTour /></PageTransition>} />
+        <Route path="/speshway-solutions-company-awards-and-recognition" element={<PageTransition><SpeshwayCompanyAwards /></PageTransition>} />
 
         {/* Legacy SEO Redirects */}
         <Route path="/is-speshway-solutions-real" element={<Navigate to="/is-speshway-real-or-fake" replace />} />

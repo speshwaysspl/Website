@@ -48,13 +48,13 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Log error for debugging
+    // Log error for debugging with more context
     if (error.code === 'ECONNABORTED') {
-      console.error('Request timeout - Backend server may not be running');
+      console.warn('Request timeout - The server is taking too long to respond.');
     } else if (error.message === 'Network Error') {
-      console.error('Network Error - Cannot connect to backend. Make sure backend is running on', API_BASE_URL);
-    } else if (!error.response) {
-      console.error('No response from server - Backend may be down');
+      console.warn('Network Error - Please check your internet connection or if the backend server is reachable.');
+    } else if (error.response?.status >= 500) {
+      console.error('Server Error - The backend is experiencing issues.');
     }
     
     if (error.response?.status === 401) {

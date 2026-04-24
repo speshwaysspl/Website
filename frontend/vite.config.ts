@@ -22,7 +22,6 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           'vendor-framer': ['framer-motion'],
-          'vendor-icons': ['lucide-react'],
           'vendor-query': ['@tanstack/react-query'],
         },
         // Optimize asset naming for better caching on Nginx/EC2
@@ -38,7 +37,11 @@ export default defineConfig(({ mode }) => ({
       compress: {
         drop_console: mode === 'production',
         drop_debugger: mode === 'production',
-        pure_funcs: mode === 'production' ? ['console.log', 'console.info'] : [], // Deep clean logs
+        pure_funcs: mode === 'production' ? ['console.log', 'console.info'] : [],
+        passes: 2, // Extra pass for better compression
+      },
+      format: {
+        comments: false, // Remove all comments
       },
     },
     // CSS Minification tuning

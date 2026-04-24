@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { StaggerContainer, StaggerItem, HoverScale, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
 import { Helmet } from "react-helmet-async";
+import { getOptimizedImageUrl } from "@/lib/utils";
 
 const Team = () => {
   const { data: team, isLoading, error } = useQuery({
@@ -112,7 +113,7 @@ const Team = () => {
                     <div className={`h-64 sm:h-72 md:h-80 bg-gradient-to-br ${member.color || 'from-purple-500 to-pink-500'} flex items-center justify-center relative overflow-hidden`}>
                       <div className="absolute inset-0 bg-background/10" />
                       <img
-                        src={member.image.url}
+                        src={getOptimizedImageUrl(member.image.url)}
                         alt={member.name}
                         width="208"
                         height="224"

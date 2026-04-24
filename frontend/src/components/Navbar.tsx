@@ -46,8 +46,8 @@ const Navbar = () => {
     {
       label: "Company Insights",
       children: [
-        { path: "/is-speshway-solutions-real", label: "Is Speshway Real?" },
-        { path: "/speshway-solutions-review", label: "Reviews" },
+        { path: "/is-speshway-real-or-fake", label: "Is Speshway Real?" },
+        { path: "/speshway-solutions-review-2026", label: "Reviews" },
         { path: "/fraud-notice", label: "Fraud Alert" },
         { path: "/faq", label: "FAQ" },
       ],
@@ -104,11 +104,15 @@ const Navbar = () => {
                     key={link.label}
                     className="relative group px-3 py-2 text-base font-bold transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.05] animate-fade-in-up whitespace-nowrap"
                   >
-                    <span className={`relative z-10 cursor-pointer ${
-                      isHome && !isScrolled ? "lg:text-white/90 lg:hover:text-white text-muted-foreground hover:text-foreground" : "text-muted-foreground hover:text-foreground"
-                    }`}>
+                    <button
+                      className={`relative z-10 flex items-center gap-1 ${
+                        isHome && !isScrolled ? "lg:text-white/90 lg:hover:text-white text-muted-foreground hover:text-foreground" : "text-muted-foreground hover:text-foreground"
+                      }`}
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                    >
                       {link.label}
-                    </span>
+                    </button>
                     <div className="absolute left-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                       {link.children.map((childLink) => (
                         <Link
@@ -188,7 +192,7 @@ const Navbar = () => {
           <div className={`absolute top-0 right-0 h-full w-[280px] bg-background shadow-2xl transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
             <div className="flex items-center justify-between px-6 py-8 border-b border-border">
               <span className="text-xl font-bold text-primary">Menu</span>
-              <Button variant="ghost" size="icon" onClick={()=>setIsMobileMenuOpen(false)}>
+              <Button variant="ghost" size="icon" onClick={()=>setIsMobileMenuOpen(false)} aria-label="Close menu">
                 <X size={24} />
               </Button>
             </div>

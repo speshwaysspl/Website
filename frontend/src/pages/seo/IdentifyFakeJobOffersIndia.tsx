@@ -27,7 +27,7 @@ const IdentifyFakeJobOffersIndia = () => {
       title="Top 10 Ways to Identify Fake Job Offers in India | Speshway Solutions"
       description="Learn the top 10 ways to identify fake job offers in India. Protect yourself from recruitment fraud with our expert guide from Speshway Solutions."
       keywords="identify fake job offers in India, speshway scam, speshway fake, is speshway legit, job recruitment fraud"
-      canonical="/identifyfakejoboffersindia"
+      canonical="/top-10-ways-to-identify-fake-job-offers-india"
       h1="Top 10 Ways to Identify Fake Job Offers in India"
       faqItems={faqItems}
       breadcrumbItems={breadcrumbItems}

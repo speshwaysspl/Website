@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ReactNode, useEffect, useState } from "react";
 
 type Direction = "left" | "right";
@@ -42,7 +42,7 @@ export const ScrollParallaxItem = ({
     : undefined;
 
   return (
-    <motion.div
+    <m.div
       className={className}
       initial={initial as any}
       whileInView={animate}
@@ -50,6 +50,6 @@ export const ScrollParallaxItem = ({
       transition={{ type: "spring", stiffness: 220, damping: 22 }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 };

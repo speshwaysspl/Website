@@ -16,21 +16,21 @@ const SpeshwayCareerReview = () => {
           </p>
           <p className="text-sm text-muted-foreground">
             To validate this from multiple angles, you can review{" "}
-            <a
-              href="/speshway-employee-feedback"
+            <Link
+              to="/speshway-employee-feedback"
               className="text-primary font-semibold hover:underline"
               title="Read real Speshway employee feedback about culture and careers"
             >
               our employee feedback
-            </a>{" "}
+            </Link>{" "}
             and{" "}
-            <a
-              href="/speshway-solutions-review-2026"
+            <Link
+              to="/speshway-solutions-review-2026"
               className="text-primary font-semibold hover:underline"
               title="See how Speshway is rated in the 2026 company review"
             >
               2026 company review
-            </a>
+            </Link>
             .
           </p>
         </div>

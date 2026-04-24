@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api, { getBaseUrl } from "@/lib/api";
+import { useQueryClient } from '@tanstack/react-query';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -34,11 +36,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { Helmet } from 'react-helmet-async';
 
-const RAW_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
-const API_URL = RAW_API_URL.endsWith('/api')
-  ? RAW_API_URL
-  : `${RAW_API_URL.replace(/\/+$/, '')}/api`;
-
 interface GalleryItem {
   _id: string;
   title: string;
@@ -63,6 +60,7 @@ interface GalleryItem {
 const ManageGallery = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const queryClient = useQueryClient();
   
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -86,54 +84,40 @@ const ManageGallery = () => {
   const [newCategoryName, setNewCategoryName] = useState('');
   const [isManageCategoriesOpen, setIsManageCategoriesOpen] = useState(false);
 
-  useEffect(() => {
-    fetchCategories();
-    fetchGalleryItems();
-  }, [selectedCategory]);
-
-  const fetchCategories = async () => {
+  const fetchCategories = useCallback(async () => {
     try {
-      const response = await fetch(`${API_URL}/gallery/categories`);
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: 'Failed to fetch categories' }));
-        throw new Error(errorData.message || 'Failed to fetch categories');
-      }
-
-      const data = await response.json();
-      setCategories(data.data);
-    } catch (error) {
+      const response = await api.get('/gallery/categories');
+      setCategories(response.data.data || response.data || []);
+    } catch (error: any) {
       console.error('Error fetching categories:', error);
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to fetch categories",
+        description: error.message || "Failed to fetch categories",
         variant: "destructive"
       });
     }
-  };
+  }, [toast]);
 
-  const fetchGalleryItems = async () => {
+  const fetchGalleryItems = useCallback(async () => {
     try {
-      const response = await fetch(`${API_URL}/gallery${selectedCategory !== 'all' ? `?category=${selectedCategory}` : ''}`);
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: 'Failed to fetch gallery items' }));
-        throw new Error(errorData.message || 'Failed to fetch gallery items');
-      }
-
-      const data = await response.json();
-      setGalleryItems(data.data);
-    } catch (error) {
+      const response = await api.get(`/gallery${selectedCategory !== 'all' ? `?category=${selectedCategory}` : ''}`);
+      setGalleryItems(response.data.data || response.data || []);
+    } catch (error: any) {
       console.error('Error fetching gallery items:', error);
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to fetch gallery items",
+        description: error.message || "Failed to fetch gallery items",
         variant: "destructive"
       });
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory, toast]);
+
+  useEffect(() => {
+    fetchCategories();
+    fetchGalleryItems();
+  }, [fetchCategories, fetchGalleryItems]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -167,35 +151,15 @@ const ManageGallery = () => {
     }
 
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        toast({
-          title: "Authentication Error",
-          description: "Please login again",
-          variant: "destructive"
-        });
-        navigate('/admin/login');
-        return;
-      }
-      
       const url = editingItem 
-        ? `${API_URL}/gallery/${editingItem._id}`
-        : `${API_URL}/gallery`;
+        ? `/gallery/${editingItem._id}`
+        : `/gallery`;
       
-      const response = await fetch(url, {
-        method: editingItem ? 'PUT' : 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        },
-        body: formDataToSend
-      });
+      const response = await (editingItem 
+        ? api.put(url, formDataToSend, { headers: { 'Content-Type': 'multipart/form-data' } })
+        : api.post(url, formDataToSend, { headers: { 'Content-Type': 'multipart/form-data' } }));
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: 'Failed to save gallery item' }));
-        throw new Error(errorData.message || 'Failed to save gallery item');
-      }
-
-      const savedItem = await response.json();
+      const savedItem = response.data;
       const itemData = savedItem.data || savedItem;
 
       // Optimistically update the state immediately instead of refetching
@@ -214,13 +178,11 @@ const ManageGallery = () => {
       });
 
       resetForm();
-      // Only refetch if we need to refresh categories or other data
-      // fetchGalleryItems(); // Removed - using optimistic update instead
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error saving gallery item:', error);
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to save gallery item",
+        description: error.message || "Failed to save gallery item",
         variant: "destructive"
       });
     }
@@ -230,28 +192,7 @@ const ManageGallery = () => {
     if (!deleteItem) return;
 
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        toast({
-          title: "Authentication Error",
-          description: "Please login again",
-          variant: "destructive"
-        });
-        navigate('/admin/login');
-        return;
-      }
-      
-      const response = await fetch(`${API_URL}/gallery/${deleteItem._id}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: 'Failed to delete gallery item' }));
-        throw new Error(errorData.message || 'Failed to delete gallery item');
-      }
+      await api.delete(`/gallery/${deleteItem._id}`);
 
       toast({
         title: "Success",
@@ -260,11 +201,11 @@ const ManageGallery = () => {
 
       setDeleteItem(null);
       fetchGalleryItems();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error deleting gallery item:', error);
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to delete gallery item",
+        description: error.message || "Failed to delete gallery item",
         variant: "destructive"
       });
     }
@@ -321,30 +262,7 @@ const ManageGallery = () => {
     }
 
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        toast({
-          title: "Authentication Error",
-          description: "Please login again",
-          variant: "destructive"
-        });
-        navigate('/admin/login');
-        return;
-      }
-      
-      const response = await fetch(`${API_URL}/gallery/categories`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name: newCategoryName.trim() })
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: 'Failed to create category' }));
-        throw new Error(errorData.message || 'Failed to create category');
-      }
+      await api.post('/gallery/categories', { name: newCategoryName.trim() });
 
       toast({
         title: "Success",
@@ -353,11 +271,11 @@ const ManageGallery = () => {
 
       setNewCategoryName('');
       fetchCategories();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error creating category:', error);
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to create category",
+        description: error.message || "Failed to create category",
         variant: "destructive"
       });
     }
@@ -365,28 +283,7 @@ const ManageGallery = () => {
 
   const handleDeleteCategory = async (categoryName: string) => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        toast({
-          title: "Authentication Error",
-          description: "Please login again",
-          variant: "destructive"
-        });
-        navigate('/admin/login');
-        return;
-      }
-      
-      const response = await fetch(`${API_URL}/gallery/categories/${encodeURIComponent(categoryName)}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: 'Failed to delete category' }));
-        throw new Error(errorData.message || 'Failed to delete category');
-      }
+      await api.delete(`/gallery/categories/${encodeURIComponent(categoryName)}`);
 
       toast({
         title: "Success",
@@ -397,11 +294,11 @@ const ManageGallery = () => {
       if (selectedCategory === categoryName) {
         setSelectedCategory('all');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error deleting category:', error);
       toast({
         title: "Error",
-        description: error instanceof Error ? error.message : "Failed to delete category",
+        description: error.message || "Failed to delete category",
         variant: "destructive"
       });
     }

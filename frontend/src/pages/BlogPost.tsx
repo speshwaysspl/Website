@@ -5,11 +5,8 @@ import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet-async";
-
-const RAW_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
-const API_URL = RAW_API_URL.endsWith('/api')
-  ? RAW_API_URL
-  : `${RAW_API_URL.replace(/\/+$/, '')}/api`;
+import { getOptimizedImageUrl } from "@/lib/utils";
+import api, { getBaseUrl } from "@/lib/api";
 
 interface BlogItem {
   _id: string;
@@ -32,10 +29,8 @@ const BlogPost = () => {
     const fetchItem = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`${API_URL}/gallery/${id}`);
-        if (!res.ok) throw new Error('Failed to load');
-        const data = await res.json();
-        setItem(data);
+        const res = await api.get(`/gallery/${id}`);
+        setItem(res.data);
       } catch (e: any) {
         setError(e.message || 'Error loading blog post');
       } finally {
@@ -84,7 +79,13 @@ const BlogPost = () => {
           {item && (
             <Card className="overflow-hidden">
               {item.image?.url && (
-                <img src={item.image.url} alt={item.title} className="w-full h-auto" />
+                <img 
+                  src={getOptimizedImageUrl(item.image.url)} 
+                  alt={item.title} 
+                  width="800"
+                  height="450"
+                  className="w-full h-auto object-cover" 
+                />
               )}
               <div className="p-6">
                 <h1 className="text-3xl font-bold mb-3">{item.title}</h1>

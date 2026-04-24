@@ -223,11 +223,12 @@ const SendResume = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                       <User size={16} className="inline mr-2" />
                       Full Name *
                     </label>
                     <Input
+                      id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
@@ -237,11 +238,12 @@ const SendResume = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                       <Mail size={16} className="inline mr-2" />
                       Email Address *
                     </label>
                     <Input
+                      id="email"
                       type="email"
                       name="email"
                       value={formData.email}
@@ -255,11 +257,12 @@ const SendResume = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
                       <Phone size={16} className="inline mr-2" />
                       Phone Number *
                     </label>
                     <Input
+                      id="phone"
                       type="tel"
                       name="phone"
                       value={formData.phone}
@@ -270,10 +273,11 @@ const SendResume = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="position" className="block text-sm font-medium text-foreground mb-2">
                       Position Applying For *
                     </label>
                     <Input
+                      id="position"
                       name="position"
                       value={formData.position}
                       onChange={handleChange}
@@ -285,7 +289,7 @@ const SendResume = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
+                  <label htmlFor="resume-upload" className="block text-sm font-medium text-foreground mb-2">
                     <Upload size={16} className="inline mr-2" />
                     Upload Resume *
                   </label>
@@ -327,10 +331,11 @@ const SendResume = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                     Cover Letter / Additional Message (Optional)
                   </label>
                   <Textarea
+                    id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}

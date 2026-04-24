@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -38,7 +38,7 @@ const ManageHomeBanners = () => {
     image: null,
   });
 
-  const fetchBanners = async () => {
+  const fetchBanners = useCallback(async () => {
     try {
       const res = await api.get('/home-banners?all=true');
       setBanners(res.data);
@@ -47,9 +47,9 @@ const ManageHomeBanners = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
 
-  useEffect(() => { fetchBanners(); }, []);
+  useEffect(() => { fetchBanners(); }, [fetchBanners]);
 
   const resetForm = () => {
     setFormData({ title: '', order: 0, isActive: true, image: null });
@@ -171,7 +171,13 @@ const ManageHomeBanners = () => {
                     </CardHeader>
                     <CardContent>
                       <div className="relative w-full h-48 rounded-md overflow-hidden border">
-                        <img src={banner.image.url} alt={banner.title} className="w-full h-full object-cover object-center" />
+                        <img 
+                          src={banner.image.url} 
+                          alt={banner.title} 
+                          width="400"
+                          height="192"
+                          className="w-full h-full object-cover object-center" 
+                        />
                       </div>
                       <div className="flex items-center justify-between mt-4">
                         <div className="flex items-center gap-3">

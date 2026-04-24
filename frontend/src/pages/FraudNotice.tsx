@@ -33,7 +33,7 @@ const FraudNotice = () => {
           "sameAs": [
             "https://www.facebook.com/profile.php?id=61584485021568",
             "https://x.com/SpeshwayM56509",
-            "https://www.linkedin.com/company/speshwaysolutions/",
+            "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
             "https://www.instagram.com/speshwaysolutionsofficial/"
           ],
           "brand": {
@@ -215,9 +215,9 @@ const FraudNotice = () => {
                 <div className="bg-primary/5 p-6 rounded-xl border border-primary/20">
                   <h4 className="font-bold mb-3">More Resources for Verification:</h4>
                   <ul className="space-y-2">
-                    <li><Link to="/is-speshway-solutions-real" className="text-primary hover:underline flex items-center gap-2">Is Speshway Solutions Real? <span className="text-xs bg-primary/20 px-2 py-0.5 rounded">Detailed Guide</span></Link></li>
-                    <li><Link to="/speshway-hyderabad-company-details" className="text-primary hover:underline flex items-center gap-2">Official Company Details & Address</Link></li>
-                    <li><Link to="/speshway-solutions-review" className="text-primary hover:underline flex items-center gap-2">Verified Speshway Reviews</Link></li>
+                    <li><Link to="/is-speshway-real-or-fake" className="text-primary hover:underline flex items-center gap-2">Is Speshway Solutions Real? <span className="text-xs bg-primary/20 px-2 py-0.5 rounded">Detailed Guide</span></Link></li>
+                    <li><Link to="/speshway-hyderabad-company-review" className="text-primary hover:underline flex items-center gap-2">Official Company Details & Address</Link></li>
+                    <li><Link to="/speshway-solutions-review-2026" className="text-primary hover:underline flex items-center gap-2">Verified Speshway Reviews</Link></li>
                   </ul>
                 </div>
               </div>

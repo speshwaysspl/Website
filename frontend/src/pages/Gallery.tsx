@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -22,6 +22,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Skeleton } from '@/components/ui/skeleton';
 import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
 import { Helmet } from "react-helmet-async";
+import { getOptimizedImageUrl } from "@/lib/utils";
+import api, { getBaseUrl } from "@/lib/api";
 import {
   Carousel,
   CarouselContent,
@@ -30,12 +32,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
-const RAW_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
-const API_URL = RAW_API_URL.endsWith('/api')
-  ? RAW_API_URL
-  : `${RAW_API_URL.replace(/\/+$/, '')}/api`;
+
 
 interface GalleryItem {
   _id: string;
@@ -59,11 +58,13 @@ interface GalleryItem {
 
 
 const Gallery = () => {
+  const RAW_API_URL = getBaseUrl();
+  const API_URL = RAW_API_URL;
   const { toast } = useToast();
   
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
+  const [selectedItem, setSelectedItem] = useState<any>(null);
   const [groupedItems, setGroupedItems] = useState<{ [key: string]: GalleryItem[] }>({});
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -81,49 +82,6 @@ const Gallery = () => {
     Autoplay({ delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true }),
   []);
 
-  useEffect(() => {
-    fetchGalleryItems();
-    fetchCategories();
-  }, []);
-
-
-  const fetchGalleryItems = async () => {
-    try {
-      setLoading(true);
-      // Fetch all items without pagination or category filter
-      const response = await fetch(`${API_URL}/gallery?limit=1000`);
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ message: 'Failed to fetch gallery items' }));
-        throw new Error(errorData.message || 'Failed to fetch gallery items');
-      }
-
-      const data = await response.json();
-      const items = data.data || [];
-      setGalleryItems(items);
-      recomputeGroups(items, selectedCategory, selectedStatus, readIds);
-    } catch (error) {
-      console.error('Error fetching gallery items:', error);
-      toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "Failed to load gallery items",
-        variant: "destructive"
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch(`${API_URL}/gallery/categories`);
-      if (!response.ok) return;
-      const data = await response.json();
-      const list: string[] = data.data || [];
-      setCategories(list);
-    } catch {}
-  };
-
   const isNewItem = (item: GalleryItem) => {
     const dateStr = item.createdAt || item.date;
     if (!dateStr) return false;
@@ -132,7 +90,7 @@ const Gallery = () => {
     return Date.now() - itemDate <= days30;
   };
 
-  const recomputeGroups = (
+  const recomputeGroups = useCallback((
     items: GalleryItem[],
     categoryFilter: string,
     statusFilter: string,
@@ -154,12 +112,48 @@ const Gallery = () => {
       grouped[category].push(item);
     });
     setGroupedItems(grouped);
-  };
+  }, []);
+
+  const fetchGalleryItems = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await api.get('/gallery?limit=1000');
+      const data = response.data;
+      const items = Array.isArray(data) ? data : (data.data || []);
+      setGalleryItems(items);
+      recomputeGroups(items, selectedCategory, selectedStatus, readIds);
+    } catch (error: any) {
+      console.error('Error fetching gallery items:', error);
+      toast({
+        title: 'Error',
+        description: error.message || 'Could not load gallery items.',
+        variant: 'destructive',
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, [recomputeGroups, selectedCategory, selectedStatus, readIds, toast]);
+
+  const fetchCategories = useCallback(async () => {
+    try {
+      const response = await api.get('/gallery/categories');
+      const data = response.data;
+      const list: string[] = Array.isArray(data) ? data : (data.data || []);
+      setCategories(list);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchGalleryItems();
+    fetchCategories();
+  }, [fetchGalleryItems, fetchCategories]);
+
 
   useEffect(() => {
     recomputeGroups(galleryItems, selectedCategory, selectedStatus, readIds);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedCategory, selectedStatus, readIds, galleryItems]);
+  }, [selectedCategory, selectedStatus, readIds, galleryItems, recomputeGroups]);
 
   const getCategoryColor = (category: string) => {
     const colors = {
@@ -200,7 +194,7 @@ const Gallery = () => {
       <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group h-full">
         <div className="aspect-video relative overflow-hidden">
           <img 
-            src={item.image.url} 
+            src={getOptimizedImageUrl(item.image.url)} 
             alt={item.title}
             width="400"
             height="300"
@@ -408,7 +402,7 @@ const Gallery = () => {
       <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
         <DialogContent className="max-w-[90vw] w-full max-h-[95vh] overflow-y-auto p-0 gap-0 bg-background/95 backdrop-blur-md border-none shadow-2xl">
           {selectedItem && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
@@ -422,7 +416,7 @@ const Gallery = () => {
               </DialogHeader>
               
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-                <motion.div 
+                <m.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
@@ -441,7 +435,7 @@ const Gallery = () => {
                         <CarouselItem>
                           <div className="w-full h-full aspect-video bg-black/5 rounded-lg overflow-hidden">
                             <img 
-                              src={selectedItem.image.url} 
+                              src={getOptimizedImageUrl(selectedItem.image.url)} 
                               alt={selectedItem.title}
                               width="800"
                               height="450"
@@ -454,7 +448,7 @@ const Gallery = () => {
                           <CarouselItem key={index}>
                             <div className="w-full h-full aspect-video bg-black/5 rounded-lg overflow-hidden">
                               <img 
-                                src={img.url} 
+                                src={getOptimizedImageUrl(img.url)} 
                                 alt={`${selectedItem.title} ${index + 1}`}
                                 width="800"
                                 height="450"
@@ -471,7 +465,7 @@ const Gallery = () => {
                   ) : (
                     <div className="w-full h-full aspect-video bg-black/5 rounded-lg overflow-hidden">
                       <img 
-                        src={selectedItem.image.url} 
+                        src={getOptimizedImageUrl(selectedItem.image.url)} 
                         alt={selectedItem.title}
                         width="800"
                         height="450"
@@ -480,9 +474,9 @@ const Gallery = () => {
                       />
                     </div>
                   )}
-                </motion.div>
+                </m.div>
                 
-                <motion.div 
+                <m.div 
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 }}
@@ -515,7 +509,7 @@ const Gallery = () => {
                   </div>
                   
                   {selectedItem.readMoreLink && (
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="pt-4">
+                    <m.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="pt-4">
                       <Button
                         variant="default"
                         size="lg"
@@ -525,11 +519,11 @@ const Gallery = () => {
                         <ExternalLink size={18} className="mr-2" />
                         Read Full Story
                       </Button>
-                    </motion.div>
+                    </m.div>
                   )}
-                </motion.div>
+                </m.div>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </DialogContent>
       </Dialog>
