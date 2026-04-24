@@ -56,6 +56,7 @@ const SEO = ({
     "sameAs": [
       "https://www.facebook.com/profile.php?id=61584485021568",
       "https://www.instagram.com/speshwaysolutionsofficial/",
+      "https://www.instagram.com/speshway_solutions_hyderabad/",
       "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
       "https://x.com/SpeshwayM56509"
     ],
@@ -123,6 +124,13 @@ const SEO = ({
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={fullCanonical} />
+      
+      {/* Social Identity Verification */}
+      <link rel="me" href="https://www.facebook.com/profile.php?id=61584485021568" />
+      <link rel="me" href="https://www.instagram.com/speshwaysolutionsofficial/" />
+      <link rel="me" href="https://www.instagram.com/speshway_solutions_hyderabad/" />
+      <link rel="me" href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" />
+      <link rel="me" href="https://x.com/SpeshwayM56509" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />

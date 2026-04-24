@@ -1,7 +1,7 @@
 import SEOLayout from "@/components/SEOLayout";
 import InternalLinks from "@/components/InternalLinks";
 import { Link } from "react-router-dom";
-import { ShieldAlert, ShieldCheck, HelpCircle, AlertTriangle, CheckCircle, Mail, Phone, Lock, Eye, Landmark } from "lucide-react";
+import { ShieldAlert, ShieldCheck, HelpCircle, AlertTriangle, CheckCircle, Mail, Phone, Lock, Eye, Landmark, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ScammersMisusingNames = () => {
@@ -25,8 +25,8 @@ const ScammersMisusingNames = () => {
   return (
     <SEOLayout
       title="How Scammers Misuse Company Names Like Speshway Solutions"
-      description="Discover how scammers misuse reputable company names like Speshway Solutions to defraud job seekers and how you can stay safe."
-      keywords="how scammers misuse company names, speshway scam, speshway fake, is speshway legit, recruitment impersonation"
+      description="Discover how scammers misuse reputable company names like Speshway Solutions to defraud job seekers and how you can stay safe by verifying official Instagram handles."
+      keywords="how scammers misuse company names, speshway scam, speshway fake, is speshway legit, recruitment impersonation, speshway official instagram, speshway instagram posts"
       canonical="/scammersmisusingnames"
       h1="How Scammers Misuse Company Names: Protecting Your Career"
       faqItems={faqItems}
@@ -55,6 +55,27 @@ const ScammersMisusingNames = () => {
           <p>
             As a verified IT company, we offer a wide range of services including custom software development, mobile application development, and cloud solutions. Our team of experienced developers and engineers work tirelessly to deliver high-quality products to our global client base.
           </p>
+          <h2 className="text-2xl font-bold mt-10 mb-6">Official Social Media Presence</h2>
+          <p>
+            To stay safe from impersonators, only trust our verified social media handles. Our official Instagram profiles are where we share real-time updates about our work culture and team activities.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4 my-8 not-prose">
+            <a href="https://www.instagram.com/speshwaysolutionsofficial/" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
+              <Instagram className="w-5 h-5 text-pink-600" />
+              <div className="flex flex-col">
+                <span className="font-bold text-sm">Main Official Handle</span>
+                <span className="text-xs text-muted-foreground">@speshwaysolutionsofficial</span>
+              </div>
+            </a>
+            <a href="https://www.instagram.com/speshway_solutions_hyderabad/" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
+              <Instagram className="w-5 h-5 text-pink-600" />
+              <div className="flex flex-col">
+                <span className="font-bold text-sm">Hyderabad Hub Handle</span>
+                <span className="text-xs text-muted-foreground">@speshway_solutions_hyderabad</span>
+              </div>
+            </a>
+          </div>
+
           <h2 className="text-2xl font-bold mt-10 mb-6">How to Identify Real Job Offers</h2>
           <p>
             To ensure you are dealing with the real Speshway Solutions, always verify the email address. All official communication from us will come from an @speshway.com domain. We do not use Gmail, Yahoo, or other public email services for official business.

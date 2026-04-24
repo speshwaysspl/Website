@@ -1,6 +1,7 @@
 import SEOLayout from "@/components/SEOLayout";
 import { Link } from "react-router-dom";
 import { Coffee, Heart, Zap, Users2, Rocket, Sun } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const SpeshwayWorkCulture = () => {
   const faqItems = [

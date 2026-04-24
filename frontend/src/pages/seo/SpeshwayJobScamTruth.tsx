@@ -1,7 +1,7 @@
 import SEOLayout from "@/components/SEOLayout";
 import InternalLinks from "@/components/InternalLinks";
 import { Link } from "react-router-dom";
-import { ShieldAlert, ShieldCheck, HelpCircle, AlertTriangle, CheckCircle, Mail, Phone, Lock, Eye, ExternalLink } from "lucide-react";
+import { ShieldAlert, ShieldCheck, HelpCircle, AlertTriangle, CheckCircle, Mail, Phone, Lock, Eye, ExternalLink, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const SpeshwayJobScamTruth = () => {
@@ -95,7 +95,8 @@ const SpeshwayJobScamTruth = () => {
       "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
       "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd",
       "https://www.instagram.com/speshwaysolutionsofficial/",
-      "https://www.facebook.com/profile.php?id=61584485021568"
+      "https://www.facebook.com/profile.php?id=61584485021568",
+      "https://www.instagram.com/speshway_solutions_hyderabad/"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -111,7 +112,7 @@ const SpeshwayJobScamTruth = () => {
     <SEOLayout
       title="Speshway Job Scam Truth: 100% Zero-Fee Hiring Policy (2026)"
       description="Is the Speshway job offer real or a scam? Learn the truth about Speshway's zero-fee hiring process, T-Hub office, and how to identify fake recruiters using our name."
-      keywords="speshway job scam, speshway recruitment fraud, speshway fake job offer, speshway hiring process, verify speshway job, speshway solutions job scam truth"
+      keywords="speshway job scam, speshway recruitment fraud, speshway fake job offer, speshway hiring process, verify speshway job, speshway solutions job scam truth, speshway instagram posts, speshway official handles"
       canonical="/speshway-job-scam-truth"
       h1="Speshway Job Scam: The Ultimate Truth & Safety Guide"
       faqItems={faqItems}
@@ -199,7 +200,30 @@ const SpeshwayJobScamTruth = () => {
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-6">3. Our Official Recruitment Process</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-6">3. Official Instagram & Social Media Presence</h2>
+        <p>
+          Scammers often create fake Instagram profiles using our logo and stolen posts. To ensure you are following the <strong>real Speshway Solutions</strong>, only trust these verified handles:
+        </p>
+
+        <div className="grid sm:grid-cols-2 gap-4 my-8">
+          <div className="bg-pink-50 p-6 rounded-xl border border-pink-100 flex flex-col items-center text-center">
+            <Instagram className="w-10 h-10 text-pink-600 mb-4" />
+            <h4 className="font-bold text-pink-900">Main Official Handle</h4>
+            <a href="https://www.instagram.com/speshwaysolutionsofficial/" target="_blank" rel="noopener noreferrer me" className="text-pink-700 font-bold hover:underline mt-2">@speshwaysolutionsofficial</a>
+            <p className="text-xs text-pink-600 mt-2">Follow for global news, tech updates, and official announcements.</p>
+          </div>
+          <div className="bg-pink-50 p-6 rounded-xl border border-pink-100 flex flex-col items-center text-center">
+            <Instagram className="w-10 h-10 text-pink-600 mb-4" />
+            <h4 className="font-bold text-pink-900">Hyderabad Hub Handle</h4>
+            <a href="https://www.instagram.com/speshway_solutions_hyderabad/" target="_blank" rel="noopener noreferrer me" className="text-pink-700 font-bold hover:underline mt-2">@speshway_solutions_hyderabad</a>
+            <p className="text-xs text-pink-600 mt-2">Follow for T-Hub office life, local events, and team spotlights.</p>
+          </div>
+        </div>
+        <p className="text-sm text-muted-foreground italic">
+          Tip: Look at the <strong>post history</strong> and <strong>engagement</strong>. Our official accounts have consistent, high-quality posts dating back to our inception. Fake accounts usually have very few posts or recent creation dates.
+        </p>
+
+        <h2 className="text-2xl font-bold mt-10 mb-6">4. Our Official Recruitment Process</h2>
         <p>
           To ensure you are dealing with the real Speshway, please understand our standard hiring process:
         </p>
@@ -211,7 +235,7 @@ const SpeshwayJobScamTruth = () => {
           <li><strong>Verification:</strong> We may conduct background checks, but we NEVER ask you to pay for them.</li>
         </ul>
 
-        <h2 className="text-2xl font-bold mt-10 mb-6">4. Real Stories: Don't Become a Statistic</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-6">5. Real Stories: Don't Become a Statistic</h2>
         <p>
           We've heard from many victims who lost their hard-earned money to these scammers. One candidate reported being asked for ₹15,000 for a "company-provided MacBook Pro." Another was asked for $200 as a "processing fee for international remote work." 
         </p>
@@ -219,7 +243,7 @@ const SpeshwayJobScamTruth = () => {
           Remember: Speshway Solutions provides all necessary equipment and training to its employees at NO COST.
         </p>
 
-        <h2 className="text-2xl font-bold mt-10 mb-6">5. What to do if you suspect a scam</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-6">6. What to do if you suspect a scam</h2>
         <p>
           If you are unsure about an offer, follow these steps:
         </p>

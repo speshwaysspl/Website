@@ -103,8 +103,8 @@ const Home = () => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Speshway Solutions | Best Software Company in Hyderabad | T-Hub IT Services</title>
-        <meta name="description" content="Speshway Solutions is an official top-rated software company in Hyderabad at T-Hub. We specialize in custom software development, mobile apps, and cloud solutions. Verify our official status and avoid fake reports or recruitment scams. Follow our official Instagram @speshwaysolutionsofficial for daily updates and career news." />
-        <meta name="keywords" content="speshway solutions, software company in hyderabad, IT services hyderabad, is speshway solutions real or fake, speshway solutions scam reports verification, speshway instagram official, speshway solutions instagram, speshway solutions private limited hyderabad reviews, software company near me, custom software development hyderabad, app development company hyderabad, official speshway solutions website, T-Hub IT company, registered software company Hyderabad, speshway solutions authenticity, recruitment fraud alert speshway" />
+        <meta name="description" content="Speshway Solutions is an official top-rated software company in Hyderabad at T-Hub. We specialize in custom software development, mobile apps, and cloud solutions. Verify our official status and avoid fake reports or recruitment scams. Follow our official Instagram handles @speshwaysolutionsofficial and @speshway_solutions_hyderabad for daily updates and career news." />
+        <meta name="keywords" content="speshway solutions, software company in hyderabad, IT services hyderabad, is speshway solutions real or fake, speshway solutions scam reports verification, speshway instagram official, speshway solutions instagram, speshway solutions private limited hyderabad reviews, software company near me, custom software development hyderabad, app development company hyderabad, official speshway solutions website, T-Hub IT company, registered software company Hyderabad, speshway solutions authenticity, recruitment fraud alert speshway, speshway instagram posts, speshway official handles" />
         <link rel="canonical" href="https://speshway.com/" />
         {/* Preload the first banner or hero image */}
         <link rel="preload" as="image" href={firstBanner} fetchpriority="high" />
@@ -122,6 +122,7 @@ const Home = () => {
         <link rel="me" href="https://x.com/SpeshwayM56509" />
         <link rel="me" href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" />
         <link rel="me" href="https://www.instagram.com/speshwaysolutionsofficial/" />
+        <link rel="me" href="https://www.instagram.com/speshway_solutions_hyderabad/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
@@ -161,7 +162,8 @@ const Home = () => {
             "https://www.facebook.com/profile.php?id=61584485021568",
             "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
             "https://x.com/SpeshwayM56509",
-            "https://www.instagram.com/speshwaysolutionsofficial/"
+            "https://www.instagram.com/speshwaysolutionsofficial/",
+            "https://www.instagram.com/speshway_solutions_hyderabad/"
           ]
         })}</script>
         <script type="application/ld+json">{JSON.stringify({

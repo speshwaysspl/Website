@@ -1,6 +1,6 @@
 import SEOLayout from "@/components/SEOLayout";
 import { Link } from "react-router-dom";
-import { CheckCircle, ShieldAlert, Building2, Landmark, Briefcase, Mail, Phone, ExternalLink } from "lucide-react";
+import { CheckCircle, ShieldAlert, Building2, Landmark, Briefcase, Mail, Phone, ExternalLink, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const IsSpeshwayRealOrFake = () => {
@@ -46,7 +46,8 @@ const IsSpeshwayRealOrFake = () => {
       "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
       "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd",
       "https://www.instagram.com/speshwaysolutionsofficial/",
-      "https://www.facebook.com/profile.php?id=61584485021568"
+      "https://www.facebook.com/profile.php?id=61584485021568",
+      "https://www.instagram.com/speshway_solutions_hyderabad/"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -62,7 +63,7 @@ const IsSpeshwayRealOrFake = () => {
     <SEOLayout
       title="Is Speshway Real or Fake? 100% Legit Company Truth (2026)"
       description="Is Speshway Solutions fake or real? Verify the truth about Speshway's T-Hub office, MCA registration, and official zero-fee hiring policy. Avoid recruitment scams."
-      keywords="speshway real or fake, is speshway legit, speshway solutions scam, speshway hyderabad review, speshway company verification, speshway solutions private limited real or fake"
+      keywords="speshway real or fake, is speshway legit, speshway solutions scam, speshway hyderabad review, speshway company verification, speshway solutions private limited real or fake, speshway official instagram, speshway instagram posts, speshway official handles"
       canonical="/is-speshway-real-or-fake"
       h1="Is Speshway Solutions Real or Fake? The Definitive Truth Guide"
       faqItems={faqItems}
@@ -158,13 +159,45 @@ const IsSpeshwayRealOrFake = () => {
 
         <h2 className="text-2xl font-bold mt-10 mb-6">6. Official Social Media & Public Profiles</h2>
         <p>
-          To verify the latest updates, employee stories, and community engagement, you can follow Speshway Solutions on our official public platforms:
+          To verify the latest updates, employee stories, and community engagement, you can follow Speshway Solutions on our official public platforms. We post daily updates, job alerts, and company culture photos on our official handles.
         </p>
+        
+        <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 my-8">
+          <h3 className="text-blue-800 font-bold mb-4 flex items-center gap-2">
+            <Instagram className="w-5 h-5" /> Official Instagram Verification
+          </h3>
+          <p className="text-sm text-blue-700 mb-4">
+            Beware of fake Instagram accounts impersonating Speshway recruiters. Our official Instagram profiles are:
+          </p>
+          <ul className="list-none p-0 space-y-3">
+            <li className="flex items-center gap-3">
+              <div className="bg-white p-2 rounded-lg border border-blue-200">
+                <Instagram className="w-4 h-4 text-pink-600" />
+              </div>
+              <div>
+                <a href="https://www.instagram.com/speshwaysolutionsofficial/" target="_blank" rel="noopener noreferrer me" className="font-bold text-blue-900 hover:underline">@speshwaysolutionsofficial</a>
+                <p className="text-xs text-blue-600">Main official handle for company news and global updates.</p>
+              </div>
+            </li>
+            <li className="flex items-center gap-3">
+              <div className="bg-white p-2 rounded-lg border border-blue-200">
+                <Instagram className="w-4 h-4 text-pink-600" />
+              </div>
+              <div>
+                <a href="https://www.instagram.com/speshway_solutions_hyderabad/" target="_blank" rel="noopener noreferrer me" className="font-bold text-blue-900 hover:underline">@speshway_solutions_hyderabad</a>
+                <p className="text-xs text-blue-600">Specific handle for T-Hub office culture and local recruitment.</p>
+              </div>
+            </li>
+          </ul>
+          <p className="text-xs text-blue-600 mt-4 italic">
+            * All official Speshway Instagram posts will have high-quality content and link back to speshway.com.
+          </p>
+        </div>
+
         <div className="flex flex-wrap gap-4 my-8 not-prose">
-             <a href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> LinkedIn</a>
-             <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Quora (Official)</a>
-             <a href="https://www.instagram.com/speshwaysolutionsofficial/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Instagram</a>
-             <a href="https://www.facebook.com/profile.php?id=61584485021568" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
+             <a href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> LinkedIn</a>
+             <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Quora (Official)</a>
+             <a href="https://www.facebook.com/profile.php?id=61584485021568" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
           </div>
 
         <div className="bg-primary text-primary-foreground p-8 rounded-2xl my-12 text-center not-prose">

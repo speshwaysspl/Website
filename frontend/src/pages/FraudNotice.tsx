@@ -12,8 +12,8 @@ const FraudNotice = () => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Speshway Solutions: Real or Fake? | Official Verification & Fraud Alert</title>
-        <meta name="description" content="Is Speshway Solutions real or fake? Get official verification here. Learn how to identify fraudulent job offers and avoid recruitment scams. Speshway Solutions is a registered IT company in Hyderabad." />
-        <meta name="keywords" content="Speshway Solutions real or fake, is speshway real, speshway solutions legitimacy, speshway solutions fake, recruitment scam, Speshway Solutions, job offer verification, speshway solutions official verification, speshway hyderabad scam alert, speshway recruitment fraud, payment collection scam speshway, speshway solutions reviews, speshway solutions hyderabad real, speshway solutions authentic" />
+        <meta name="description" content="Is Speshway Solutions real or fake? Get official verification here. Learn how to identify fraudulent job offers and avoid recruitment scams. Speshway Solutions is a registered IT company in Hyderabad. Verify our official Instagram handles @speshwaysolutionsofficial and @speshway_solutions_hyderabad." />
+        <meta name="keywords" content="Speshway Solutions real or fake, is speshway real, speshway solutions legitimacy, speshway solutions fake, recruitment scam, Speshway Solutions, job offer verification, speshway solutions official verification, speshway hyderabad scam alert, speshway recruitment fraud, payment collection scam speshway, speshway solutions reviews, speshway solutions hyderabad real, speshway solutions authentic, speshway instagram official, speshway official handles" />
         <link rel="canonical" href="https://speshway.com/fraud-notice" />
         <meta property="og:title" content="Is Speshway Solutions Real or Fake? | Official Fraud Alert" />
         <meta property="og:description" content="Beware of fraudulent job offers and fake reports. Learn how to identify and report scams and verify Speshway Solutions legitimacy." />
@@ -24,6 +24,7 @@ const FraudNotice = () => {
         <meta name="twitter:title" content="Is Speshway Solutions Real or Fake? | Official Fraud Alert" />
         <meta name="twitter:description" content="Beware of fraudulent job offers and fake reports. Learn how to identify and report scams." />
         <link rel="me" href="https://www.instagram.com/speshwaysolutionsofficial/" />
+        <link rel="me" href="https://www.instagram.com/speshway_solutions_hyderabad/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
@@ -34,7 +35,8 @@ const FraudNotice = () => {
             "https://www.facebook.com/profile.php?id=61584485021568",
             "https://x.com/SpeshwayM56509",
             "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
-            "https://www.instagram.com/speshwaysolutionsofficial/"
+            "https://www.instagram.com/speshwaysolutionsofficial/",
+            "https://www.instagram.com/speshway_solutions_hyderabad/"
           ],
           "brand": {
             "@type": "Brand",
@@ -72,7 +74,7 @@ const FraudNotice = () => {
             "name": "Are the scam reports on social media about Speshway true?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Most reports of 'scams' on social media platforms like Instagram are based on fraudulent actors misusing our company name. We urge candidates to only trust official communications from @speshway.com and our official Instagram handle @speshwaysolutionsofficial."
+              "text": "Most reports of 'scams' on social media platforms like Instagram are based on fraudulent actors misusing our company name. We urge candidates to only trust official communications from @speshway.com and our official Instagram handles @speshwaysolutionsofficial and @speshway_solutions_hyderabad."
             }
           }]
         })}</script>
@@ -168,8 +170,23 @@ const FraudNotice = () => {
                       <Instagram size={24} />
                     </div>
                     <div>
-                      <div className="font-bold text-foreground">Official Instagram Account</div>
-                      <div className="text-primary font-medium">@speshwaysolutionsofficial</div>
+                      <div className="font-bold text-foreground text-sm">Official Main Handle</div>
+                      <div className="text-primary font-medium text-xs">@speshwaysolutionsofficial</div>
+                    </div>
+                  </a>
+                  <a 
+                    href="https://www.instagram.com/speshway_solutions_hyderabad/" 
+                    target="_blank" 
+                    rel="noopener noreferrer me" 
+                    aria-label="Visit our Hyderabad office Instagram account"
+                    className="flex items-center gap-4 p-5 rounded-xl border-2 border-primary/20 bg-primary/5 hover:border-primary/50 hover:bg-primary/10 transition-all group"
+                  >
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] flex items-center justify-center text-white">
+                      <Instagram size={24} />
+                    </div>
+                    <div>
+                      <div className="font-bold text-foreground text-sm">Hyderabad Hub Handle</div>
+                      <div className="text-primary font-medium text-xs">@speshway_solutions_hyderabad</div>
                     </div>
                   </a>
                   <a 
@@ -183,8 +200,8 @@ const FraudNotice = () => {
                       <Linkedin size={24} />
                     </div>
                     <div>
-                      <div className="font-bold text-foreground">Official LinkedIn Page</div>
-                      <div className="text-[#0077b5] font-medium">Speshway Solutions</div>
+                      <div className="font-bold text-foreground text-sm">Official LinkedIn Page</div>
+                      <div className="text-[#0077b5] font-medium text-xs">Speshway Solutions</div>
                     </div>
                   </a>
                 </div>

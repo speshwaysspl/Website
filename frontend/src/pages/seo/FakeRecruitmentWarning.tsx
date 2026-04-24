@@ -1,6 +1,6 @@
 import SEOLayout from "@/components/SEOLayout";
 import { Link } from "react-router-dom";
-import { ShieldAlert, CheckCircle, Mail, MessageSquare, AlertTriangle, XCircle, Search, PhoneOff, AlertOctagon } from "lucide-react";
+import { ShieldAlert, CheckCircle, Mail, MessageSquare, AlertTriangle, XCircle, Search, PhoneOff, AlertOctagon, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const FakeRecruitmentWarning = () => {
@@ -19,8 +19,8 @@ const FakeRecruitmentWarning = () => {
     },
     {
       question: "What should I do if I receive a fake job offer?",
-      answer: "Do not pay any money or share sensitive personal information (like Aadhar or Pan card details). Block the sender, report the incident to your local cyber crime authorities, and verify the offer with our official team."
-    }
+      answer: "Most reports of 'scams' on social media platforms like Instagram are based on fraudulent actors misusing our company name. We urge candidates to only trust official communications from @speshway.com and our official Instagram handles @speshwaysolutionsofficial and @speshway_solutions_hyderabad."
+    },
   ];
 
   const breadcrumbItems = [
@@ -31,8 +31,8 @@ const FakeRecruitmentWarning = () => {
   return (
     <SEOLayout
       title="Speshway Scam Warning | Identify Fake Recruitment Messages"
-      description="Beware of the fake recruitment Speshway scam. Learn how to identify fraudulent job offers, check our official email format, and verify communications."
-      keywords="speshway scam, fake recruitment, speshway fake messages, speshway solutions fraud, job scam warning"
+      description="Beware of the fake recruitment Speshway scam. Learn how to identify fraudulent job offers, check our official email format, and verify official Instagram handles."
+      keywords="speshway scam, fake recruitment, speshway fake messages, speshway solutions fraud, job scam warning, speshway official instagram, speshway instagram posts"
       canonical="/fake-recruitment-warning"
       h1="Fake Recruitment Warning: Protect Yourself from the 'Speshway Scam'"
       faqItems={faqItems}
@@ -187,6 +187,26 @@ const FakeRecruitmentWarning = () => {
             <strong>Contact Us Directly:</strong> The safest way to verify is to reach out to our official support team through our website.
           </li>
         </ol>
+
+        <h2 className="text-3xl font-bold mt-12 mb-6 text-gray-900">4. Official Social Media Verification</h2>
+        <p className="mb-6">
+          Scammers often create fake Instagram and LinkedIn profiles to spread misinformation or lure candidates. Only follow and trust these verified official handles:
+        </p>
+
+        <div className="grid sm:grid-cols-2 gap-6 my-8 not-prose">
+          <div className="bg-pink-50 p-6 rounded-2xl border border-pink-100 flex flex-col items-center text-center">
+            <Instagram className="w-10 h-10 text-pink-600 mb-4" />
+            <h4 className="font-bold text-pink-900">Main Official Handle</h4>
+            <a href="https://www.instagram.com/speshwaysolutionsofficial/" target="_blank" rel="noopener noreferrer me" className="text-pink-700 font-bold hover:underline mt-2">@speshwaysolutionsofficial</a>
+            <p className="text-xs text-pink-600 mt-2 italic">Follow for global news and official company announcements.</p>
+          </div>
+          <div className="bg-pink-50 p-6 rounded-2xl border border-pink-100 flex flex-col items-center text-center">
+            <Instagram className="w-10 h-10 text-pink-600 mb-4" />
+            <h4 className="font-bold text-pink-900">Hyderabad Hub Handle</h4>
+            <a href="https://www.instagram.com/speshway_solutions_hyderabad/" target="_blank" rel="noopener noreferrer me" className="text-pink-700 font-bold hover:underline mt-2">@speshway_solutions_hyderabad</a>
+            <p className="text-xs text-pink-600 mt-2 italic">Follow for T-Hub office culture and local recruitment.</p>
+          </div>
+        </div>
 
         <div className="bg-primary/5 border border-primary/20 p-8 rounded-2xl my-12 text-center not-prose">
           <Search className="w-12 h-12 text-primary mx-auto mb-4" />

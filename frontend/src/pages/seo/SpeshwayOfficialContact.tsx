@@ -1,5 +1,6 @@
 import SEOLayout from "@/components/SEOLayout";
-import { Mail, Phone, MapPin, Globe, Clock, MessageSquare } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, Clock, MessageSquare, Instagram, Linkedin, Facebook } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const SpeshwayOfficialContact = () => {
   const faqItems = [
@@ -84,6 +85,29 @@ const SpeshwayOfficialContact = () => {
             <p className="text-sm text-muted-foreground">09:30 AM - 06:30 PM (IST)</p>
           </div>
         </div>
+
+        <h2 className="text-2xl font-bold mt-10 mb-6">Official Social Media Profiles</h2>
+        <p>
+          Connect with us and follow our official updates on these verified social media platforms. We recommend following our Instagram for daily office life and official company posts.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-8 not-prose">
+          <a href="https://www.instagram.com/speshwaysolutionsofficial/" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
+            <Instagram className="w-5 h-5 text-pink-600" />
+            <span className="font-bold text-sm">Instagram</span>
+          </a>
+          <a href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
+            <Linkedin className="w-5 h-5 text-blue-700" />
+            <span className="font-bold text-sm">LinkedIn</span>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61584485021568" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
+            <Facebook className="w-5 h-5 text-blue-600" />
+            <span className="font-bold text-sm">Facebook</span>
+          </a>
+        </div>
+        <p className="text-sm text-muted-foreground mb-10">
+          <strong>Note:</strong> We also maintain a regional handle for our Hyderabad office: <a href="https://www.instagram.com/speshway_solutions_hyderabad/" target="_blank" rel="noopener noreferrer me" className="text-primary hover:underline">@speshway_solutions_hyderabad</a>.
+        </p>
 
         <h2 className="text-2xl font-bold mt-10 mb-6">Why Verify Our Address?</h2>
         <p>
