@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { SEO_KEYWORDS } from "@/lib/seo-utils";
 
 interface FAQItem {
   question: string;
@@ -54,11 +55,11 @@ const SEO = ({
       "availableLanguage": "en"
     },
     "sameAs": [
-      "https://www.facebook.com/profile.php?id=61584485021568",
+      "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
       "https://www.instagram.com/speshwaysolutionsofficial/",
-      "https://www.instagram.com/speshway_solutions_hyderabad/",
       "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
-      "https://x.com/SpeshwayM56509"
+      "https://x.com/SpeshwayM56509",
+      "https://www.youtube.com/@speshwaysolutions"
     ],
     "address": {
       "@type": "PostalAddress",
@@ -67,6 +68,26 @@ const SEO = ({
       "addressRegion": "Telangana",
       "postalCode": "500081",
       "addressCountry": "IN"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "IT Services",
+      "itemListElement": [
+        ...SEO_KEYWORDS.primary.map(k => ({
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": k
+          }
+        })),
+        ...SEO_KEYWORDS.mobile.slice(0, 10).map(k => ({
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": k
+          }
+        }))
+      ]
     }
   };
 
@@ -126,11 +147,11 @@ const SEO = ({
       <link rel="canonical" href={fullCanonical} />
       
       {/* Social Identity Verification */}
-      <link rel="me" href="https://www.facebook.com/profile.php?id=61584485021568" />
+      <link rel="me" href="https://www.facebook.com/people/Speshway-Solutions/61584485021568/" />
       <link rel="me" href="https://www.instagram.com/speshwaysolutionsofficial/" />
-      <link rel="me" href="https://www.instagram.com/speshway_solutions_hyderabad/" />
       <link rel="me" href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" />
       <link rel="me" href="https://x.com/SpeshwayM56509" />
+      <link rel="me" href="https://www.youtube.com/@speshwaysolutions" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />

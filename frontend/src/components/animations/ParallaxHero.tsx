@@ -10,17 +10,17 @@ interface ParallaxHeroProps {
 export const ParallaxHero = ({ children, backgroundImage, className }: ParallaxHeroProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
-    <section ref={ref} className={`relative min-h-[80vh] sm:min-h-[70vh] md:min-h-[calc(100dvh-80px)] lg:min-h-screen w-full flex items-center justify-center overflow-hidden ${className || ""}`}>
+    <section ref={ref} className={`relative min-h-[80vh] sm:min-h-[70vh] md:min-h-[calc(100dvh-80px)] lg:min-h-screen w-full flex items-center justify-center overflow-hidden bg-white ${className || ""}`}>
       {backgroundImage && (
         <AnimatePresence mode="wait" initial={false}>
           <m.div
             key={backgroundImage}
-            className="absolute top-0 left-0 right-0 h-[120%] z-0 parallax-bg"
+            className="absolute inset-0 z-0 parallax-bg flex items-center justify-center"
             style={{ 
-              y: bgY, 
+              y: bgY,
               willChange: "transform" 
             }}
             initial={{ opacity: 0 }}
@@ -33,21 +33,21 @@ export const ParallaxHero = ({ children, backgroundImage, className }: ParallaxH
               alt="Hero Background" 
               width="1920"
               height="1080"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center"
               // @ts-expect-error fetchPriority is not included in TS img element props
               fetchPriority="high"
               loading="eager"
             />
           </m.div>
           {/* Mobile optimized overlay for better image visibility */}
-          <div className="absolute inset-0 z-0 sm:hidden bg-black/10" />
+          <div className="absolute inset-0 z-0 sm:hidden bg-black/5" />
         </AnimatePresence>
       )}
       <m.div
-        className="absolute inset-0 z-0 bg-black/30 md:bg-transparent"
+        className="absolute inset-0 z-0 bg-black/5 md:bg-transparent"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0.5) 100%)",
+            "linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0) 80%, rgba(255,255,255,0.8) 100%)",
         }}
       />
       <div className="container mx-auto px-4 relative z-10 pt-4 sm:pt-24 md:pt-32">{children}</div>
@@ -55,12 +55,9 @@ export const ParallaxHero = ({ children, backgroundImage, className }: ParallaxH
       {/* Add custom CSS for mobile responsiveness of the background */}
       <style>{`
         @media (max-width: 640px) {
-          .parallax-bg {
-            background-size: cover !important;
-            background-position: center 20% !important;
-            background-repeat: no-repeat !important;
-            height: 100% !important;
-            width: 100% !important;
+          .parallax-bg img {
+            object-fit: cover !important;
+            object-position: center !important;
           }
         }
       `}</style>

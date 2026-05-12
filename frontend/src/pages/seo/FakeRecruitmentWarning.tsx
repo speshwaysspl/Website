@@ -19,7 +19,7 @@ const FakeRecruitmentWarning = () => {
     },
     {
       question: "What should I do if I receive a fake job offer?",
-      answer: "Most reports of 'scams' on social media platforms like Instagram are based on fraudulent actors misusing our company name. We urge candidates to only trust official communications from @speshway.com and our official Instagram handles @speshwaysolutionsofficial and @speshway_solutions_hyderabad."
+      answer: "Most reports of 'scams' on social media platforms like Instagram are based on fraudulent actors misusing our company name. We urge candidates to only trust official communications from @speshway.com and our official Instagram handle @speshwaysolutionsofficial."
     },
   ];
 
@@ -193,18 +193,12 @@ const FakeRecruitmentWarning = () => {
           Scammers often create fake Instagram and LinkedIn profiles to spread misinformation or lure candidates. Only follow and trust these verified official handles:
         </p>
 
-        <div className="grid sm:grid-cols-2 gap-6 my-8 not-prose">
+        <div className="max-w-md mx-auto my-8 not-prose">
           <div className="bg-pink-50 p-6 rounded-2xl border border-pink-100 flex flex-col items-center text-center">
             <Instagram className="w-10 h-10 text-pink-600 mb-4" />
             <h4 className="font-bold text-pink-900">Main Official Handle</h4>
             <a href="https://www.instagram.com/speshwaysolutionsofficial/" target="_blank" rel="noopener noreferrer me" className="text-pink-700 font-bold hover:underline mt-2">@speshwaysolutionsofficial</a>
             <p className="text-xs text-pink-600 mt-2 italic">Follow for global news and official company announcements.</p>
-          </div>
-          <div className="bg-pink-50 p-6 rounded-2xl border border-pink-100 flex flex-col items-center text-center">
-            <Instagram className="w-10 h-10 text-pink-600 mb-4" />
-            <h4 className="font-bold text-pink-900">Hyderabad Hub Handle</h4>
-            <a href="https://www.instagram.com/speshway_solutions_hyderabad/" target="_blank" rel="noopener noreferrer me" className="text-pink-700 font-bold hover:underline mt-2">@speshway_solutions_hyderabad</a>
-            <p className="text-xs text-pink-600 mt-2 italic">Follow for T-Hub office culture and local recruitment.</p>
           </div>
         </div>
 

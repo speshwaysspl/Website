@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { SEO_KEYWORDS } from "@/lib/seo-utils";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -28,7 +29,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-3 sm:space-x-4">
               <a
-                href="https://www.facebook.com/profile.php?id=61584485021568"
+                href="https://www.facebook.com/people/Speshway-Solutions/61584485021568/"
                 target="_blank"
                 rel="noopener noreferrer me"
                 aria-label="Facebook"
@@ -62,6 +63,15 @@ const Footer = () => {
                 className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               >
                 <Instagram size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-primary transition-colors" />
+              </a>
+              <a
+                href="https://www.youtube.com/@speshwaysolutions"
+                target="_blank"
+                rel="noopener noreferrer me"
+                aria-label="YouTube"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+              >
+                <Youtube size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-primary transition-colors" />
               </a>
             </div>
           </div>
@@ -184,6 +194,62 @@ const Footer = () => {
             </ul>
           </div>
         </div>
+
+        {/* SEO Keywords Section */}
+        <div className="mt-10 pt-8 border-t border-border/50">
+          <h3 className="text-sm font-semibold text-foreground/80 mb-6 uppercase tracking-wider text-center">Our Expertise & Service Areas</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-6">
+            <div>
+              <h4 className="text-[10px] font-bold text-primary uppercase mb-2">Primary Services</h4>
+              <ul className="space-y-1">
+                {SEO_KEYWORDS.primary.slice(0, 8).map((keyword) => (
+                  <li key={keyword} className="text-[10px] text-muted-foreground hover:text-primary transition-colors cursor-default">
+                    {keyword}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-[10px] font-bold text-primary uppercase mb-2">Mobile App Dev</h4>
+              <ul className="space-y-1">
+                {SEO_KEYWORDS.mobile.slice(0, 8).map((keyword) => (
+                  <li key={keyword} className="text-[10px] text-muted-foreground hover:text-primary transition-colors cursor-default">
+                    {keyword}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-[10px] font-bold text-primary uppercase mb-2">Web Development</h4>
+              <ul className="space-y-1">
+                {SEO_KEYWORDS.website.slice(0, 8).map((keyword) => (
+                  <li key={keyword} className="text-[10px] text-muted-foreground hover:text-primary transition-colors cursor-default">
+                    {keyword}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-[10px] font-bold text-primary uppercase mb-2">Business Solutions</h4>
+              <ul className="space-y-1">
+                {SEO_KEYWORDS.software.slice(0, 8).map((keyword) => (
+                  <li key={keyword} className="text-[10px] text-muted-foreground hover:text-primary transition-colors cursor-default">
+                    {keyword}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          
+          <div className="mt-8 flex flex-wrap justify-center gap-x-4 gap-y-2 border-t border-border/30 pt-6">
+            {[...SEO_KEYWORDS.areaBased, ...SEO_KEYWORDS.googleBusiness, ...SEO_KEYWORDS.highRanking].slice(0, 15).map((keyword) => (
+              <span key={keyword} className="text-[9px] text-muted-foreground/70 hover:text-primary transition-colors cursor-default whitespace-nowrap">
+                {keyword}
+              </span>
+            ))}
+          </div>
+        </div>
+
         <div className="block sm:hidden text-center mt-2">
           <p className="text-xs text-muted-foreground">© {currentYear} SPESHWAY SOLUTIONS PRIVATE LIMITED.</p>
           <p className="text-xs text-muted-foreground">All rights reserved.</p>

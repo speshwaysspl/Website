@@ -2,6 +2,9 @@
 User-agent: *
 Allow: /
 
+# Sitemap
+Sitemap: https://speshway.com/sitemap.xml
+
 # Disallow admin and private routes
 Disallow: /admin/
 Disallow: /admin

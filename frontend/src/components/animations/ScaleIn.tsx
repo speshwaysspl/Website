@@ -8,7 +8,7 @@ interface ScaleInProps {
   className?: string;
 }
 
-export const ScaleIn = ({ children, delay = 0, duration = 0.5, className }: ScaleInProps) => {
+export const ScaleIn = ({ children, delay = 0, duration = 0.3, className }: ScaleInProps) => {
   return (
     <m.div
       initial={{ opacity: 0, scale: 0.8 }}

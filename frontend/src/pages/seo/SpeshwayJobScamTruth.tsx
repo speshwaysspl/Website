@@ -95,8 +95,9 @@ const SpeshwayJobScamTruth = () => {
       "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
       "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd",
       "https://www.instagram.com/speshwaysolutionsofficial/",
-      "https://www.facebook.com/profile.php?id=61584485021568",
-      "https://www.instagram.com/speshway_solutions_hyderabad/"
+      "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
+      "https://x.com/SpeshwayM56509",
+      "https://www.youtube.com/@speshwaysolutions"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -205,18 +206,26 @@ const SpeshwayJobScamTruth = () => {
           Scammers often create fake Instagram profiles using our logo and stolen posts. To ensure you are following the <strong>real Speshway Solutions</strong>, only trust these verified handles:
         </p>
 
-        <div className="grid sm:grid-cols-2 gap-4 my-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 my-8">
           <div className="bg-pink-50 p-6 rounded-xl border border-pink-100 flex flex-col items-center text-center">
             <Instagram className="w-10 h-10 text-pink-600 mb-4" />
-            <h4 className="font-bold text-pink-900">Main Official Handle</h4>
-            <a href="https://www.instagram.com/speshwaysolutionsofficial/" target="_blank" rel="noopener noreferrer me" className="text-pink-700 font-bold hover:underline mt-2">@speshwaysolutionsofficial</a>
-            <p className="text-xs text-pink-600 mt-2">Follow for global news, tech updates, and official announcements.</p>
+            <h4 className="font-bold text-pink-900">Instagram</h4>
+            <a href="https://www.instagram.com/speshwaysolutionsofficial/" target="_blank" rel="noopener noreferrer me" className="text-pink-700 font-bold hover:underline mt-2 text-xs">@speshwaysolutionsofficial</a>
           </div>
-          <div className="bg-pink-50 p-6 rounded-xl border border-pink-100 flex flex-col items-center text-center">
-            <Instagram className="w-10 h-10 text-pink-600 mb-4" />
-            <h4 className="font-bold text-pink-900">Hyderabad Hub Handle</h4>
-            <a href="https://www.instagram.com/speshway_solutions_hyderabad/" target="_blank" rel="noopener noreferrer me" className="text-pink-700 font-bold hover:underline mt-2">@speshway_solutions_hyderabad</a>
-            <p className="text-xs text-pink-600 mt-2">Follow for T-Hub office life, local events, and team spotlights.</p>
+          <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 flex flex-col items-center text-center">
+            <Linkedin className="w-10 h-10 text-blue-600 mb-4" />
+            <h4 className="font-bold text-blue-900">LinkedIn</h4>
+            <a href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" target="_blank" rel="noopener noreferrer me" className="text-blue-700 font-bold hover:underline mt-2 text-xs">Speshway Solutions</a>
+          </div>
+          <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 flex flex-col items-center text-center">
+            <ShieldCheck className="w-10 h-10 text-black mb-4" />
+            <h4 className="font-bold text-slate-900">Twitter (X)</h4>
+            <a href="https://x.com/SpeshwayM56509" target="_blank" rel="noopener noreferrer me" className="text-slate-700 font-bold hover:underline mt-2 text-xs">@SpeshwayM56509</a>
+          </div>
+          <div className="bg-red-50 p-6 rounded-xl border border-red-100 flex flex-col items-center text-center">
+            <ExternalLink className="w-10 h-10 text-red-600 mb-4" />
+            <h4 className="font-bold text-red-900">YouTube</h4>
+            <a href="https://www.youtube.com/@speshwaysolutions" target="_blank" rel="noopener noreferrer me" className="text-red-700 font-bold hover:underline mt-2 text-xs">@speshwaysolutions</a>
           </div>
         </div>
         <p className="text-sm text-muted-foreground italic">

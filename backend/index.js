@@ -17,7 +17,7 @@ connectDB();
 
 const app = express();
 
-app.set('trust proxy', true);
+app.set('trust proxy', 1); // Trust the first proxy (e.g. Nginx, Heroku, Cloudflare)
 
 // Set security headers
 app.use(helmet({
@@ -37,7 +37,8 @@ const limiter = rateLimit({
   message: {
     success: false,
     message: 'Too many requests, please try again later'
-  }
+  },
+  validate: { trustProxy: false }, // Disable trust proxy validation to avoid startup errors
 });
 
 // Apply rate limiter to all API routes

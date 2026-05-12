@@ -84,12 +84,12 @@ const Navbar = () => {
             />
             <div className="leading-tight">
               <span className={`block text-sm sm:text-base md:text-lg font-bold uppercase whitespace-nowrap ${
-                isHome && !isScrolled ? "lg:text-white text-foreground" : "text-foreground"
+                isHome && !isScrolled ? "lg:text-black text-foreground" : "text-foreground"
               }`}>
                 Speshway Solutions</span>
 
               <span className={`block text-[10px] sm:text-xs md:text-sm uppercase whitespace-nowrap ${
-                isHome && !isScrolled ? "lg:text-white/80 text-muted-foreground" : "text-muted-foreground"
+                isHome && !isScrolled ? "lg:text-black/80 text-muted-foreground" : "text-muted-foreground"
               }`}>
                 Private Limited
               </span>
@@ -106,7 +106,7 @@ const Navbar = () => {
                   >
                     <button
                       className={`relative z-10 flex items-center gap-1 ${
-                        isHome && !isScrolled ? "lg:text-white/90 lg:hover:text-white text-muted-foreground hover:text-foreground" : "text-muted-foreground hover:text-foreground"
+                        isHome && !isScrolled ? "lg:text-slate-800 lg:hover:text-blue-600 text-muted-foreground hover:text-foreground" : "text-muted-foreground hover:text-foreground"
                       }`}
                       aria-expanded="false"
                       aria-haspopup="true"
@@ -141,8 +141,8 @@ const Navbar = () => {
                     }}
                     className={`relative px-3 py-2 text-base font-bold transition-all duration-300 ease-out group hover:-translate-y-0.5 hover:scale-[1.05] animate-fade-in-up whitespace-nowrap ${
                       isActive(link.path)
-                        ? (isHome && !isScrolled ? "lg:text-white text-primary" : "text-primary")
-                        : (isHome && !isScrolled ? "lg:text-white/90 lg:hover:text-white text-muted-foreground hover:text-foreground" : "text-muted-foreground hover:text-foreground")
+                        ? (isHome && !isScrolled ? "lg:text-blue-600 text-primary" : "text-primary")
+                        : (isHome && !isScrolled ? "lg:text-slate-800 lg:hover:text-blue-600 text-muted-foreground hover:text-foreground" : "text-muted-foreground hover:text-foreground")
                     } ${index === 0 ? "[animation-delay:0s]" : index === 1 ? "[animation-delay:.05s]" : index === 2 ? "[animation-delay:.1s]" : index === 3 ? "[animation-delay:.15s]" : index === 4 ? "[animation-delay:.2s]" : index === 5 ? "[animation-delay:.25s]" : index === 6 ? "[animation-delay:.3s]" : "[animation-delay:.35s]"}`}
                   >
                     <span className="relative z-10">{link.label}</span>
@@ -151,10 +151,10 @@ const Navbar = () => {
                         isActive(link.path) 
                           ? "scale-x-100 opacity-100" 
                           : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
-                      } ${isHome && !isScrolled ? "lg:bg-white bg-primary" : "bg-primary"}`}
+                      } ${isHome && !isScrolled ? "lg:bg-blue-600 bg-primary" : "bg-primary"}`}
                     />
                     <span className={`absolute inset-0 rounded-md scale-0 group-hover:scale-100 transition-transform duration-300 origin-center opacity-0 group-hover:opacity-100 ${
-                      isHome && !isScrolled ? "lg:bg-white/10 bg-primary/10" : "bg-primary/10"
+                      isHome && !isScrolled ? "lg:bg-blue-600/10 bg-primary/10" : "bg-primary/10"
                     }`} />
                   </Link>
                 )

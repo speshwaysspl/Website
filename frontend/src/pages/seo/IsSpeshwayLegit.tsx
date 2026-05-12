@@ -36,8 +36,9 @@ const IsSpeshwayLegit = () => {
       "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
       "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd",
       "https://www.instagram.com/speshwaysolutionsofficial/",
-      "https://www.facebook.com/profile.php?id=61584485021568",
-      "https://www.instagram.com/speshway_solutions_hyderabad/"
+      "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
+      "https://x.com/SpeshwayM56509",
+      "https://www.youtube.com/@speshwaysolutions"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -107,10 +108,10 @@ const IsSpeshwayLegit = () => {
 
           <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 my-8">
             <h3 className="text-blue-800 font-bold mb-4 flex items-center gap-2">
-              <Instagram className="w-5 h-5" /> Official Instagram Accounts
+              <Instagram className="w-5 h-5" /> Official Instagram Account
             </h3>
             <p className="text-sm text-blue-700 mb-4">
-              Our official Instagram handles are the best way to stay updated with Speshway's real-time activities:
+              Our official Instagram handle is the best way to stay updated with Speshway's real-time activities:
             </p>
             <ul className="list-none p-0 space-y-3">
               <li className="flex items-center gap-3">
@@ -121,21 +122,15 @@ const IsSpeshwayLegit = () => {
                   <a href="https://www.instagram.com/speshwaysolutionsofficial/" target="_blank" rel="noopener noreferrer me" className="font-bold text-blue-900 hover:underline">@speshwaysolutionsofficial</a>
                 </div>
               </li>
-              <li className="flex items-center gap-3">
-                <div className="bg-white p-2 rounded-lg border border-blue-200">
-                  <Instagram className="w-4 h-4 text-pink-600" />
-                </div>
-                <div>
-                  <a href="https://www.instagram.com/speshway_solutions_hyderabad/" target="_blank" rel="noopener noreferrer me" className="font-bold text-blue-900 hover:underline">@speshway_solutions_hyderabad</a>
-                </div>
-              </li>
             </ul>
           </div>
 
           <div className="flex flex-wrap gap-4 my-8 not-prose">
              <a href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> LinkedIn</a>
              <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Quora (Official)</a>
-             <a href="https://www.facebook.com/profile.php?id=61584485021568" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
+             <a href="https://www.facebook.com/people/Speshway-Solutions/61584485021568/" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
+             <a href="https://x.com/SpeshwayM56509" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Twitter (X)</a>
+             <a href="https://www.youtube.com/@speshwaysolutions" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> YouTube</a>
           </div>
         </div>
         

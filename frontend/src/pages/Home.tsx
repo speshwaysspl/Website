@@ -16,9 +16,10 @@ import { useEffect, useState } from "react";
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
 import { getOptimizedImageUrl } from "@/lib/utils";
+import { SEO_KEYWORDS } from "@/lib/seo-utils";
 
 const Home = () => {
-  const heroImage = "/happyFamily.png";
+  const heroImage = "/happyFamily.jpg";
   const { data: clients } = useQuery({
     queryKey: ['clients'],
     queryFn: () => api.get('/clients').then(res => {
@@ -102,13 +103,21 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Speshway Solutions | Best Software Company in Hyderabad | T-Hub IT Services</title>
-        <meta name="description" content="Speshway Solutions is an official top-rated software company in Hyderabad at T-Hub. We specialize in custom software development, mobile apps, and cloud solutions. Verify our official status and avoid fake reports or recruitment scams. Follow our official Instagram handles @speshwaysolutionsofficial and @speshway_solutions_hyderabad for daily updates and career news." />
-        <meta name="keywords" content="speshway solutions, software company in hyderabad, IT services hyderabad, is speshway solutions real or fake, speshway solutions scam reports verification, speshway instagram official, speshway solutions instagram, speshway solutions private limited hyderabad reviews, software company near me, custom software development hyderabad, app development company hyderabad, official speshway solutions website, T-Hub IT company, registered software company Hyderabad, speshway solutions authenticity, recruitment fraud alert speshway, speshway instagram posts, speshway official handles" />
+        <title>Speshway Solutions | {SEO_KEYWORDS.seoTitles[0]} | T-Hub IT Services</title>
+        <meta name="description" content={`Speshway Solutions is the ${SEO_KEYWORDS.highRanking[0]} located at T-Hub. We provide expert ${SEO_KEYWORDS.primary[0]}, ${SEO_KEYWORDS.primary[1]}, and ${SEO_KEYWORDS.primary[2]}. Trusted ${SEO_KEYWORDS.highRanking[3]} for ${SEO_KEYWORDS.longTail[0]}.`} />
+        <meta name="keywords" content={[
+          ...SEO_KEYWORDS.primary,
+          ...SEO_KEYWORDS.highRanking.slice(0, 10),
+          ...SEO_KEYWORDS.longTail.slice(0, 15),
+          "speshway solutions",
+          "is speshway solutions real or fake",
+          "speshway solutions scam reports verification",
+          "T-Hub IT company"
+        ].join(", ")} />
         <link rel="canonical" href="https://speshway.com/" />
         {/* Preload the first banner or hero image */}
-        <link rel="preload" as="image" href={firstBanner} fetchpriority="high" />
-        <meta property="og:title" content="Speshway Solutions | Best Software Company in Hyderabad" />
+        <link rel="preload" as="image" href={firstBanner} fetchPriority="high" />
+        <meta property="og:title" content={`Speshway Solutions | ${SEO_KEYWORDS.seoTitles[1]}`} />
         <meta property="og:description" content="Leading IT Solutions in Hyderabad: Software, App, Website Development, DevOps & Testing at T-Hub." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://speshway.com/" />
@@ -118,11 +127,11 @@ const Home = () => {
         <meta name="twitter:title" content="Speshway Solutions | IT Solution in Hyderabad" />
         <meta name="twitter:description" content="Leading IT Solutions in Hyderabad: Software, App, Website Development, DevOps & Testing." />
         <meta name="twitter:image" content="https://speshway.com/logo.png" />
-        <link rel="me" href="https://www.facebook.com/profile.php?id=61584485021568" />
+        <link rel="me" href="https://www.facebook.com/people/Speshway-Solutions/61584485021568/" />
         <link rel="me" href="https://x.com/SpeshwayM56509" />
         <link rel="me" href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" />
         <link rel="me" href="https://www.instagram.com/speshwaysolutionsofficial/" />
-        <link rel="me" href="https://www.instagram.com/speshway_solutions_hyderabad/" />
+        <link rel="me" href="https://www.youtube.com/@speshwaysolutions" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
@@ -159,11 +168,11 @@ const Home = () => {
             "longitude": "78.3844"
           },
           "sameAs": [
-            "https://www.facebook.com/profile.php?id=61584485021568",
+            "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
             "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
             "https://x.com/SpeshwayM56509",
             "https://www.instagram.com/speshwaysolutionsofficial/",
-            "https://www.instagram.com/speshway_solutions_hyderabad/"
+            "https://www.youtube.com/@speshwaysolutions"
           ]
         })}</script>
         <script type="application/ld+json">{JSON.stringify({
@@ -283,11 +292,11 @@ const Home = () => {
                 );
               })()}
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-blue-600 leading-tight drop-shadow animate-fade-in-up" style={{ color: settings?.heroTitleColor || undefined }}>
-              {settings?.heroTitle || 'Build Reliable Digital Solutions with Speshway'}
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-blue-700 leading-tight drop-shadow-md animate-fade-in-up" style={{ color: settings?.heroTitleColor || undefined }}>
+              {settings?.heroTitle || `Leading ${SEO_KEYWORDS.primary[0]} for Your Business`}
             </h1>
-            <p className="text-xl text-blue-600 max-w-2xl mx-auto drop-shadow animate-fade-in-up [animation-delay:.1s]" style={{ color: settings?.heroSubtitleColor || undefined }}>
-              {settings?.heroSubtitle || 'Speshway Solutions helps startups and enterprises design, develop, and maintain full-stack software, automation, and IT solutions that drive real business growth.'}
+            <p className="text-xl text-blue-800 max-w-3xl mx-auto drop-shadow-sm font-medium animate-fade-in-up [animation-delay:.1s]" style={{ color: settings?.heroSubtitleColor || undefined }}>
+              {settings?.heroSubtitle || `Speshway Solutions is the ${SEO_KEYWORDS.highRanking[0]} at T-Hub. We specialize in ${SEO_KEYWORDS.primary[7]}, ${SEO_KEYWORDS.mobile[2]}, and ${SEO_KEYWORDS.website[1]} to drive real business growth.`}
             </p>
             
           </div>
@@ -359,6 +368,61 @@ const Home = () => {
           </StaggerContainer>
         </div>
       </section>
+      <section className="py-20 bg-background relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl font-bold text-foreground mb-4">Our Core Expertise</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              As a premier {SEO_KEYWORDS.primary[2]}, we offer a wide range of digital services.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <ScrollReveal direction="up" delay={0.1}>
+              <Card className="p-8 h-full border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors">
+                <h3 className="text-2xl font-bold mb-4 text-primary">Mobile App Development</h3>
+                <p className="text-muted-foreground mb-6">Recognized as one of the {SEO_KEYWORDS.highRanking[0]}, we deliver high-performance apps.</p>
+                <ul className="space-y-2">
+                  {[SEO_KEYWORDS.mobile[0], SEO_KEYWORDS.mobile[1], SEO_KEYWORDS.mobile[2], SEO_KEYWORDS.mobile[3]].map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-sm text-foreground/80">
+                      <CheckCircle className="w-4 h-4 text-primary" /> {item}
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.2}>
+              <Card className="p-8 h-full border-blue-500/20 bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
+                <h3 className="text-2xl font-bold mb-4 text-blue-600">Web Development</h3>
+                <p className="text-muted-foreground mb-6">The {SEO_KEYWORDS.highRanking[1]} providing scalable and modern web applications.</p>
+                <ul className="space-y-2">
+                  {[SEO_KEYWORDS.website[0], SEO_KEYWORDS.website[2], SEO_KEYWORDS.website[5], SEO_KEYWORDS.website[6]].map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-sm text-foreground/80">
+                      <CheckCircle className="w-4 h-4 text-blue-500" /> {item}
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.3}>
+              <Card className="p-8 h-full border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 transition-colors">
+                <h3 className="text-2xl font-bold mb-4 text-emerald-600">Business Software</h3>
+                <p className="text-muted-foreground mb-6">A trusted {SEO_KEYWORDS.primary[6]} for custom enterprise business applications.</p>
+                <ul className="space-y-2">
+                  {[SEO_KEYWORDS.software[0], SEO_KEYWORDS.software[1], SEO_KEYWORDS.software[2], SEO_KEYWORDS.software[3]].map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-sm text-foreground/80">
+                      <CheckCircle className="w-4 h-4 text-emerald-500" /> {item}
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
       <section className="py-20 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 animate-fade-in">
@@ -406,8 +470,14 @@ const Home = () => {
                       className={`p-4 client-card text-center flex flex-col items-center gap-0 ${client.website ? 'cursor-pointer hover:shadow-lg transition-shadow' : ''}`}
                     >
                       {client.logo && (
-                        <img src={client.logo} alt={client.name} width="128" height="128" className="w-32 h-32 object-contain rounded" />
-                      )}
+                    <img 
+                      src={client.logo} 
+                      alt={`${client.name} - Trusted by ${SEO_KEYWORDS.primary[2]}`} 
+                      width="128" 
+                      height="128" 
+                      className="w-32 h-32 object-contain rounded" 
+                    />
+                  )}
                     </Card>
                   );
 
@@ -437,7 +507,13 @@ const Home = () => {
                     className="p-4 client-card text-center flex flex-col items-center gap-0"
                   >
                     {client.logo && (
-                      <img src={client.logo} alt={client.name} width="128" height="128" className="w-32 h-32 object-contain rounded" />
+                      <img 
+                        src={client.logo} 
+                        alt={`${client.name} - Trusted by ${SEO_KEYWORDS.primary[2]}`} 
+                        width="128" 
+                        height="128" 
+                        className="w-32 h-32 object-contain rounded" 
+                      />
                     )}
                   </Card>
                   </div>
@@ -453,6 +529,41 @@ const Home = () => {
       </section>
 
       
+
+      <section className="py-20 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Solutions & Technologies</h2>
+            <p className="text-muted-foreground mb-8">Comprehensive digital services for businesses across various industries and locations.</p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-2 max-w-6xl mx-auto">
+            {Object.values(SEO_KEYWORDS).flat().map((keyword, idx) => (
+              <span 
+                key={`${keyword}-${idx}`} 
+                className="px-3 py-1 bg-background/50 border border-border/50 rounded-md text-[10px] text-muted-foreground/60 hover:text-primary hover:border-primary/30 transition-all cursor-default"
+              >
+                {keyword}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Serving Hyderabad and Beyond</h2>
+            <p className="text-muted-foreground">The most trusted {SEO_KEYWORDS.primary[5]} across key locations.</p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            {SEO_KEYWORDS.areaBased.map((area) => (
+              <span key={area} className="px-4 py-2 bg-background border rounded-full text-sm text-muted-foreground hover:border-primary/50 transition-colors cursor-default">
+                {area}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

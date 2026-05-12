@@ -46,8 +46,9 @@ const IsSpeshwayRealOrFake = () => {
       "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
       "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd",
       "https://www.instagram.com/speshwaysolutionsofficial/",
-      "https://www.facebook.com/profile.php?id=61584485021568",
-      "https://www.instagram.com/speshway_solutions_hyderabad/"
+      "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
+      "https://x.com/SpeshwayM56509",
+      "https://www.youtube.com/@speshwaysolutions"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -167,7 +168,7 @@ const IsSpeshwayRealOrFake = () => {
             <Instagram className="w-5 h-5" /> Official Instagram Verification
           </h3>
           <p className="text-sm text-blue-700 mb-4">
-            Beware of fake Instagram accounts impersonating Speshway recruiters. Our official Instagram profiles are:
+            Beware of fake Instagram accounts impersonating Speshway recruiters. Our official Instagram profile is:
           </p>
           <ul className="list-none p-0 space-y-3">
             <li className="flex items-center gap-3">
@@ -179,15 +180,6 @@ const IsSpeshwayRealOrFake = () => {
                 <p className="text-xs text-blue-600">Main official handle for company news and global updates.</p>
               </div>
             </li>
-            <li className="flex items-center gap-3">
-              <div className="bg-white p-2 rounded-lg border border-blue-200">
-                <Instagram className="w-4 h-4 text-pink-600" />
-              </div>
-              <div>
-                <a href="https://www.instagram.com/speshway_solutions_hyderabad/" target="_blank" rel="noopener noreferrer me" className="font-bold text-blue-900 hover:underline">@speshway_solutions_hyderabad</a>
-                <p className="text-xs text-blue-600">Specific handle for T-Hub office culture and local recruitment.</p>
-              </div>
-            </li>
           </ul>
           <p className="text-xs text-blue-600 mt-4 italic">
             * All official Speshway Instagram posts will have high-quality content and link back to speshway.com.
@@ -197,8 +189,10 @@ const IsSpeshwayRealOrFake = () => {
         <div className="flex flex-wrap gap-4 my-8 not-prose">
              <a href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> LinkedIn</a>
              <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Quora (Official)</a>
-             <a href="https://www.facebook.com/profile.php?id=61584485021568" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
-          </div>
+             <a href="https://www.facebook.com/people/Speshway-Solutions/61584485021568/" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
+             <a href="https://x.com/SpeshwayM56509" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Twitter (X)</a>
+             <a href="https://www.youtube.com/@speshwaysolutions" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> YouTube</a>
+        </div>
 
         <div className="bg-primary text-primary-foreground p-8 rounded-2xl my-12 text-center not-prose">
           <h3 className="text-2xl font-bold mb-4">Still Have Doubts? Verify Directly</h3>

@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import api from "@/lib/api";
 import { FadeIn, StaggerContainer, StaggerItem, HoverScale, ScrollReveal } from "@/components/animations";
 import { Helmet } from "react-helmet-async";
+import { SEO_KEYWORDS } from "@/lib/seo-utils";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -82,11 +83,17 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Contact Us | Official Speshway Solutions | T-Hub Hyderabad | Software Company in Hyderabad</title>
-        <meta name="description" content="Contact the official Speshway Solutions team at T-Hub Hyderabad. Get in touch for software development, app development, and IT consulting.Get a free consultation for your project today. Follow @speshwaysolutionsofficial." />
-        <meta name="keywords" content="Speshway contact, software company near me, IT consultation Hyderabad,official speshway solutions, software company hyderabad, IT consultation,mobile app development company in Hyderaba, T-Hub office, official instagram @speshwaysolutionsofficial,best web developers in Hyderabad,cybersecurity company Hyderabad,,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
+        <title>Contact Us | {SEO_KEYWORDS.seoTitles[3]} | T-Hub Hyderabad</title>
+        <meta name="description" content="Contact the official Speshway Solutions team at T-Hub Hyderabad. Get in touch for software development, app development, and IT consulting. Get a free consultation for your project today." />
+        <meta name="keywords" content={[
+          ...SEO_KEYWORDS.googleBusiness.slice(0, 5),
+          ...SEO_KEYWORDS.highRanking.slice(0, 5),
+          "Speshway contact",
+          "software company near me",
+          "IT consultation Hyderabad"
+        ].join(", ")} />
         <link rel="canonical" href="https://speshway.com/contact" />
-        <meta property="og:title" content="Contact Official Speshway Solutions" />
+        <meta property="og:title" content={`Contact Official Speshway Solutions | ${SEO_KEYWORDS.seoTitles[3]}`} />
         <meta property="og:description" content="Get a free consultation with the official best software company in Hyderabad at T-Hub." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://speshway.com/contact" />
@@ -94,6 +101,11 @@ const Contact = () => {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Contact Speshway Solutions" />
         <meta name="twitter:description" content="Get a free consultation with our experts." />
+        <link rel="me" href="https://www.facebook.com/people/Speshway-Solutions/61584485021568/" />
+        <link rel="me" href="https://x.com/SpeshwayM56509" />
+        <link rel="me" href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" />
+        <link rel="me" href="https://www.instagram.com/speshwaysolutionsofficial/" />
+        <link rel="me" href="https://www.youtube.com/@speshwaysolutions" />
         <script type="application/ld+json">{JSON.stringify({
           "@context":"https://schema.org",
           "@type":"ContactPage",
@@ -129,7 +141,14 @@ const Contact = () => {
               "@type": "GeoCoordinates",
               "latitude": "17.4340",
               "longitude": "78.3844"
-            }
+            },
+            "sameAs": [
+              "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
+              "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
+              "https://x.com/SpeshwayM56509",
+              "https://www.instagram.com/speshwaysolutionsofficial/",
+              "https://www.youtube.com/@speshwaysolutions"
+            ]
           }
         })}</script>
       </Helmet>
@@ -177,6 +196,35 @@ const Contact = () => {
               </StaggerItem>
             ))}
           </StaggerContainer>
+        </div>
+      </section>
+
+      {/* Social Media Links */}
+      <section className="py-12 bg-secondary/10">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">Connect With Us</h2>
+            <p className="text-sm sm:text-base text-muted-foreground mb-8">Follow our official channels for more updates</p>
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+              {[
+                { name: "LinkedIn", url: "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/", color: "bg-[#0077b5]" },
+                { name: "Instagram", url: "https://www.instagram.com/speshwaysolutionsofficial/", color: "bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888]" },
+                { name: "Facebook", url: "https://www.facebook.com/people/Speshway-Solutions/61584485021568/", color: "bg-[#1877f2]" },
+                { name: "Twitter", url: "https://x.com/SpeshwayM56509", color: "bg-[#000000]" },
+                { name: "YouTube", url: "https://www.youtube.com/@speshwaysolutions", color: "bg-[#ff0000]" }
+              ].map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${social.color} text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-bold text-sm sm:text-base hover:opacity-90 transition-opacity flex items-center gap-2`}
+                >
+                  {social.name}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

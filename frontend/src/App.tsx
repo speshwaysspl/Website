@@ -73,28 +73,17 @@ const PageLoader = () => (
 const RouterViews = () => {
   const location = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, [location.pathname]);
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
-        <Route path="/aboutus" element={<Navigate to="/about" replace />} />
-        <Route path="/about-us" element={<Navigate to="/about" replace />} />
-        <Route path="/about.php" element={<Navigate to="/about" replace />} />
         <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
-        <Route path="/service" element={<Navigate to="/services" replace />} />
-        <Route path="/services.php" element={<Navigate to="/services" replace />} />
         <Route path="/projects" element={<PageTransition><Portfolio /></PageTransition>} />
-        <Route path="/projects.php" element={<Navigate to="/projects" replace />} />
-        <Route path="/portfolio" element={<Navigate to="/projects" replace />} />
-        <Route path="/portfolio.php" element={<Navigate to="/projects" replace />} />
         <Route path="/team" element={<PageTransition><Team /></PageTransition>} />
         <Route path="/career" element={<PageTransition><Career /></PageTransition>} />
-        <Route path="/careers" element={<Navigate to="/career" replace />} />
-        <Route path="/career.php" element={<Navigate to="/career" replace />} />
-        <Route path="/careers.php" element={<Navigate to="/career" replace />} />
         <Route path="/career/:id" element={<PageTransition><JobDetails /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/send-resume" element={<PageTransition><SendResume /></PageTransition>} />

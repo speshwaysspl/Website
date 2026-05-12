@@ -36,7 +36,7 @@ export const StaggerItem = ({ children, className }: StaggerItemProps) => {
   return (
     <m.div
       variants={{
-        hidden: { opacity: 0, y: 20 },
+        hidden: { opacity: 0, y: 10 },
         visible: { opacity: 1, y: 0 },
       }}
       className={className}

@@ -6,7 +6,7 @@ const { cloudinary } = require('../config/cloudinary');
 // @access  Public
 const getPortfolios = async (req, res) => {
   try {
-    const portfolios = await Portfolio.find().sort({ createdAt: -1 });
+    const portfolios = await Portfolio.find().sort({ index: 1, createdAt: -1 });
     res.json(portfolios);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -51,6 +51,7 @@ const createPortfolio = async (req, res) => {
         ? JSON.parse(req.body.results)
         : (Array.isArray(req.body.results) ? req.body.results : []),
       color: req.body.color || 'from-blue-500/20 to-cyan-500/20',
+      index: req.body.index ? Number(req.body.index) : 0,
       updatedAt: Date.now()
     };
 
@@ -116,6 +117,7 @@ const updatePortfolio = async (req, res) => {
         : (Array.isArray(req.body.results) ? req.body.results : []);
     }
     if (req.body.color) portfolio.color = req.body.color;
+    if (typeof req.body.index !== 'undefined') portfolio.index = Number(req.body.index) || 0;
     
     // Handle new image upload
     if (req.file) {

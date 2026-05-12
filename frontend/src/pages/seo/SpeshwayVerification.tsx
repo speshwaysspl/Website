@@ -41,8 +41,10 @@ const SpeshwayVerification = () => {
     "sameAs": [
       "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
       "https://www.instagram.com/speshwaysolutionsofficial/",
-      "https://www.facebook.com/profile.php?id=61584485021568",
-      "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd"
+      "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
+      "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd",
+      "https://x.com/SpeshwayM56509",
+      "https://www.youtube.com/@speshwaysolutions"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -186,7 +188,9 @@ const SpeshwayVerification = () => {
              <a href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> LinkedIn</a>
              <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Quora</a>
              <a href="https://www.instagram.com/speshwaysolutionsofficial/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Instagram</a>
-             <a href="https://www.facebook.com/profile.php?id=61584485021568" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
+             <a href="https://www.facebook.com/people/Speshway-Solutions/61584485021568/" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
+             <a href="https://x.com/SpeshwayM56509" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Twitter (X)</a>
+             <a href="https://www.youtube.com/@speshwaysolutions" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> YouTube</a>
           </div>
 
         <div className="bg-primary text-primary-foreground p-12 rounded-[3rem] my-16 text-center not-prose shadow-2xl relative overflow-hidden">

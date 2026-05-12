@@ -12,7 +12,7 @@ const FraudNotice = () => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Speshway Solutions: Real or Fake? | Official Verification & Fraud Alert</title>
-        <meta name="description" content="Is Speshway Solutions real or fake? Get official verification here. Learn how to identify fraudulent job offers and avoid recruitment scams. Speshway Solutions is a registered IT company in Hyderabad. Verify our official Instagram handles @speshwaysolutionsofficial and @speshway_solutions_hyderabad." />
+        <meta name="description" content="Is Speshway Solutions real or fake? Get official verification here. Learn how to identify fraudulent job offers and avoid recruitment scams. Speshway Solutions is a registered IT company in Hyderabad. Verify our official Instagram handle @speshwaysolutionsofficial." />
         <meta name="keywords" content="Speshway Solutions real or fake, is speshway real, speshway solutions legitimacy, speshway solutions fake, recruitment scam, Speshway Solutions, job offer verification, speshway solutions official verification, speshway hyderabad scam alert, speshway recruitment fraud, payment collection scam speshway, speshway solutions reviews, speshway solutions hyderabad real, speshway solutions authentic, speshway instagram official, speshway official handles" />
         <link rel="canonical" href="https://speshway.com/fraud-notice" />
         <meta property="og:title" content="Is Speshway Solutions Real or Fake? | Official Fraud Alert" />
@@ -23,8 +23,11 @@ const FraudNotice = () => {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Is Speshway Solutions Real or Fake? | Official Fraud Alert" />
         <meta name="twitter:description" content="Beware of fraudulent job offers and fake reports. Learn how to identify and report scams." />
+        <link rel="me" href="https://www.facebook.com/people/Speshway-Solutions/61584485021568/" />
+        <link rel="me" href="https://x.com/SpeshwayM56509" />
+        <link rel="me" href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" />
         <link rel="me" href="https://www.instagram.com/speshwaysolutionsofficial/" />
-        <link rel="me" href="https://www.instagram.com/speshway_solutions_hyderabad/" />
+         <link rel="me" href="https://www.youtube.com/@speshwaysolutions" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
@@ -32,11 +35,11 @@ const FraudNotice = () => {
           "url": "https://speshway.com/",
           "logo": "https://speshway.com/logo.png",
           "sameAs": [
-            "https://www.facebook.com/profile.php?id=61584485021568",
+            "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
             "https://x.com/SpeshwayM56509",
             "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
             "https://www.instagram.com/speshwaysolutionsofficial/",
-            "https://www.instagram.com/speshway_solutions_hyderabad/"
+            "https://www.youtube.com/@speshwaysolutions"
           ],
           "brand": {
             "@type": "Brand",
@@ -74,7 +77,7 @@ const FraudNotice = () => {
             "name": "Are the scam reports on social media about Speshway true?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Most reports of 'scams' on social media platforms like Instagram are based on fraudulent actors misusing our company name. We urge candidates to only trust official communications from @speshway.com and our official Instagram handles @speshwaysolutionsofficial and @speshway_solutions_hyderabad."
+              "text": "Most reports of 'scams' on social media platforms like Instagram are based on fraudulent actors misusing our company name. We urge candidates to only trust official communications from @speshway.com and our official Instagram handle @speshwaysolutionsofficial."
             }
           }]
         })}</script>
@@ -156,7 +159,7 @@ const FraudNotice = () => {
                   We have been alerted to unauthorized social media accounts making false "scam risk" claims about Speshway Solutions. These accounts are often misinformed or are intentionally spreading fake reports based on fraudulent job offers sent by <strong>third-party scammers</strong> misusing our name.
                 </p>
                 <p className="text-muted-foreground mb-6">
-                  To protect yourself, please follow **only** our official handles. Any other account or report claiming to represent us or labeling us as a "scam" based on unofficial communications is **fake**.
+                  To protect yourself, please follow **only** our official handle. Any other account or report claiming to represent us or labeling us as a "scam" based on unofficial communications is **fake**.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <a 
@@ -170,23 +173,8 @@ const FraudNotice = () => {
                       <Instagram size={24} />
                     </div>
                     <div>
-                      <div className="font-bold text-foreground text-sm">Official Main Handle</div>
+                      <div className="font-bold text-foreground text-sm">Official Instagram Handle</div>
                       <div className="text-primary font-medium text-xs">@speshwaysolutionsofficial</div>
-                    </div>
-                  </a>
-                  <a 
-                    href="https://www.instagram.com/speshway_solutions_hyderabad/" 
-                    target="_blank" 
-                    rel="noopener noreferrer me" 
-                    aria-label="Visit our Hyderabad office Instagram account"
-                    className="flex items-center gap-4 p-5 rounded-xl border-2 border-primary/20 bg-primary/5 hover:border-primary/50 hover:bg-primary/10 transition-all group"
-                  >
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] flex items-center justify-center text-white">
-                      <Instagram size={24} />
-                    </div>
-                    <div>
-                      <div className="font-bold text-foreground text-sm">Hyderabad Hub Handle</div>
-                      <div className="text-primary font-medium text-xs">@speshway_solutions_hyderabad</div>
                     </div>
                   </a>
                   <a 

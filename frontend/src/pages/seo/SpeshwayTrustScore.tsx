@@ -102,7 +102,9 @@ const SpeshwayTrustScore = () => {
       "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
       "https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd",
       "https://www.instagram.com/speshwaysolutionsofficial/",
-      "https://www.facebook.com/profile.php?id=61584485021568"
+      "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
+      "https://x.com/SpeshwayM56509",
+      "https://www.youtube.com/@speshwaysolutions"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",

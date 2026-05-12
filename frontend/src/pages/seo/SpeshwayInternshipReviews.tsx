@@ -32,7 +32,14 @@ const SpeshwayInternshipReviews = () => {
     "provider": {
       "@type": "Organization",
       "name": "Speshway Solutions Private Limited",
-      "sameAs": "https://speshway.com"
+      "sameAs": [
+        "https://speshway.com",
+        "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
+        "https://www.instagram.com/speshwaysolutionsofficial/",
+        "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
+        "https://x.com/SpeshwayM56509",
+        "https://www.youtube.com/@speshwaysolutions"
+      ]
     }
   };
 

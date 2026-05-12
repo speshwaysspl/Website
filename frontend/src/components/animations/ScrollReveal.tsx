@@ -6,6 +6,8 @@ interface ScrollRevealProps {
   className?: string;
   delay?: number;
   y?: number;
+  x?: number;
+  direction?: "up" | "down" | "left" | "right";
   once?: boolean;
   amount?: number;
 }
@@ -14,16 +16,28 @@ export const ScrollReveal = ({
   children,
   className,
   delay = 0,
-  y = 24,
+  y = 20,
+  x = 0,
+  direction = "up",
   once = true,
-  amount = 0.2,
+  amount = 0.1,
 }: ScrollRevealProps) => {
+  const getInitial = () => {
+    switch (direction) {
+      case "up": return { opacity: 0, y };
+      case "down": return { opacity: 0, y: -y };
+      case "left": return { opacity: 0, x: y };
+      case "right": return { opacity: 0, x: -y };
+      default: return { opacity: 0, y };
+    }
+  };
+
   return (
     <m.div
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={getInitial()}
+      whileInView={{ opacity: 1, y: 0, x: 0 }}
       viewport={{ once, amount }}
-      transition={{ duration: 0.6, delay, ease: "easeOut" }}
+      transition={{ duration: 0.5, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
       className={className}
     >
       {children}

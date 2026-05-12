@@ -111,21 +111,21 @@ const Portfolio = () => {
                     <ScrollParallaxItem direction={index % 2 === 0 ? "left" : "right"} intensity="strong">
                       <HoverScale>
                       <Card
-                        className="overflow-hidden bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all group h-[380px] sm:h-[400px] lg:h-[420px] flex flex-col"
+                        className="overflow-hidden bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all group h-[420px] sm:h-[450px] lg:h-[480px] flex flex-col"
                       >
                   {project.image?.url ? (
-                    <div className="h-64 sm:h-72 md:h-80 relative overflow-hidden bg-gradient-to-br from-background/20 to-background/10">
+                    <div className="aspect-[16/10] relative overflow-hidden bg-muted/30">
                       <img
                         src={getOptimizedImageUrl(project.image.url)}
                         alt={project.title}
                         width="800"
-                        height="600"
-                        className="w-full h-full object-contain object-center group-hover:scale-[1.02] transition-transform duration-500"
+                        height="450"
+                        className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent pointer-events-none" />
                     </div>
                   ) : (
-                    <div className={`h-64 sm:h-72 md:h-80 bg-gradient-to-br ${project.color || 'from-blue-500/20 to-cyan-500/20'} flex items-center justify-center relative overflow-hidden`}>
+                    <div className={`aspect-video bg-gradient-to-br ${project.color || 'from-blue-500/20 to-cyan-500/20'} flex items-center justify-center relative overflow-hidden`}>
                       <div className="absolute inset-0 bg-background/20" />
                       <div className="text-6xl font-bold text-primary/20 relative z-10">
                         {project.title.charAt(0)}
@@ -231,15 +231,15 @@ const Portfolio = () => {
               
               <div className="space-y-6">
                 {selectedProject.image?.url && (
-                  <div className="w-full h-72 rounded-lg overflow-hidden bg-gradient-to-br from-background/20 to-background/10">
-                    <img
-                      src={getOptimizedImageUrl(selectedProject.image.url)}
-                      alt={selectedProject.title}
-                      width="800"
-                      height="600"
-                      className="w-full h-full object-contain object-center"
-                    />
-                  </div>
+                  <div className="aspect-[16/10] relative rounded-lg overflow-hidden mb-6 bg-muted/20">
+                      <img
+                        src={getOptimizedImageUrl(selectedProject.image.url)}
+                        alt={selectedProject.title}
+                        width="800"
+                        height="450"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                 )}
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Project Overview</h3>

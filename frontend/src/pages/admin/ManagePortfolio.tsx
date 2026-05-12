@@ -35,7 +35,8 @@ const ManagePortfolio = () => {
     color: 'from-blue-500/20 to-cyan-500/20',
     status: 'upcoming',
     demoUrl: '',
-    features: ''
+    features: '',
+    index: 0
   });
   const [results, setResults] = useState<{ value: string; label: string }[]>([]);
   const { toast } = useToast();
@@ -123,7 +124,8 @@ const ManagePortfolio = () => {
       color: 'from-blue-500/20 to-cyan-500/20',
       status: 'upcoming',
       demoUrl: '',
-      features: ''
+      features: '',
+      index: 0
     });
     setEditingPortfolio(null);
     setSelectedImage(null);
@@ -141,7 +143,8 @@ const ManagePortfolio = () => {
       color: portfolio.color || 'from-blue-500/20 to-cyan-500/20',
       status: portfolio.status || 'upcoming',
       demoUrl: portfolio.demoUrl || '',
-      features: (portfolio.features || []).join('\n')
+      features: (portfolio.features || []).join('\n'),
+      index: portfolio.index || 0
     });
     setImagePreview(portfolio.image?.url || null);
     setSelectedImage(null);
@@ -226,6 +229,7 @@ const ManagePortfolio = () => {
     formDataToSend.append('color', formData.color);
     formDataToSend.append('status', formData.status);
     formDataToSend.append('demoUrl', formData.demoUrl);
+    formDataToSend.append('index', formData.index.toString());
     formDataToSend.append('features', JSON.stringify(formData.features.split('\n').map(f => f.trim()).filter(f => f)));
     formDataToSend.append('results', JSON.stringify(results.filter(r => r.value && r.label)));
     
@@ -315,6 +319,16 @@ const ManagePortfolio = () => {
                         id="title"
                         value={formData.title}
                         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="index">Index (Order of visibility)</Label>
+                      <Input
+                        id="index"
+                        type="number"
+                        value={formData.index}
+                        onChange={(e) => setFormData({ ...formData, index: parseInt(e.target.value) || 0 })}
                         required
                       />
                     </div>
@@ -429,9 +443,7 @@ const ManagePortfolio = () => {
                           <img
                             src={imagePreview}
                             alt="Preview"
-                            width="800"
-                            height="600"
-                            className="w-full h-64 object-contain rounded-lg border border-border bg-gradient-to-br from-background/20 to-background/10"
+                            className="w-full aspect-[16/10] object-cover rounded-lg border border-border bg-muted/30"
                           />
                           <Button
                             type="button"
@@ -498,7 +510,7 @@ const ManagePortfolio = () => {
                         image={imagePreview}
                         crop={crop}
                         zoom={zoom}
-                        aspect={4 / 5}
+                        aspect={16 / 10}
                         cropShape="rect"
                         showGrid={false}
                         onCropChange={setCrop}
@@ -528,19 +540,26 @@ const ManagePortfolio = () => {
               {portfolios?.map((portfolio: any) => (
                 <Card key={portfolio._id} className="bg-card/50 backdrop-blur-sm border-border overflow-hidden">
                   {portfolio.image?.url && (
-                    <div className="w-full h-56 overflow-hidden bg-gradient-to-br from-background/20 to-background/10">
+                    <div className="w-full aspect-[16/10] overflow-hidden bg-muted/30">
                       <img
                         src={getOptimizedImageUrl(portfolio.image.url)}
                         alt={portfolio.title}
                         width="800"
-                        height="600"
-                        className="w-full h-full object-contain object-center"
+                        height="450"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                   )}
                   <CardHeader>
-                    <CardTitle>{portfolio.title}</CardTitle>
-                    <CardDescription>{portfolio.category}</CardDescription>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <CardTitle>{portfolio.title}</CardTitle>
+                        <CardDescription>{portfolio.category}</CardDescription>
+                      </div>
+                      <span className="text-xs font-mono bg-primary/10 text-primary px-2 py-1 rounded">
+                        Index: {portfolio.index || 0}
+                      </span>
+                    </div>
                   </CardHeader>
                   <CardContent>
                     <div className="mb-2">

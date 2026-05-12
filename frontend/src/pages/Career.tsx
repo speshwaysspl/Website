@@ -8,6 +8,7 @@ import { ScrollReveal } from "@/components/animations";
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
 import { Helmet } from "react-helmet-async";
+import { SEO_KEYWORDS } from "@/lib/seo-utils";
 
 const Career = () => {
   const { data: jobs } = useQuery({
@@ -50,11 +51,18 @@ const Career = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Careers | Official Speshway Solutions | Join T-Hub Hyderabad Team</title>
+        <title>Careers | Official Speshway Solutions | {SEO_KEYWORDS.googleBusiness[5]} in Hyderabad</title>
         <meta name="description" content="Join the official team at Speshway Solutions, T-Hub Hyderabad. Verify official job alerts and avoid recruitment scams. Speshway Solutions never charges for job offers." />
-        <meta name="keywords" content="Speshway careers, official speshway solutions, jobs in hyderabad, T-Hub jobs, software engineer jobs, speshway recruitment scam alert, verify speshway jobs" />
+        <meta name="keywords" content={[
+          ...SEO_KEYWORDS.website.slice(0, 3),
+          ...SEO_KEYWORDS.googleBusiness.slice(5, 8),
+          "Speshway careers",
+          "official speshway solutions",
+          "jobs in hyderabad",
+          "T-Hub jobs"
+        ].join(", ")} />
         <link rel="canonical" href="https://speshway.com/career" />
-        <meta property="og:title" content="Careers | Official Speshway Solutions" />
+        <meta property="og:title" content={`Careers | Official Speshway Solutions | ${SEO_KEYWORDS.googleBusiness[5]}`} />
         <meta property="og:description" content="Join the official best software company in Hyderabad at T-Hub. Browse open positions." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://speshway.com/career" />

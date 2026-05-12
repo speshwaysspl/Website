@@ -377,7 +377,7 @@ const ManageGallery = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {galleryItems.map((item) => (
                   <Card key={item._id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                    <div className="aspect-video relative">
+                    <div className="aspect-[16/10] relative bg-muted/20">
                       <img 
                         src={item.image.url} 
                         alt={item.title}

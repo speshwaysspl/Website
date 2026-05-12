@@ -7,7 +7,165 @@ export interface SpeshwayInternalLinkPage {
   isTopVerified?: boolean;
 }
 
+export const SEO_KEYWORDS = {
+  primary: [
+    "App Development Company in Hyderabad",
+    "Website Development Company in Hyderabad",
+    "Software Development Company in Hyderabad",
+    "Mobile App Developers Hyderabad",
+    "Web Development Services Hyderabad",
+    "Best IT Company in Hyderabad",
+    "Hyderabad Software Solutions",
+    "Custom Software Development Hyderabad",
+    "Hyderabad Web Designers",
+    "Hyderabad App Developers"
+  ],
+  mobile: [
+    "Android App Development Hyderabad",
+    "iOS App Development Hyderabad",
+    "Flutter App Development Hyderabad",
+    "React Native Development Hyderabad",
+    "Mobile App Design Hyderabad",
+    "Hybrid App Development Hyderabad",
+    "Native App Developers Hyderabad",
+    "Enterprise Mobile Apps Hyderabad",
+    "Startup App Development Hyderabad",
+    "Ecommerce App Development Hyderabad",
+    "Taxi Booking App Hyderabad",
+    "Food Delivery App Development Hyderabad",
+    "Car Service App Development Hyderabad",
+    "On Demand App Development Hyderabad",
+    "SaaS App Development Hyderabad"
+  ],
+  website: [
+    "Website Design Company Hyderabad",
+    "Responsive Website Development Hyderabad",
+    "Ecommerce Website Hyderabad",
+    "Corporate Website Design Hyderabad",
+    "Business Website Development Hyderabad",
+    "SEO Website Development Hyderabad",
+    "MERN Stack Developers Hyderabad",
+    "React.js Developers Hyderabad",
+    "Node.js Developers Hyderabad",
+    "Full Stack Developers Hyderabad",
+    "Dynamic Website Development Hyderabad",
+    "Custom Web Applications Hyderabad",
+    "Landing Page Design Hyderabad",
+    "Portfolio Website Developers Hyderabad",
+    "Professional Web Designers Hyderabad"
+  ],
+  software: [
+    "HRMS Software Development Hyderabad",
+    "CRM Software Hyderabad",
+    "ERP Development Hyderabad",
+    "Payroll Management Software Hyderabad",
+    "Attendance Management System Hyderabad",
+    "Face Recognition Attendance Hyderabad",
+    "Automation Software Hyderabad",
+    "Business Management Software Hyderabad",
+    "Admin Dashboard Development Hyderabad",
+    "Custom Business Applications Hyderabad"
+  ],
+  highRanking: [
+    "Best App Development Company Hyderabad",
+    "Top Web Development Company Hyderabad",
+    "Affordable Website Developers Hyderabad",
+    "Professional App Developers Hyderabad",
+    "Best Software Company Near Hitech City",
+    "Trusted IT Services Hyderabad",
+    "Scalable Web Applications Hyderabad",
+    "Startup Technology Partner Hyderabad",
+    "Modern UI UX Designers Hyderabad",
+    "SEO Friendly Website Hyderabad"
+  ],
+  areaBased: [
+    "App Developers in Hitech City",
+    "Website Company in Madhapur",
+    "Software Company in Gachibowli",
+    "IT Company near Kukatpally",
+    "Web Designers in Jubilee Hills",
+    "Mobile App Developers in Kondapur",
+    "Software Services in Banjara Hills",
+    "Website Development in Ameerpet",
+    "IT Solutions in Begumpet",
+    "Web Development near Financial District Hyderabad"
+  ],
+  googleBusiness: [
+    "Hyderabad IT Services",
+    "Software Company Near Me",
+    "Web Design Company Near Me",
+    "Mobile App Development Near Me",
+    "Website Designers Hyderabad Telangana",
+    "Best Developers in Hyderabad",
+    "IT Startup Hyderabad",
+    "Business Website Hyderabad",
+    "Digital Services Hyderabad",
+    "Online Software Solutions Hyderabad"
+  ],
+  longTail: [
+    "Best mobile app development company in Hyderabad",
+    "Affordable website development services in Hyderabad",
+    "Custom software development company Hyderabad",
+    "Professional ecommerce website developers Hyderabad",
+    "HRMS software development services Hyderabad",
+    "Flutter app developers in Hyderabad Telangana",
+    "React and Node.js developers Hyderabad",
+    "SEO optimized website development Hyderabad",
+    "Startup MVP development company Hyderabad",
+    "End to end software development Hyderabad"
+  ],
+  seoTitles: [
+    "Best App Development Company in Hyderabad",
+    "Top Website Development Services in Hyderabad",
+    "Custom Software Solutions in Hyderabad",
+    "Professional Mobile App Developers Hyderabad",
+    "Leading IT Company in Hyderabad"
+  ]
+};
+
 export const SPESHWAY_INTERNAL_LINK_PAGES: SpeshwayInternalLinkPage[] = [
+  {
+    url: "/",
+    name: "Home",
+    slug: "home",
+    anchors: ["Official Speshway Solutions Home", "Speshway Solutions IT Services Hyderabad", "Best IT Company in Hyderabad"]
+  },
+  {
+    url: "/about",
+    name: "About Us",
+    slug: "about",
+    anchors: ["About Speshway Solutions", "Speshway Company Profile", "Who is Speshway Solutions?"]
+  },
+  {
+    url: "/services",
+    name: "Our Services",
+    slug: "services",
+    anchors: ["IT Services Hyderabad", "Software Development Services", "Mobile App Development Hyderabad"]
+  },
+  {
+    url: "/projects",
+    name: "Portfolio",
+    slug: "projects",
+    anchors: ["Speshway Solutions Portfolio", "Our Success Stories", "Recent Projects by Speshway"]
+  },
+  {
+    url: "/blog",
+    name: "Blog & Insights",
+    slug: "blog",
+    anchors: ["Speshway Solutions Blog", "Latest IT Insights", "Software Development News"]
+  },
+  {
+    url: "/career",
+    name: "Careers",
+    slug: "career",
+    anchors: ["Jobs at Speshway Solutions", "Join Our Team", "Speshway Careers Hyderabad"]
+  },
+  {
+    url: "/contact",
+    name: "Contact Us",
+    slug: "contact",
+    anchors: ["Contact Speshway Solutions", "Get a Quote", "Speshway Office Location"]
+  },
   {
     url: "/is-speshway-real-or-fake",
     name: "Is Speshway Real or Fake?",
@@ -54,9 +212,10 @@ export const SPESHWAY_INTERNAL_LINK_PAGES: SpeshwayInternalLinkPage[] = [
     name: "Speshway Hyderabad Company Review",
     slug: "speshway-hyderabad-company-review",
     anchors: [
-      "Read detailed Hyderabad company review of Speshway",
       "Check authentic reviews of Speshway in Hyderabad",
-      "Explore Hyderabad-focused review of Speshway Solutions"
+      "Explore Hyderabad-focused review of Speshway Solutions",
+      "Best IT Company in Hyderabad reviews",
+      "Top Web Development Company Hyderabad feedback"
     ]
   },
   {
@@ -196,7 +355,9 @@ export const SPESHWAY_INTERNAL_LINK_PAGES: SpeshwayInternalLinkPage[] = [
     anchors: [
       "Explore Speshway Solutions technology stack and services",
       "What technologies does Speshway Solutions use?",
-      "Deep dive into Speshway Solutions IT services"
+      "Deep dive into Speshway Solutions IT services",
+      "Custom Software Development Hyderabad technology",
+      "MERN Stack Developers Hyderabad expertise"
     ]
   },
   {

@@ -41,6 +41,10 @@ const portfolioSchema = new mongoose.Schema({
     type: String,
     default: 'from-blue-500/20 to-cyan-500/20'
   },
+  index: {
+    type: Number,
+    default: 0
+  },
   image: {
     url: {
       type: String,

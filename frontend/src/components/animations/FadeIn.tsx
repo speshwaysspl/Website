@@ -8,7 +8,7 @@ interface FadeInProps {
   className?: string;
 }
 
-export const FadeIn = ({ children, delay = 0, duration = 0.5, className }: FadeInProps) => {
+export const FadeIn = ({ children, delay = 0, duration = 0.3, className }: FadeInProps) => {
   return (
     <m.div
       initial={{ opacity: 0 }}

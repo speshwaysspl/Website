@@ -36,7 +36,18 @@ const JobDetails = () => {
           "description": job?.description || '',
           "datePosted": job?.postedAt || new Date().toISOString(),
           "employmentType": job?.type || 'FULL_TIME',
-          "hiringOrganization": {"@type":"Organization","name":"Speshway Solutions","sameAs":"https://speshway.com/"},
+          "hiringOrganization": {
+            "@type":"Organization",
+            "name":"Speshway Solutions Private Limited",
+            "sameAs": [
+              "https://speshway.com/",
+              "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
+              "https://www.instagram.com/speshwaysolutionsofficial/",
+              "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
+              "https://x.com/SpeshwayM56509",
+              "https://www.youtube.com/@speshwaysolutions"
+            ]
+          },
           "jobLocation": job?.location ? {"@type":"Place","address":{"@type":"PostalAddress","addressLocality": job.location}} : undefined,
           "applicantLocationRequirements": {"@type":"Country","name":"India"}
         })}</script>

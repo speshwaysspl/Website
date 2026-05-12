@@ -10,6 +10,7 @@ import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, Scroll
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { SEO_KEYWORDS } from "@/lib/seo-utils";
 
 // Icon mapping
 const iconMap: { [key: string]: any } = {
@@ -61,11 +62,18 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>IT Services in Hyderabad | Official Speshway Solutions | T-Hub | Services | Speshway Solutions | Top Software Company in Hyderabad</title>
-        <meta name="description" content="Explore official IT services from Speshway Solutions at T-Hub Hyderabad: custom software, mobile apps, and cloud solutions. Verify us on Instagram @speshwaysolutionsofficial." />
-        <meta name="keywords" content="Speshway services, official speshway solutions,software company near me, custom software development, mobile app development, software company hyderabad,best IT services Hyderabad, software engineer Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad, custom software development, mobile app development,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad, top-rated IT consultancy Hyderabad,T-Hub IT services, official instagram @speshwaysolutionsofficial" />
+        <title>Speshway services |{SEO_KEYWORDS.seoTitles[0]} | Official Speshway Solutions | T-Hub</title>
+        <meta name="description" content="Explore official IT services from Speshway Solutions at T-Hub Hyderabad: custom software, mobile apps, and cloud solutions. Best IT Company in Hyderabad for professional digital services." />
+        <meta name="keywords" content={[
+          ...SEO_KEYWORDS.website,
+          ...SEO_KEYWORDS.mobile,
+          ...SEO_KEYWORDS.software,
+          "Speshway services",
+          "official speshway solutions",
+          "T-Hub IT services"
+        ].join(", ")} />
         <link rel="canonical" href="https://speshway.com/services" />
-        <meta property="og:title" content="IT Services | Official Speshway Solutions | Hyderabad" />
+        <meta property="og:title" content={`IT Services | ${SEO_KEYWORDS.seoTitles[1]} | Hyderabad`} />
         <meta property="og:description" content="Official IT solutions at T-Hub Hyderabad: Software, App, Web Development, DevOps & Testing." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://speshway.com/services" />
@@ -156,13 +164,12 @@ const Services = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
         <div className="container mx-auto px-4 relative z-10">
           <ScrollReveal>
-            <div className="max-w-3xl mx-auto text-center">
+            <div className="max-w-3xl mx-auto text-center mb-16">
               <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
-                Our <span className="text-primary">Services</span>
+                Our <span className="text-primary">{SEO_KEYWORDS.primary[4]}</span>
               </h1>
               <p className="text-xl text-muted-foreground">
-                Comprehensive IT solutions tailored to your business needs. From development to deployment, we've got you
-                covered.
+                As a {SEO_KEYWORDS.highRanking[4]}, we provide comprehensive solutions including {SEO_KEYWORDS.mobile[0]}, {SEO_KEYWORDS.website[0]}, and {SEO_KEYWORDS.software[0]}.
               </p>
             </div>
           </ScrollReveal>
@@ -231,14 +238,13 @@ const Services = () => {
         <div className="container mx-auto px-4 relative z-10">
           <ScrollParallaxItem direction="left" intensity="strong">
           <Card className="p-12 bg-card/80 backdrop-blur-sm border-border text-center max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Need a Custom Solution?</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-4">Looking for the {SEO_KEYWORDS.highRanking[4]}?</h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Don't see exactly what you're looking for? We specialize in creating custom solutions tailored to your
-              unique requirements.
+              Whether you need {SEO_KEYWORDS.longTail[2]} or {SEO_KEYWORDS.longTail[8]}, we are here to help you scale.
             </p>
             <Link to="/contact">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-                Discuss Your Project
+                Get a Free Consultation
               </Button>
             </Link>
           </Card>

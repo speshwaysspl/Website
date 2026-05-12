@@ -25,8 +25,8 @@ const SpeshwayVsFakeRecruiters = () => {
   return (
     <SEOLayout
       title="Speshway Solutions vs Fake Recruiters: The Full 2026 Guide"
-      description="A complete guide on Speshway Solutions vs fake recruiters. Learn how to distinguish genuine job offers from Speshway from fraudulent ones and verify official Instagram handles."
-      keywords="Speshway Solutions vs Fake Recruiters, speshway scam, speshway fake, is speshway legit, verify speshway offer, speshway official instagram, speshway instagram handles"
+      description="A complete guide on Speshway Solutions vs fake recruiters. Learn how to distinguish genuine job offers from Speshway from fraudulent ones and verify official Instagram handle."
+      keywords="Speshway Solutions vs Fake Recruiters, speshway scam, speshway fake, is speshway legit, verify speshway offer, speshway official instagram handle"
       canonical="/speshwayvsfakerecruiters"
       h1="Speshway Solutions vs Fake Recruiters – Full Guide"
       faqItems={faqItems}
@@ -57,21 +57,14 @@ const SpeshwayVsFakeRecruiters = () => {
           </p>
           <h2 className="text-2xl font-bold mt-10 mb-6">Official Social Media Presence</h2>
           <p>
-            To stay safe from impersonators, only trust our verified social media handles. Our official Instagram profiles are where we share real-time updates about our work culture and team activities.
+            To stay safe from impersonators, only trust our verified social media handle. Our official Instagram profile is where we share real-time updates about our work culture and team activities.
           </p>
-          <div className="grid sm:grid-cols-2 gap-4 my-8 not-prose">
+          <div className="grid gap-4 my-8 not-prose">
             <a href="https://www.instagram.com/speshwaysolutionsofficial/" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
               <Instagram className="w-5 h-5 text-pink-600" />
               <div className="flex flex-col">
                 <span className="font-bold text-sm">Main Official Handle</span>
                 <span className="text-xs text-muted-foreground">@speshwaysolutionsofficial</span>
-              </div>
-            </a>
-            <a href="https://www.instagram.com/speshway_solutions_hyderabad/" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
-              <Instagram className="w-5 h-5 text-pink-600" />
-              <div className="flex flex-col">
-                <span className="font-bold text-sm">Hyderabad Hub Handle</span>
-                <span className="text-xs text-muted-foreground">@speshway_solutions_hyderabad</span>
               </div>
             </a>
           </div>

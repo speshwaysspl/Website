@@ -192,13 +192,13 @@ const Gallery = () => {
     return (
       <Link to={`/blog/${item._id}`} className="block">
       <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group h-full">
-        <div className="aspect-video relative overflow-hidden">
+        <div className="aspect-[16/10] relative overflow-hidden bg-muted/20">
           <img 
             src={getOptimizedImageUrl(item.image.url)} 
             alt={item.title}
             width="400"
             height="300"
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             onError={handleImageError}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -243,7 +243,7 @@ const Gallery = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {[...Array(8)].map((_, i) => (
         <Card key={i} className="overflow-hidden">
-          <Skeleton className="aspect-video" />
+          <Skeleton className="aspect-[16/10]" />
           <CardHeader>
             <Skeleton className="h-4 w-3/4 mb-2" />
             <Skeleton className="h-3 w-full mb-1" />

@@ -59,19 +59,12 @@ const ScammersMisusingNames = () => {
           <p>
             To stay safe from impersonators, only trust our verified social media handles. Our official Instagram profiles are where we share real-time updates about our work culture and team activities.
           </p>
-          <div className="grid sm:grid-cols-2 gap-4 my-8 not-prose">
+          <div className="grid sm:grid-cols-1 gap-4 my-8 not-prose max-w-sm">
             <a href="https://www.instagram.com/speshwaysolutionsofficial/" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
               <Instagram className="w-5 h-5 text-pink-600" />
               <div className="flex flex-col">
-                <span className="font-bold text-sm">Main Official Handle</span>
+                <span className="font-bold text-sm">Official Instagram Handle</span>
                 <span className="text-xs text-muted-foreground">@speshwaysolutionsofficial</span>
-              </div>
-            </a>
-            <a href="https://www.instagram.com/speshway_solutions_hyderabad/" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
-              <Instagram className="w-5 h-5 text-pink-600" />
-              <div className="flex flex-col">
-                <span className="font-bold text-sm">Hyderabad Hub Handle</span>
-                <span className="text-xs text-muted-foreground">@speshway_solutions_hyderabad</span>
               </div>
             </a>
           </div>

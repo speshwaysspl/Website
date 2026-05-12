@@ -1,5 +1,5 @@
 import SEOLayout from "@/components/SEOLayout";
-import { Mail, Phone, MapPin, Globe, Clock, MessageSquare, Instagram, Linkedin, Facebook } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, Clock, MessageSquare, Instagram, Linkedin, Facebook, Twitter, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const SpeshwayOfficialContact = () => {
@@ -100,9 +100,17 @@ const SpeshwayOfficialContact = () => {
             <Linkedin className="w-5 h-5 text-blue-700" />
             <span className="font-bold text-sm">LinkedIn</span>
           </a>
-          <a href="https://www.facebook.com/profile.php?id=61584485021568" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
+          <a href="https://www.facebook.com/people/Speshway-Solutions/61584485021568/" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
             <Facebook className="w-5 h-5 text-blue-600" />
             <span className="font-bold text-sm">Facebook</span>
+          </a>
+          <a href="https://x.com/SpeshwayM56509" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
+            <Twitter className="w-5 h-5 text-black" />
+            <span className="font-bold text-sm">Twitter (X)</span>
+          </a>
+          <a href="https://www.youtube.com/@speshwaysolutions" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
+            <Youtube className="w-5 h-5 text-red-600" />
+            <span className="font-bold text-sm">YouTube</span>
           </a>
         </div>
         <p className="text-sm text-muted-foreground mb-10">

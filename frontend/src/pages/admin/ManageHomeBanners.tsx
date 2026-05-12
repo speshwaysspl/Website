@@ -170,12 +170,12 @@ const ManageHomeBanners = () => {
                       <CardDescription>Order: {banner.order}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <div className="relative w-full h-48 rounded-md overflow-hidden border">
+                      <div className="relative w-full aspect-[16/10] rounded-md overflow-hidden border bg-muted/20">
                         <img 
                           src={banner.image.url} 
                           alt={banner.title} 
                           width="400"
-                          height="192"
+                          height="225"
                           className="w-full h-full object-cover object-center" 
                         />
                       </div>
