@@ -112,15 +112,19 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Speshway services | {SEO_KEYWORDS.seoTitles[0]} | Official Speshway Solutions | T-Hub</title>
-        <meta name="description" content="Explore official IT services from Speshway Solutions at T-Hub Hyderabad: custom software, mobile apps, and cloud solutions. Best IT Company in Hyderabad for professional digital services." />
+        <title>IT Services in Hyderabad | {SEO_KEYWORDS.seoTitles[0]} | Speshway Solutions</title>
+        <meta name="description" content={`Discover professional IT services from Speshway Solutions at T-Hub Hyderabad. We specialize in ${SEO_KEYWORDS.seoTitles[0]}, ${SEO_KEYWORDS.primary[0]}, and ${SEO_KEYWORDS.primary[1]}. Best IT Company in Hyderabad.`} />
         <meta name="keywords" content={[
+          ...SEO_KEYWORDS.seoTitles,
+          ...SEO_KEYWORDS.primary,
+          ...SEO_KEYWORDS.seoKeywords,
           ...SEO_KEYWORDS.website,
           ...SEO_KEYWORDS.mobile,
           ...SEO_KEYWORDS.software,
           "Speshway services",
           "official speshway solutions",
-          "T-Hub IT services"
+          "T-Hub IT services",
+          "SEO_KEYWORDS"
         ].join(", ")} />
         <link rel="canonical" href="https://speshway.com/services" />
         <meta property="og:title" content={`IT Services | ${SEO_KEYWORDS.seoTitles[1]} | Hyderabad`} />

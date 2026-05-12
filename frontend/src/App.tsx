@@ -63,6 +63,7 @@ const SpeshwayClientSuccess = lazy(() => import("./pages/seo/SpeshwayClientSucce
 const SpeshwaySecurityMeasures = lazy(() => import("./pages/seo/SpeshwaySecurityMeasures"));
 const SpeshwayHyderabadOfficeTour = lazy(() => import("./pages/seo/SpeshwayHyderabadOfficeTour"));
 const SpeshwayCompanyAwards = lazy(() => import("./pages/seo/SpeshwayCompanyAwards"));
+const KeywordLandingPage = lazy(() => import("./pages/seo/KeywordLandingPage"));
 
 const PageLoader = () => (
   <div className="flex items-center justify-center min-h-screen">
@@ -121,6 +122,9 @@ const RouterViews = () => {
         <Route path="/speshway-solutions-data-security-and-privacy-policy" element={<PageTransition><SpeshwaySecurityMeasures /></PageTransition>} />
         <Route path="/speshway-solutions-hyderabad-office-location-tour" element={<PageTransition><SpeshwayHyderabadOfficeTour /></PageTransition>} />
         <Route path="/speshway-solutions-company-awards-and-recognition" element={<PageTransition><SpeshwayCompanyAwards /></PageTransition>} />
+
+        {/* Dynamic Keyword Landing Pages */}
+        <Route path="/:slug" element={<PageTransition><KeywordLandingPage /></PageTransition>} />
 
         {/* Legacy SEO Redirects */}
         <Route path="/is-speshway-solutions-real" element={<Navigate to="/is-speshway-real-or-fake" replace />} />

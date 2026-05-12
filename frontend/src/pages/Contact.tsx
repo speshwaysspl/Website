@@ -84,14 +84,18 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Contact Us | {SEO_KEYWORDS.seoTitles[3]} | T-Hub Hyderabad</title>
-        <meta name="description" content="Contact the official Speshway Solutions team at T-Hub Hyderabad. Get in touch for software development, app development, and IT consulting. Get a free consultation for your project today." />
+        <title>Contact Us | {SEO_KEYWORDS.seoTitles[0]} | Speshway Solutions</title>
+        <meta name="description" content={`Contact the official Speshway Solutions team at T-Hub Hyderabad. Get in touch for ${SEO_KEYWORDS.seoTitles[0]}, ${SEO_KEYWORDS.primary[0]}, and ${SEO_KEYWORDS.primary[1]}. Best IT Company in Hyderabad.`} />
         <meta name="keywords" content={[
-          ...SEO_KEYWORDS.googleBusiness.slice(0, 5),
-          ...SEO_KEYWORDS.highRanking.slice(0, 5),
+          ...SEO_KEYWORDS.seoTitles,
+          ...SEO_KEYWORDS.primary,
+          ...SEO_KEYWORDS.seoKeywords,
+          ...SEO_KEYWORDS.googleBusiness,
+          ...SEO_KEYWORDS.highRanking,
           "Speshway contact",
           "software company near me",
-          "IT consultation Hyderabad"
+          "IT consultation Hyderabad",
+          "SEO_KEYWORDS"
         ].join(", ")} />
         <link rel="canonical" href="https://speshway.com/contact" />
         <meta property="og:title" content={`Contact Official Speshway Solutions | ${SEO_KEYWORDS.seoTitles[3]}`} />

@@ -8,6 +8,7 @@ import api from "@/lib/api";
 import { StaggerContainer, StaggerItem, HoverScale, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
 import { Helmet } from "react-helmet-async";
 import { getOptimizedImageUrl } from "@/lib/utils";
+import { SEO_KEYWORDS } from "@/lib/seo-utils";
 
 const Team = () => {
   const { data: team, isLoading, error } = useQuery({
@@ -52,9 +53,18 @@ const Team = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>Our Expert Team | Speshway Solutions | Top IT Company in Hyderabad | Software Engineer Company in Hyderabad</title>
-        <meta name="description" content="Meet the official expert software engineers and developers at Speshway Solutions. Our team in T-Hub Hyderabad delivers top-tier IT solutions. Follow our official Instagram @speshwaysolutionsofficial." />
-        <meta name="keywords" content="Speshway team, official speshway solutions,  software engineer company in hyderabad,software company hyderabad, software engineers, developers, IT experts, T-Hub IT company, official instagram @speshwaysolutionsofficial" />
+        <title>Our Expert Team | {SEO_KEYWORDS.seoTitles[0]} | Speshway Solutions Hyderabad</title>
+        <meta name="description" content={`Meet the expert software engineers at Speshway Solutions, specializing in ${SEO_KEYWORDS.seoTitles[0]} and custom IT solutions at T-Hub Hyderabad.`} />
+        <meta name="keywords" content={[
+          ...SEO_KEYWORDS.seoTitles,
+          ...SEO_KEYWORDS.primary,
+          ...SEO_KEYWORDS.seoKeywords,
+          ...SEO_KEYWORDS.highRanking,
+          "Speshway team",
+          "official speshway solutions",
+          "software engineer company in hyderabad",
+          "SEO_KEYWORDS"
+        ].join(", ")} />
         <link rel="canonical" href="https://speshway.com/team" />
         <meta property="og:title" content="Our Expert Team | Speshway Solutions | Official  | Software Engineer Company in Hyderabad" />
         <meta property="og:description" content="Meet the official expert team at Speshway Solutions, Hyderabad's premier software engineering company." />

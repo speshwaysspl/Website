@@ -94,15 +94,18 @@ const Career = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Careers | Official Speshway Solutions | {SEO_KEYWORDS.googleBusiness[5]} in Hyderabad</title>
-        <meta name="description" content="Join the official team at Speshway Solutions, T-Hub Hyderabad. Verify official job alerts and avoid recruitment scams. Speshway Solutions never charges for job offers." />
+        <title>Careers | {SEO_KEYWORDS.seoTitles[0]} | Speshway Solutions Hyderabad</title>
+        <meta name="description" content={`Join the team at Speshway Solutions, specializing in ${SEO_KEYWORDS.seoTitles[0]} and IT services in Hyderabad. Explore career opportunities at T-Hub.`} />
         <meta name="keywords" content={[
-          ...SEO_KEYWORDS.website.slice(0, 3),
-          ...SEO_KEYWORDS.googleBusiness.slice(5, 8),
+          ...SEO_KEYWORDS.seoTitles,
+          ...SEO_KEYWORDS.primary,
+          ...SEO_KEYWORDS.seoKeywords,
+          ...SEO_KEYWORDS.highRanking,
           "Speshway careers",
           "official speshway solutions",
           "jobs in hyderabad",
-          "T-Hub jobs"
+          "T-Hub jobs",
+          "SEO_KEYWORDS"
         ].join(", ")} />
         <link rel="canonical" href="https://speshway.com/career" />
         <meta property="og:title" content={`Careers | Official Speshway Solutions | ${SEO_KEYWORDS.googleBusiness[5]}`} />

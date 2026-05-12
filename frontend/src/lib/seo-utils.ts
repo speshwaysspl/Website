@@ -9,6 +9,7 @@ export interface SpeshwayInternalLinkPage {
 
 export const SEO_KEYWORDS = {
   primary: [
+    "Payroll Management Software Hyderabad",
     "App Development Company in Hyderabad",
     "Website Development Company in Hyderabad",
     "Software Development Company in Hyderabad",
@@ -19,6 +20,13 @@ export const SEO_KEYWORDS = {
     "Custom Software Development Hyderabad",
     "Hyderabad Web Designers",
     "Hyderabad App Developers"
+  ],
+  seoKeywords: [
+    "SEO_KEYWORDS",
+    "Top Ranking IT Services Hyderabad",
+    "Best Software Solutions T-Hub",
+    "Speshway Solutions SEO Optimization",
+    "High Visibility IT Company Hyderabad"
   ],
   mobile: [
     "Android App Development Hyderabad",
@@ -115,6 +123,7 @@ export const SEO_KEYWORDS = {
     "End to end software development Hyderabad"
   ],
   seoTitles: [
+    "Payroll Management Software Hyderabad",
     "Best App Development Company in Hyderabad",
     "Top Website Development Services in Hyderabad",
     "Custom Software Solutions in Hyderabad",
@@ -128,7 +137,7 @@ export const SPESHWAY_INTERNAL_LINK_PAGES: SpeshwayInternalLinkPage[] = [
     url: "/",
     name: "Home",
     slug: "home",
-    anchors: ["Official Speshway Solutions Home", "Speshway Solutions IT Services Hyderabad", "Best IT Company in Hyderabad"]
+    anchors: ["Official Speshway Solutions Home", "Speshway Solutions IT Services Hyderabad", "Best IT Company in Hyderabad", "Top Software Developers Hyderabad", "SEO_KEYWORDS"]
   },
   {
     url: "/about",
@@ -140,7 +149,7 @@ export const SPESHWAY_INTERNAL_LINK_PAGES: SpeshwayInternalLinkPage[] = [
     url: "/services",
     name: "Our Services",
     slug: "services",
-    anchors: ["IT Services Hyderabad", "Software Development Services", "Mobile App Development Hyderabad"]
+    anchors: ["IT Services Hyderabad", "Software Development Services", "Mobile App Development Hyderabad", "Payroll Management Software Hyderabad", "Best IT Solutions"]
   },
   {
     url: "/projects",
@@ -173,7 +182,10 @@ export const SPESHWAY_INTERNAL_LINK_PAGES: SpeshwayInternalLinkPage[] = [
     anchors: [
       "Is Speshway Solutions real or fake? Full 2026 check",
       "Verify whether Speshway is a genuine or fake company",
-      "Read the truth on whether Speshway is real or a scam"
+      "Read the truth on whether Speshway is real or a scam",
+      "speshway solutions real or fake",
+      "is speshway solutions real",
+      "speshway solutions scam reports verification"
     ],
     isTopVerified: true
   },

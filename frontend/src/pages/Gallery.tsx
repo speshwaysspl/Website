@@ -25,6 +25,7 @@ import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, Scroll
 import { Helmet } from "react-helmet-async";
 import { getOptimizedImageUrl } from "@/lib/utils";
 import api, { getBaseUrl } from "@/lib/api";
+import { SEO_KEYWORDS } from "@/lib/seo-utils";
 import {
   Carousel,
   CarouselContent,
@@ -302,9 +303,21 @@ const Gallery = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/30">
       <Helmet>
-        <title>Blog & Gallery | Official Speshway Solutions | Life at T-Hub</title>
-        <meta name="description" content="Read the official Speshway Solutions blog. Stay updated with our product launches, company events, and insights from our team at T-Hub. Follow @speshwaysolutionsofficial." />
-        <meta name="keywords" content="Speshway blog, official speshway solutions, company news, awards, team moments, technology insights, official instagram @speshwaysolutionsofficial" />
+        <title>Blog & Gallery | {SEO_KEYWORDS.seoTitles[0]} | Speshway Solutions</title>
+        <meta name="description" content={`Stay updated with the Speshway Solutions blog, covering ${SEO_KEYWORDS.seoTitles[0]}, technology insights, and life at T-Hub Hyderabad.`} />
+        <meta name="keywords" content={[
+          ...SEO_KEYWORDS.seoTitles,
+          ...SEO_KEYWORDS.primary,
+          ...SEO_KEYWORDS.seoKeywords,
+          ...SEO_KEYWORDS.highRanking,
+          "Speshway blog",
+          "official speshway solutions",
+          "company news",
+          "awards",
+          "team moments",
+          "technology insights",
+          "SEO_KEYWORDS"
+        ].join(", ")} />
         <link rel="canonical" href="https://speshway.com/blog" />
         <meta property="og:title" content="Blog & Gallery | Official Speshway Solutions" />
         <meta property="og:description" content="Official company news, events and insights from Speshway Solutions at T-Hub." />

@@ -25,7 +25,7 @@ import {
   Cloud,
   Brain
 } from "lucide-react";
-import { SEO_KEYWORDS } from "@/lib/seo-utils";
+import { SEO_KEYWORDS, SPESHWAY_INTERNAL_LINK_PAGES } from "@/lib/seo-utils";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -151,7 +151,7 @@ const Footer = () => {
                       to="/services" 
                       className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:translate-x-1"
                     >
-                      <service.icon size={14} className="group-hover:text-primary transition-colors" />
+                      <service.icon size={16} className="text-primary/70 group-hover:text-primary transition-colors" />
                       {service.label}
                     </Link>
                   </li>
@@ -204,41 +204,75 @@ const Footer = () => {
             <div>
               <h4 className="text-[10px] font-bold text-primary uppercase mb-2">Primary Services</h4>
               <ul className="space-y-1">
-                {SEO_KEYWORDS.primary.slice(0, 8).map((keyword) => (
-                  <li key={keyword} className="text-[10px] text-muted-foreground hover:text-primary transition-colors cursor-default">
-                    {keyword}
-                  </li>
-                ))}
+                {SEO_KEYWORDS.primary.slice(0, 8).map((keyword) => {
+                  const matchedPage = SPESHWAY_INTERNAL_LINK_PAGES.find(p => 
+                    p.name.toLowerCase() === keyword.toLowerCase() || 
+                    p.anchors.some(a => a.toLowerCase() === keyword.toLowerCase())
+                  );
+                  const keywordSlug = keyword.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+                  return (
+                    <li key={keyword}>
+                      <Link 
+                        to={matchedPage ? matchedPage.url : `/${keywordSlug}`} 
+                        className="text-[10px] text-muted-foreground hover:text-primary transition-colors block"
+                      >
+                        {keyword}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
             <div>
               <h4 className="text-[10px] font-bold text-primary uppercase mb-2">Mobile App Dev</h4>
               <ul className="space-y-1">
-                {SEO_KEYWORDS.mobile.slice(0, 8).map((keyword) => (
-                  <li key={keyword} className="text-[10px] text-muted-foreground hover:text-primary transition-colors cursor-default">
-                    {keyword}
-                  </li>
-                ))}
+                {SEO_KEYWORDS.mobile.slice(0, 8).map((keyword) => {
+                  const keywordSlug = keyword.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+                  return (
+                    <li key={keyword}>
+                      <Link to={`/${keywordSlug}`} className="text-[10px] text-muted-foreground hover:text-primary transition-colors block">
+                        {keyword}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
             <div>
               <h4 className="text-[10px] font-bold text-primary uppercase mb-2">Web Development</h4>
               <ul className="space-y-1">
-                {SEO_KEYWORDS.website.slice(0, 8).map((keyword) => (
-                  <li key={keyword} className="text-[10px] text-muted-foreground hover:text-primary transition-colors cursor-default">
-                    {keyword}
-                  </li>
-                ))}
+                {SEO_KEYWORDS.website.slice(0, 8).map((keyword) => {
+                  const keywordSlug = keyword.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+                  return (
+                    <li key={keyword}>
+                      <Link to={`/${keywordSlug}`} className="text-[10px] text-muted-foreground hover:text-primary transition-colors block">
+                        {keyword}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
             <div>
               <h4 className="text-[10px] font-bold text-primary uppercase mb-2">Business Solutions</h4>
               <ul className="space-y-1">
-                {SEO_KEYWORDS.software.slice(0, 8).map((keyword) => (
-                  <li key={keyword} className="text-[10px] text-muted-foreground hover:text-primary transition-colors cursor-default">
-                    {keyword}
-                  </li>
-                ))}
+                {SEO_KEYWORDS.software.slice(0, 8).map((keyword) => {
+                  const matchedPage = SPESHWAY_INTERNAL_LINK_PAGES.find(p => 
+                    p.name.toLowerCase() === keyword.toLowerCase() || 
+                    p.anchors.some(a => a.toLowerCase() === keyword.toLowerCase())
+                  );
+                  const keywordSlug = keyword.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+                  return (
+                    <li key={keyword}>
+                      <Link 
+                        to={matchedPage ? matchedPage.url : `/${keywordSlug}`} 
+                        className="text-[10px] text-muted-foreground hover:text-primary transition-colors block"
+                      >
+                        {keyword}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>

@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
 import { getOptimizedImageUrl } from "@/lib/utils";
-import { SEO_KEYWORDS } from "@/lib/seo-utils";
+import { SEO_KEYWORDS, SPESHWAY_INTERNAL_LINK_PAGES } from "@/lib/seo-utils";
 
 const Home = () => {
   const heroImage = "/happyFamily.jpg";
@@ -104,16 +104,20 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Speshway Solutions | {SEO_KEYWORDS.seoTitles[0]} | T-Hub IT Services</title>
-        <meta name="description" content={`Speshway Solutions is the ${SEO_KEYWORDS.highRanking[0]} located at T-Hub. We provide expert ${SEO_KEYWORDS.primary[0]}, ${SEO_KEYWORDS.primary[1]}, and ${SEO_KEYWORDS.primary[2]}. Trusted ${SEO_KEYWORDS.highRanking[3]} for ${SEO_KEYWORDS.longTail[0]}.`} />
+        <title>Speshway Solutions | {SEO_KEYWORDS.seoTitles[0]} | Best IT Services in Hyderabad</title>
+        <meta name="description" content={`Speshway Solutions is the ${SEO_KEYWORDS.highRanking[0]} at T-Hub. We provide ${SEO_KEYWORDS.seoTitles[0]}, ${SEO_KEYWORDS.primary[0]}, and ${SEO_KEYWORDS.primary[1]}. Trusted ${SEO_KEYWORDS.highRanking[3]} for ${SEO_KEYWORDS.longTail[0]}.`} />
         <meta name="keywords" content={[
+          ...SEO_KEYWORDS.seoTitles,
           ...SEO_KEYWORDS.primary,
+          ...SEO_KEYWORDS.seoKeywords,
+          ...SEO_KEYWORDS.software,
           ...SEO_KEYWORDS.highRanking.slice(0, 10),
           ...SEO_KEYWORDS.longTail.slice(0, 15),
           "speshway solutions",
           "is speshway solutions real or fake",
           "speshway solutions scam reports verification",
-          "T-Hub IT company"
+          "T-Hub IT company",
+          "SEO_KEYWORDS"
         ].join(", ")} />
         <link rel="canonical" href="https://speshway.com/" />
         {/* Preload the first banner or hero image */}
@@ -408,12 +412,12 @@ const Home = () => {
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.3}>
-              <Card className="p-8 h-full border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 transition-colors">
-                <h3 className="text-2xl font-bold mb-4 text-emerald-600">Business Software</h3>
-                <p className="text-muted-foreground mb-6">A trusted {SEO_KEYWORDS.primary[6]} for custom enterprise business applications.</p>
+              <Card className="p-8 h-full border-emerald-500/20 bg-emerald-50/50 hover:bg-emerald-50 transition-colors">
+                <h3 className="text-2xl font-bold mb-4 text-emerald-600">Business & Payroll Software</h3>
+                <p className="text-muted-foreground mb-6">A trusted {SEO_KEYWORDS.primary[6]} providing the best {SEO_KEYWORDS.software[3]} and enterprise solutions.</p>
                 <ul className="space-y-2">
-                  {[SEO_KEYWORDS.software[0], SEO_KEYWORDS.software[1], SEO_KEYWORDS.software[2], SEO_KEYWORDS.software[3]].map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-foreground/80">
+                  {[SEO_KEYWORDS.software[3], SEO_KEYWORDS.software[0], SEO_KEYWORDS.software[1], SEO_KEYWORDS.software[2]].map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-sm text-foreground/80 font-medium">
                       <CheckCircle className="w-4 h-4 text-emerald-500" /> {item}
                     </li>
                   ))}
@@ -538,14 +542,35 @@ const Home = () => {
             <p className="text-muted-foreground mb-8">Comprehensive digital services for businesses across various industries and locations.</p>
           </div>
           <div className="flex flex-wrap justify-center gap-2 max-w-6xl mx-auto">
-            {Object.values(SEO_KEYWORDS).flat().map((keyword, idx) => (
-              <span 
-                key={`${keyword}-${idx}`} 
-                className="px-3 py-1 bg-background/50 border border-border/50 rounded-md text-[10px] text-muted-foreground/60 hover:text-primary hover:border-primary/30 transition-all cursor-default"
-              >
-                {keyword}
-              </span>
-            ))}
+            {Object.values(SEO_KEYWORDS).flat().map((keyword, idx) => {
+              // Map keywords to relevant internal pages for better UX and SEO
+              const matchedPage = SPESHWAY_INTERNAL_LINK_PAGES.find(p => 
+                p.name.toLowerCase() === keyword.toLowerCase() || 
+                p.anchors.some(a => a.toLowerCase() === keyword.toLowerCase())
+              );
+              
+              // New: Link to dynamic landing page for all keywords
+              const keywordSlug = keyword.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+              let targetUrl = `/${keywordSlug}`;
+              
+              // Specific overrides for core pages
+              if (matchedPage) targetUrl = matchedPage.url;
+              else if (keyword.toLowerCase().includes("contact") || keyword.toLowerCase().includes("address")) targetUrl = "/contact";
+              else if (keyword.toLowerCase().includes("career") || keyword.toLowerCase().includes("job")) targetUrl = "/career";
+              else if (keyword.toLowerCase().includes("blog") || keyword.toLowerCase().includes("insight")) targetUrl = "/blog";
+              else if (keyword.toLowerCase().includes("project") || keyword.toLowerCase().includes("portfolio")) targetUrl = "/projects";
+              
+              return (
+                <Link 
+                  key={`${keyword}-${idx}`} 
+                  to={targetUrl}
+                  title={`Speshway Solutions - ${keyword}`}
+                  className="px-3 py-1 bg-background/50 border border-border/50 rounded-md text-[10px] text-muted-foreground/60 hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all cursor-pointer"
+                >
+                  {keyword}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -558,9 +583,14 @@ const Home = () => {
           </div>
           <div className="flex flex-wrap justify-center gap-3">
             {SEO_KEYWORDS.areaBased.map((area) => (
-              <span key={area} className="px-4 py-2 bg-background border rounded-full text-sm text-muted-foreground hover:border-primary/50 transition-colors cursor-default">
+              <Link 
+                key={area} 
+                to="/contact"
+                title={`Speshway Solutions in ${area}`}
+                className="px-4 py-2 bg-background border rounded-full text-sm text-muted-foreground hover:border-primary/50 hover:text-primary hover:bg-primary/5 transition-all cursor-pointer"
+              >
                 {area}
-              </span>
+              </Link>
             ))}
           </div>
         </div>

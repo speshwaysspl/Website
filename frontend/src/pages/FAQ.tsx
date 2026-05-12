@@ -7,6 +7,7 @@ import InternalLinks from "@/components/InternalLinks";
 import { Link } from "react-router-dom";
 import { FadeIn, StaggerContainer, StaggerItem, HoverScale, ScrollReveal } from "@/components/animations";
 import { Helmet } from "react-helmet-async";
+import { SEO_KEYWORDS } from "@/lib/seo-utils";
 
 const FAQ = () => {
   const faqs = [
@@ -75,9 +76,19 @@ const FAQ = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>FAQ | IT Services Questions | Is Speshway Solutions Real? | Official FAQ & Verification</title>
-        <meta name="description" content="Get answers to common questions about Speshway Solutions. Is Speshway Solutions real or fake? Find official verification, project details, and service information." />
-        <meta name="keywords" content="Speshway Solutions real or fake, is speshway real, Speshway FAQ, IT questions, speshway solutions legitimacy, speshway solutions reviews, speshway solutions Hyderabad real,Speshway Solutions real or fake, is speshway real, Speshway FAQ, IT questions, services, process, support,mobile app development company in Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
+        <title>FAQ | {SEO_KEYWORDS.seoTitles[0]} | Speshway Solutions Hyderabad</title>
+        <meta name="description" content={`Find official answers about ${SEO_KEYWORDS.seoTitles[0]}, IT services, and project verification at Speshway Solutions, the best IT company in Hyderabad.`} />
+        <meta name="keywords" content={[
+          ...SEO_KEYWORDS.seoTitles,
+          ...SEO_KEYWORDS.primary,
+          ...SEO_KEYWORDS.seoKeywords,
+          ...SEO_KEYWORDS.highRanking,
+          "Speshway Solutions real or fake",
+          "is speshway real",
+          "Speshway FAQ",
+          "IT questions",
+          "SEO_KEYWORDS"
+        ].join(", ")} />
         <link rel="canonical" href="https://speshway.com/faq" />
         <meta property="og:title" content="FAQ | Is Speshway Solutions Real? | Official Answers" />
         <meta property="og:description" content="Answers to common questions about our legitimacy, services, and project process." />

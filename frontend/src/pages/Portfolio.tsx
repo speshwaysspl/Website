@@ -10,6 +10,7 @@ import api from "@/lib/api";
 import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
 import { Helmet } from "react-helmet-async";
 import { getOptimizedImageUrl } from "@/lib/utils";
+import { SEO_KEYWORDS } from "@/lib/seo-utils";
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState<any>(null);
@@ -103,9 +104,21 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Projects | Speshway Solutions | Web & App Development Portfolio</title>
-        <meta name="description" content="Explore our portfolio of software, app, and website development projects by Speshway Solutions, a top IT company in Hyderabad." />
-        <meta name="keywords" content="Speshway projects, case studies, software solutions, client success, web development portfolio, app development projects, IT solution in hyderabad,mobile app development company in Hyderabad,AI solutions provider Hyderabad,cloud computing services India,best web developers in Hyderabad,cybersecurity company Hyderabad,DevOps consulting services,software testing services Hyderabad,UI/UX design services Hyderabad,enterprise software solutions Hyderabad,registered software company in Madhapur,top-rated IT consultancy Hyderabad" />
+        <title>Projects | {SEO_KEYWORDS.seoTitles[0]} | Speshway Solutions Portfolio</title>
+        <meta name="description" content={`Explore our portfolio featuring ${SEO_KEYWORDS.seoTitles[0]}, app development, and software solutions by Speshway Solutions, the best IT company in Hyderabad.`} />
+        <meta name="keywords" content={[
+          ...SEO_KEYWORDS.seoTitles,
+          ...SEO_KEYWORDS.primary,
+          ...SEO_KEYWORDS.seoKeywords,
+          ...SEO_KEYWORDS.highRanking,
+          "Speshway projects",
+          "case studies",
+          "software solutions",
+          "client success",
+          "web development portfolio",
+          "app development projects",
+          "SEO_KEYWORDS"
+        ].join(", ")} />
         <link rel="canonical" href="https://speshway.com/projects" />
         <meta property="og:title" content="Projects | Speshway Solutions | Web & App Development Portfolio" />
         <meta property="og:description" content="See how we deliver reliable, scalable, and secure solutions in Hyderabad." />

@@ -88,15 +88,17 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>About Speshway Solutions | {SEO_KEYWORDS.seoTitles[4]} | T-Hub</title>
-        <meta name="description" content="Learn about Speshway Solutions Private Limited, a top software company in Hyderabad based in T-Hub. Discover our mission, values, and why we are the best choice for your digital needs." />
+        <title>About Speshway Solutions | {SEO_KEYWORDS.seoTitles[0]} | T-Hub</title>
+        <meta name="description" content={`Learn about Speshway Solutions, the best choice for ${SEO_KEYWORDS.seoTitles[0]} and IT services in Hyderabad. Discover our mission and expertise at T-Hub.`} />
         <meta name="keywords" content={[
-          ...SEO_KEYWORDS.primary.slice(0, 5),
-          ...SEO_KEYWORDS.highRanking.slice(0, 5),
-          ...SEO_KEYWORDS.areaBased.slice(0, 5),
+          ...SEO_KEYWORDS.seoTitles,
+          ...SEO_KEYWORDS.primary,
+          ...SEO_KEYWORDS.seoKeywords,
+          ...SEO_KEYWORDS.highRanking,
           "about Speshway",
           "software company in hyderabad",
-          "Speshway Solutions T-Hub"
+          "Speshway Solutions T-Hub",
+          "SEO_KEYWORDS"
         ].join(", ")} />
         <link rel="canonical" href="https://speshway.com/about" />
         <meta property="og:title" content={`About Speshway Solutions | ${SEO_KEYWORDS.seoTitles[4]}`} />
