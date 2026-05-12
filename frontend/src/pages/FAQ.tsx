@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import InternalLinks from "@/components/InternalLinks";
 import { Link } from "react-router-dom";
 import { FadeIn, StaggerContainer, StaggerItem, HoverScale, ScrollReveal } from "@/components/animations";
 import { Helmet } from "react-helmet-async";
@@ -168,6 +169,17 @@ const FAQ = () => {
             </Link>
           </Card>
           </HoverScale>
+        </div>
+      </section>
+
+      {/* Internal Links for SEO */}
+      <section className="py-16 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <InternalLinks 
+            title="Explore More Speshway Information" 
+            layout="chips"
+            limit={10}
+          />
         </div>
       </section>
 

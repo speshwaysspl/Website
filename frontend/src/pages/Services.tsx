@@ -1,8 +1,9 @@
-import { Code, Smartphone, Cloud, Brain, Database, Shield } from "lucide-react";
+import { Code, Smartphone, Cloud, Brain, Database, Shield, Globe } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import InternalLinks from "@/components/InternalLinks";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
@@ -20,13 +21,62 @@ const iconMap: { [key: string]: any } = {
   Brain,
   Database,
   Shield,
+  Globe,
 };
 
 const Services = () => {
-  const { data: services, isLoading, error } = useQuery({
+  const { data: servicesData, isLoading, error } = useQuery({
     queryKey: ['services'],
     queryFn: () => api.get('/services').then(res => res.data),
   });
+
+  // Fallback services if database is empty or loading fails
+  const fallbackServices = [
+    {
+      _id: 'default-1',
+      title: "Software Development",
+      description: "Custom enterprise software solutions tailored to your business needs.",
+      icon: "Code",
+      features: ["Custom CRM/ERP", "Legacy Migration", "API Integration"]
+    },
+    {
+      _id: 'default-2',
+      title: "Mobile App Development",
+      description: "High-performance iOS and Android applications built with modern frameworks.",
+      icon: "Smartphone",
+      features: ["React Native", "Flutter", "Native Apps"]
+    },
+    {
+      _id: 'default-3',
+      title: "Web Development",
+      description: "Responsive and SEO-friendly websites that drive growth and engagement.",
+      icon: "Globe",
+      features: ["E-commerce", "Corporate Sites", "Web Apps"]
+    },
+    {
+      _id: 'default-4',
+      title: "Cloud Solutions",
+      description: "Scalable cloud infrastructure and migration services for modern businesses.",
+      icon: "Cloud",
+      features: ["AWS/Azure", "Cloud Migration", "DevOps"]
+    },
+    {
+      _id: 'default-5',
+      title: "Data Analytics",
+      description: "Transform your data into actionable insights with our analytics solutions.",
+      icon: "Database",
+      features: ["BI Dashboards", "Data Mining", "Predictive Analytics"]
+    },
+    {
+      _id: 'default-6',
+      title: "Cyber Security",
+      description: "Protect your digital assets with our comprehensive security audits and solutions.",
+      icon: "Shield",
+      features: ["Security Audits", "Threat Protection", "Compliance"]
+    }
+  ];
+
+  const services = servicesData && servicesData.length > 0 ? servicesData : fallbackServices;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<any | null>(null);
@@ -62,7 +112,7 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Speshway services |{SEO_KEYWORDS.seoTitles[0]} | Official Speshway Solutions | T-Hub</title>
+        <title>Speshway services | {SEO_KEYWORDS.seoTitles[0]} | Official Speshway Solutions | T-Hub</title>
         <meta name="description" content="Explore official IT services from Speshway Solutions at T-Hub Hyderabad: custom software, mobile apps, and cloud solutions. Best IT Company in Hyderabad for professional digital services." />
         <meta name="keywords" content={[
           ...SEO_KEYWORDS.website,
@@ -249,6 +299,17 @@ const Services = () => {
             </Link>
           </Card>
           </ScrollParallaxItem>
+        </div>
+      </section>
+
+      {/* Internal Links for SEO */}
+      <section className="py-16 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <InternalLinks 
+            title="Speshway Industry Insights" 
+            layout="chips"
+            limit={10}
+          />
         </div>
       </section>
 

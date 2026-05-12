@@ -1,6 +1,7 @@
 import SEOLayout from "@/components/SEOLayout";
 import { Link } from "react-router-dom";
 import { Quote, Star, TrendingUp, CheckCircle2, Award, ThumbsUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const SpeshwayClientSuccess = () => {
   const faqItems = [
@@ -19,7 +20,7 @@ const SpeshwayClientSuccess = () => {
   ];
 
   const breadcrumbItems = [
-    { name: "Portfolio", item: "/portfolio" },
+    { name: "Projects", item: "/projects" },
     { name: "Client Success Stories", item: "/speshway-solutions-client-success-stories-and-reviews" }
   ];
 
@@ -122,7 +123,7 @@ const SpeshwayClientSuccess = () => {
               <Link to="/contact">Discuss Your Project</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link to="/portfolio">View Our Portfolio</Link>
+              <Link to="/projects">View Our Portfolio</Link>
             </Button>
           </div>
         </div>

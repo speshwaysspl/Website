@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import InternalLinks from '@/components/InternalLinks';
 import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -62,7 +63,7 @@ const Gallery = () => {
   const API_URL = RAW_API_URL;
   const { toast } = useToast();
   
-  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+  const [galleryItemsData, setGalleryItemsData] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [groupedItems, setGroupedItems] = useState<{ [key: string]: GalleryItem[] }>({});
@@ -89,6 +90,47 @@ const Gallery = () => {
     const days30 = 30 * 24 * 60 * 60 * 1000;
     return Date.now() - itemDate <= days30;
   };
+
+  const fallbackGalleryItems: GalleryItem[] = [
+    {
+      _id: 'fallback-1',
+      title: 'The Future of AI in Software Development',
+      description: 'Explore how artificial intelligence is revolutionizing the software development lifecycle, from automated coding to intelligent testing.',
+      category: 'Technology',
+      date: '2023-10-26T10:00:00Z',
+      image: { url: '/images/software-development.jpg', publicId: 'fallback-ai-dev' },
+      formattedDate: 'October 26, 2023',
+    },
+    {
+      _id: 'fallback-2',
+      title: 'Mastering Mobile App UI/UX Design',
+      description: 'A deep dive into the principles and best practices for creating intuitive and engaging user interfaces for mobile applications.',
+      category: 'Design',
+      date: '2023-09-15T10:00:00Z',
+      image: { url: '/images/mobile-app-development.jpg', publicId: 'fallback-mobile-uiux' },
+      formattedDate: 'September 15, 2023',
+    },
+    {
+      _id: 'fallback-3',
+      title: 'Cloud Computing Trends for 2024',
+      description: 'An overview of the most significant trends shaping the cloud computing landscape, including serverless, edge computing, and hybrid clouds.',
+      category: 'Cloud',
+      date: '2023-11-01T10:00:00Z',
+      image: { url: '/images/cloud-devops.jpg', publicId: 'fallback-cloud-trends' },
+      formattedDate: 'November 1, 2023',
+    },
+    {
+      _id: 'fallback-4',
+      title: 'Digital Transformation Strategies for Enterprises',
+      description: 'Key strategies and insights for large organizations looking to successfully navigate their digital transformation journey.',
+      category: 'Business',
+      date: '2023-08-20T10:00:00Z',
+      image: { url: '/images/digital-transformation.jpg', publicId: 'fallback-digital-xform' },
+      formattedDate: 'August 20, 2023',
+    },
+  ];
+
+  const galleryItems = galleryItemsData && galleryItemsData.length > 0 ? galleryItemsData : fallbackGalleryItems;
 
   const recomputeGroups = useCallback((
     items: GalleryItem[],
@@ -120,7 +162,7 @@ const Gallery = () => {
       const response = await api.get('/gallery?limit=1000');
       const data = response.data;
       const items = Array.isArray(data) ? data : (data.data || []);
-      setGalleryItems(items);
+      setGalleryItemsData(items);
       recomputeGroups(items, selectedCategory, selectedStatus, readIds);
     } catch (error: any) {
       console.error('Error fetching gallery items:', error);
@@ -393,6 +435,17 @@ const Gallery = () => {
               </>
             )}
           </div>
+        </div>
+      </section>
+
+      {/* Internal Links for SEO */}
+      <section className="py-16 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <InternalLinks 
+            title="Explore More Speshway Insights & News" 
+            layout="chips"
+            limit={12}
+          />
         </div>
       </section>
 

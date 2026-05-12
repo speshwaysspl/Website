@@ -3,8 +3,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import InternalLinks from "@/components/InternalLinks";
 import { Link } from "react-router-dom";
-import { ScrollReveal } from "@/components/animations";
 import { useQuery } from '@tanstack/react-query';
 import api from '@/lib/api';
 import { Helmet } from "react-helmet-async";
@@ -45,6 +45,49 @@ const Career = () => {
       icon: "🎯",
       title: "Career Growth",
       description: "Clear paths for advancement and development",
+    },
+  ];
+
+  const lifeAtSpeshway = [
+    {
+      icon: "🤝",
+      title: "Team Collaboration",
+      description: "Working together on innovative projects",
+    },
+    {
+      icon: "💻",
+      title: "Modern Workspace",
+      description: "Comfortable and inspiring environment",
+    },
+    {
+      icon: "🎉",
+      title: "Celebrating Success",
+      description: "Milestones and achievements",
+    },
+    {
+      icon: "📚",
+      title: "Learning & Growth",
+      description: "Continuous skill development",
+    },
+    {
+      icon: "🥳",
+      title: "Team Building",
+      description: "Fun activities and bonding",
+    },
+    {
+      icon: "💡",
+      title: "Innovation Workshops",
+      description: "Creative problem solving",
+    },
+    {
+      icon: "☕",
+      title: "Great Amenities",
+      description: "Comfort and convenience",
+    },
+    {
+      icon: "🌍",
+      title: "Diversity & Inclusion",
+      description: "Celebrating our differences",
     },
   ];
 
@@ -127,7 +170,7 @@ const Career = () => {
       <section className="py-10 bg-red-50/50 dark:bg-red-950/10 border-y border-red-100 dark:border-red-900/30">
         <div className="container mx-auto px-4 sm:px-6 max-w-4xl text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinelinejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">We do NOT charge money for jobs</h2>
           <p className="text-base sm:text-lg text-muted-foreground mb-6">
@@ -145,22 +188,48 @@ const Career = () => {
       <section className="py-12 sm:py-16 md:py-20 bg-secondary/20">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 sm:mb-12 md:mb-16 animate-fade-in-up">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">Why Join Speshway?</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">Our Culture</h2>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
-              We offer more than just a job – we provide an environment where you can thrive
+              What makes Speshway a great place to work and grow
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 max-w-5xl mx-auto">
             {benefits.map((benefit, index) => (
               <Card
                 key={index}
-                className="p-5 sm:p-6 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 text-center group hover-lift hover-glow animate-fade-in-up"
+                className="p-3 sm:p-4 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 text-center group hover-lift hover-glow animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="text-4xl sm:text-5xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">{benefit.icon}</div>
-                <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2">{benefit.title}</h3>
-                <p className="text-sm sm:text-base text-muted-foreground">{benefit.description}</p>
+                <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">{benefit.icon}</div>
+                <h3 className="text-base sm:text-lg font-semibold text-foreground mb-1">{benefit.title}</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground">{benefit.description}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Life at Speshway Section */}
+      <section className="py-12 sm:py-16 md:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16 animate-fade-in-up">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">Life at Speshway</h2>
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
+              Get a glimpse into our vibrant workplace culture and team activities
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 max-w-5xl mx-auto">
+            {lifeAtSpeshway.map((item, index) => (
+              <Card
+                key={index}
+                className="p-3 sm:p-4 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 text-center group hover-lift hover-glow animate-fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
+                <h3 className="text-base sm:text-lg font-semibold text-foreground mb-1">{item.title}</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground">{item.description}</p>
               </Card>
             ))}
           </div>
@@ -186,7 +255,16 @@ const Career = () => {
         </div>
       </section>
 
-      
+      {/* Internal Links for SEO */}
+      <section className="py-16 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <InternalLinks 
+            title="Explore More Speshway Career Insights" 
+            layout="chips"
+            limit={10}
+          />
+        </div>
+      </section>
 
       <Footer />
     </div>

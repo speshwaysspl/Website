@@ -104,33 +104,74 @@ const corsOptions = {
 // Enable CORS (handles preflight requests automatically)
 app.use(cors(corsOptions));
 
-// Canonical redirects (production only)
+// Canonical redirects
 app.use((req, res, next) => {
-  if (process.env.NODE_ENV !== 'production') return next();
   if (req.method !== 'GET' && req.method !== 'HEAD') return next();
 
   const host = req.headers.host;
   if (!host) return next();
 
-  const originalHost = host.toLowerCase();
-  const canonicalHost = originalHost.startsWith('www.') ? originalHost.slice(4) : originalHost;
-
   try {
     const url = new URL(`${req.protocol}://${host}${req.originalUrl}`);
+    const originalPath = url.pathname;
+
+    // 1. Path-based redirects (Run in all environments)
+    
+    // Normalize trailing slashes (Remove if present, except for root)
+    if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
+      url.pathname = url.pathname.slice(0, -1);
+    }
 
     if (url.pathname === '/gallery' || url.pathname === '/gallery/') {
       url.pathname = '/blog';
     } else if (url.pathname.startsWith('/gallery/')) {
       url.pathname = `/blog/${url.pathname.slice('/gallery/'.length)}`;
+    } else if (url.pathname.endsWith('.php')) {
+      // Redirect .php pages to their modern equivalents
+      if (url.pathname === '/index.php') {
+        url.pathname = '/';
+      } else if (url.pathname === '/services.php') {
+        url.pathname = '/services';
+      } else if (url.pathname === '/about.php') {
+        url.pathname = '/about';
+      } else if (url.pathname === '/contact.php') {
+        url.pathname = '/contact';
+      } else if (url.pathname === '/career.php' || url.pathname === '/careers.php' || url.pathname === '/jobs.php') {
+        url.pathname = '/career';
+      } else if (url.pathname === '/portfolio.php' || url.pathname === '/projects.php' || url.pathname === '/clients.php') {
+        url.pathname = '/projects';
+      } else if (url.pathname === '/team.php') {
+        url.pathname = '/team';
+      } else if (url.pathname === '/blog.php' || url.pathname === '/gallery.php') {
+        url.pathname = '/blog';
+      } else if (url.pathname === '/faq.php') {
+        url.pathname = '/faq';
+      } else if (url.pathname === '/privacy.php' || url.pathname === '/privacy-policy.php') {
+        url.pathname = '/privacy-policy';
+      } else if (url.pathname === '/terms.php' || url.pathname === '/terms-of-service.php') {
+        url.pathname = '/terms-of-service';
+      } else {
+        // Fallback: strip .php and try to find a matching route
+        url.pathname = url.pathname.replace(/\.php$/, '');
+      }
     }
 
-    url.protocol = 'https:';
-    url.host = canonicalHost;
+    // 2. Protocol and Host redirects (Production only)
+    if (process.env.NODE_ENV === 'production') {
+      const originalHost = host.toLowerCase();
+      const canonicalHost = originalHost.startsWith('www.') ? originalHost.slice(4) : originalHost;
+      
+      if (url.protocol !== 'https:' || url.host !== canonicalHost) {
+        url.protocol = 'https:';
+        url.host = canonicalHost;
+      }
+    }
 
     const current = `${req.protocol}://${host}${req.originalUrl}`;
     const target = url.toString();
 
     if (target !== current) {
+      console.log(`Redirecting: ${current} -> ${target}`);
       return res.redirect(301, target);
     }
   } catch (err) {

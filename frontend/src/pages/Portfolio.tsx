@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import InternalLinks from "@/components/InternalLinks";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
@@ -14,10 +15,52 @@ const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { data: projects, isLoading, error } = useQuery({
+  const { data: projectsData, isLoading, error } = useQuery({
     queryKey: ['portfolios'],
     queryFn: () => api.get('/portfolios').then(res => res.data),
   });
+
+  // Fallback projects if database is empty or loading fails
+  const fallbackProjects = [
+    {
+      _id: 'default-1',
+      title: "E-commerce Platform for Fashion Brand",
+      description: "Developed a scalable e-commerce solution with custom features for a leading fashion retailer, enhancing user experience and sales.",
+      category: "Web Development",
+      technologies: ["React", "Node.js", "MongoDB", "AWS"],
+      status: "completed",
+      image: { url: "/images/software-development.jpg" }
+    },
+    {
+      _id: 'default-2',
+      title: "Cross-Platform Mobile Banking App",
+      description: "Built a secure and intuitive mobile banking application for iOS and Android, integrating with existing financial systems.",
+      category: "Mobile App Development",
+      technologies: ["React Native", "Firebase", "Stripe"],
+      status: "completed",
+      image: { url: "/images/mobile-app-development.jpg" }
+    },
+    {
+      _id: 'default-3',
+      title: "AI-Powered Data Analytics Dashboard",
+      description: "Created an advanced analytics dashboard utilizing AI and machine learning to provide actionable insights for business intelligence.",
+      category: "AI & Data Science",
+      technologies: ["Python", "TensorFlow", "React", "PostgreSQL"],
+      status: "completed",
+      image: { url: "/images/digital-transformation.jpg" }
+    },
+    {
+      _id: 'default-4',
+      title: "Cloud-Based DevOps Automation Suite",
+      description: "Implemented a comprehensive DevOps automation suite on AWS, streamlining CI/CD pipelines and improving deployment efficiency.",
+      category: "Cloud & DevOps",
+      technologies: ["AWS", "Docker", "Kubernetes", "Jenkins"],
+      status: "completed",
+      image: { url: "/images/cloud-devops.jpg" }
+    }
+  ];
+
+  const projects = projectsData && projectsData.length > 0 ? projectsData : fallbackProjects;
 
   const openProjectDetails = (project: any) => {
     setSelectedProject(project);
@@ -203,6 +246,17 @@ const Portfolio = () => {
               </div>
             </StaggerContainer>
           </div>
+        </div>
+      </section>
+
+      {/* Internal Links for SEO */}
+      <section className="py-16 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <InternalLinks 
+            title="Explore More Speshway Projects & Services" 
+            layout="chips"
+            limit={12}
+          />
         </div>
       </section>
 

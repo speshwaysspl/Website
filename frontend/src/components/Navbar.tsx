@@ -41,15 +41,16 @@ const Navbar = () => {
     { path: "/services", label: "Services" },
     { path: "/projects", label: "Projects" },
     { path: "/blog", label: "Blog" },
-    { path: "/team", label: "Team" },
+    
     { path: "/career", label: "Career" },
+    { path: "/faq", label: "FAQ" },
     {
       label: "Company Insights",
       children: [
         { path: "/is-speshway-real-or-fake", label: "Is Speshway Real?" },
         { path: "/speshway-solutions-review-2026", label: "Reviews" },
         { path: "/fraud-notice", label: "Fraud Alert" },
-        { path: "/faq", label: "FAQ" },
+        { path: "/team", label: "Team" }
       ],
     },
   ];

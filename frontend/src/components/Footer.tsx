@@ -1,9 +1,56 @@
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Linkedin, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { 
+  Facebook, 
+  Twitter, 
+  Linkedin, 
+  Instagram, 
+  Youtube, 
+  Mail, 
+  Phone, 
+  MapPin,
+  Home,
+  Info,
+  Settings,
+  FolderOpen,
+  Newspaper,
+  Users,
+  Briefcase,
+  ShieldCheck,
+  Star,
+  HelpCircle,
+  FileText,
+  AlertTriangle,
+  Code,
+  Smartphone,
+  Cloud,
+  Brain
+} from "lucide-react";
 import { SEO_KEYWORDS } from "@/lib/seo-utils";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  const quickLinks = [
+    { path: "/", label: "Home", icon: Home },
+    { path: "/about", label: "About", icon: Info },
+    { path: "/services", label: "Services", icon: Settings },
+    { path: "/projects", label: "Projects", icon: FolderOpen },
+    { path: "/blog", label: "Blog", icon: Newspaper },
+    { path: "/team", label: "Team", icon: Users },
+    { path: "/career", label: "Career", icon: Briefcase },
+    { path: "/is-speshway-real-or-fake", label: "Is Speshway Real?", icon: ShieldCheck },
+    { path: "/speshway-solutions-review-2026", label: "Company Reviews", icon: Star },
+    { path: "/faq", label: "FAQ", icon: HelpCircle },
+    { path: "/send-resume", label: "Send Resume", icon: FileText },
+    { path: "/fraud-notice", label: "Fraud Alert", icon: AlertTriangle },
+  ];
+
+  const services = [
+    { label: "Web Development", icon: Code },
+    { label: "Mobile Apps", icon: Smartphone },
+    { label: "Cloud Solutions", icon: Cloud },
+    { label: "AI & ML", icon: Brain },
+  ];
 
   return (
     <footer className="bg-card border-t border-border">
@@ -33,45 +80,45 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer me"
                 aria-label="Facebook"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-[#1877F2]/10 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               >
-                <Facebook size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-primary transition-colors" />
+                <Facebook size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-[#1877F2] transition-colors" />
               </a>
               <a
                 href="https://x.com/SpeshwayM56509"
                 target="_blank"
                 rel="noopener noreferrer me"
                 aria-label="Twitter (X)"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-black/10 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               >
-                <Twitter size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-primary transition-colors" />
+                <Twitter size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-black transition-colors" />
               </a>
               <a
                 href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/"
                 target="_blank"
                 rel="noopener noreferrer me"
                 aria-label="LinkedIn"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-[#0A66C2]/10 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               >
-                <Linkedin size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-primary transition-colors" />
+                <Linkedin size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-[#0A66C2] transition-colors" />
               </a>
               <a
                 href="https://www.instagram.com/speshwaysolutionsofficial/"
                 target="_blank"
                 rel="noopener noreferrer me"
                 aria-label="Instagram"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-[#E4405F]/10 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               >
-                <Instagram size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-primary transition-colors" />
+                <Instagram size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-[#E4405F] transition-colors" />
               </a>
               <a
                 href="https://www.youtube.com/@speshwaysolutions"
                 target="_blank"
                 rel="noopener noreferrer me"
                 aria-label="YouTube"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-[#FF0000]/10 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               >
-                <Youtube size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-primary transition-colors" />
+                <Youtube size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-[#FF0000] transition-colors" />
               </a>
             </div>
           </div>
@@ -81,76 +128,31 @@ const Footer = () => {
             <div className="animate-fade-in-up [animation-delay:.1s]">
               <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">Quick Links</h3>
               <ul className="space-y-2">
-                <li>
-                  <Link to="/" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/about" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/services" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                    Services
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/projects" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                    Projects
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/blog" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                    Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/team" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                    Team
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/career" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                    Career
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/is-speshway-real-or-fake" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                    Is Speshway Real?
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/speshway-solutions-review-2026" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                    Company Reviews
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/faq" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                    FAQ
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/send-resume" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                    Send Resume
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/fraud-notice" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                    Fraud Alert
-                  </Link>
-                </li>
+                {quickLinks.map((link) => (
+                  <li key={link.path}>
+                    <Link 
+                      to={link.path} 
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:translate-x-1"
+                    >
+                      <link.icon size={14} className="group-hover:text-primary transition-colors" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div className="animate-fade-in-up [animation-delay:.2s]">
               <h3 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">Services</h3>
               <ul className="space-y-2">
-                {["Web Development", "Mobile Apps", "Cloud Solutions", "AI & ML"].map((service) => (
-                  <li key={service}>
-                    <Link to="/services" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-1">
-                      {service}
+                {services.map((service) => (
+                  <li key={service.label}>
+                    <Link 
+                      to="/services" 
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:translate-x-1"
+                    >
+                      <service.icon size={14} className="group-hover:text-primary transition-colors" />
+                      {service.label}
                     </Link>
                   </li>
                 ))}

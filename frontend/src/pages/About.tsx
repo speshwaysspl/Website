@@ -2,6 +2,8 @@ import { Target, Eye, Award, Users, Code, Smartphone, Cloud, Lightbulb } from "l
 import { Card } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import InternalLinks from "@/components/InternalLinks";
+import { Link } from "react-router-dom";
 import { ScrollReveal } from "@/components/animations";
 import { Helmet } from "react-helmet-async";
 import { SEO_KEYWORDS } from "@/lib/seo-utils";
@@ -464,6 +466,17 @@ const About = () => {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Internal Links for SEO */}
+      <section className="py-16 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <InternalLinks 
+            title="Learn More About Our Legitimacy & Reviews" 
+            layout="chips"
+            limit={10}
+          />
         </div>
       </section>
 
