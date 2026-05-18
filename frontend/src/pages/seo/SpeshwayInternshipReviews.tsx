@@ -38,7 +38,7 @@ const SpeshwayInternshipReviews = () => {
         "https://www.instagram.com/speshwaysolutionsofficial/",
         "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
         "https://x.com/SpeshwayM56509",
-        "https://www.youtube.com/@speshwaysolutions"
+        "https://www.youtube.com/@speshwaysolutionspvtltd"
       ]
     }
   };

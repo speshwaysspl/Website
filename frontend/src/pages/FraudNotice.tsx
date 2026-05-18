@@ -353,7 +353,7 @@ const FraudNotice = () => {
                     <span className="text-[10px] uppercase font-bold tracking-widest text-neutral-400 group-hover:text-white transition-colors mt-3">Twitter (X)</span>
                   </a>
                   <a 
-                    href="https://www.youtube.com/@speshwaysolutions" 
+                    href="https://www.youtube.com/@speshwaysolutionspvtltd" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="flex flex-col items-center justify-center p-4 border border-white/5 bg-black/40 hover:bg-red-500/5 hover:border-red-500/20 rounded-2xl transition-all group w-32 h-28"

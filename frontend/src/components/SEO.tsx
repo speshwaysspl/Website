@@ -59,7 +59,7 @@ const SEO = ({
       "https://www.instagram.com/speshwaysolutionsofficial/",
       "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
       "https://x.com/SpeshwayM56509",
-      "https://www.youtube.com/@speshwaysolutions"
+      "https://www.youtube.com/@speshwaysolutionspvtltd"
     ],
     "address": {
       "@type": "PostalAddress",
@@ -151,7 +151,7 @@ const SEO = ({
       <link rel="me" href="https://www.instagram.com/speshwaysolutionsofficial/" />
       <link rel="me" href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" />
       <link rel="me" href="https://x.com/SpeshwayM56509" />
-      <link rel="me" href="https://www.youtube.com/@speshwaysolutions" />
+      <link rel="me" href="https://www.youtube.com/@speshwaysolutionspvtltd" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />

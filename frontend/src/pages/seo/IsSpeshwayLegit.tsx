@@ -38,7 +38,7 @@ const IsSpeshwayLegit = () => {
       "https://www.instagram.com/speshwaysolutionsofficial/",
       "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
       "https://x.com/SpeshwayM56509",
-      "https://www.youtube.com/@speshwaysolutions"
+      "https://www.youtube.com/@speshwaysolutionspvtltd"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -130,7 +130,7 @@ const IsSpeshwayLegit = () => {
              <a href="https://www.quora.com/profile/Speshway-Solutions-Pvt-Ltd" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Quora (Official)</a>
              <a href="https://www.facebook.com/people/Speshway-Solutions/61584485021568/" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Facebook</a>
              <a href="https://x.com/SpeshwayM56509" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> Twitter (X)</a>
-             <a href="https://www.youtube.com/@speshwaysolutions" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> YouTube</a>
+             <a href="https://www.youtube.com/@speshwaysolutionspvtltd" target="_blank" rel="noopener noreferrer me" className="px-6 py-3 border rounded-xl hover:bg-muted transition-colors flex items-center gap-2 font-bold text-sm"><ExternalLink className="w-4 h-4" /> YouTube</a>
           </div>
         </div>
         

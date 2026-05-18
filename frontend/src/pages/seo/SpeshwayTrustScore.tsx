@@ -104,7 +104,7 @@ const SpeshwayTrustScore = () => {
       "https://www.instagram.com/speshwaysolutionsofficial/",
       "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
       "https://x.com/SpeshwayM56509",
-      "https://www.youtube.com/@speshwaysolutions"
+      "https://www.youtube.com/@speshwaysolutionspvtltd"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",

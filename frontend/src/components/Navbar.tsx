@@ -65,7 +65,8 @@ const Navbar = () => {
   const isHome = location.pathname === "/";
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-555 ${
+    <>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-555 ${
       isScrolled
         ? "bg-[#030712]/95 backdrop-blur-md border-b border-white/5 shadow-2xl shadow-[#030712]/50"
         : "bg-transparent border-b border-transparent"
@@ -185,18 +186,20 @@ const Navbar = () => {
             </button>
           </div>
         </div>
+      </div>
+    </nav>
 
-        {/* Mobile Sidebar Overlay */}
-        <div className={`fixed inset-0 z-[60] lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
+    {/* Mobile Sidebar Overlay */}
+    <div className={`fixed inset-0 z-[60] lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
-          <div className={`absolute top-0 right-0 h-full w-[280px] bg-[#070b19] border-l border-white/5 shadow-2xl transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
-            <div className="flex items-center justify-between px-6 py-8 border-b border-border">
+          <div className={`absolute top-0 right-0 h-full w-[280px] bg-[#070b19] border-l border-white/5 shadow-2xl transition-transform duration-300 ease-in-out flex flex-col ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
+            <div className="flex items-center justify-between px-6 py-8 border-b border-border shrink-0">
               <span className="text-xl font-bold text-primary">Menu</span>
               <Button variant="ghost" size="icon" onClick={()=>setIsMobileMenuOpen(false)} aria-label="Close menu">
                 <X size={24} />
               </Button>
             </div>
-            <div className="px-4 py-6 space-y-2">
+            <div className="px-4 py-6 space-y-2 flex-1 overflow-y-auto overscroll-contain pb-8">
               {navLinks.map((link) => (
                 link.children ? (
                   <div key={link.label} className="space-y-2">
@@ -260,9 +263,8 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </nav>
+    </div>
+    </>
   );
 };
 

@@ -108,7 +108,7 @@ const SpeshwayOfficialContact = () => {
             <Twitter className="w-5 h-5 text-black" />
             <span className="font-bold text-sm">Twitter (X)</span>
           </a>
-          <a href="https://www.youtube.com/@speshwaysolutions" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
+          <a href="https://www.youtube.com/@speshwaysolutionspvtltd" target="_blank" rel="noopener noreferrer me" className="flex items-center gap-3 p-4 border rounded-xl hover:bg-muted transition-colors">
             <Youtube className="w-5 h-5 text-red-600" />
             <span className="font-bold text-sm">YouTube</span>
           </a>

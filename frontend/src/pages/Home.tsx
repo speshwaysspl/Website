@@ -205,8 +205,8 @@ const Home = () => {
       {/* Hero Section - Vibrant SaaS Style */}
       <section className="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden flex flex-col items-center justify-center">
         {/* Vibrant Animated Background Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-indigo-600/20 blur-[130px] rounded-full pointer-events-none animate-pulse duration-[8000ms]" />
-        <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-teal-500/20 blur-[120px] rounded-full pointer-events-none animate-pulse duration-[10000ms]" />
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-indigo-600/20 blur-[130px] rounded-full pointer-events-none animate-pulse [animation-duration:8000ms]" />
+        <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-teal-500/20 blur-[120px] rounded-full pointer-events-none animate-pulse [animation-duration:10000ms]" />
         <div className="absolute bottom-0 left-1/3 w-[700px] h-[500px] bg-fuchsia-600/15 blur-[150px] rounded-full pointer-events-none" />
 
         {/* Subtle grid pattern overlay */}

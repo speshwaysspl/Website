@@ -1,7 +1,8 @@
+
 import SEOLayout from "@/components/SEOLayout";
 import InternalLinks from "@/components/InternalLinks";
 import { Link } from "react-router-dom";
-import { ShieldAlert, ShieldCheck, HelpCircle, AlertTriangle, CheckCircle, Mail, Phone, Lock, Eye, ExternalLink, Instagram } from "lucide-react";
+import { ShieldAlert, ShieldCheck, HelpCircle, AlertTriangle, CheckCircle, Mail, Phone, Lock, Eye, ExternalLink, Instagram, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const SpeshwayJobScamTruth = () => {
@@ -97,7 +98,7 @@ const SpeshwayJobScamTruth = () => {
       "https://www.instagram.com/speshwaysolutionsofficial/",
       "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
       "https://x.com/SpeshwayM56509",
-      "https://www.youtube.com/@speshwaysolutions"
+      "https://www.youtube.com/@speshwaysolutionspvtltd"
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -225,7 +226,7 @@ const SpeshwayJobScamTruth = () => {
           <div className="bg-red-50 p-6 rounded-xl border border-red-100 flex flex-col items-center text-center">
             <ExternalLink className="w-10 h-10 text-red-600 mb-4" />
             <h4 className="font-bold text-red-900">YouTube</h4>
-            <a href="https://www.youtube.com/@speshwaysolutions" target="_blank" rel="noopener noreferrer me" className="text-red-700 font-bold hover:underline mt-2 text-xs">@speshwaysolutions</a>
+            <a href="https://www.youtube.com/@speshwaysolutionspvtltd" target="_blank" rel="noopener noreferrer me" className="text-red-700 font-bold hover:underline mt-2 text-xs">@speshwaysolutionspvtltd</a>
           </div>
         </div>
         <p className="text-sm text-muted-foreground italic">

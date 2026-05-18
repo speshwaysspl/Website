@@ -154,7 +154,7 @@ const About = () => {
         <link rel="me" href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" />
         <link rel="me" href="https://x.com/SpeshwayM56509" />
         <link rel="me" href="https://www.instagram.com/speshwaysolutionsofficial/" />
-        <link rel="me" href="https://www.youtube.com/@speshwaysolutions" />
+        <link rel="me" href="https://www.youtube.com/@speshwaysolutionspvtltd" />
       </Helmet>
       
       <Navbar />
@@ -162,8 +162,8 @@ const About = () => {
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 md:pt-48 md:pb-40 overflow-hidden flex flex-col items-center justify-center">
         {/* Vibrant Animated Background Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-indigo-600/10 blur-[130px] rounded-full pointer-events-none animate-pulse duration-[8000ms]" />
-        <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-teal-500/10 blur-[120px] rounded-full pointer-events-none animate-pulse duration-[10000ms]" />
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-indigo-600/10 blur-[130px] rounded-full pointer-events-none animate-pulse [animation-duration:8000ms]" />
+        <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-teal-500/10 blur-[120px] rounded-full pointer-events-none animate-pulse [animation-duration:10000ms]" />
 
         {/* Grid pattern overlay */}
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.02] pointer-events-none" />
@@ -459,7 +459,7 @@ const About = () => {
                 { name: "Instagram", url: "https://www.instagram.com/speshwaysolutionsofficial/", color: "hover:bg-[#e4405f]/10 hover:border-[#e4405f]/50 hover:shadow-[#e4405f]/10 hover:text-[#e4405f]", icon: Instagram },
                 { name: "Facebook", url: "https://www.facebook.com/people/Speshway-Solutions/61584485021568/", color: "hover:bg-[#1877f2]/10 hover:border-[#1877f2]/50 hover:shadow-[#1877f2]/10 hover:text-[#1877f2]", icon: Facebook },
                 { name: "Twitter", url: "https://x.com/SpeshwayM56509", color: "hover:bg-white/5 hover:border-white/20 hover:shadow-white/5 hover:text-white", icon: Twitter },
-                { name: "YouTube", url: "https://www.youtube.com/@speshwaysolutions", color: "hover:bg-[#ff0000]/10 hover:border-[#ff0000]/50 hover:shadow-[#ff0000]/10 hover:text-[#ff0000]", icon: Youtube }
+                { name: "YouTube", url: "https://www.youtube.com/@speshwaysolutionspvtltd", color: "hover:bg-[#ff0000]/10 hover:border-[#ff0000]/50 hover:shadow-[#ff0000]/10 hover:text-[#ff0000]", icon: Youtube }
               ].map((social) => (
                 <a
                   key={social.name}

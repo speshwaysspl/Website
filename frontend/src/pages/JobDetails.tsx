@@ -45,7 +45,7 @@ const JobDetails = () => {
               "https://www.instagram.com/speshwaysolutionsofficial/",
               "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
               "https://x.com/SpeshwayM56509",
-              "https://www.youtube.com/@speshwaysolutions"
+              "https://www.youtube.com/@speshwaysolutionspvtltd"
             ]
           },
           "jobLocation": job?.location ? {"@type":"Place","address":{"@type":"PostalAddress","addressLocality": job.location}} : undefined,
