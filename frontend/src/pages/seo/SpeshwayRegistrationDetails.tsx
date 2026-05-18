@@ -18,7 +18,7 @@ const SpeshwayRegistrationDetails = () => {
   ];
 
   const breadcrumbItems = [
-    { name: "Transparency", item: "/is-speshway-real-or-fake" },
+    { name: "Transparency", item: "/fraud-notice" },
     { name: "Registration Details", item: "/speshway-solutions-pvt-ltd-registration-details" }
   ];
 

@@ -93,7 +93,7 @@ const IsSpeshwayLegit = () => {
           </p>
           <h2 className="text-2xl font-bold mt-10 mb-6">Client and Employee Reviews</h2>
           <p>
-            Don't just take our word for it. Read our <Link to="/speshway-solutions-review-2026" className="text-primary hover:underline">Speshway Solutions Reviews</Link> to hear from our satisfied clients and dedicated employees. Their experiences highlight our commitment to excellence and a positive work culture.
+            Don't just take our word for it. Read about <Link to="/about" className="text-primary hover:underline">Speshway Solutions</Link> to hear from our satisfied clients and dedicated employees. Their experiences highlight our commitment to excellence and a positive work culture.
           </p>
           <p>
             We believe in transparency and are always open to answering any questions you may have. If you have any doubts, please reach out to us directly through our official contact channels.

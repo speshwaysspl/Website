@@ -1,286 +1,410 @@
+import React, { useState } from 'react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import InternalLinks from "@/components/InternalLinks";
 import { Card } from "@/components/ui/card";
-import { ScrollReveal } from "@/components/animations";
-import { Mail, Instagram, Linkedin, Shield, Code, Zap } from "lucide-react";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/animations";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { 
+  ShieldAlert, 
+  ShieldCheck, 
+  AlertTriangle, 
+  CheckCircle2, 
+  Mail, 
+  Instagram, 
+  Linkedin, 
+  Twitter, 
+  Youtube,
+  Building, 
+  Search, 
+  ChevronRight, 
+  FileCheck, 
+  Lock, 
+  Video, 
+  ArrowRight,
+  Shield,
+  Smartphone
+} from "lucide-react";
 
 const FraudNotice = () => {
+  const [emailInput, setEmailInput] = useState("");
+  const [verificationResult, setVerificationResult] = useState<null | {
+    status: 'official' | 'scam' | 'invalid';
+    title: string;
+    description: string;
+  }>(null);
+
+  const handleVerify = (e: React.FormEvent) => {
+    e.preventDefault();
+    const email = emailInput.trim().toLowerCase();
+    
+    if (!email) {
+      setVerificationResult(null);
+      return;
+    }
+
+    // Basic email check
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setVerificationResult({
+        status: 'invalid',
+        title: "Invalid Email Format",
+        description: "Please enter a fully qualified email address (e.g. recruiter@speshway.com) to verify."
+      });
+      return;
+    }
+
+    const domain = email.split('@')[1];
+
+    if (domain === 'speshway.com') {
+      setVerificationResult({
+        status: 'official',
+        title: "VERIFIED OFFICIAL DOMAIN",
+        description: "This is a legitimate Speshway Solutions email address. This communication is secure, authentic, and safe to trust."
+      });
+    } else {
+      setVerificationResult({
+        status: 'scam',
+        title: "ALERT: UNOFFICIAL DOMAIN",
+        description: `WARNING! Speshway Solutions operates exclusively under the "speshway.com" domain. Emails from "@${domain}" are NOT official and are highly likely to be a recruitment scam.`
+      });
+    }
+  };
+
+  const scamSteps = [
+    {
+      step: "01",
+      title: "Unsolicited Contact",
+      desc: "Scammers reach out via WhatsApp, Telegram, or unofficial Gmails offering entry-level or remote jobs (like 'Data Entry' or 'App Reviewer') with highly inflated compensation.",
+      glow: "group-hover:border-red-500/30 group-hover:shadow-[0_0_20px_rgba(239,68,68,0.15)]"
+    },
+    {
+      step: "02",
+      title: "Immediate 'Interview'",
+      desc: "They conduct a fake interview via chat platforms or send a simple questionnaire, bypassing technical assessments, and then immediately extend a job offer.",
+      glow: "group-hover:border-red-500/30 group-hover:shadow-[0_0_20px_rgba(239,68,68,0.15)]"
+    },
+    {
+      step: "03",
+      title: "Rapid Offer Letter",
+      desc: "A professionally designed (but entirely fake) offer letter is issued, often misusing Speshway's registered Hyderabad address, registration numbers, and logo.",
+      glow: "group-hover:border-red-500/30 group-hover:shadow-[0_0_20px_rgba(239,68,68,0.15)]"
+    },
+    {
+      step: "04",
+      title: "The Demand for Fees",
+      desc: "They ask you to transfer funds for 'security deposits', 'laptop insurance', or 'mandatory training materials'. Speshway has a 100% zero-fee recruitment policy.",
+      glow: "group-hover:border-red-500/30 group-hover:shadow-[0_0_20px_rgba(239,68,68,0.15)]"
+    }
+  ];
+
+  const safetyRules = [
+    {
+      icon: <Lock className="w-6 h-6 text-red-400" />,
+      title: "100% Zero Fees",
+      desc: "Speshway Solutions never requests security deposits, laptop configuration charges, background check fees, or training payments at any stage."
+    },
+    {
+      icon: <Mail className="w-6 h-6 text-indigo-400" />,
+      title: "Official @speshway.com domain",
+      desc: "All official hiring communications, online tests, and job offer announcements come strictly from verified @speshway.com email addresses."
+    },
+    {
+      icon: <Video className="w-6 h-6 text-emerald-400" />,
+      title: "Rigorous Video Interviews",
+      desc: "We never extend offers solely via text message questionnaire. Our process includes thorough face-to-face video reviews by technical managers."
+    },
+    {
+      icon: <Building className="w-6 h-6 text-sky-400" />,
+      title: "Physical Hub Operations",
+      desc: "Our primary hub is at T-Hub Phase 2, Knowledge City, Hyderabad. Scammers often falsify remote listings without verifiable technical oversight."
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#030303] text-white selection:bg-red-500/30 selection:text-white overflow-x-hidden font-sans">
       <Helmet>
         <title>Speshway Solutions: Real or Fake? | Official Verification & Fraud Alert</title>
-        <meta name="description" content="Is Speshway Solutions real or fake? Get official verification here. Learn how to identify fraudulent job offers and avoid recruitment scams. Speshway Solutions is a registered IT company in Hyderabad. Verify our official Instagram handle @speshwaysolutionsofficial." />
-        <meta name="keywords" content="Speshway Solutions real or fake, is speshway real, speshway solutions legitimacy, speshway solutions fake, recruitment scam, Speshway Solutions, job offer verification, speshway solutions official verification, speshway hyderabad scam alert, speshway recruitment fraud, payment collection scam speshway, speshway solutions reviews, speshway solutions hyderabad real, speshway solutions authentic, speshway instagram official, speshway official handles" />
+        <meta name="description" content="Is Speshway Solutions real or fake? Get official verification here. Learn how to identify fraudulent job offers and avoid recruitment scams. Speshway Solutions is a registered IT company in Hyderabad." />
+        <meta name="keywords" content="Speshway Solutions real or fake, is speshway real, speshway solutions legitimacy, speshway solutions fake, recruitment scam, Speshway Solutions, job offer verification, speshway solutions official verification" />
         <link rel="canonical" href="https://speshway.com/fraud-notice" />
-        <meta property="og:title" content="Is Speshway Solutions Real or Fake? | Official Fraud Alert" />
-        <meta property="og:description" content="Beware of fraudulent job offers and fake reports. Learn how to identify and report scams and verify Speshway Solutions legitimacy." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://speshway.com/fraud-notice" />
-        <meta property="og:image" content="https://speshway.com/logo.png" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Is Speshway Solutions Real or Fake? | Official Fraud Alert" />
-        <meta name="twitter:description" content="Beware of fraudulent job offers and fake reports. Learn how to identify and report scams." />
-        <link rel="me" href="https://www.facebook.com/people/Speshway-Solutions/61584485021568/" />
-        <link rel="me" href="https://x.com/SpeshwayM56509" />
-        <link rel="me" href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" />
-        <link rel="me" href="https://www.instagram.com/speshwaysolutionsofficial/" />
-         <link rel="me" href="https://www.youtube.com/@speshwaysolutions" />
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Speshway Solutions Private Limited",
-          "url": "https://speshway.com/",
-          "logo": "https://speshway.com/logo.png",
-          "sameAs": [
-            "https://www.facebook.com/people/Speshway-Solutions/61584485021568/",
-            "https://x.com/SpeshwayM56509",
-            "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
-            "https://www.instagram.com/speshwaysolutionsofficial/",
-            "https://www.youtube.com/@speshwaysolutions"
-          ],
-          "brand": {
-            "@type": "Brand",
-            "name": "Speshway Solutions",
-            "description": "A registered IT services company based in Hyderabad."
-          }
-        })}</script>
-        <script type="application/ld+json">{JSON.stringify({
-          "@context":"https://schema.org",
-          "@type":"BreadcrumbList",
-          "itemListElement":[
-            {"@type":"ListItem","position":1,"name":"Home","item":"https://speshway.com/"},
-            {"@type":"ListItem","position":2,"name":"Fraud Alert","item":"https://speshway.com/fraud-notice"}
-          ]
-        })}</script>
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [{
-            "@type": "Question",
-            "name": "Is Speshway Solutions a real or fake company?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Speshway Solutions Private Limited is a legitimate, registered IT services company based in Hyderabad, India. We are committed to transparency and integrity in our recruitment and business operations."
-            }
-          }, {
-            "@type": "Question",
-            "name": "Does Speshway Solutions collect payments for jobs?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No, Speshway Solutions never collects any payments, security deposits, or processing fees for job applications or interviews. Any such request is a scam."
-            }
-          }, {
-            "@type": "Question",
-            "name": "Are the scam reports on social media about Speshway true?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Most reports of 'scams' on social media platforms like Instagram are based on fraudulent actors misusing our company name. We urge candidates to only trust official communications from @speshway.com and our official Instagram handle @speshwaysolutionsofficial."
-            }
-          }]
-        })}</script>
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Review",
-          "itemReviewed": {
-            "@type": "Organization",
-            "name": "Speshway Solutions Private Limited"
-          },
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "author": {
-            "@type": "Organization",
-            "name": "Speshway Solutions"
-          },
-          "reviewBody": "Official verification of Speshway Solutions legitimacy and fraud alert to protect job seekers."
-        })}</script>
       </Helmet>
+
       <Navbar />
 
-      <section className="pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
-        <div className="container mx-auto px-4 relative z-10">
-          <ScrollReveal>
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground mb-4 leading-tight">Legitimacy & Fraud Alert</h1>
-              <h2 className="text-xl sm:text-2xl text-red-600 font-semibold mb-6">
-                Protecting You from Fake Offers
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Is Speshway Solutions real or fake? We are a registered IT services company. We've compiled this guide to help you verify authentic communications and avoid recruitment scams.
+      {/* Cyber Grid Hero Banner */}
+      <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden border-b border-white/5">
+        {/* Ambient Warning Blooms */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-900/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-indigo-900/10 rounded-full blur-[100px] pointer-events-none" />
+        
+        {/* Subtle dot matrix grid overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.08),rgba(255,255,255,0))]" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <ScrollReveal>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-semibold tracking-widest uppercase mb-4 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
+                <ShieldAlert className="w-3.5 h-3.5" /> Cyber Security & Legitimacy Hub
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal delay={0.1}>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] bg-gradient-to-b from-white via-neutral-100 to-neutral-400 bg-clip-text text-transparent">
+                Is Speshway Solutions <br />
+                <span className="text-red-500 bg-gradient-to-r from-red-500 to-rose-400 bg-clip-text text-transparent">Real or Fake?</span>
+              </h1>
+            </ScrollReveal>
+            
+            <ScrollReveal delay={0.2}>
+              <p className="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+                Speshway Solutions Private Limited is a registered IT services firm operating from T-Hub Hyderabad. Verify recruitment authenticity instantly using our certified security tool below.
               </p>
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
-      <section className="py-5">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <Card className="p-8 md:p-12 bg-card/50 backdrop-blur-sm border-border space-y-6">
-              <div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">Our Commitment to Transparency</h3>
-                <p className="text-muted-foreground mb-4">
-                  Speshway Solutions Private Limited is a legally registered entity. We pride ourselves on our professional standards and ethical business practices. Unfortunately, some malicious actors may misuse our name to deceive job seekers.
+      {/* Interactive Domain Verification Section */}
+      <section className="py-16 md:py-24 relative">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto">
+            <ScrollReveal>
+              <Card className="p-8 md:p-10 bg-white/[0.01] border border-white/5 backdrop-blur-2xl rounded-[2rem] shadow-2xl relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-transparent pointer-events-none" />
+                
+                <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-2">
+                  <Shield className="w-7 h-7 text-red-500 animate-pulse" /> Domain Authenticator
+                </h2>
+                <p className="text-center text-sm text-neutral-400 mb-8 max-w-lg mx-auto">
+                  Type the exact email address of the recruiter who contacted you to check if they are verified.
                 </p>
-              </div>
 
-              <div className="border-t border-border pt-6">
-                <h3 className="text-2xl font-bold text-foreground mb-4">How to Verify if a Communication is Real</h3>
-                <ul className="list-disc pl-6 space-y-3 text-muted-foreground">
-                  <li><strong>Official Email Domains:</strong> All official communications from us will come from <code className="bg-muted px-1 rounded">@speshway.com</code>. We do not use generic email services like Gmail, Yahoo, or Outlook for official recruitment unless specified on our careers page.</li>
-                  <li><strong>No Fees:</strong> Speshway Solutions **never** charges any fees for recruitment, interviews, or job placements. If you are asked for money, it is a scam.</li>
-                  <li><strong>Official Website:</strong> Always verify job listings on our official website: <a href="https://speshway.com" className="text-primary hover:underline">speshway.com</a>.</li>
-                  <li><strong>Physical Presence:</strong> We are located at our registered office in Hyderabad. You can visit us or contact us via our official phone numbers.</li>
-                </ul>
-              </div>
+                <form onSubmit={handleVerify} className="space-y-4">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="e.g. hr@speshway.com or recruiter@gmail.com"
+                      value={emailInput}
+                      onChange={(e) => setEmailInput(e.target.value)}
+                      className="w-full h-14 pl-12 pr-4 rounded-2xl bg-white/[0.02] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-red-500/50 focus:ring-1 focus:ring-red-500/50 transition-all font-medium"
+                    />
+                    <Search className="w-5 h-5 text-neutral-500 absolute left-4 top-1/2 -translate-y-1/2" />
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full h-14 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-extrabold text-sm uppercase tracking-wider rounded-2xl transition-all shadow-xl shadow-red-900/10"
+                  >
+                    Verify Authenticity
+                  </Button>
+                </form>
 
-              <div className="border-t border-border pt-6">
-                <h3 className="text-2xl font-bold text-foreground mb-4">Common Scam Red Flags</h3>
-                <p className="text-muted-foreground mb-4">
-                  Some job candidates have reported receiving fraudulent job offers from individuals falsely claiming to represent Speshway Solutions. These scams often involve:
-                </p>
-                <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                  <li>Requests for "processing fees" or "security deposits".</li>
-                  <li>Offers that seem "too good to be true" with very high salaries for minimal experience.</li>
-                  <li>Poorly written emails with grammatical errors and low-quality logos.</li>
-                  <li>Urgent demands to provide personal information or make payments immediately.</li>
-                </ul>
-              </div>
+                {verificationResult && (
+                  <div className="mt-8 animate-in fade-in slide-in-from-top-4 duration-300">
+                    {verificationResult.status === 'official' ? (
+                      <div className="p-6 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 text-emerald-300 shadow-[0_0_20px_rgba(16,185,129,0.05)]">
+                        <h4 className="font-bold flex items-center gap-2 text-base text-emerald-400">
+                          <ShieldCheck className="w-5 h-5 shrink-0" /> {verificationResult.title}
+                        </h4>
+                        <p className="text-xs mt-2 text-emerald-200/80 leading-relaxed font-semibold">
+                          {verificationResult.description}
+                        </p>
+                      </div>
+                    ) : verificationResult.status === 'scam' ? (
+                      <div className="p-6 rounded-2xl bg-red-500/5 border border-red-500/20 text-red-300 shadow-[0_0_20px_rgba(239,68,68,0.05)] animate-shake">
+                        <h4 className="font-bold flex items-center gap-2 text-base text-red-400">
+                          <AlertTriangle className="w-5 h-5 shrink-0" /> {verificationResult.title}
+                        </h4>
+                        <p className="text-xs mt-2 text-red-200/80 leading-relaxed font-semibold">
+                          {verificationResult.description}
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="p-6 rounded-2xl bg-amber-500/5 border border-amber-500/20 text-amber-300">
+                        <h4 className="font-bold flex items-center gap-2 text-base text-amber-400">
+                          <ShieldAlert className="w-5 h-5 shrink-0" /> {verificationResult.title}
+                        </h4>
+                        <p className="text-xs mt-2 text-amber-200/80 leading-relaxed">
+                          {verificationResult.description}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </Card>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
 
-              <div className="border-t border-border pt-6">
-                <h3 className="text-2xl font-bold text-foreground mb-4 text-red-500">Official Instagram & Social Verification</h3>
-                <p className="text-muted-foreground mb-6">
-                  We have been alerted to unauthorized social media accounts making false "scam risk" claims about Speshway Solutions. These accounts are often misinformed or are intentionally spreading fake reports based on fraudulent job offers sent by <strong>third-party scammers</strong> misusing our name.
-                </p>
-                <p className="text-muted-foreground mb-6">
-                  To protect yourself, please follow **only** our official handle. Any other account or report claiming to represent us or labeling us as a "scam" based on unofficial communications is **fake**.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Anatomy of a Recruitment Scam */}
+      <section className="py-16 md:py-24 border-t border-white/5 bg-white/[0.01]">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <ScrollReveal>
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-transparent">
+                Anatomy of a Recruitment Scam
+              </h2>
+              <p className="text-neutral-400 text-sm md:text-base max-w-lg mx-auto">
+                Understanding their patterns is the ultimate way to protect your personal details and savings.
+              </p>
+            </ScrollReveal>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {scamSteps.map((step, idx) => (
+              <ScrollReveal key={idx} delay={idx * 0.1}>
+                <Card className={`p-6 h-full bg-black/40 border border-white/5 backdrop-blur-xl hover:border-red-500/20 rounded-3xl transition-all duration-500 group flex flex-col justify-between ${step.glow}`}>
+                  <div>
+                    <span className="text-3xl font-black text-red-500/20 group-hover:text-red-500/40 transition-colors duration-500 mb-6 block">
+                      {step.step}
+                    </span>
+                    <h3 className="text-lg font-bold mb-3 group-hover:text-white transition-colors">
+                      {step.title}
+                    </h3>
+                    <p className="text-xs text-neutral-400 leading-relaxed group-hover:text-neutral-300 transition-colors">
+                      {step.desc}
+                    </p>
+                  </div>
+                </Card>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Safety Rules Grid */}
+      <section className="py-16 md:py-24 border-t border-white/5">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <ScrollReveal>
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">
+                Recruitment Safety Rules
+              </h2>
+              <p className="text-neutral-400 text-sm md:text-base max-w-lg mx-auto">
+                Speshway operates in complete transparency. Memorize these guidelines before proceeding with any technical assessment.
+              </p>
+            </ScrollReveal>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {safetyRules.map((rule, idx) => (
+              <ScrollReveal key={idx} delay={idx * 0.1}>
+                <div className="p-8 border border-white/5 bg-white/[0.01] hover:border-indigo-500/20 rounded-3xl transition-all duration-500 flex gap-6 items-start">
+                  <div className="p-3 bg-white/5 rounded-2xl border border-white/10 shrink-0">
+                    {rule.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold mb-2 text-white">
+                      {rule.title}
+                    </h3>
+                    <p className="text-xs text-neutral-400 leading-relaxed">
+                      {rule.desc}
+                    </p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Official Handles & Verification Hub */}
+      <section className="py-16 md:py-24 border-t border-white/5 bg-white/[0.01]">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto">
+            <ScrollReveal>
+              <div className="p-8 md:p-12 rounded-[2.5rem] bg-gradient-to-b from-white/[0.02] to-transparent border border-white/5 backdrop-blur-3xl shadow-2xl relative overflow-hidden flex flex-col md:flex-row justify-between items-center gap-10">
+                <div className="space-y-4 max-w-lg text-center md:text-left">
+                  <h3 className="text-2xl md:text-3xl font-extrabold">Official Social Verification</h3>
+                  <p className="text-neutral-400 text-sm leading-relaxed">
+                    Some malicious actors have spread misinformed warnings on social networks. To protect yourself, only verify company posts, careers, and addresses from our official, verified accounts listed here.
+                  </p>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4 w-full md:w-auto shrink-0">
                   <a 
                     href="https://www.instagram.com/speshwaysolutionsofficial/" 
                     target="_blank" 
-                    rel="noopener noreferrer me" 
-                    aria-label="Visit our official Instagram account"
-                    className="flex items-center gap-4 p-5 rounded-xl border-2 border-primary/20 bg-primary/5 hover:border-primary/50 hover:bg-primary/10 transition-all group"
+                    rel="noopener noreferrer" 
+                    className="flex flex-col items-center justify-center p-4 border border-white/5 bg-black/40 hover:bg-pink-500/5 hover:border-pink-500/20 rounded-2xl transition-all group w-32 h-28"
                   >
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] flex items-center justify-center text-white">
-                      <Instagram size={24} />
-                    </div>
-                    <div>
-                      <div className="font-bold text-foreground text-sm">Official Instagram Handle</div>
-                      <div className="text-primary font-medium text-xs">@speshwaysolutionsofficial</div>
-                    </div>
+                    <Instagram className="w-7 h-7 text-pink-500 group-hover:scale-110 transition-transform" />
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-neutral-400 group-hover:text-white transition-colors mt-3">Instagram</span>
                   </a>
                   <a 
                     href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" 
                     target="_blank" 
-                    rel="noopener noreferrer me" 
-                    aria-label="Visit our official LinkedIn page"
-                    className="flex items-center gap-4 p-5 rounded-xl border-2 border-[#0077b5]/20 bg-[#0077b5]/5 hover:border-[#0077b5]/50 hover:bg-[#0077b5]/10 transition-all group"
+                    rel="noopener noreferrer" 
+                    className="flex flex-col items-center justify-center p-4 border border-white/5 bg-black/40 hover:bg-blue-500/5 hover:border-blue-500/20 rounded-2xl transition-all group w-32 h-28"
                   >
-                    <div className="w-12 h-12 rounded-lg bg-[#0077b5] flex items-center justify-center text-white">
-                      <Linkedin size={24} />
-                    </div>
-                    <div>
-                      <div className="font-bold text-foreground text-sm">Official LinkedIn Page</div>
-                      <div className="text-[#0077b5] font-medium text-xs">Speshway Solutions</div>
-                    </div>
+                    <Linkedin className="w-7 h-7 text-blue-500 group-hover:scale-110 transition-transform" />
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-neutral-400 group-hover:text-white transition-colors mt-3">LinkedIn</span>
+                  </a>
+                  <a 
+                    href="https://x.com/SpeshwayM56509" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex flex-col items-center justify-center p-4 border border-white/5 bg-black/40 hover:bg-neutral-500/10 hover:border-neutral-500/20 rounded-2xl transition-all group w-32 h-28"
+                  >
+                    <Twitter className="w-7 h-7 text-neutral-300 group-hover:scale-110 transition-transform" />
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-neutral-400 group-hover:text-white transition-colors mt-3">Twitter (X)</span>
+                  </a>
+                  <a 
+                    href="https://www.youtube.com/@speshwaysolutions" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex flex-col items-center justify-center p-4 border border-white/5 bg-black/40 hover:bg-red-500/5 hover:border-red-500/20 rounded-2xl transition-all group w-32 h-28"
+                  >
+                    <Youtube className="w-7 h-7 text-red-500 group-hover:scale-110 transition-transform" />
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-neutral-400 group-hover:text-white transition-colors mt-3">YouTube</span>
                   </a>
                 </div>
               </div>
-
-              <div className="border-t border-border pt-6">
-                <h3 className="text-2xl font-bold text-foreground mb-4">Report a Suspicious Communication</h3>
-                <p className="text-muted-foreground mb-4">
-                  If you receive any job offers or messages that you suspect are fraudulent, please report them to us immediately:
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <a href="mailto:info@speshway.com" aria-label="Email General Inquiries" className="flex items-center gap-3 p-4 rounded-lg bg-secondary/50 hover:bg-secondary/80 transition-colors">
-                    <Mail className="text-primary" size={24} />
-                    <div>
-                      <div className="font-semibold">General Inquiries</div>
-                      <div className="text-sm text-muted-foreground">info@speshway.com</div>
-                    </div>
-                  </a>
-                  <a href="mailto:info@speshway.com" aria-label="Email Recruitment Verification" className="flex items-center gap-3 p-4 rounded-lg bg-secondary/50 hover:bg-secondary/80 transition-colors">
-                    <Mail className="text-primary" size={24} />
-                    <div>
-                      <div className="font-semibold">Recruitment Verification</div>
-                      <div className="text-sm text-muted-foreground">info@speshway.com</div>
-                    </div>
-                  </a>
-                </div>
-                
-                <div className="bg-primary/5 p-6 rounded-xl border border-primary/20">
-                  <h4 className="font-bold mb-3">More Resources for Verification:</h4>
-                  <ul className="space-y-2">
-                    <li><Link to="/is-speshway-real-or-fake" className="text-primary hover:underline flex items-center gap-2">Is Speshway Solutions Real? <span className="text-xs bg-primary/20 px-2 py-0.5 rounded">Detailed Guide</span></Link></li>
-                    <li><Link to="/speshway-hyderabad-company-review" className="text-primary hover:underline flex items-center gap-2">Official Company Details & Address</Link></li>
-                    <li><Link to="/speshway-solutions-review-2026" className="text-primary hover:underline flex items-center gap-2">Verified Speshway Reviews</Link></li>
-                  </ul>
-                </div>
-              </div>
-
-              <p className="text-sm text-muted-foreground pt-6 italic">
-                Disclaimer: Speshway Solutions is not liable for any loss or damage incurred as a result of dealing with fraudulent entities. We aim to protect candidates by sharing this information.
-              </p>
-            </Card>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/5 -skew-y-6 transform origin-top-left" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center mb-12">
+      {/* Report Fraud Section */}
+      <section className="py-20 md:py-28 relative">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
             <ScrollReveal>
-              <h2 className="text-4xl font-bold text-foreground mb-4">Official Status & Verification</h2>
-              <p className="text-xl text-muted-foreground">
-                Speshway Solutions Private Limited is a registered IT services company. We value transparency and want to ensure you are interacting with our official channels.
-              </p>
-            </ScrollReveal>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <ScrollReveal delay={0.1}>
-              <Card className="p-8 h-full bg-card/80 backdrop-blur-sm border-2 border-primary/10 hover:border-primary/30 transition-all text-center flex flex-col items-center">
-                <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mb-6 text-green-600">
-                  <Shield size={32} />
+              <Card className="p-8 md:p-16 bg-gradient-to-br from-red-950/20 via-black to-black border-2 border-red-500/10 rounded-[2.5rem] text-center shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-8 opacity-5">
+                  <ShieldAlert className="w-48 h-48 rotate-12 text-red-500" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Registered Entity</h3>
-                <p className="text-muted-foreground text-sm">
-                  We are a legally registered company in Hyderabad, operating from T-Hub, India's largest innovation hub.
+                
+                <h3 className="text-3xl sm:text-4xl font-extrabold mb-4 text-red-400 flex items-center justify-center gap-3">
+                  <ShieldAlert className="w-9 h-9" /> Help Us Stop Fraud
+                </h3>
+                <p className="text-neutral-300 text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-10">
+                  If you have been approached by scammers posing as Speshway recruiters, please do not release any personal data or make payment transfers. Immediately report their handles, WhatsApp details, or documents to our dedicated security desk.
                 </p>
-              </Card>
-            </ScrollReveal>
 
-            <ScrollReveal delay={0.2}>
-              <Card className="p-8 h-full bg-card/80 backdrop-blur-sm border-2 border-primary/10 hover:border-primary/30 transition-all text-center flex flex-col items-center">
-                <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mb-6 text-blue-600">
-                  <Code size={32} />
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-6 max-w-xl mx-auto">
+                  <a 
+                    href="mailto:info@speshway.com" 
+                    className="w-full sm:w-auto h-14 px-8 inline-flex items-center justify-center bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-2xl transition-all duration-300 gap-2 shadow-[0_0_20px_rgba(239,68,68,0.2)] hover:shadow-[0_0_30px_rgba(239,68,68,0.4)] whitespace-nowrap"
+                  >
+                    <Mail className="w-5 h-5 shrink-0" /> Email Security Desk
+                  </a>
+                  <Button asChild variant="outline" className="w-full sm:w-auto h-14 px-8 border-white/10 hover:border-white/25 hover:bg-white/5 text-white font-bold text-xs sm:text-sm rounded-2xl transition-all duration-300 whitespace-nowrap">
+                    <Link to="/contact" className="inline-flex items-center gap-1.5">
+                      Submit Scam Alert <ChevronRight className="w-4 h-4 shrink-0" />
+                    </Link>
+                  </Button>
                 </div>
-                <h3 className="text-xl font-bold mb-3">No Recruitment Fees</h3>
-                <p className="text-muted-foreground text-sm">
-                  Speshway **never** charges any fees for interviews or job placements. Any request for payment is a scam.
-                </p>
-              </Card>
-            </ScrollReveal>
 
-            <ScrollReveal delay={0.3}>
-              <Card className="p-8 h-full bg-card/80 backdrop-blur-sm border-2 border-primary/10 hover:border-primary/30 transition-all text-center flex flex-col items-center">
-                <div className="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center mb-6 text-purple-600">
-                  <Zap size={32} />
+                <div className="mt-12 not-prose flex justify-center">
+                  <InternalLinks 
+                    layout="chips"
+                    title="Verified resources for job seeker safety"
+                  />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Official Socials</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  Verify our official Instagram <span className="text-primary font-semibold">@speshwaysolutionsofficial</span> to avoid fake reports.
-                </p>
               </Card>
             </ScrollReveal>
           </div>

@@ -47,11 +47,11 @@ const SpeshwayJobScamTruth = () => {
           <p className="text-sm text-muted-foreground">
             If you are unsure about an offer, compare details with{" "}
             <Link
-              to="/is-speshway-real-or-fake"
+              to="/fraud-notice"
               className="text-primary font-semibold hover:underline"
-              title="Check if Speshway is real or fake before trusting any job offer"
+              title="Check Speshway official recruitment policies and fraud notice details"
             >
-              our authenticity guide
+              our fraud notice guide
             </Link>{" "}
             and{" "}
             <Link

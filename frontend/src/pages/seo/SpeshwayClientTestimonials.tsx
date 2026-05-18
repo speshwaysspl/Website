@@ -17,11 +17,11 @@ const SpeshwayClientTestimonials = () => {
           <p className="text-sm text-muted-foreground">
             You can see this reflected in{" "}
             <Link
-              to="/speshway-solutions-review-2026"
+              to="/about"
               className="text-primary font-semibold hover:underline"
-              title="Read the detailed Speshway Solutions review for 2026"
+              title="Read about Speshway Solutions corporate background and mission"
             >
-              our 2026 company review
+              our company profile
             </Link>{" "}
             and{" "}
             <Link

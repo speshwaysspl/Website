@@ -10,8 +10,8 @@ const {
 const { protect, admin } = require('../middleware/authMiddleware');
 const { uploadPortfolioImage } = require('../config/cloudinary');
 
-router.route('/').get(getPortfolios).post(protect, admin, uploadPortfolioImage.single('image'), createPortfolio);
-router.route('/:id').get(getPortfolio).put(protect, admin, uploadPortfolioImage.single('image'), updatePortfolio).delete(protect, admin, deletePortfolio);
+router.route('/').get(getPortfolios).post(protect, admin, uploadPortfolioImage.fields([{ name: 'image', maxCount: 1 }, { name: 'screenshots', maxCount: 10 }]), createPortfolio);
+router.route('/:id').get(getPortfolio).put(protect, admin, uploadPortfolioImage.fields([{ name: 'image', maxCount: 1 }, { name: 'screenshots', maxCount: 10 }]), updatePortfolio).delete(protect, admin, deletePortfolio);
 
 module.exports = router;
 

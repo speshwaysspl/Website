@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -12,8 +12,13 @@ import {
   Users,
   PartyPopper,
   Eye,
-  Image,
-  Sparkles
+  Image as ImageIcon,
+  Sparkles,
+  BookOpen,
+  Clock,
+  ChevronRight,
+  Search,
+  Filter
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -21,7 +26,7 @@ import InternalLinks from '@/components/InternalLinks';
 import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Skeleton } from '@/components/ui/skeleton';
-import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
+import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal } from "@/components/animations";
 import { Helmet } from "react-helmet-async";
 import { getOptimizedImageUrl } from "@/lib/utils";
 import api, { getBaseUrl } from "@/lib/api";
@@ -32,11 +37,9 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
-import Autoplay from "embla-carousel-autoplay"
-import { m } from "framer-motion";
-
-
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { m, AnimatePresence } from "framer-motion";
 
 interface GalleryItem {
   _id: string;
@@ -58,19 +61,16 @@ interface GalleryItem {
   createdAt?: string;
 }
 
-
 const Gallery = () => {
-  const RAW_API_URL = getBaseUrl();
-  const API_URL = RAW_API_URL;
   const { toast } = useToast();
   
   const [galleryItemsData, setGalleryItemsData] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedItem, setSelectedItem] = useState<any>(null);
-  const [groupedItems, setGroupedItems] = useState<{ [key: string]: GalleryItem[] }>({});
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [readIds, setReadIds] = useState<Set<string>>(() => {
     try {
       const saved = JSON.parse(localStorage.getItem('galleryReadIds') || '[]');
@@ -81,7 +81,7 @@ const Gallery = () => {
   });
 
   const autoplayPlugin = React.useMemo(() => 
-    Autoplay({ delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true }),
+    Autoplay({ delay: 2500, stopOnInteraction: false, stopOnMouseEnter: true }),
   []);
 
   const isNewItem = (item: GalleryItem) => {
@@ -99,7 +99,7 @@ const Gallery = () => {
       description: 'Explore how artificial intelligence is revolutionizing the software development lifecycle, from automated coding to intelligent testing.',
       category: 'Technology',
       date: '2023-10-26T10:00:00Z',
-      image: { url: '/images/software-development.jpg', publicId: 'fallback-ai-dev' },
+      image: { url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800', publicId: 'fallback-ai-dev' },
       formattedDate: 'October 26, 2023',
     },
     {
@@ -108,7 +108,7 @@ const Gallery = () => {
       description: 'A deep dive into the principles and best practices for creating intuitive and engaging user interfaces for mobile applications.',
       category: 'Design',
       date: '2023-09-15T10:00:00Z',
-      image: { url: '/images/mobile-app-development.jpg', publicId: 'fallback-mobile-uiux' },
+      image: { url: 'https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?auto=format&fit=crop&q=80&w=800', publicId: 'fallback-mobile-uiux' },
       formattedDate: 'September 15, 2023',
     },
     {
@@ -117,7 +117,7 @@ const Gallery = () => {
       description: 'An overview of the most significant trends shaping the cloud computing landscape, including serverless, edge computing, and hybrid clouds.',
       category: 'Cloud',
       date: '2023-11-01T10:00:00Z',
-      image: { url: '/images/cloud-devops.jpg', publicId: 'fallback-cloud-trends' },
+      image: { url: 'https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&q=80&w=800', publicId: 'fallback-cloud-trends' },
       formattedDate: 'November 1, 2023',
     },
     {
@@ -126,36 +126,12 @@ const Gallery = () => {
       description: 'Key strategies and insights for large organizations looking to successfully navigate their digital transformation journey.',
       category: 'Business',
       date: '2023-08-20T10:00:00Z',
-      image: { url: '/images/digital-transformation.jpg', publicId: 'fallback-digital-xform' },
+      image: { url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800', publicId: 'fallback-digital-xform' },
       formattedDate: 'August 20, 2023',
     },
   ];
 
   const galleryItems = galleryItemsData && galleryItemsData.length > 0 ? galleryItemsData : fallbackGalleryItems;
-
-  const recomputeGroups = useCallback((
-    items: GalleryItem[],
-    categoryFilter: string,
-    statusFilter: string,
-    readSet: Set<string>
-  ) => {
-    const filtered = items.filter((item) => {
-      const categoryMatch = categoryFilter === 'all' || (item.category || 'Uncategorized') === categoryFilter;
-      let statusMatch = true;
-      if (statusFilter === 'new') statusMatch = isNewItem(item);
-      else if (statusFilter === 'read') statusMatch = readSet.has(item._id);
-      else if (statusFilter === 'unread') statusMatch = !readSet.has(item._id);
-      return categoryMatch && statusMatch;
-    });
-
-    const grouped: { [key: string]: GalleryItem[] } = {};
-    filtered.forEach((item: GalleryItem) => {
-      const category = item.category || 'Uncategorized';
-      if (!grouped[category]) grouped[category] = [];
-      grouped[category].push(item);
-    });
-    setGroupedItems(grouped);
-  }, []);
 
   const fetchGalleryItems = useCallback(async () => {
     try {
@@ -164,7 +140,6 @@ const Gallery = () => {
       const data = response.data;
       const items = Array.isArray(data) ? data : (data.data || []);
       setGalleryItemsData(items);
-      recomputeGroups(items, selectedCategory, selectedStatus, readIds);
     } catch (error: any) {
       console.error('Error fetching gallery items:', error);
       toast({
@@ -175,7 +150,7 @@ const Gallery = () => {
     } finally {
       setLoading(false);
     }
-  }, [recomputeGroups, selectedCategory, selectedStatus, readIds, toast]);
+  }, [toast]);
 
   const fetchCategories = useCallback(async () => {
     try {
@@ -193,19 +168,18 @@ const Gallery = () => {
     fetchCategories();
   }, [fetchGalleryItems, fetchCategories]);
 
-
-  useEffect(() => {
-    recomputeGroups(galleryItems, selectedCategory, selectedStatus, readIds);
-  }, [selectedCategory, selectedStatus, readIds, galleryItems, recomputeGroups]);
-
   const getCategoryColor = (category: string) => {
     const colors = {
-      'Fests': 'bg-gradient-to-r from-purple-500 to-pink-500 text-white',
-      'Awards': 'bg-gradient-to-r from-yellow-400 to-orange-500 text-white',
-      'Fun Activities': 'bg-gradient-to-r from-green-500 to-teal-500 text-white',
-      'Team Moments': 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white'
+      'Fests': 'bg-purple-500/10 border-purple-500/20 text-purple-300',
+      'Awards': 'bg-yellow-500/10 border-yellow-500/20 text-yellow-300',
+      'Fun Activities': 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300',
+      'Team Moments': 'bg-sky-500/10 border-sky-500/20 text-sky-300',
+      'Technology': 'bg-indigo-500/10 border-indigo-500/20 text-indigo-300',
+      'Design': 'bg-rose-500/10 border-rose-500/20 text-rose-300',
+      'Cloud': 'bg-cyan-500/10 border-cyan-500/20 text-cyan-300',
+      'Business': 'bg-amber-500/10 border-amber-500/20 text-amber-300'
     };
-    return colors[category as keyof typeof colors] || 'bg-gradient-to-r from-gray-500 to-gray-600 text-white';
+    return colors[category as keyof typeof colors] || 'bg-slate-500/10 border-slate-500/20 text-slate-300';
   };
 
   const getCategoryIcon = (category: string) => {
@@ -213,9 +187,13 @@ const Gallery = () => {
       'Fests': PartyPopper,
       'Awards': Award,
       'Fun Activities': Users,
-      'Team Moments': Users
+      'Team Moments': Users,
+      'Technology': Sparkles,
+      'Design': Sparkles,
+      'Cloud': Sparkles,
+      'Business': Sparkles
     };
-    return icons[category as keyof typeof icons] || Sparkles;
+    return icons[category as keyof typeof icons] || BookOpen;
   };
 
   const formatDate = (dateString: string) => {
@@ -227,233 +205,360 @@ const Gallery = () => {
   };
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0xNzUgMTI1SDE1MFYxNzVIMTc1VjEyNVoiIGZpbGw9IiM5Q0EzQUYiLz4KPHBhdGggZD0iTTIyNSAxMjVIMjAwVjE3NUgyMjVWMTI1WiIgZmlsbD0iIzlDQTNBRiIvPgo8cGF0aCBkPSJNMTc1IDE3NUgxNTBWMjAwSDE3NVYxNzVaIiBmaWxsPSIjOUNBM0FGIi8+CjxwYXRoIGQ9Ik0yMjUgMTc1SDIwMFYyMDBIMjI1VjE3NVoiIGZpbGw9IiM5Q0EzQUYiLz4KPC9zdmc+';
+    e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0xNzUgMTI1SDE1MFYxNzVIMTc1VjE3NVoiIGZpbGw9IiM5Q0EzQUYiLz4KPC9zdmc+';
   };
 
-  const GalleryCard = ({ item }: { item: GalleryItem }) => {
+  // Filter items dynamically based on tabs, dropdown filters, and search query
+  const filteredItems = galleryItems.filter((item) => {
+    const categoryMatch = selectedCategory === 'all' || (item.category || 'Uncategorized').toLowerCase() === selectedCategory.toLowerCase();
+    
+    let statusMatch = true;
+    if (selectedStatus === 'new') statusMatch = isNewItem(item);
+    else if (selectedStatus === 'read') statusMatch = readIds.has(item._id);
+    else if (selectedStatus === 'unread') statusMatch = !readIds.has(item._id);
 
+    const searchMatch = searchQuery.trim() === '' || 
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (item.category || '').toLowerCase().includes(searchQuery.toLowerCase());
+
+    return categoryMatch && statusMatch && searchMatch;
+  });
+
+  // Pick the first item as featured spotlight (only when viewing "all" categories and search is empty)
+  const showSpotlight = selectedCategory === 'all' && selectedStatus === 'all' && searchQuery === '' && filteredItems.length > 0;
+  const spotlightItem = showSpotlight ? filteredItems[0] : null;
+  const gridItems = showSpotlight ? filteredItems.slice(1) : filteredItems;
+
+  const BlogCard = ({ item }: { item: GalleryItem }) => {
+    const CategoryIcon = getCategoryIcon(item.category);
     return (
-      <Link to={`/blog/${item._id}`} className="block">
-      <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group h-full">
-        <div className="aspect-[16/10] relative overflow-hidden bg-muted/20">
+      <Link 
+        to={`/blog/${item._id}`} 
+        className="group relative flex flex-col h-full rounded-3xl overflow-hidden border border-white/5 bg-white/[0.01] backdrop-blur-xl transition-all duration-500 hover:border-indigo-500/30 hover:bg-indigo-500/[0.02] hover:-translate-y-2 shadow-2xl"
+        onClick={() => {
+          // Add to read IDs
+          const updated = new Set(readIds).add(item._id);
+          setReadIds(updated);
+          localStorage.setItem('galleryReadIds', JSON.stringify(Array.from(updated)));
+        }}
+      >
+        {/* Glow effect on hover */}
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        
+        {/* Blog Image Frame */}
+        <div className="aspect-[16/10] relative overflow-hidden bg-[#030712]/50">
           <img 
             src={getOptimizedImageUrl(item.image.url)} 
             alt={item.title}
-            width="400"
-            height="300"
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             onError={handleImageError}
+            loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="absolute bottom-4 left-4 right-4">
-              <Button
-                size="sm"
-                variant="secondary"
-                className="w-full pointer-events-none"
-              >
-                <Eye size={16} className="mr-2" />
-                View Details
-              </Button>
+          {/* Subtle vignette gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/60 via-transparent to-transparent" />
+          
+          {/* Floating Category Badge */}
+          <div className="absolute top-4 left-4 z-10">
+            <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-extrabold uppercase tracking-widest backdrop-blur-md ${getCategoryColor(item.category)}`}>
+              <CategoryIcon className="w-3 h-3" />
+              {item.category}
+            </span>
+          </div>
+
+          {/* New Tag Indicator */}
+          {isNewItem(item) && (
+            <div className="absolute top-4 right-4 z-10">
+              <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-teal-400 to-emerald-500 text-black text-[9px] font-black uppercase tracking-widest shadow-lg">
+                New
+              </span>
             </div>
+          )}
+        </div>
+
+        {/* Card Metadata & Content */}
+        <div className="flex-1 flex flex-col p-6 space-y-4">
+          <div className="flex items-center gap-3.5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+            <span className="flex items-center gap-1">
+              <Calendar className="w-3.5 h-3.5 text-indigo-400" />
+              {formatDate(item.date)}
+            </span>
+            {item.location && (
+              <span className="flex items-center gap-1 max-w-[150px] truncate">
+                <MapPin className="w-3.5 h-3.5 text-indigo-400" />
+                {item.location}
+              </span>
+            )}
+            <span className="flex items-center gap-1 ml-auto">
+              <Clock className="w-3.5 h-3.5 text-indigo-400" />
+              5 Min Read
+            </span>
+          </div>
+
+          <h3 className="text-xl font-bold text-white group-hover:text-indigo-300 transition-colors leading-snug line-clamp-2">
+            {item.title}
+          </h3>
+
+          <p className="text-gray-400 text-sm leading-relaxed font-medium line-clamp-3">
+            {item.description}
+          </p>
+
+          {/* Learn More Button aligned at bottom */}
+          <div className="pt-4 mt-auto border-t border-white/5 flex items-center justify-between text-indigo-400 group-hover:text-indigo-300 font-extrabold text-xs uppercase tracking-widest transition-colors">
+            <span>Read Full Story</span>
+            <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
           </div>
         </div>
-        <CardHeader>
-          <CardTitle className="text-lg line-clamp-1 group-hover:text-primary transition-colors">
-            {item.title}
-          </CardTitle>
-          <p className="text-muted-foreground text-sm line-clamp-2">{item.description}</p>
-        </CardHeader>
-        <CardContent>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            {item.location && (
-              <div className="flex items-center gap-1">
-                <MapPin size={14} />
-                <span className="line-clamp-1">{item.location}</span>
-              </div>
-            )}
-            <div className="flex items-center gap-1">
-              <Calendar size={14} />
-              <span>{formatDate(item.date)}</span>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
       </Link>
     );
   };
 
   const LoadingSkeleton = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {[...Array(8)].map((_, i) => (
-        <Card key={i} className="overflow-hidden">
-          <Skeleton className="aspect-[16/10]" />
-          <CardHeader>
-            <Skeleton className="h-4 w-3/4 mb-2" />
-            <Skeleton className="h-3 w-full mb-1" />
-            <Skeleton className="h-3 w-2/3" />
-          </CardHeader>
-          <CardContent>
-            <Skeleton className="h-3 w-1/2" />
-          </CardContent>
-        </Card>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {[...Array(6)].map((_, i) => (
+        <div key={i} className="rounded-3xl border border-white/5 bg-white/[0.01] overflow-hidden p-0 space-y-6">
+          <Skeleton className="aspect-[16/10] bg-white/5 w-full" />
+          <div className="p-6 space-y-4">
+            <div className="flex justify-between">
+              <Skeleton className="h-4 w-1/3 bg-white/5" />
+              <Skeleton className="h-4 w-1/4 bg-white/5" />
+            </div>
+            <Skeleton className="h-6 w-3/4 bg-white/5" />
+            <Skeleton className="h-4 w-full bg-white/5" />
+            <Skeleton className="h-4 w-5/6 bg-white/5" />
+          </div>
+        </div>
       ))}
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/30">
+    <div className="min-h-screen bg-[#030712] text-gray-200 overflow-hidden font-sans">
       <Helmet>
-        <title>Blog & Gallery | {SEO_KEYWORDS.seoTitles[0]} | Speshway Solutions</title>
-        <meta name="description" content={`Stay updated with the Speshway Solutions blog, covering ${SEO_KEYWORDS.seoTitles[0]}, technology insights, and life at T-Hub Hyderabad.`} />
+        <title>Blog & Insights | Speshway Solutions</title>
+        <meta name="description" content={`Stay updated with the Speshway Solutions blog, covering technology insights, company news, fests, and life at Hyderabad.`} />
         <meta name="keywords" content={[
           ...SEO_KEYWORDS.seoTitles,
           ...SEO_KEYWORDS.primary,
           ...SEO_KEYWORDS.seoKeywords,
           ...SEO_KEYWORDS.highRanking,
           "Speshway blog",
-          "official speshway solutions",
           "company news",
-          "awards",
-          "team moments",
-          "technology insights",
-          "SEO_KEYWORDS"
+          "technology insights"
         ].join(", ")} />
         <link rel="canonical" href="https://speshway.com/blog" />
-        <meta property="og:title" content="Blog & Gallery | Official Speshway Solutions" />
-        <meta property="og:description" content="Official company news, events and insights from Speshway Solutions at T-Hub." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://speshway.com/blog" />
-        <meta property="og:image" content="https://speshway.com/logo.png" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Blog | Speshway Solutions" />
-        <meta name="twitter:description" content="Company news, events and insights from Speshway Solutions." />
-        <script type="application/ld+json">{JSON.stringify({
-          "@context":"https://schema.org",
-          "@type":"BreadcrumbList",
-          "itemListElement":[
-            {"@type":"ListItem","position":1,"name":"Home","item":"https://speshway.com/"},
-            {"@type":"ListItem","position":2,"name":"Blog","item":"https://speshway.com/blog"}
-          ]
-        })}</script>
-        <script type="application/ld+json">{JSON.stringify({
-          "@context":"https://schema.org",
-          "@type":"Blog",
-          "url":"https://speshway.com/blog",
-          "name":"Speshway Solutions Blog"
-        })}</script>
       </Helmet>
+
       <Navbar />
-      
-      {/* Hero Section */}
-      <section className="pt-32 pb-16">
-        <div className="container mx-auto px-4">
+
+      {/* Cybernetic Radial Glow Effects */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[150px] -z-10" />
+      <div className="absolute top-[400px] right-1/4 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-[180px] -z-10" />
+
+      {/* Hero Header Section */}
+      <section className="pt-40 pb-20 relative">
+        <div className="container mx-auto px-4 sm:px-8 max-w-6xl">
           <ScrollReveal>
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent mb-6">
-                Our Blogs
+            <div className="text-center max-w-3xl mx-auto space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 backdrop-blur-md">
+                <Sparkles className="w-3.5 h-3.5" />
+                Speshway Insights
+              </div>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-none">
+                Stories, News & <span className="bg-gradient-to-r from-indigo-400 via-purple-300 to-indigo-300 bg-clip-text text-transparent">Tech Innovations</span>
               </h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                Explore our journey through memorable moments, achievements, and celebrations
+              <p className="text-gray-400 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto font-medium">
+                Explore our engineering updates, memorable achievements, dynamic cultural moments, and industry-leading resources.
               </p>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section className="pb-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between mb-6">
-              <div className="flex gap-4 flex-wrap">
-                <div className="w-[220px]">
-                  <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Filter by status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Status</SelectItem>
-                      <SelectItem value="new">New</SelectItem>
-                      <SelectItem value="unread">Unread</SelectItem>
-                      <SelectItem value="read">Read</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+      {/* Dynamic Search & Category Filter Section */}
+      <section className="pb-8">
+        <div className="container mx-auto px-4 sm:px-8 max-w-6xl">
+          <div className="p-6 rounded-3xl bg-white/[0.01] border border-white/5 backdrop-blur-xl space-y-6">
+            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+              
+              {/* Search Bar Input */}
+              <div className="relative w-full md:w-[320px]">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input 
+                  type="text" 
+                  placeholder="Search articles..." 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 rounded-2xl bg-[#030712]/50 border border-white/10 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-indigo-500/50 transition-colors"
+                />
+              </div>
 
-                <div className="w-[220px]">
-                  <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Filter by type" />
+              {/* Status & Secondary Dropdowns */}
+              <div className="flex gap-3 w-full md:w-auto items-center justify-end">
+                <div className="w-full sm:w-[180px]">
+                  <Select value={selectedStatus} onValueChange={setSelectedStatus}>
+                    <SelectTrigger className="w-full bg-[#030712]/50 border-white/10 text-xs py-5 rounded-2xl font-bold uppercase tracking-wider text-gray-300 focus:ring-0">
+                      <SelectValue placeholder="All Status" />
                     </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Types</SelectItem>
-                      {categories.map((cat) => (
-                        <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                      ))}
+                    <SelectContent className="bg-slate-950 border-white/10">
+                      <SelectItem className="text-xs uppercase tracking-wider font-semibold text-gray-300" value="all">All Articles</SelectItem>
+                      <SelectItem className="text-xs uppercase tracking-wider font-semibold text-gray-300" value="new">New Releases</SelectItem>
+                      <SelectItem className="text-xs uppercase tracking-wider font-semibold text-gray-300" value="unread">Unread</SelectItem>
+                      <SelectItem className="text-xs uppercase tracking-wider font-semibold text-gray-300" value="read">Read</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
               </div>
             </div>
-            {loading ? (
-              <LoadingSkeleton />
-            ) : (
-              <>
-                {Object.keys(groupedItems).length === 0 ? (
-                  <div className="text-center py-16">
-                    <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center">
-                      <Image className="w-12 h-12 text-primary" />
-                    </div>
-                    <h3 className="text-2xl font-semibold text-foreground mb-2">
-                      No gallery items found
-                    </h3>
-                    <p className="text-muted-foreground mb-6">
-                      Check back later for amazing content!
-                    </p>
-                  </div>
-                ) : (
-                  <div className="space-y-12">
-                    {Object.entries(groupedItems).map(([category, items]) => {
-                      const CategoryIcon = getCategoryIcon(category);
-                      return (
-                        <div key={category} className="space-y-6">
-                          <div className="flex items-center gap-3">
-                            <CategoryIcon className="w-6 h-6 text-primary" />
-                            <h2 className="text-3xl font-bold text-foreground">
-                              {category}
-                            </h2>
-                            <div className="flex-1 h-px bg-gradient-to-r from-primary/50 to-transparent"></div>
-                            <Badge className={getCategoryColor(category)}>
-                              {items.length} {items.length === 1 ? 'item' : 'items'}
-                            </Badge>
-                          </div>
-                          <StaggerContainer staggerDelay={0.1}>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                              {items.map((item, idx) => (
-                                <StaggerItem key={item._id}>
-                                  <ScrollParallaxItem direction={idx % 2 === 0 ? "left" : "right"} intensity="strong">
-                                    <HoverScale>
-                                      <GalleryCard item={item} />
-                                    </HoverScale>
-                                  </ScrollParallaxItem>
-                                </StaggerItem>
-                              ))}
-                            </div>
-                          </StaggerContainer>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </>
-            )}
+
+            {/* Glowing Sliding Tabs for Categories */}
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none scroll-smooth border-t border-white/5 pt-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              <button
+                onClick={() => setSelectedCategory('all')}
+                className={`shrink-0 px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-widest border transition-all duration-300 ${
+                  selectedCategory === 'all' 
+                    ? 'bg-indigo-500/20 border-indigo-500/30 text-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.15)]' 
+                    : 'bg-transparent border-white/5 text-gray-400 hover:text-white hover:border-white/15'
+                }`}
+              >
+                All Updates
+              </button>
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`shrink-0 px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-widest border transition-all duration-300 ${
+                    selectedCategory.toLowerCase() === cat.toLowerCase()
+                      ? 'bg-indigo-500/20 border-indigo-500/30 text-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.15)]' 
+                      : 'bg-transparent border-white/5 text-gray-400 hover:text-white hover:border-white/15'
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Main Spotlight Banner & Blog Grid */}
+      <section className="pb-32 pt-8">
+        <div className="container mx-auto px-4 sm:px-8 max-w-6xl">
+          {loading ? (
+            <LoadingSkeleton />
+          ) : (
+            <div className="space-y-12">
+              
+              {/* Feature Spotlight Post Banner */}
+              {showSpotlight && spotlightItem && (
+                <ScrollReveal>
+                  <Link 
+                    to={`/blog/${spotlightItem._id}`}
+                    onClick={() => {
+                      const updated = new Set(readIds).add(spotlightItem._id);
+                      setReadIds(updated);
+                      localStorage.setItem('galleryReadIds', JSON.stringify(Array.from(updated)));
+                    }}
+                    className="group block relative w-full aspect-video md:aspect-[21/10] rounded-[36px] overflow-hidden border border-white/5 bg-white/[0.01] backdrop-blur-xl shadow-3xl hover:border-indigo-500/20 transition-all duration-500"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-12 h-full w-full">
+                      {/* Left: Featured Image */}
+                      <div className="md:col-span-7 h-full w-full relative overflow-hidden bg-[#030712]">
+                        <img 
+                          src={getOptimizedImageUrl(spotlightItem.image.url)} 
+                          alt={spotlightItem.title} 
+                          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                          onError={handleImageError}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#030712]/80 via-[#030712]/30 to-transparent" />
+                      </div>
+
+                      {/* Right: Meta Content */}
+                      <div className="md:col-span-5 flex flex-col justify-center p-8 md:p-12 space-y-6">
+                        <div className="flex items-center gap-2">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[9px] font-black uppercase tracking-widest bg-indigo-500/15 border-indigo-500/25 text-indigo-300">
+                            <Sparkles className="w-3 h-3" />
+                            Spotlight Feature
+                          </span>
+                          <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[9px] font-black uppercase tracking-widest ${getCategoryColor(spotlightItem.category)}`}>
+                            {spotlightItem.category}
+                          </span>
+                        </div>
+
+                        <h2 className="text-2xl sm:text-3xl font-black text-white group-hover:text-indigo-300 transition-colors leading-tight line-clamp-3">
+                          {spotlightItem.title}
+                        </h2>
+
+                        <p className="text-gray-400 text-sm sm:text-base leading-relaxed font-medium line-clamp-4">
+                          {spotlightItem.description}
+                        </p>
+
+                        <div className="pt-4 border-t border-white/5 flex items-center justify-between text-indigo-400 font-extrabold text-xs uppercase tracking-widest transition-colors">
+                          <div className="flex items-center gap-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                            <span className="flex items-center gap-1">
+                              <Calendar className="w-3.5 h-3.5 text-indigo-400" />
+                              {formatDate(spotlightItem.date)}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <Clock className="w-3.5 h-3.5 text-indigo-400" />
+                              5 Min Read
+                            </span>
+                          </div>
+                          <span className="group-hover:translate-x-1.5 transition-transform flex items-center gap-1.5">
+                            Read Article &rarr;
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              )}
+
+              {/* No Results Fallback */}
+              {filteredItems.length === 0 && (
+                <div className="text-center py-20 rounded-[36px] bg-white/[0.01] border border-white/5 backdrop-blur-xl">
+                  <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-indigo-500/10 to-indigo-500/5 rounded-full flex items-center justify-center border border-indigo-500/20">
+                    <ImageIcon className="w-10 h-10 text-indigo-400" />
+                  </div>
+                  <h3 className="text-2xl font-black text-white mb-2">No Articles Found</h3>
+                  <p className="text-gray-400 mb-6 max-w-md mx-auto text-sm font-semibold">
+                    We couldn't find any articles matching your filters or search terms. Try searching something else!
+                  </p>
+                </div>
+              )}
+
+              {/* Core Articles Grid */}
+              {gridItems.length > 0 && (
+                <div className="space-y-6">
+                  {showSpotlight && (
+                    <div className="flex items-center gap-4 pt-6">
+                      <h3 className="text-xs font-black uppercase tracking-[0.22em] text-indigo-400">
+                        More Insights & Stories
+                      </h3>
+                      <div className="flex-1 h-[1px] bg-gradient-to-r from-indigo-500/20 to-transparent" />
+                    </div>
+                  )}
+                  <StaggerContainer staggerDelay={0.08}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {gridItems.map((item, idx) => (
+                        <StaggerItem key={item._id}>
+                          <BlogCard item={item} />
+                        </StaggerItem>
+                      ))}
+                    </div>
+                  </StaggerContainer>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+
       {/* Internal Links for SEO */}
-      <section className="py-16 bg-muted/20">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-white/[0.01] border-t border-white/5 relative">
+        <div className="container mx-auto px-4 sm:px-8 max-w-6xl">
           <InternalLinks 
             title="Explore More Speshway Insights & News" 
             layout="chips"
@@ -464,17 +569,11 @@ const Gallery = () => {
 
       <Footer />
 
-      {/* Image Detail Modal */}
+      {/* Legacy/Safety Image Detail Modal with lenis prevention */}
       <Dialog open={!!selectedItem} onOpenChange={() => setSelectedItem(null)}>
-        <DialogContent className="max-w-[90vw] w-full max-h-[95vh] overflow-y-auto p-0 gap-0 bg-background/95 backdrop-blur-md border-none shadow-2xl">
+        <DialogContent data-lenis-prevent className="max-w-[90vw] w-full max-h-[95vh] overflow-y-auto p-0 gap-0 bg-background/95 backdrop-blur-md border-none shadow-2xl">
           {selectedItem && (
-            <m.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-              className="p-6 sm:p-8"
-            >
+            <div className="p-6 sm:p-8">
               <DialogHeader className="mb-6">
                 <DialogTitle className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
                   {selectedItem.title}
@@ -482,12 +581,7 @@ const Gallery = () => {
               </DialogHeader>
               
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-                <m.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="lg:col-span-3 aspect-video rounded-xl overflow-hidden relative group shadow-lg"
-                >
+                <div className="lg:col-span-3 aspect-video rounded-xl overflow-hidden relative group shadow-lg">
                   {selectedItem.additionalImages && selectedItem.additionalImages.length > 0 ? (
                     <Carousel
                       className="w-full h-full"
@@ -503,56 +597,42 @@ const Gallery = () => {
                             <img 
                               src={getOptimizedImageUrl(selectedItem.image.url)} 
                               alt={selectedItem.title}
-                              width="800"
-                              height="450"
-                              className="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
+                              className="w-full h-full object-contain"
                               onError={handleImageError}
                             />
                           </div>
                         </CarouselItem>
-                        {selectedItem.additionalImages.map((img, index) => (
+                        {selectedItem.additionalImages.map((img: any, index: number) => (
                           <CarouselItem key={index}>
                             <div className="w-full h-full aspect-video bg-black/5 rounded-lg overflow-hidden">
                               <img 
                                 src={getOptimizedImageUrl(img.url)} 
                                 alt={`${selectedItem.title} ${index + 1}`}
-                                width="800"
-                                height="450"
-                                className="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
+                                className="w-full h-full object-contain"
                                 onError={handleImageError}
                               />
                             </div>
                           </CarouselItem>
                         ))}
                       </CarouselContent>
-                      <CarouselPrevious className="left-4 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-125" />
-                      <CarouselNext className="right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-125" />
+                      <CarouselPrevious className="left-4 scale-125" />
+                      <CarouselNext className="right-4 scale-125" />
                     </Carousel>
                   ) : (
                     <div className="w-full h-full aspect-video bg-black/5 rounded-lg overflow-hidden">
                       <img 
                         src={getOptimizedImageUrl(selectedItem.image.url)} 
                         alt={selectedItem.title}
-                        width="800"
-                        height="450"
-                        className="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
+                        className="w-full h-full object-contain"
                         onError={handleImageError}
                       />
                     </div>
                   )}
-                </m.div>
+                </div>
                 
-                <m.div 
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="lg:col-span-2 space-y-6 flex flex-col justify-center"
-                >
+                <div className="lg:col-span-2 space-y-6 flex flex-col justify-center">
                   <div className="flex items-center gap-2">
                     <Badge className={`${getCategoryColor(selectedItem.category)} text-sm py-1 px-3 shadow-sm`}>
-                      {getCategoryIcon(selectedItem.category) && 
-                        React.createElement(getCategoryIcon(selectedItem.category), { size: 14, className: "mr-1.5" })
-                      }
                       {selectedItem.category}
                     </Badge>
                   </div>
@@ -575,7 +655,7 @@ const Gallery = () => {
                   </div>
                   
                   {selectedItem.readMoreLink && (
-                    <m.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="pt-4">
+                    <div className="pt-4">
                       <Button
                         variant="default"
                         size="lg"
@@ -585,11 +665,11 @@ const Gallery = () => {
                         <ExternalLink size={18} className="mr-2" />
                         Read Full Story
                       </Button>
-                    </m.div>
+                    </div>
                   )}
-                </m.div>
+                </div>
               </div>
-            </m.div>
+            </div>
           )}
         </DialogContent>
       </Dialog>

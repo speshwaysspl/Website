@@ -25,11 +25,11 @@ const SpeshwayCareerReview = () => {
             </Link>{" "}
             and{" "}
             <Link
-              to="/speshway-solutions-review-2026"
+              to="/about"
               className="text-primary font-semibold hover:underline"
-              title="See how Speshway is rated in the 2026 company review"
+              title="Learn about Speshway's corporate mission and vision"
             >
-              2026 company review
+              our company profile
             </Link>
             .
           </p>

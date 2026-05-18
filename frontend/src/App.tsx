@@ -12,6 +12,7 @@ const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
+const ProjectDetails = lazy(() => import("./pages/ProjectDetails"));
 const Team = lazy(() => import("./pages/Team"));
 const Career = lazy(() => import("./pages/Career"));
 const JobDetails = lazy(() => import("./pages/JobDetails"));
@@ -38,8 +39,6 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 
 // SEO Pages
-const IsSpeshwayRealOrFake = lazy(() => import("./pages/seo/IsSpeshwayRealOrFake"));
-const SpeshwayReview2026 = lazy(() => import("./pages/seo/SpeshwayReview2026"));
 const SpeshwayJobScamTruth = lazy(() => import("./pages/seo/SpeshwayJobScamTruth"));
 const IsSpeshwayLegit = lazy(() => import("./pages/seo/IsSpeshwayLegit"));
 const SpeshwayHyderabadReview = lazy(() => import("./pages/seo/SpeshwayHyderabadReview"));
@@ -74,7 +73,24 @@ const PageLoader = () => (
 const RouterViews = () => {
   const location = useLocation();
   useEffect(() => {
+    // Reset standard browser viewport scroll
     window.scrollTo({ top: 0, behavior: "auto" });
+    
+    // Reset Lenis smooth scroll controller instantly
+    if ((window as any).lenis) {
+      (window as any).lenis.scrollTo(0, { immediate: true });
+    }
+
+    // High-fidelity fallback timer to handle lazy-loaded page suspense mounts:
+    // Ensures page snaps perfectly to the top once React finishes layout paint.
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "auto" });
+      if ((window as any).lenis) {
+        (window as any).lenis.scrollTo(0, { immediate: true });
+      }
+    }, 80);
+
+    return () => clearTimeout(timer);
   }, [location.pathname]);
   return (
     <AnimatePresence mode="wait">
@@ -83,6 +99,7 @@ const RouterViews = () => {
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
         <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
         <Route path="/projects" element={<PageTransition><Portfolio /></PageTransition>} />
+        <Route path="/projects/:id" element={<PageTransition><ProjectDetails /></PageTransition>} />
         <Route path="/team" element={<PageTransition><Team /></PageTransition>} />
         <Route path="/career" element={<PageTransition><Career /></PageTransition>} />
         <Route path="/career/:id" element={<PageTransition><JobDetails /></PageTransition>} />
@@ -97,8 +114,8 @@ const RouterViews = () => {
         <Route path="/blog/:id" element={<PageTransition><BlogPost /></PageTransition>} />
         
         {/* Search Domination Cluster - SEO Pages */}
-        <Route path="/is-speshway-real-or-fake" element={<PageTransition><IsSpeshwayRealOrFake /></PageTransition>} />
-        <Route path="/speshway-solutions-review-2026" element={<PageTransition><SpeshwayReview2026 /></PageTransition>} />
+        <Route path="/is-speshway-real-or-fake" element={<Navigate to="/fraud-notice" replace />} />
+        <Route path="/speshway-solutions-review-2026" element={<Navigate to="/about" replace />} />
         <Route path="/speshway-job-scam-truth" element={<PageTransition><SpeshwayJobScamTruth /></PageTransition>} />
         <Route path="/is-speshway-legit-company" element={<PageTransition><IsSpeshwayLegit /></PageTransition>} />
         <Route path="/speshway-hyderabad-company-review" element={<PageTransition><SpeshwayHyderabadReview /></PageTransition>} />
@@ -127,11 +144,11 @@ const RouterViews = () => {
         <Route path="/:slug" element={<PageTransition><KeywordLandingPage /></PageTransition>} />
 
         {/* Legacy SEO Redirects */}
-        <Route path="/is-speshway-solutions-real" element={<Navigate to="/is-speshway-real-or-fake" replace />} />
-        <Route path="/speshway-solutions-review" element={<Navigate to="/speshway-solutions-review-2026" replace />} />
+        <Route path="/is-speshway-solutions-real" element={<Navigate to="/fraud-notice" replace />} />
+        <Route path="/speshway-solutions-review" element={<Navigate to="/about" replace />} />
         <Route path="/speshway-hyderabad-company-details" element={<Navigate to="/speshway-hyderabad-company-review" replace />} />
         <Route path="/blog/is-speshway-legit-company" element={<Navigate to="/is-speshway-legit-company" replace />} />
-        <Route path="/blog/speshway-review-2026" element={<Navigate to="/speshway-solutions-review-2026" replace />} />
+        <Route path="/blog/speshway-review-2026" element={<Navigate to="/about" replace />} />
         <Route path="/blog/how-to-identify-job-scams" element={<Navigate to="/speshway-job-scam-truth" replace />} />
         
         <Route path="/admin/login" element={<PageTransition><AdminLogin /></PageTransition>} />
@@ -153,18 +170,47 @@ const RouterViews = () => {
   );
 };
 
-const App = () => (
-  <LazyMotion features={domAnimation}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <Suspense fallback={<PageLoader />}>
-          <RouterViews />
-        </Suspense>
-      </BrowserRouter>
-    </TooltipProvider>
-  </LazyMotion>
-);
+import Lenis from 'lenis';
+
+const App = () => {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+    });
+
+    (window as any).lenis = lenis;
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+    
+    return () => {
+      lenis.destroy();
+      (window as any).lenis = null;
+    };
+  }, []);
+
+  return (
+    <LazyMotion features={domAnimation}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <Suspense fallback={<PageLoader />}>
+            <RouterViews />
+          </Suspense>
+        </BrowserRouter>
+      </TooltipProvider>
+    </LazyMotion>
+  );
+};
 
 export default App;

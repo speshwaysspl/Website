@@ -55,12 +55,20 @@ const createPortfolio = async (req, res) => {
       updatedAt: Date.now()
     };
 
-    // Handle image upload if present
-    if (req.file) {
+    // Handle primary image upload
+    if (req.files && req.files['image'] && req.files['image'][0]) {
       portfolioData.image = {
-        url: req.file.path,
-        publicId: req.file.filename
+        url: req.files['image'][0].path,
+        publicId: req.files['image'][0].filename
       };
+    }
+
+    // Handle screenshots upload
+    if (req.files && req.files['screenshots']) {
+      portfolioData.screenshots = req.files['screenshots'].map(file => ({
+        url: file.path,
+        publicId: file.filename
+      }));
     }
 
     const portfolio = new Portfolio(portfolioData);
@@ -79,15 +87,6 @@ const updatePortfolio = async (req, res) => {
     const portfolio = await Portfolio.findById(req.params.id);
     if (!portfolio) {
       return res.status(404).json({ message: 'Portfolio not found' });
-    }
-
-    // Delete old image from Cloudinary if new image is uploaded
-    if (req.file && portfolio.image.publicId) {
-      try {
-        await cloudinary.uploader.destroy(portfolio.image.publicId);
-      } catch (error) {
-        console.error('Error deleting old image:', error);
-      }
     }
 
     // Update portfolio fields
@@ -119,12 +118,48 @@ const updatePortfolio = async (req, res) => {
     if (req.body.color) portfolio.color = req.body.color;
     if (typeof req.body.index !== 'undefined') portfolio.index = Number(req.body.index) || 0;
     
-    // Handle new image upload
-    if (req.file) {
+    // Handle primary image upload
+    if (req.files && req.files['image'] && req.files['image'][0]) {
+      // Delete old primary image if exists
+      if (portfolio.image && portfolio.image.publicId) {
+        try {
+          await cloudinary.uploader.destroy(portfolio.image.publicId);
+        } catch (error) {
+          console.error('Error deleting old image:', error);
+        }
+      }
       portfolio.image = {
-        url: req.file.path,
-        publicId: req.file.filename
+        url: req.files['image'][0].path,
+        publicId: req.files['image'][0].filename
       };
+    }
+
+    // Handle existing screenshots list (for deletion of removed items)
+    if (typeof req.body.existingScreenshots !== 'undefined') {
+      const remainingScreenshots = typeof req.body.existingScreenshots === 'string'
+        ? JSON.parse(req.body.existingScreenshots)
+        : req.body.existingScreenshots;
+      
+      const remainingIds = new Set(remainingScreenshots.map(s => s.publicId));
+      for (const oldScr of portfolio.screenshots || []) {
+        if (!remainingIds.has(oldScr.publicId)) {
+          try {
+            await cloudinary.uploader.destroy(oldScr.publicId);
+          } catch (error) {
+            console.error('Error deleting screenshot:', error);
+          }
+        }
+      }
+      portfolio.screenshots = remainingScreenshots;
+    }
+
+    // Add new uploaded screenshots
+    if (req.files && req.files['screenshots']) {
+      const newScreenshots = req.files['screenshots'].map(file => ({
+        url: file.path,
+        publicId: file.filename
+      }));
+      portfolio.screenshots = [...(portfolio.screenshots || []), ...newScreenshots];
     }
 
     portfolio.updatedAt = Date.now();
@@ -146,11 +181,24 @@ const deletePortfolio = async (req, res) => {
     }
 
     // Delete image from Cloudinary if exists
-    if (portfolio.image.publicId) {
+    if (portfolio.image && portfolio.image.publicId) {
       try {
         await cloudinary.uploader.destroy(portfolio.image.publicId);
       } catch (error) {
         console.error('Error deleting image:', error);
+      }
+    }
+
+    // Delete screenshots from Cloudinary if exists
+    if (portfolio.screenshots && portfolio.screenshots.length > 0) {
+      for (const scr of portfolio.screenshots) {
+        if (scr.publicId) {
+          try {
+            await cloudinary.uploader.destroy(scr.publicId);
+          } catch (error) {
+            console.error('Error deleting screenshot:', error);
+          }
+        }
       }
     }
 

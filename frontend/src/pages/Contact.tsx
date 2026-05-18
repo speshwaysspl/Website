@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, FileText } from "lucide-react";
+import { Mail, Phone, MapPin, Send, FileText, Linkedin, Instagram, Facebook, Twitter, Youtube, User, Clock, Sparkles, ArrowRight, Check, MessageSquare } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -110,7 +110,7 @@ const Contact = () => {
         <link rel="me" href="https://x.com/SpeshwayM56509" />
         <link rel="me" href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/" />
         <link rel="me" href="https://www.instagram.com/speshwaysolutionsofficial/" />
-        <link rel="me" href="https://www.youtube.com/@speshwaysolutions" />
+        <link rel="me" href="https://www.youtube.com/@speshwaysolutionspvtltd" />
         <script type="application/ld+json">{JSON.stringify({
           "@context":"https://schema.org",
           "@type":"ContactPage",
@@ -152,7 +152,7 @@ const Contact = () => {
               "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/",
               "https://x.com/SpeshwayM56509",
               "https://www.instagram.com/speshwaysolutionsofficial/",
-              "https://www.youtube.com/@speshwaysolutions"
+              "https://www.youtube.com/@speshwaysolutionspvtltd"
             ]
           }
         })}</script>
@@ -181,8 +181,8 @@ const Contact = () => {
         <div className="container mx-auto px-4 sm:px-6">
           <StaggerContainer staggerDelay={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 items-stretch max-w-6xl mx-auto">
             {contactInfo.map((info, index) => (
-              <StaggerItem key={index}>
-                <HoverScale>
+              <StaggerItem key={index} className="h-full">
+                <HoverScale className="h-full">
                   <Card
                     className="h-full p-4 sm:p-6 bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all duration-300 text-center group hover-lift hover-glow flex flex-col justify-start"
                   >
@@ -210,22 +210,23 @@ const Contact = () => {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">Connect With Us</h2>
             <p className="text-sm sm:text-base text-muted-foreground mb-8">Follow our official channels for more updates</p>
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+            <div className="flex justify-center gap-4 sm:gap-6 flex-wrap">
               {[
-                { name: "LinkedIn", url: "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/", color: "bg-[#0077b5]" },
-                { name: "Instagram", url: "https://www.instagram.com/speshwaysolutionsofficial/", color: "bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888]" },
-                { name: "Facebook", url: "https://www.facebook.com/people/Speshway-Solutions/61584485021568/", color: "bg-[#1877f2]" },
-                { name: "Twitter", url: "https://x.com/SpeshwayM56509", color: "bg-[#000000]" },
-                { name: "YouTube", url: "https://www.youtube.com/@speshwaysolutions", color: "bg-[#ff0000]" }
+                { name: "LinkedIn", url: "https://www.linkedin.com/company/speshway-solutions-pvt-ltd/", color: "hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] hover:shadow-[0_0_20px_rgba(0,119,181,0.4)]", icon: Linkedin },
+                { name: "Instagram", url: "https://www.instagram.com/speshwaysolutionsofficial/", color: "hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white hover:border-transparent hover:shadow-[0_0_20px_rgba(220,39,67,0.4)]", icon: Instagram },
+                { name: "Facebook", url: "https://www.facebook.com/people/Speshway-Solutions/61584485021568/", color: "hover:bg-[#1877f2] hover:text-white hover:border-[#1877f2] hover:shadow-[0_0_20px_rgba(24,119,242,0.4)]", icon: Facebook },
+                { name: "Twitter", url: "https://x.com/SpeshwayM56509", color: "hover:bg-black hover:text-white hover:border-neutral-800 hover:shadow-[0_0_20px_rgba(0,0,0,0.4)]", icon: Twitter },
+                { name: "YouTube", url: "https://www.youtube.com/@speshwaysolutionspvtltd", color: "hover:bg-[#ff0000] hover:text-white hover:border-[#ff0000] hover:shadow-[0_0_20px_rgba(255,0,0,0.4)]", icon: Youtube }
               ].map((social) => (
                 <a
                   key={social.name}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${social.color} text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-bold text-sm sm:text-base hover:opacity-90 transition-opacity flex items-center gap-2`}
+                  aria-label={social.name}
+                  className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-white/10 bg-white/5 text-gray-400 hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-2xl ${social.color}`}
                 >
-                  {social.name}
+                  <social.icon size={20} className="sm:w-6 sm:h-6 transition-colors" />
                 </a>
               ))}
             </div>
@@ -233,109 +234,269 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section className="py-12 sm:py-16 md:py-20">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl mx-auto">
-            <Card className="p-6 sm:p-8 md:p-12 bg-card/50 backdrop-blur-sm border-border hover-glow animate-scale-in">
-              <div className="text-center mb-6 sm:mb-8">
-                <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">Send Us a Message</h2>
-                <p className="text-sm sm:text-base text-muted-foreground mb-4">Fill out the form below and we'll respond within 24 hours</p>
-                <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-6">
-                  <p className="text-sm text-muted-foreground mb-2">
-                    <strong className="text-foreground">Looking for a job?</strong> We're always looking for talented individuals to join our team.
+      {/* Contact Section */}
+      <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden">
+        {/* Glow ambient background effects */}
+        <div className="absolute top-1/4 left-0 w-80 h-80 bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-teal-500/10 blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+            
+            {/* Left Column: Premium Brand Desk Info (5 cols) */}
+            <div className="lg:col-span-5 flex flex-col justify-between gap-6">
+              
+              {/* Information Cards Stack */}
+              <div className="space-y-6">
+                <ScrollReveal>
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-extrabold text-xs uppercase tracking-widest mb-4">
+                    <Clock className="w-3.5 h-3.5" />
+                    Always Operational
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+                    Let’s engineer something <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-teal-400 to-indigo-400">extraordinary</span> together.
+                  </h2>
+                  <p className="text-gray-400 font-medium text-sm sm:text-base leading-relaxed mb-6">
+                    Have an innovative vision, software specification, or general query? Submit your desk enquiry, and our elite engineering desk at T-Hub will connect with you.
                   </p>
-                  <Link to="/send-resume">
-                    <Button variant="outline" size="sm" className="w-full sm:w-auto">
-                      <FileText size={16} className="mr-2" />
-                      Submit Your Resume
-                    </Button>
-                  </Link>
-                </div>
+                </ScrollReveal>
+
+                {/* Guaranteed Response Card */}
+                <ScrollReveal>
+                  <Card className="p-5 bg-indigo-950/20 backdrop-blur-xl border-white/5 rounded-2xl flex items-start gap-4 shadow-xl">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 border border-indigo-500/20 shrink-0">
+                      <Clock className="w-5 h-5 animate-pulse" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-extrabold text-white uppercase tracking-wider mb-1">Guaranteed Reply SLA</h4>
+                      <p className="text-xs sm:text-sm text-gray-400 font-medium leading-relaxed">
+                        We respect your time. All corporate inquiries are reviewed and handled within <span className="text-teal-400 font-bold">24 business hours</span> by our technical architects.
+                      </p>
+                    </div>
+                  </Card>
+                </ScrollReveal>
+
+                {/* T-Hub Operational Hours Card */}
+                <ScrollReveal>
+                  <Card className="p-5 bg-teal-950/10 backdrop-blur-xl border-white/5 rounded-2xl flex items-start gap-4 shadow-xl">
+                    <div className="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-400 border border-teal-500/20 shrink-0">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-extrabold text-white uppercase tracking-wider mb-1">Official Workspace</h4>
+                      <p className="text-xs sm:text-sm text-gray-400 font-medium leading-relaxed">
+                        Located inside the world’s largest innovation ecosystem — <strong className="text-white">T-Hub Hyderabad</strong>. Visits are hosted strictly via prior appointments.
+                      </p>
+                    </div>
+                  </Card>
+                </ScrollReveal>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                  <div className="animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">Name *</label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="Your name"
-                      className="bg-background/50 border-border focus:border-primary transition-all duration-300 focus:ring-2 focus:ring-primary/20"
-                    />
-                  </div>
-                  <div className="animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">Email *</label>
-                    <Input
-                      id="email"
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="your@email.com"
-                      className="bg-background/50 border-border focus:border-primary transition-all duration-300 focus:ring-2 focus:ring-primary/20"
-                    />
+              {/* Bottom recruitment callout */}
+              <ScrollReveal>
+                <div className="p-6 rounded-2xl bg-gradient-to-r from-gray-900 to-gray-950 border border-white/5 shadow-2xl relative overflow-hidden group">
+                  <div className="absolute right-0 bottom-0 w-24 h-24 bg-indigo-500/10 blur-xl rounded-full pointer-events-none group-hover:scale-150 transition-transform duration-500" />
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-1.5 text-teal-400 text-xs font-bold uppercase tracking-wider">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        We're Hiring
+                      </div>
+                      <h4 className="text-sm font-bold text-white">Looking for custom growth paths?</h4>
+                      <p className="text-xs text-gray-400">Join our engineering expedition at T-Hub.</p>
+                    </div>
+                    <Link to="/send-resume" className="shrink-0">
+                      <Button variant="outline" size="sm" className="w-full sm:w-auto rounded-xl border-white/10 hover:border-white/20 hover:bg-white/5 h-10 px-4 text-xs font-bold uppercase tracking-wide gap-1">
+                        Apply Now
+                        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
                   </div>
                 </div>
+              </ScrollReveal>
+            </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                  <div className="animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-                    <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">Phone</label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+91 1234567890"
-                      className="bg-background/50 border-border focus:border-primary transition-all duration-300 focus:ring-2 focus:ring-primary/20"
-                    />
+            {/* Right Column: High-UX Animated Form (7 cols) */}
+            <div className="lg:col-span-7">
+              <ScrollReveal>
+                <Card className="p-6 sm:p-8 md:p-10 bg-[#090e1a]/40 backdrop-blur-2xl border border-white/5 hover:border-white/10 shadow-3xl rounded-[2.5rem] relative overflow-hidden transition-all duration-300">
+                  
+                  {/* Form Heading */}
+                  <div className="mb-8">
+                    <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-2">Send Us a Message</h3>
+                    <p className="text-xs sm:text-sm text-gray-400">Please fill out this form to connect with our corporate desk.</p>
                   </div>
-                  <div className="animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-                    <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">Subject *</label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      placeholder="How can we help?"
-                      className="bg-background/50 border-border focus:border-primary transition-all duration-300 focus:ring-2 focus:ring-primary/20"
-                    />
-                  </div>
-                </div>
 
-                <div className="animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">Message *</label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    placeholder="Tell us more about your project..."
-                    rows={6}
-                    className="bg-background/50 border-border focus:border-primary transition-all duration-300 focus:ring-2 focus:ring-primary/20 resize-none"
-                  />
-                </div>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Two Column Grid for Name and Email */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      
+                      {/* Name Input with Icon */}
+                      <div className="relative group">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-indigo-400 transition-colors pointer-events-none">
+                          <User size={18} />
+                        </div>
+                        <input
+                          id="name"
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          placeholder="Your full name *"
+                          className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/[0.02] border border-white/5 focus:border-indigo-500/50 focus:bg-white/[0.04] focus:outline-none text-white text-sm sm:text-base font-medium placeholder-gray-500 focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300 shadow-inner"
+                        />
+                      </div>
 
-                <div className="animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30 group"
-                  >
-                    Send Message
-                    <Send size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </div>
-              </form>
-            </Card>
+                      {/* Email Input */}
+                      <div className="relative group">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-indigo-400 transition-colors pointer-events-none">
+                          <Mail size={18} />
+                        </div>
+                        <input
+                          id="email"
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                          placeholder="Corporate email address *"
+                          className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/[0.02] border border-white/5 focus:border-indigo-500/50 focus:bg-white/[0.04] focus:outline-none text-white text-sm sm:text-base font-medium placeholder-gray-500 focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300 shadow-inner"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Two Column Grid for Phone and Subject input */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      
+                      {/* Phone Input */}
+                      <div className="relative group">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-indigo-400 transition-colors pointer-events-none">
+                          <Phone size={18} />
+                        </div>
+                        <input
+                          id="phone"
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          placeholder="Contact phone number"
+                          className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/[0.02] border border-white/5 focus:border-indigo-500/50 focus:bg-white/[0.04] focus:outline-none text-white text-sm sm:text-base font-medium placeholder-gray-500 focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300 shadow-inner"
+                        />
+                      </div>
+
+                      {/* Subject Input */}
+                      <div className="relative group">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-indigo-400 transition-colors pointer-events-none">
+                          <MessageSquare size={18} />
+                        </div>
+                        <input
+                          id="subject"
+                          type="text"
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleChange}
+                          required
+                          placeholder="What is this regarding? *"
+                          className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/[0.02] border border-white/5 focus:border-indigo-500/50 focus:bg-white/[0.04] focus:outline-none text-white text-sm sm:text-base font-medium placeholder-gray-500 focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300 shadow-inner"
+                        />
+                      </div>
+                    </div>
+
+                    {/* High-UX Topic Quick Selection - Chips on Tablet/Desktop, Dropdown on Mobile */}
+                    <div className="space-y-3">
+                      <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                        Or select a quick topic:
+                      </label>
+                      
+                      {/* Mobile Dropdown (shown only on mobile < md) */}
+                      <div className="block md:hidden">
+                        <select
+                          value={formData.subject}
+                          onChange={(e) => {
+                            setFormData(prev => ({ ...prev, subject: e.target.value }));
+                          }}
+                          className="w-full px-4 py-3.5 rounded-2xl bg-gray-950 border border-white/10 text-white text-[10px] font-extrabold uppercase tracking-wider focus:border-indigo-500/50 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300 shadow-inner appearance-none cursor-pointer"
+                          style={{
+                            backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%239CA3AF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E")`,
+                            backgroundPosition: 'right 1rem center',
+                            backgroundSize: '1.25rem',
+                            backgroundRepeat: 'no-repeat',
+                            paddingRight: '2.5rem'
+                          }}
+                        >
+                          <option value="" disabled className="text-gray-600 bg-gray-950">-- Select A Topic --</option>
+                          {[
+                            "Web Development",
+                            "Mobile Applications",
+                            "Business ERP/Payroll",
+                            "Digital Transformation",
+                            "General Partnership"
+                          ].map((topic) => (
+                            <option key={topic} value={topic} className="text-white bg-gray-950 py-2">
+                              {topic}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      {/* Desktop Chips (hidden on mobile < md) */}
+                      <div className="hidden md:flex flex-wrap gap-2">
+                        {[
+                          "Web Development",
+                          "Mobile Applications",
+                          "Business ERP/Payroll",
+                          "Digital Transformation",
+                          "General Partnership"
+                        ].map((topic) => {
+                          const isSelected = formData.subject.toLowerCase() === topic.toLowerCase();
+                          return (
+                            <button
+                              key={topic}
+                              type="button"
+                              onClick={() => {
+                                setFormData(prev => ({ ...prev, subject: topic }));
+                              }}
+                              className={`px-3.5 py-2 text-[10px] font-extrabold uppercase tracking-wider rounded-full border transition-all duration-300 flex items-center gap-1.5 active:scale-95 ${
+                                isSelected
+                                  ? "bg-indigo-500 border-indigo-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.4)]"
+                                  : "bg-white/[0.02] border-white/5 text-gray-400 hover:border-white/10 hover:text-white"
+                              }`}
+                            >
+                              {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
+                              {topic}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Message Textarea */}
+                    <div className="relative group">
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        placeholder="Tell us details about your project, timeline, or inquiries... *"
+                        rows={5}
+                        className="w-full px-5 py-4 rounded-2xl bg-white/[0.02] border border-white/5 focus:border-indigo-500/50 focus:bg-white/[0.04] focus:outline-none text-white text-sm sm:text-base font-medium placeholder-gray-500 focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300 shadow-inner resize-none"
+                      />
+                    </div>
+
+                    {/* Submit Button */}
+                    <Button
+                      type="submit"
+                      className="w-full h-14 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 hover:from-indigo-400 hover:to-purple-400 text-white font-extrabold text-xs uppercase tracking-widest rounded-2xl transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 flex items-center justify-center gap-2 group border border-indigo-500/20"
+                    >
+                      <span>Send Inquiries Desk</span>
+                      <Send size={14} className="group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
+                    </Button>
+                  </form>
+                </Card>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>

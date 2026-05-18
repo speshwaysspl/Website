@@ -55,41 +55,41 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --background: 224 71% 4%; /* #030712 */
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 222 47% 11%; /* #0a0f1c */
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 221 83% 53%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 239 84% 67%; /* indigo-500 */
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 213 27% 84%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 15% 35%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%; /* gray-400 */
 
-    --accent: 213 36% 92%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 221 83% 53%;
+    --border: 215 28% 17%; /* white/10ish */
+    --input: 215 28% 17%;
+    --ring: 239 84% 67%;
 
     --radius: 0.75rem;
 
-    --glow-primary: 221 83% 53%;
-    --glow-secondary: 213 36% 92%;
+    --glow-primary: 239 84% 67%;
+    --glow-secondary: 217 32% 17%;
     
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%), hsl(213 27% 95%));
-    --gradient-card: linear-gradient(135deg, hsl(0 0% 100% / 0.9), hsl(213 27% 95% / 0.7));
+    --gradient-hero: linear-gradient(135deg, hsl(224 71% 4%), hsl(222 47% 11%));
+    --gradient-card: linear-gradient(135deg, hsl(222 47% 11% / 0.9), hsl(224 71% 4% / 0.7));
   }
 }
 
@@ -107,7 +107,7 @@ All colors MUST be HSL.
   }
 
   html, body {
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   /* Apply Times New Roman to all headings */

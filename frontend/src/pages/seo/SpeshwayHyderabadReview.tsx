@@ -17,11 +17,11 @@ const SpeshwayHyderabadReview = () => {
           <p className="text-sm text-muted-foreground">
             To understand how this location contributes to our reputation, you can read{" "}
             <Link
-              to="/speshway-solutions-review-2026"
+              to="/about"
               className="text-primary font-semibold hover:underline"
-              title="See how Speshway's Hyderabad presence impacts its 2026 review"
+              title="See Speshway's corporate background and profile"
             >
-              the 2026 company review
+              the company profile
             </Link>{" "}
             and{" "}
             <Link

@@ -55,6 +55,16 @@ const portfolioSchema = new mongoose.Schema({
       default: ''
     }
   },
+  screenshots: [{
+    url: {
+      type: String,
+      default: ''
+    },
+    publicId: {
+      type: String,
+      default: ''
+    }
+  }],
   createdAt: {
     type: Date,
     default: Date.now

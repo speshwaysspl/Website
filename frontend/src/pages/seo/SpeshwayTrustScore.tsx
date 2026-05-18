@@ -20,11 +20,11 @@ const SpeshwayTrustScore = () => {
           <p className="text-sm text-muted-foreground">
             You can verify our standing through multiple verified channels, including{" "}
             <Link
-              to="/speshway-solutions-review-2026"
+              to="/about"
               className="text-primary font-semibold hover:underline"
-              title="Read the latest 2026 Speshway Solutions reviews"
+              title="Learn about Speshway's corporate background and profile"
             >
-              the 2026 review hub
+              our company profile
             </Link>{" "}
             and our{" "}
             <Link
@@ -50,11 +50,11 @@ const SpeshwayTrustScore = () => {
           <p className="text-sm text-muted-foreground">
             The calculation methodology is transparent and can be cross-verified against{" "}
             <Link
-              to="/is-speshway-real-or-fake"
+              to="/fraud-notice"
               className="text-primary font-semibold hover:underline"
-              title="Check if Speshway is real or fake with full verification details"
+              title="Check Speshway official recruitment policies and fraud notice details"
             >
-              our authenticity guide
+              our fraud notice guide
             </Link>{" "}
             and{" "}
             <Link

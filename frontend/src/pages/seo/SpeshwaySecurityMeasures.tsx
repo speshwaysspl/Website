@@ -18,7 +18,7 @@ const SpeshwaySecurityMeasures = () => {
   ];
 
   const breadcrumbItems = [
-    { name: "Trust Center", item: "/is-speshway-real-or-fake" },
+    { name: "Trust Center", item: "/fraud-notice" },
     { name: "Security Measures", item: "/speshway-solutions-data-security-and-privacy-policy" }
   ];
 

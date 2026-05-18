@@ -39,6 +39,7 @@ const ManagePortfolio = () => {
     index: 0
   });
   const [results, setResults] = useState<{ value: string; label: string }[]>([]);
+  const [screenshots, setScreenshots] = useState<{ file?: File; url: string; publicId?: string }[]>([]);
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -131,6 +132,7 @@ const ManagePortfolio = () => {
     setSelectedImage(null);
     setImagePreview(null);
     setResults([]);
+    setScreenshots([]);
   };
 
   const handleEdit = (portfolio: any) => {
@@ -149,6 +151,7 @@ const ManagePortfolio = () => {
     setImagePreview(portfolio.image?.url || null);
     setSelectedImage(null);
     setResults(portfolio.results || []);
+    setScreenshots(portfolio.screenshots || []);
     setIsDialogOpen(true);
   };
 
@@ -237,6 +240,20 @@ const ManagePortfolio = () => {
       formDataToSend.append('image', selectedImage);
     }
 
+    // Append each new screenshot file
+    screenshots.forEach((scr) => {
+      if (scr.file) {
+        formDataToSend.append('screenshots', scr.file);
+      }
+    });
+
+    // Send the remaining existing screenshots
+    const existing = screenshots.filter(s => s.publicId && !s.file).map(s => ({
+      url: s.url,
+      publicId: s.publicId
+    }));
+    formDataToSend.append('existingScreenshots', JSON.stringify(existing));
+
     if (editingPortfolio) {
       updateMutation.mutate({ 
         id: editingPortfolio._id, 
@@ -305,7 +322,7 @@ const ManagePortfolio = () => {
                     Add New Project
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="w-[95vw] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+                <DialogContent data-lenis-prevent className="w-[95vw] sm:max-w-2xl max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle>{editingPortfolio ? 'Edit Project' : 'Add New Project'}</DialogTitle>
                     <DialogDescription>
@@ -484,6 +501,47 @@ const ManagePortfolio = () => {
                         </div>
                       )}
                     </div>
+                    <div>
+                      <Label>Project Screenshots</Label>
+                      <div className="grid grid-cols-3 gap-2 mt-2">
+                        {screenshots.map((scr, idx) => (
+                          <div key={idx} className="relative aspect-[16/10] rounded-lg overflow-hidden border border-border group bg-muted/20">
+                            <img src={getOptimizedImageUrl(scr.url)} alt="Screenshot" className="w-full h-full object-cover" />
+                            <button
+                              type="button"
+                              onClick={() => setScreenshots(screenshots.filter((_, i) => i !== idx))}
+                              className="absolute top-1 right-1 bg-red-500/80 hover:bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              <X size={12} />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-3">
+                        <label
+                          htmlFor="screenshots-upload"
+                          className="flex items-center justify-center gap-2 w-full h-12 border border-dashed border-border rounded-lg cursor-pointer hover:border-primary/50 transition-colors text-sm text-muted-foreground"
+                        >
+                          <Upload className="w-4 h-4" />
+                          <span>Upload Screenshots (Multiple allowed)</span>
+                          <input
+                            id="screenshots-upload"
+                            type="file"
+                            className="hidden"
+                            accept="image/*"
+                            multiple
+                            onChange={(e) => {
+                              const files = Array.from(e.target.files || []);
+                              const newScr = files.map(file => ({
+                                file,
+                                url: URL.createObjectURL(file)
+                              }));
+                              setScreenshots([...screenshots, ...newScr]);
+                            }}
+                          />
+                        </label>
+                      </div>
+                    </div>
                     <div className="flex gap-2">
                       <Button type="submit" className="flex-1">
                         {editingPortfolio ? 'Update' : 'Create'}
@@ -499,7 +557,7 @@ const ManagePortfolio = () => {
                 </DialogContent>
               </Dialog>
               <Dialog open={isCropOpen} onOpenChange={(open) => setIsCropOpen(open)}>
-                <DialogContent className="w-[95vw] sm:max-w-2xl">
+                <DialogContent data-lenis-prevent className="w-[95vw] sm:max-w-2xl">
                   <DialogHeader>
                     <DialogTitle>Crop Project Image</DialogTitle>
                     <DialogDescription>Trim the image to fit the banner cleanly.</DialogDescription>

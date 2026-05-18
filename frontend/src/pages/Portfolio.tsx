@@ -1,20 +1,20 @@
-import { ExternalLink, X } from "lucide-react";
+import { ExternalLink, X, Compass, Sparkles, Target } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InternalLinks from "@/components/InternalLinks";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
-import { StaggerContainer, StaggerItem, HoverScale, FadeIn, ScrollReveal, ScrollParallaxItem } from "@/components/animations";
 import { Helmet } from "react-helmet-async";
 import { getOptimizedImageUrl } from "@/lib/utils";
 import { SEO_KEYWORDS } from "@/lib/seo-utils";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 const Portfolio = () => {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const { data: projectsData, isLoading, error } = useQuery({
     queryKey: ['portfolios'],
@@ -25,61 +25,85 @@ const Portfolio = () => {
   const fallbackProjects = [
     {
       _id: 'default-1',
-      title: "E-commerce Platform for Fashion Brand",
-      description: "Developed a scalable e-commerce solution with custom features for a leading fashion retailer, enhancing user experience and sales.",
+      title: "Enterprise E-commerce Platform",
+      description: "A highly scalable custom e-commerce engine developed to handle over 100k daily active sessions. Built with modern micro-frontend setups and integrated with AWS cloud infrastructure for rapid, reliable delivery.",
       category: "Web Development",
-      technologies: ["React", "Node.js", "MongoDB", "AWS"],
+      technologies: ["React.js", "Node.js", "MongoDB", "AWS DevOps"],
       status: "completed",
-      image: { url: "/images/software-development.jpg" }
+      features: ["Custom Inventory Engine", "Multi-gate Checkout Integration", "Sub-second Static Page Generation", "Dynamic User Analytics"],
+      results: [
+        { value: "140%", label: "Mobile Conversions" },
+        { value: "0.8s", label: "Page Load Speed" }
+      ],
+      image: { url: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&q=80&w=800" }
     },
     {
       _id: 'default-2',
-      title: "Cross-Platform Mobile Banking App",
-      description: "Built a secure and intuitive mobile banking application for iOS and Android, integrating with existing financial systems.",
+      title: "FinTech Banking Application",
+      description: "A secure, biometric-protected mobile finance and asset tracking application built for global markets. Encoded using industry-standard banking encryption protocols and Flutter interfaces.",
       category: "Mobile App Development",
-      technologies: ["React Native", "Firebase", "Stripe"],
+      technologies: ["Flutter", "Firebase", "Stripe API", "Node.js"],
       status: "completed",
-      image: { url: "/images/mobile-app-development.jpg" }
+      features: ["Biometric Login Vault", "Real-Time Ledger System", "Instant Push Transaction pipelines", "Cross-Platform Optimization"],
+      results: [
+        { value: "99.99%", label: "App Uptime" },
+        { value: "4.9★", label: "Store Rating" }
+      ],
+      image: { url: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?auto=format&fit=crop&q=80&w=800" }
     },
     {
       _id: 'default-3',
-      title: "AI-Powered Data Analytics Dashboard",
-      description: "Created an advanced analytics dashboard utilizing AI and machine learning to provide actionable insights for business intelligence.",
+      title: "AI-Powered BI Analytics Suite",
+      description: "An advanced business intelligence dashboard incorporating machine learning scripts to analyze multi-million row SQL database states and return clean predictive trend forecasts.",
       category: "AI & Data Science",
-      technologies: ["Python", "TensorFlow", "React", "PostgreSQL"],
+      technologies: ["Python", "TensorFlow", "React.js", "PostgreSQL"],
       status: "completed",
-      image: { url: "/images/digital-transformation.jpg" }
+      features: ["Automated Forecasting Scripts", "High-Volume SQL Queries", "Interactive Chart dashboards", "Dynamic Alert Notifications"],
+      results: [
+        { value: "85%", label: "Data Discovery Speed" },
+        { value: "30%", label: "Error Reductions" }
+      ],
+      image: { url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" }
     },
     {
       _id: 'default-4',
-      title: "Cloud-Based DevOps Automation Suite",
-      description: "Implemented a comprehensive DevOps automation suite on AWS, streamlining CI/CD pipelines and improving deployment efficiency.",
+      title: "Cloud Devops Automation Suite",
+      description: "An automated multi-region deployment automation and cluster management setup built to simplify scalable staging workflows and prevent server downtime during rolling releases.",
       category: "Cloud & DevOps",
-      technologies: ["AWS", "Docker", "Kubernetes", "Jenkins"],
+      technologies: ["AWS", "Docker", "Kubernetes", "CI/CD Pipeline"],
       status: "completed",
-      image: { url: "/images/cloud-devops.jpg" }
+      features: ["Rolling Release setups", "Auto-Scaling cluster bounds", "VPC Security Boundaries", "Kubernetes Log Aggregation"],
+      results: [
+        { value: "90%", label: "Faster Deployments" },
+        { value: "0ms", label: "Rolling Downtime" }
+      ],
+      image: { url: "https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&q=80&w=800" }
     }
   ];
 
   const projects = projectsData && projectsData.length > 0 ? projectsData : fallbackProjects;
 
   const openProjectDetails = (project: any) => {
-    setSelectedProject(project);
-    setIsModalOpen(true);
+    navigate(`/projects/${project._id}`);
   };
 
-  const closeModal = () => {
-    setSelectedProject(null);
-    setIsModalOpen(false);
-  };
+  // Parallax Hero Scroll Setup
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+  const physicsScrollY = useSpring(scrollY, { stiffness: 80, damping: 25, restDelta: 0.001 });
+
+  const heroY = useTransform(physicsScrollY, [0, 800], [0, 200]);
+  const heroOpacity = useTransform(physicsScrollY, [0, 400], [1, 0]);
+  const heroScale = useTransform(physicsScrollY, [0, 500], [1, 0.96]);
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-[#030712] flex flex-col justify-between">
         <Navbar />
-        <section className="pt-32 pb-20">
-          <div className="container mx-auto px-4">
-            <div className="text-center">Loading...</div>
+        <section className="flex-grow flex items-center justify-center py-32">
+          <div className="text-center space-y-4">
+            <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto" />
+            <p className="text-indigo-400 font-extrabold text-sm uppercase tracking-widest animate-pulse">Loading Portfolio...</p>
           </div>
         </section>
         <Footer />
@@ -89,11 +113,12 @@ const Portfolio = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-[#030712] flex flex-col justify-between">
         <Navbar />
-        <section className="pt-32 pb-20">
-          <div className="container mx-auto px-4">
-            <div className="text-center text-red-500">Error loading projects</div>
+        <section className="flex-grow flex items-center justify-center py-32">
+          <div className="text-center max-w-md p-8 rounded-3xl border border-red-500/20 bg-red-500/5 backdrop-blur-md">
+            <p className="text-red-400 font-bold mb-4">Error loading portfolio. Please try again later.</p>
+            <Button onClick={() => window.location.reload()} className="bg-red-500 hover:bg-red-600 text-white">Retry Connection</Button>
           </div>
         </section>
         <Footer />
@@ -102,7 +127,7 @@ const Portfolio = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#030712] text-foreground selection:bg-primary/30 relative overflow-hidden" ref={containerRef}>
       <Helmet>
         <title>Projects | {SEO_KEYWORDS.seoTitles[0]} | Speshway Solutions Portfolio</title>
         <meta name="description" content={`Explore our portfolio featuring ${SEO_KEYWORDS.seoTitles[0]}, app development, and software solutions by Speshway Solutions, the best IT company in Hyderabad.`} />
@@ -125,148 +150,135 @@ const Portfolio = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://speshway.com/projects" />
         <meta property="og:image" content="https://speshway.com/logo.png" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Projects | Speshway Solutions | Web & App Development Portfolio" />
-        <meta name="twitter:description" content="See how we deliver reliable, scalable, and secure solutions in Hyderabad." />
         <script type="application/ld+json">{JSON.stringify({
-          "@context":"https://schema.org",
-          "@type":"BreadcrumbList",
-          "itemListElement":[
-            {"@type":"ListItem","position":1,"name":"Home","item":"https://speshway.com/"},
-            {"@type":"ListItem","position":2,"name":"Projects","item":"https://speshway.com/projects"}
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://speshway.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://speshway.com/projects" }
           ]
         })}</script>
       </Helmet>
       <Navbar />
 
+      {/* Decorative Blur Orbs */}
+      <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute top-[30%] left-[-15%] w-[45%] h-[45%] bg-teal-500/10 rounded-full blur-[120px] pointer-events-none z-0" />
+
       {/* Hero Section */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
-        <div className="container mx-auto px-4 relative z-10">
-          <ScrollReveal>
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
-              <span className="text-primary">Projects</span>
+      <section className="pt-40 pb-24 relative overflow-hidden flex items-center justify-center">
+        {/* Grid Overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+
+        <div className="container mx-auto px-4 relative z-10 max-w-6xl">
+          <motion.div
+            style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-extrabold text-xs uppercase tracking-widest mb-6">
+              <Sparkles className="w-3.5 h-3.5" />
+              Proven Global Deliverables
+            </div>
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tighter text-white mb-8 leading-[1.1] text-center flex flex-col items-center">
+              <span className="block mb-2 md:mb-3">Our Featured</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-teal-400 to-indigo-400">
+                Case Studies & Projects
+              </span>
             </h1>
-            <p className="text-xl text-muted-foreground">
-              Showcasing our successful projects and the innovative solutions we've delivered for clients worldwide.
+            <p className="text-lg md:text-xl text-gray-400 font-medium max-w-2xl mx-auto leading-relaxed">
+              Showcasing next-generation software products, responsive web platforms, and mobile apps built to accelerate scale for global companies.
             </p>
-          </div>
-          </ScrollReveal>
+          </motion.div>
         </div>
       </section>
 
       {/* Portfolio Grid */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
+      <section className="py-24 border-t border-white/5 bg-gray-950/20 relative z-10">
+        <div className="container mx-auto px-4 max-w-7xl">
           {projects && projects.length > 0 ? (
-            <StaggerContainer staggerDelay={0.1}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8">
-                {projects.map((project: any, index: number) => (
-                  <StaggerItem key={project._id || index}>
-                    <ScrollParallaxItem direction={index % 2 === 0 ? "left" : "right"} intensity="strong">
-                      <HoverScale>
-                      <Card
-                        className="overflow-hidden bg-card/50 backdrop-blur-sm border-border hover:border-primary/50 transition-all group h-[420px] sm:h-[450px] lg:h-[480px] flex flex-col"
-                      >
-                  {project.image?.url ? (
-                    <div className="aspect-[16/10] relative overflow-hidden bg-muted/30">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project: any, index: number) => (
+                <motion.div
+                  key={project._id || index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="group cursor-pointer flex flex-col"
+                  onClick={() => openProjectDetails(project)}
+                >
+                  {/* Card Image Area (Same as Home Page project card aspect-[4/3] rounded-2xl border-white/5 shadow-2xl) */}
+                  <div className="relative overflow-hidden rounded-2xl mb-6 aspect-[4/3] bg-card border border-white/5 shadow-2xl">
+                    {project.image?.url ? (
                       <img
                         src={getOptimizedImageUrl(project.image.url)}
                         alt={project.title}
-                        width="800"
-                        height="450"
-                        className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-500"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent pointer-events-none" />
-                    </div>
-                  ) : (
-                    <div className={`aspect-video bg-gradient-to-br ${project.color || 'from-blue-500/20 to-cyan-500/20'} flex items-center justify-center relative overflow-hidden`}>
-                      <div className="absolute inset-0 bg-background/20" />
-                      <div className="text-6xl font-bold text-primary/20 relative z-10">
-                        {project.title.charAt(0)}
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-indigo-900/50 to-teal-900/50 flex items-center justify-center">
+                        <div className="text-5xl font-bold text-white/10 uppercase">{project.title.charAt(0)}</div>
                       </div>
-                    </div>
-                  )}
-                  <div className="p-4 sm:p-6 flex-1 flex flex-col">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="text-sm text-primary font-medium">{project.category}</div>
-                      <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors bg-secondary text-secondary-foreground">
-                        {project.status === 'in_progress' ? 'In Progress' : project.status === 'completed' ? 'Completed' : 'Upcoming'}
-                      </span>
-                    </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2">{project.title}</h3>
-                    <p className="text-muted-foreground mb-3 text-sm leading-snug max-h-16 overflow-hidden">{project.description}</p>
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3">
-                      {project.technologies?.map((tech: string, idx: number) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 bg-secondary/50 rounded-full text-xs text-muted-foreground border border-border"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="mt-auto">
-                      <Button
-                        variant="ghost"
-                        className="mx-auto w-[150px] justify-center text-primary hover:text-primary hover:bg-primary/10"
-                        onClick={() => openProjectDetails(project)}
-                      >
-                        View Details
-                        <ExternalLink size={16} className="ml-2" />
-                      </Button>
-                    </div>
+                    )}
                   </div>
-                      </Card>
-                      </HoverScale>
-                    </ScrollParallaxItem>
-                  </StaggerItem>
-                ))}
-              </div>
-            </StaggerContainer>
+
+                  {/* Card Meta Content Area (Same as Home Page card) */}
+                  <h3 className="text-2xl font-bold text-gray-100 mb-2 group-hover:text-indigo-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-400 text-xs font-bold tracking-widest uppercase flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 bg-teal-400 rounded-full animate-pulse" />
+                    {project.category}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           ) : (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">No projects available at the moment.</p>
+            <div className="text-center py-20">
+              <p className="text-gray-400 font-bold">No projects available at the moment.</p>
             </div>
           )}
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-secondary/20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-foreground mb-4">Project Success Metrics</h2>
-              <p className="text-xl text-muted-foreground">Numbers that speak for our commitment to excellence</p>
-            </div>
-            <StaggerContainer staggerDelay={0.1}>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                {[
-                  { value: '98%', label: 'Client Satisfaction' },
-                  { value: '500+', label: 'Projects Delivered' },
-                  { value: '95%', label: 'On-Time Delivery' },
-                  { value: '50+', label: 'Industries Served' },
-                ].map((stat, idx) => (
-                  <StaggerItem key={idx}>
-                    <div className="text-center">
-                      <div className="text-4xl font-bold text-primary mb-2">{stat.value}</div>
-                      <div className="text-muted-foreground">{stat.label}</div>
-                    </div>
-                  </StaggerItem>
-                ))}
+      {/* Stats/Metrics Section */}
+      <section className="py-24 border-t border-white/5 relative overflow-hidden z-10 bg-gray-950/40">
+        <div className="absolute -left-20 top-1/4 w-[400px] h-[400px] bg-teal-500/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="container mx-auto px-4 max-w-6xl relative z-10">
+          <div className="max-w-4xl mx-auto space-y-16">
+            <div className="text-center space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-[0.2em] bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                <Target className="w-3.5 h-3.5" />
+                Proven Track Record
               </div>
-            </StaggerContainer>
+              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-white">Project Success Metrics</h2>
+              <p className="text-lg text-gray-400 font-medium">Quantified numbers highlighting our relentless engineering standards.</p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+              {[
+                { value: '98%', label: 'Client Satisfaction', gradient: 'from-indigo-400 to-violet-500' },
+                { value: '500+', label: 'Projects Delivered', gradient: 'from-teal-400 to-indigo-500' },
+                { value: '95%', label: 'On-Time Releases', gradient: 'from-purple-400 to-teal-500' },
+                { value: '50+', label: 'Industries Served', gradient: 'from-indigo-400 to-teal-400' },
+              ].map((stat, idx) => (
+                <div key={idx} className="text-center group p-6 rounded-2xl bg-white/[0.01] border border-white/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-indigo-500/20">
+                  <div className={`text-4xl sm:text-5xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-r ${stat.gradient} tracking-tight group-hover:scale-105 transition-transform duration-300`}>
+                    {stat.value}
+                  </div>
+                  <div className="text-xs sm:text-sm text-gray-400 font-bold uppercase tracking-wider">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Internal Links for SEO */}
-      <section className="py-16 bg-muted/20">
-        <div className="container mx-auto px-4">
-          <InternalLinks 
-            title="Explore More Speshway Projects & Services" 
+      <section className="py-20 border-t border-white/5 bg-gray-950/20">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <InternalLinks
+            title="Explore More Speshway Projects & Services"
             layout="chips"
             limit={12}
           />
@@ -274,113 +286,6 @@ const Portfolio = () => {
       </section>
 
       <Footer />
-
-      {/* Project Details Modal */}
-      {isModalOpen && selectedProject && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-card rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-border animate-scale-in">
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h2 className="text-3xl font-bold text-foreground mb-2">{selectedProject.title}</h2>
-                  <div className="text-sm text-primary font-medium">{selectedProject.category}</div>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={closeModal}
-                  className="text-muted-foreground hover:text-foreground"
-                  aria-label="Close project details"
-                >
-                  <X size={24} />
-                </Button>
-              </div>
-              
-              <div className="space-y-6">
-                {selectedProject.image?.url && (
-                  <div className="aspect-[16/10] relative rounded-lg overflow-hidden mb-6 bg-muted/20">
-                      <img
-                        src={getOptimizedImageUrl(selectedProject.image.url)}
-                        alt={selectedProject.title}
-                        width="800"
-                        height="450"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                )}
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">Project Overview</h3>
-                  <p className="text-muted-foreground leading-relaxed">{selectedProject.description}</p>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-3">Technologies Used</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.technologies?.map((tech: string, idx: number) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1 bg-secondary/50 rounded-full text-sm text-muted-foreground border border-border"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-3">Key Features</h3>
-                  {selectedProject.features && selectedProject.features.length > 0 ? (
-                    <ul className="space-y-2 text-muted-foreground">
-                      {selectedProject.features.map((f: string, idx: number) => (
-                        <li key={idx} className="flex items-start">
-                          <span className="text-primary mr-2">•</span>
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="text-muted-foreground">No features listed</p>
-                  )}
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-3">Project Results</h3>
-                  {selectedProject.results && selectedProject.results.length > 0 ? (
-                    <div className="grid grid-cols-2 gap-4">
-                      {selectedProject.results.map((r: any, idx: number) => (
-                        <div key={idx} className="bg-secondary/30 rounded-lg p-4 text-center">
-                          <div className="text-2xl font-bold text-primary mb-1">{r.value}</div>
-                          <div className="text-sm text-muted-foreground">{r.label}</div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-muted-foreground">No results provided</p>
-                  )}
-                </div>
-              </div>
-              
-              <div className="mt-8 flex gap-3">
-                <Button 
-                  variant="outline" 
-                  onClick={closeModal}
-                  className="flex-1"
-                >
-                  Close
-                </Button>
-                <Button className="flex-1" disabled={!selectedProject.demoUrl} onClick={() => {
-                  if (selectedProject.demoUrl) {
-                    window.open(selectedProject.demoUrl, '_blank');
-                  }
-                }}>
-                  <ExternalLink size={16} className="mr-2" />
-                  View Live Demo
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

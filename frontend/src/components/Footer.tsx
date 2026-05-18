@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import { 
-  Facebook, 
-  Twitter, 
-  Linkedin, 
-  Instagram, 
-  Youtube, 
-  Mail, 
-  Phone, 
+import {
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+  Youtube,
+  Mail,
+  Phone,
   MapPin,
   Home,
   Info,
@@ -35,21 +35,20 @@ const Footer = () => {
     { path: "/about", label: "About", icon: Info },
     { path: "/services", label: "Services", icon: Settings },
     { path: "/projects", label: "Projects", icon: FolderOpen },
-    { path: "/blog", label: "Blog", icon: Newspaper },
-    { path: "/team", label: "Team", icon: Users },
     { path: "/career", label: "Career", icon: Briefcase },
-    { path: "/is-speshway-real-or-fake", label: "Is Speshway Real?", icon: ShieldCheck },
-    { path: "/speshway-solutions-review-2026", label: "Company Reviews", icon: Star },
-    { path: "/faq", label: "FAQ", icon: HelpCircle },
-    { path: "/send-resume", label: "Send Resume", icon: FileText },
-    { path: "/fraud-notice", label: "Fraud Alert", icon: AlertTriangle },
+    // { path: "/faq", label: "FAQ", icon: HelpCircle },
+    // { path: "/send-resume", label: "Send Resume", icon: FileText },
+    // { path: "/fraud-notice", label: "Fraud Alert", icon: AlertTriangle },
   ];
 
   const services = [
     { label: "Web Development", icon: Code },
     { label: "Mobile Apps", icon: Smartphone },
     { label: "Cloud Solutions", icon: Cloud },
-    { label: "AI & ML", icon: Brain },
+    { label: "Digital Marketing", },
+    { label: "Cybersecurity" },
+    { label: "PowerBi" },
+    // { label: "AI & ML", icon: Brain },
   ];
 
   return (
@@ -89,9 +88,11 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer me"
                 aria-label="Twitter (X)"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-black/10 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-secondary/50 hover:bg-white/10 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               >
-                <Twitter size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-black transition-colors" />
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-white transition-colors">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
               </a>
               <a
                 href="https://www.linkedin.com/company/speshway-solutions-pvt-ltd/"
@@ -112,7 +113,7 @@ const Footer = () => {
                 <Instagram size={16} className="sm:w-[18px] sm:h-[18px] text-muted-foreground group-hover:text-[#E4405F] transition-colors" />
               </a>
               <a
-                href="https://www.youtube.com/@speshwaysolutions"
+                href="https://www.youtube.com/@speshwaysolutionspvtltd"
                 target="_blank"
                 rel="noopener noreferrer me"
                 aria-label="YouTube"
@@ -130,11 +131,11 @@ const Footer = () => {
               <ul className="space-y-2">
                 {quickLinks.map((link) => (
                   <li key={link.path}>
-                    <Link 
-                      to={link.path} 
+                    <Link
+                      to={link.path}
                       className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:translate-x-1"
                     >
-                      <link.icon size={14} className="group-hover:text-primary transition-colors" />
+                      {/* <link.icon size={14} className="group-hover:text-primary transition-colors" /> */}
                       {link.label}
                     </Link>
                   </li>
@@ -147,11 +148,11 @@ const Footer = () => {
               <ul className="space-y-2">
                 {services.map((service) => (
                   <li key={service.label}>
-                    <Link 
-                      to="/services" 
+                    <Link
+                      to="/services"
                       className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-all duration-300 flex items-center gap-2 group hover:translate-x-1"
                     >
-                      <service.icon size={16} className="text-primary/70 group-hover:text-primary transition-colors" />
+                      {/* <service.icon size={16} className="text-primary/70 group-hover:text-primary transition-colors" /> */}
                       {service.label}
                     </Link>
                   </li>
@@ -166,9 +167,9 @@ const Footer = () => {
             <ul className="space-y-2 sm:space-y-3">
               <li className="flex items-start space-x-2 sm:space-x-3">
                 <MapPin size={16} className="sm:w-[18px] sm:h-[18px] text-primary mt-0.5 flex-shrink-0" />
-                <a 
-                  href="https://maps.google.com/?q=T-Hub,+Plot+No+1%2FC,+Sy+No+83%2F1,+Raidurgam,+Knowledge+City+Rd,+panmaktha,+Hyderabad,+Serilingampalle+(M),+Telangana+500032" 
-                  target="_blank" 
+                <a
+                  href="https://maps.google.com/?q=T-Hub,+Plot+No+1%2FC,+Sy+No+83%2F1,+Raidurgam,+Knowledge+City+Rd,+panmaktha,+Hyderabad,+Serilingampalle+(M),+Telangana+500032"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 break-words"
                 >
@@ -177,8 +178,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-2 sm:space-x-3">
                 <Phone size={16} className="sm:w-[18px] sm:h-[18px] text-primary flex-shrink-0" />
-                <a 
-                  href="tel:+919100006020" 
+                <a
+                  href="tel:+919100006020"
                   className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
                 >
                   +91 9100006020
@@ -186,8 +187,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-2 sm:space-x-3">
                 <Mail size={16} className="sm:w-[18px] sm:h-[18px] text-primary flex-shrink-0" />
-                <a 
-                  href="mailto:info@speshway.com" 
+                <a
+                  href="mailto:info@speshway.com"
                   className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 break-all"
                 >
                   info@speshway.com
@@ -197,94 +198,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* SEO Keywords Section */}
-        <div className="mt-10 pt-8 border-t border-border/50">
-          <h3 className="text-sm font-semibold text-foreground/80 mb-6 uppercase tracking-wider text-center">Our Expertise & Service Areas</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-6">
-            <div>
-              <h4 className="text-[10px] font-bold text-primary uppercase mb-2">Primary Services</h4>
-              <ul className="space-y-1">
-                {SEO_KEYWORDS.primary.slice(0, 8).map((keyword) => {
-                  const matchedPage = SPESHWAY_INTERNAL_LINK_PAGES.find(p => 
-                    p.name.toLowerCase() === keyword.toLowerCase() || 
-                    p.anchors.some(a => a.toLowerCase() === keyword.toLowerCase())
-                  );
-                  const keywordSlug = keyword.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-                  return (
-                    <li key={keyword}>
-                      <Link 
-                        to={matchedPage ? matchedPage.url : `/${keywordSlug}`} 
-                        className="text-[10px] text-muted-foreground hover:text-primary transition-colors block"
-                      >
-                        {keyword}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-[10px] font-bold text-primary uppercase mb-2">Mobile App Dev</h4>
-              <ul className="space-y-1">
-                {SEO_KEYWORDS.mobile.slice(0, 8).map((keyword) => {
-                  const keywordSlug = keyword.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-                  return (
-                    <li key={keyword}>
-                      <Link to={`/${keywordSlug}`} className="text-[10px] text-muted-foreground hover:text-primary transition-colors block">
-                        {keyword}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-[10px] font-bold text-primary uppercase mb-2">Web Development</h4>
-              <ul className="space-y-1">
-                {SEO_KEYWORDS.website.slice(0, 8).map((keyword) => {
-                  const keywordSlug = keyword.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-                  return (
-                    <li key={keyword}>
-                      <Link to={`/${keywordSlug}`} className="text-[10px] text-muted-foreground hover:text-primary transition-colors block">
-                        {keyword}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-[10px] font-bold text-primary uppercase mb-2">Business Solutions</h4>
-              <ul className="space-y-1">
-                {SEO_KEYWORDS.software.slice(0, 8).map((keyword) => {
-                  const matchedPage = SPESHWAY_INTERNAL_LINK_PAGES.find(p => 
-                    p.name.toLowerCase() === keyword.toLowerCase() || 
-                    p.anchors.some(a => a.toLowerCase() === keyword.toLowerCase())
-                  );
-                  const keywordSlug = keyword.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-                  return (
-                    <li key={keyword}>
-                      <Link 
-                        to={matchedPage ? matchedPage.url : `/${keywordSlug}`} 
-                        className="text-[10px] text-muted-foreground hover:text-primary transition-colors block"
-                      >
-                        {keyword}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-          
-          <div className="mt-8 flex flex-wrap justify-center gap-x-4 gap-y-2 border-t border-border/30 pt-6">
-            {[...SEO_KEYWORDS.areaBased, ...SEO_KEYWORDS.googleBusiness, ...SEO_KEYWORDS.highRanking].slice(0, 15).map((keyword) => (
-              <span key={keyword} className="text-[9px] text-muted-foreground/70 hover:text-primary transition-colors cursor-default whitespace-nowrap">
-                {keyword}
-              </span>
-            ))}
-          </div>
-        </div>
 
         <div className="block sm:hidden text-center mt-2">
           <p className="text-xs text-muted-foreground">© {currentYear} SPESHWAY SOLUTIONS PRIVATE LIMITED.</p>

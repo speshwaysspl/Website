@@ -43,12 +43,10 @@ const Navbar = () => {
     { path: "/blog", label: "Blog" },
     
     { path: "/career", label: "Career" },
-    { path: "/faq", label: "FAQ" },
     {
-      label: "Company Insights",
+      label: "Company",
       children: [
-        { path: "/is-speshway-real-or-fake", label: "Is Speshway Real?" },
-        { path: "/speshway-solutions-review-2026", label: "Reviews" },
+        { path: "/faq", label: "FAQ" },
         { path: "/fraud-notice", label: "Fraud Alert" },
         { path: "/team", label: "Team" }
       ],
@@ -67,54 +65,57 @@ const Navbar = () => {
   const isHome = location.pathname === "/";
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isHome && !isScrolled
-        ? "lg:bg-transparent lg:border-transparent lg:shadow-none bg-transparent border-none shadow-none"
-        : "lg:bg-white lg:border-b lg:border-border lg:shadow-lg bg-transparent border-none shadow-none"
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-555 ${
+      isScrolled
+        ? "bg-[#030712]/95 backdrop-blur-md border-b border-white/5 shadow-2xl shadow-[#030712]/50"
+        : "bg-transparent border-b border-transparent"
     }`}>
-      <div className="container mx-auto px-4 sm:px-6 py-1">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* Top Row: Logo + Brand, Mobile Menu Toggle */}
-        <div className="flex items-center justify-between">
-          <Link to="/" aria-label="Speshway Solutions Home" className="hidden lg:flex items-center gap-3 lg:mr-8 xl:mr-16">
-            <img
-              src="/logo.png"
-              alt="Speshway Solutions - IT Services in Hyderabad"
-              width="64"
-              height="64"
-              className="w-12 h-12 sm:w-16 sm:h-16 object-contain"
-            />
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          <Link to="/" aria-label="Speshway Solutions Home" className="flex items-center gap-2.5 sm:gap-3 mr-4 lg:mr-8 xl:mr-16">
+            <div className="bg-white rounded-lg sm:rounded-xl p-1 shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+              <img
+                src="/logo.png"
+                alt="Speshway Solutions - IT Services in Hyderabad"
+                width="48"
+                height="48"
+                className="w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain"
+              />
+            </div>
             <div className="leading-tight">
-              <span className={`block text-sm sm:text-base md:text-lg font-bold uppercase whitespace-nowrap ${
-                isHome && !isScrolled ? "lg:text-black text-foreground" : "text-foreground"
+              <span className={`block text-[11px] xs:text-xs sm:text-base font-extrabold uppercase tracking-wide whitespace-nowrap ${
+                isHome ? "text-gray-50" : "text-foreground"
               }`}>
                 Speshway Solutions</span>
 
-              <span className={`block text-[10px] sm:text-xs md:text-sm uppercase whitespace-nowrap ${
-                isHome && !isScrolled ? "lg:text-black/80 text-muted-foreground" : "text-muted-foreground"
+              <span className={`block text-[8px] xs:text-[9px] sm:text-xs uppercase tracking-widest whitespace-nowrap ${
+                isHome ? "text-gray-400" : "text-muted-foreground"
               }`}>
                 Private Limited
               </span>
             </div>
           </Link>
 
-          <div className="flex items-center justify-end w-full lg:w-auto gap-2">
+          <div className="flex items-center gap-3">
+            {/* Desktop Navigation Links */}
             <div className="hidden lg:flex items-center gap-2 xl:gap-4">
               {navLinks.map((link, index) => (
                 link.children ? (
                   <div
                     key={link.label}
-                    className="relative group px-3 py-2 text-base font-bold transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.05] animate-fade-in-up whitespace-nowrap"
+                    className="relative group px-3 py-2 text-sm font-semibold transition-all duration-300 ease-out animate-fade-in-up whitespace-nowrap"
                   >
                     <button
-                      className={`relative z-10 flex items-center gap-1 ${
-                        isHome && !isScrolled ? "lg:text-slate-800 lg:hover:text-blue-600 text-muted-foreground hover:text-foreground" : "text-muted-foreground hover:text-foreground"
+                      className={`relative z-10 flex items-center gap-1 transition-colors ${
+                        isHome ? "text-gray-300 hover:text-white" : "text-muted-foreground hover:text-foreground"
                       }`}
                       aria-expanded="false"
                       aria-haspopup="true"
                     >
                       {link.label}
                     </button>
-                    <div className="absolute left-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                    <div className="absolute left-0 top-full mt-4 w-48 bg-[#0a0f1c] border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden backdrop-blur-xl">
                       {link.children.map((childLink) => (
                         <Link
                           key={childLink.path}
@@ -124,7 +125,7 @@ const Navbar = () => {
                             navigate(childLink.path);
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                           }}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap"
+                          className="block px-4 py-3 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap"
                         >
                           {childLink.label}
                         </Link>
@@ -140,23 +141,20 @@ const Navbar = () => {
                       navigate(link.path);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className={`relative px-3 py-2 text-base font-bold transition-all duration-300 ease-out group hover:-translate-y-0.5 hover:scale-[1.05] animate-fade-in-up whitespace-nowrap ${
+                    className={`relative px-3 py-2 text-sm font-semibold transition-all duration-300 ease-out group animate-fade-in-up whitespace-nowrap ${
                       isActive(link.path)
-                        ? (isHome && !isScrolled ? "lg:text-blue-600 text-primary" : "text-primary")
-                        : (isHome && !isScrolled ? "lg:text-slate-800 lg:hover:text-blue-600 text-muted-foreground hover:text-foreground" : "text-muted-foreground hover:text-foreground")
+                        ? (isHome ? "text-teal-400" : "text-primary")
+                        : (isHome ? "text-gray-300 hover:text-white" : "text-muted-foreground hover:text-foreground")
                     } ${index === 0 ? "[animation-delay:0s]" : index === 1 ? "[animation-delay:.05s]" : index === 2 ? "[animation-delay:.1s]" : index === 3 ? "[animation-delay:.15s]" : index === 4 ? "[animation-delay:.2s]" : index === 5 ? "[animation-delay:.25s]" : index === 6 ? "[animation-delay:.3s]" : "[animation-delay:.35s]"}`}
                   >
                     <span className="relative z-10">{link.label}</span>
                     <span
-                      className={`absolute bottom-0 left-0 right-0 h-0.5 transform origin-left transition-all duration-300 ${
+                      className={`absolute -bottom-1 left-3 right-3 h-[2px] rounded-full transform origin-center transition-all duration-300 ${
                         isActive(link.path) 
                           ? "scale-x-100 opacity-100" 
                           : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
-                      } ${isHome && !isScrolled ? "lg:bg-blue-600 bg-primary" : "bg-primary"}`}
+                      } ${isHome ? "bg-teal-400 shadow-[0_0_10px_rgba(45,212,191,0.5)]" : "bg-primary"}`}
                     />
-                    <span className={`absolute inset-0 rounded-md scale-0 group-hover:scale-100 transition-transform duration-300 origin-center opacity-0 group-hover:opacity-100 ${
-                      isHome && !isScrolled ? "lg:bg-blue-600/10 bg-primary/10" : "bg-primary/10"
-                    }`} />
                   </Link>
                 )
               ))}
@@ -167,21 +165,22 @@ const Navbar = () => {
                   navigate("/contact");
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 py-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30 active:scale-95 animate-fade-in-up [animation-delay:.25s]"
+                className="ml-4 bg-indigo-500 hover:bg-indigo-400 text-white font-semibold px-6 py-2 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] active:scale-95 animate-fade-in-up [animation-delay:.25s]"
               >
                 Contact Us
               </Button>
             </div>
 
+            {/* Mobile Hamburger Toggle button */}
             <button
-              className={`lg:hidden fixed top-6 right-6 z-[70] p-4 rounded-full shadow-2xl transition-all duration-300 active:scale-95 bg-primary text-white hover:bg-primary/90 flex items-center justify-center`}
+              className="lg:hidden p-2.5 rounded-xl border border-white/10 bg-white/5 text-white hover:bg-white/10 active:scale-95 transition-all duration-300 flex items-center justify-center shadow-lg"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
-                <X size={28} className="transition-transform duration-300 rotate-0" />
+                <X size={20} className="transition-transform duration-300 rotate-90 text-indigo-400" />
               ) : (
-                <Menu size={28} className="transition-transform duration-300" />
+                <Menu size={20} className="transition-transform duration-300" />
               )}
             </button>
           </div>
@@ -190,7 +189,7 @@ const Navbar = () => {
         {/* Mobile Sidebar Overlay */}
         <div className={`fixed inset-0 z-[60] lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
-          <div className={`absolute top-0 right-0 h-full w-[280px] bg-background shadow-2xl transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
+          <div className={`absolute top-0 right-0 h-full w-[280px] bg-[#070b19] border-l border-white/5 shadow-2xl transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
             <div className="flex items-center justify-between px-6 py-8 border-b border-border">
               <span className="text-xl font-bold text-primary">Menu</span>
               <Button variant="ghost" size="icon" onClick={()=>setIsMobileMenuOpen(false)} aria-label="Close menu">

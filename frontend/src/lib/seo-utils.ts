@@ -79,7 +79,7 @@ export const SEO_KEYWORDS = {
     "Top Web Development Company Hyderabad",
     "Affordable Website Developers Hyderabad",
     "Professional App Developers Hyderabad",
-    "Best Software Company Near Hitech City",
+    "Best Software Company in Hyderabad",
     "Trusted IT Services Hyderabad",
     "Scalable Web Applications Hyderabad",
     "Startup Technology Partner Hyderabad",
@@ -176,28 +176,18 @@ export const SPESHWAY_INTERNAL_LINK_PAGES: SpeshwayInternalLinkPage[] = [
     anchors: ["Contact Speshway Solutions", "Get a Quote", "Speshway Office Location"]
   },
   {
-    url: "/is-speshway-real-or-fake",
-    name: "Is Speshway Real or Fake?",
-    slug: "is-speshway-real-or-fake",
+    url: "/fraud-notice",
+    name: "Speshway Solutions Fraud Notice",
+    slug: "fraud-notice",
     anchors: [
-      "Is Speshway Solutions real or fake? Full 2026 check",
-      "Verify whether Speshway is a genuine or fake company",
-      "Read the truth on whether Speshway is real or a scam",
-      "speshway solutions real or fake",
-      "is speshway solutions real",
-      "speshway solutions scam reports verification"
+      "Speshway Solutions fraud notice check",
+      "Verify whether Speshway recruitment is genuine",
+      "Read the official fraud warning by Speshway Solutions",
+      "speshway solutions fraud notice",
+      "is speshway hiring genuine",
+      "speshway solutions job security verification"
     ],
     isTopVerified: true
-  },
-  {
-    url: "/speshway-solutions-review-2026",
-    name: "Speshway Review 2026",
-    slug: "speshway-solutions-review-2026",
-    anchors: [
-      "Read the latest 2026 Speshway Solutions reviews",
-      "Deep-dive 2026 review of Speshway Solutions Pvt Ltd",
-      "See detailed Speshway Solutions performance review"
-    ]
   },
   {
     url: "/speshway-job-scam-truth",
