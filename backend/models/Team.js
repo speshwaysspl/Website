@@ -40,6 +40,10 @@ const teamSchema = new mongoose.Schema({
       default: ''
     }
   },
+  index: {
+    type: Number,
+    default: 0
+  },
   createdAt: {
     type: Date,
     default: Date.now

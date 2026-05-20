@@ -76,7 +76,7 @@ const ManageJobs = () => {
 
   const resetForm = () => {
     setEditingJob(null);
-    setFormData({ title: '', description: '', location: '', type: 'full_time', experience: '', department: '', status: 'open' });
+    setFormData({ title: '', description: '', location: '', type: 'full_time', experience: '', department: '', status: 'open', index: 0 });
   };
 
   const handleSubmit = (e: React.FormEvent) => {

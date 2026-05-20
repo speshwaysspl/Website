@@ -9,8 +9,34 @@ const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Helmet>
-        <title>Privacy Policy | Speshway Solutions</title>
-        <meta name="description" content="Privacy Policy for Speshway Solutions Private Limited" />
+        <title>Privacy Policy | Speshway Solutions Private Limited</title>
+        <meta name="description" content="Read the official Privacy Policy of Speshway Solutions Private Limited. Learn how we collect, use, and protect your personal data with our secure IT services in Hyderabad." />
+        <meta name="keywords" content="Speshway privacy policy, Speshway Solutions data protection, IT company privacy policy Hyderabad, Speshway personal data, Speshway Solutions legal" />
+        <link rel="canonical" href="https://speshway.com/privacy-policy" />
+        <meta property="og:title" content="Privacy Policy | Speshway Solutions" />
+        <meta property="og:description" content="Official Privacy Policy for Speshway Solutions Private Limited - Data protection and privacy measures for our clients." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://speshway.com/privacy-policy" />
+        <meta property="og:image" content="https://speshway.com/logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Privacy Policy | Speshway Solutions" />
+        <meta name="twitter:description" content="Read Speshway Solutions' Privacy Policy to understand how we protect your data." />
+        <meta name="robots" content="index, follow" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Privacy Policy - Speshway Solutions",
+          "description": "Privacy Policy for Speshway Solutions Private Limited",
+          "url": "https://speshway.com/privacy-policy",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Speshway Solutions Private Limited",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://speshway.com/logo.png"
+            }
+          }
+        })}</script>
       </Helmet>
       <Navbar />
       

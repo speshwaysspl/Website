@@ -33,7 +33,8 @@ const ManageTeam = () => {
     bio: '',
     color: 'from-purple-500 to-pink-500',
     linkedin: '',
-    email: ''
+    email: '',
+    index: 0
   });
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -118,7 +119,8 @@ const ManageTeam = () => {
       bio: '',
       color: 'from-purple-500 to-pink-500',
       linkedin: '',
-      email: ''
+      email: '',
+      index: 0
     });
     setEditingMember(null);
     setSelectedImage(null);
@@ -216,6 +218,7 @@ const ManageTeam = () => {
     formDataToSend.append('color', formData.color);
     formDataToSend.append('linkedin', formData.linkedin);
     formDataToSend.append('email', formData.email);
+    formDataToSend.append('index', String(formData.index));
     
     if (selectedImage) {
       formDataToSend.append('image', selectedImage);
@@ -339,14 +342,26 @@ const ManageTeam = () => {
                         onChange={(e) => setFormData({ ...formData, linkedin: e.target.value })}
                       />
                     </div>
-                    <div>
-                      <Label htmlFor="email">Email (optional)</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="email">Email (optional)</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="index">Index (Order)</Label>
+                        <Input
+                          id="index"
+                          type="number"
+                          value={formData.index}
+                          onChange={(e) => setFormData({ ...formData, index: Number(e.target.value) || 0 })}
+                          placeholder="0"
+                        />
+                      </div>
                     </div>
                     <div>
                       <Label htmlFor="image">Profile Image</Label>

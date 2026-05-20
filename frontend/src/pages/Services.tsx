@@ -173,6 +173,7 @@ const Services = () => {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Services | Speshway Solutions | IT Services in Hyderabad" />
         <meta name="twitter:description" content="Comprehensive IT solutions in Hyderabad: Software, App, Web Development, DevOps & Testing." />
+        <meta name="robots" content="index, follow" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
@@ -302,7 +303,7 @@ const Services = () => {
                 <div className="pt-6">
                   <Link to="/contact">
                     <Button size="lg" className="px-8 py-6 bg-indigo-500 hover:bg-indigo-600 text-white font-extrabold rounded-2xl shadow-[0_0_30px_rgba(99,102,241,0.3)] transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
-                      Get a Free Consultation &rarr;
+                      Get a Free Demo &rarr;
                     </Button>
                   </Link>
                 </div>

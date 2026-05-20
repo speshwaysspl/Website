@@ -164,6 +164,12 @@ export const SPESHWAY_INTERNAL_LINK_PAGES: SpeshwayInternalLinkPage[] = [
     anchors: ["Speshway Solutions Blog", "Latest IT Insights", "Software Development News"]
   },
   {
+    url: "/gallery",
+    name: "Blog & Insights",
+    slug: "gallery",
+    anchors: ["Speshway Solutions Blog", "Latest IT Insights", "Software Development News"]
+  },
+  {
     url: "/career",
     name: "Careers",
     slug: "career",
@@ -174,6 +180,18 @@ export const SPESHWAY_INTERNAL_LINK_PAGES: SpeshwayInternalLinkPage[] = [
     name: "Contact Us",
     slug: "contact",
     anchors: ["Contact Speshway Solutions", "Get a Quote", "Speshway Office Location"]
+  },
+  {
+    url: "/privacy-policy",
+    name: "Privacy Policy",
+    slug: "privacy-policy",
+    anchors: ["Speshway Solutions Privacy Policy", "Data Protection Speshway", "Privacy Policy IT Company Hyderabad"]
+  },
+  {
+    url: "/terms-of-service",
+    name: "Terms of Service",
+    slug: "terms-of-service",
+    anchors: ["Speshway Solutions Terms of Service", "Service Agreement Speshway", "Terms and Conditions IT Hyderabad"]
   },
   {
     url: "/fraud-notice",

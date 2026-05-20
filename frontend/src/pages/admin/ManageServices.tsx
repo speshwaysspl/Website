@@ -115,7 +115,8 @@ const ManageServices = () => {
     e.preventDefault();
     const data = {
       ...formData,
-      features: formData.features.split('\n').filter(f => f.trim())
+      features: formData.features.split('\n').filter(f => f.trim()),
+      index: Number(formData.index) || 0
     };
 
     if (editingService) {
@@ -218,14 +219,26 @@ const ManageServices = () => {
                         placeholder="Feature 1&#10;Feature 2&#10;Feature 3"
                       />
                     </div>
-                    <div>
-                      <Label htmlFor="icon">Icon Name</Label>
-                      <Input
-                        id="icon"
-                        value={formData.icon}
-                        onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                        placeholder="Code, Smartphone, Cloud, etc."
-                      />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="icon">Icon Name</Label>
+                        <Input
+                          id="icon"
+                          value={formData.icon}
+                          onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
+                          placeholder="Code, Smartphone, Cloud, etc."
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="index">Index (Order)</Label>
+                        <Input
+                          id="index"
+                          type="number"
+                          value={formData.index}
+                          onChange={(e) => setFormData({ ...formData, index: Number(e.target.value) || 0 })}
+                          placeholder="0"
+                        />
+                      </div>
                     </div>
                     <div className="flex gap-2">
                       <Button type="submit" className="flex-1">

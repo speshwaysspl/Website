@@ -8,7 +8,7 @@ const getJobs = async (req, res) => {
     const { status } = req.query;
     const query = {};
     if (status) query.status = status;
-    const jobs = await Job.find(query).sort({ postedAt: -1 });
+    const jobs = await Job.find(query).sort({ index: 1, postedAt: -1 });
     res.json(jobs);
   } catch (error) {
     res.status(500).json({ message: error.message });

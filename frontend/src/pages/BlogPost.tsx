@@ -41,6 +41,41 @@ interface BlogItem {
   additionalImages?: { url: string; publicId: string }[];
 }
 
+const fallbackGalleryItems: BlogItem[] = [
+  {
+    _id: 'fallback-1',
+    title: 'The Future of AI in Software Development',
+    description: 'Explore how artificial intelligence is revolutionizing the software development lifecycle, from automated coding to intelligent testing. Artificial intelligence is no longer just a futuristic concept; it is an active force redesigning every tier of technology. In software engineering, code generation utilities, neural debuggers, and machine learning test runners are enabling developer squads to build products twice as fast. As large language models grow more advanced, we will transition from assistants that autocomplete syntax to full-scale agents capable of managing complete application layers.',
+    category: 'Technology',
+    date: '2023-10-26T10:00:00Z',
+    image: { url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200' },
+  },
+  {
+    _id: 'fallback-2',
+    title: 'Mastering Mobile App UI/UX Design',
+    description: 'A deep dive into the principles and best practices for creating intuitive and engaging user interfaces for mobile applications. Mobile design requires intense attention to ergonomics, thumb-reach zones, layout hierarchies, and smooth micro-interactions. High-fidelity layouts need to feel alive; they need dynamic tactile vibrations, quick spring animations, glassmorphism layers, and responsive adaptation parameters that make navigating digital environments second nature.',
+    category: 'Design',
+    date: '2023-09-15T10:00:00Z',
+    image: { url: 'https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?auto=format&fit=crop&q=80&w=1200' },
+  },
+  {
+    _id: 'fallback-3',
+    title: 'Cloud Computing Trends for 2024',
+    description: 'An overview of the most significant trends shaping the cloud computing landscape, including serverless, edge computing, and hybrid clouds. The expansion of edge networks is moving computational tasks closer to the user, drastically shrinking latencies and opening up doors for instantaneous machine learning inferences at the edge. Additionally, cloud optimization parameters and green computing frameworks are helping enterprises scale their cloud infrastructure sustainably.',
+    category: 'Cloud',
+    date: '2023-11-01T10:00:00Z',
+    image: { url: 'https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&q=80&w=1200' },
+  },
+  {
+    _id: 'fallback-4',
+    title: 'Digital Transformation Strategies for Enterprises',
+    description: 'Key strategies and insights for large organizations looking to successfully navigate their digital transformation journey. Standard legacy applications must yield to fast microservices, event-driven web environments, and cloud architecture clusters. Speshway has been at the forefront of driving these digital transformations, partnering with enterprises to seamlessly upgrade operational layers and deliver maximum user value.',
+    category: 'Business',
+    date: '2023-08-20T10:00:00Z',
+    image: { url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200' },
+  },
+];
+
 const BlogPost = () => {
   const { id } = useParams();
   const [item, setItem] = useState<BlogItem | null>(null);
@@ -50,41 +85,6 @@ const BlogPost = () => {
   const autoplayPlugin = useMemo(() => 
     Autoplay({ delay: 2500, stopOnInteraction: false, stopOnMouseEnter: true }),
   []);
-
-  const fallbackGalleryItems: BlogItem[] = [
-    {
-      _id: 'fallback-1',
-      title: 'The Future of AI in Software Development',
-      description: 'Explore how artificial intelligence is revolutionizing the software development lifecycle, from automated coding to intelligent testing. Artificial intelligence is no longer just a futuristic concept; it is an active force redesigning every tier of technology. In software engineering, code generation utilities, neural debuggers, and machine learning test runners are enabling developer squads to build products twice as fast. As large language models grow more advanced, we will transition from assistants that autocomplete syntax to full-scale agents capable of managing complete application layers.',
-      category: 'Technology',
-      date: '2023-10-26T10:00:00Z',
-      image: { url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200' },
-    },
-    {
-      _id: 'fallback-2',
-      title: 'Mastering Mobile App UI/UX Design',
-      description: 'A deep dive into the principles and best practices for creating intuitive and engaging user interfaces for mobile applications. Mobile design requires intense attention to ergonomics, thumb-reach zones, layout hierarchies, and smooth micro-interactions. High-fidelity layouts need to feel alive; they need dynamic tactile vibrations, quick spring animations, glassmorphism layers, and responsive adaptation parameters that make navigating digital environments second nature.',
-      category: 'Design',
-      date: '2023-09-15T10:00:00Z',
-      image: { url: 'https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?auto=format&fit=crop&q=80&w=1200' },
-    },
-    {
-      _id: 'fallback-3',
-      title: 'Cloud Computing Trends for 2024',
-      description: 'An overview of the most significant trends shaping the cloud computing landscape, including serverless, edge computing, and hybrid clouds. The expansion of edge networks is moving computational tasks closer to the user, drastically shrinking latencies and opening up doors for instantaneous machine learning inferences at the edge. Additionally, cloud optimization parameters and green computing frameworks are helping enterprises scale their cloud infrastructure sustainably.',
-      category: 'Cloud',
-      date: '2023-11-01T10:00:00Z',
-      image: { url: 'https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&q=80&w=1200' },
-    },
-    {
-      _id: 'fallback-4',
-      title: 'Digital Transformation Strategies for Enterprises',
-      description: 'Key strategies and insights for large organizations looking to successfully navigate their digital transformation journey. Standard legacy applications must yield to fast microservices, event-driven web environments, and cloud architecture clusters. Speshway has been at the forefront of driving these digital transformations, partnering with enterprises to seamlessly upgrade operational layers and deliver maximum user value.',
-      category: 'Business',
-      date: '2023-08-20T10:00:00Z',
-      image: { url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200' },
-    },
-  ];
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0xNzUgMTI1SDE1MFYxNzVIMTc1VjE3NVoiIGZpbGw9IiM5Q0EzQUYiLz4KPC9zdmc+';

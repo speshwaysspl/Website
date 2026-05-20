@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InternalLinks from "@/components/InternalLinks";
 import { Card } from "@/components/ui/card";
-import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/animations";
+import { ScrollReveal } from "@/components/animations";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -11,7 +11,6 @@ import {
   ShieldAlert, 
   ShieldCheck, 
   AlertTriangle, 
-  CheckCircle2, 
   Mail, 
   Instagram, 
   Linkedin, 
@@ -20,13 +19,12 @@ import {
   Building, 
   Search, 
   ChevronRight, 
-  FileCheck, 
   Lock, 
   Video, 
-  ArrowRight,
   Shield,
-  Smartphone
+  Sparkles
 } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 const FraudNotice = () => {
   const [emailInput, setEmailInput] = useState("");
@@ -35,6 +33,14 @@ const FraudNotice = () => {
     title: string;
     description: string;
   }>(null);
+
+  // Parallax Hero Scroll Setup
+  const { scrollY } = useScroll();
+  const physicsScrollY = useSpring(scrollY, { stiffness: 80, damping: 25, restDelta: 0.001 });
+
+  const heroY = useTransform(physicsScrollY, [0, 800], [0, 200]);
+  const heroOpacity = useTransform(physicsScrollY, [0, 400], [1, 0]);
+  const heroScale = useTransform(physicsScrollY, [0, 500], [1, 0.96]);
 
   const handleVerify = (e: React.FormEvent) => {
     e.preventDefault();
@@ -124,7 +130,7 @@ const FraudNotice = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#030303] text-white selection:bg-red-500/30 selection:text-white overflow-x-hidden font-sans">
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/30">
       <Helmet>
         <title>Speshway Solutions: Real or Fake? | Official Verification & Fraud Alert</title>
         <meta name="description" content="Is Speshway Solutions real or fake? Get official verification here. Learn how to identify fraudulent job offers and avoid recruitment scams. Speshway Solutions is a registered IT company in Hyderabad." />
@@ -134,37 +140,40 @@ const FraudNotice = () => {
 
       <Navbar />
 
-      {/* Cyber Grid Hero Banner */}
-      <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden border-b border-white/5">
-        {/* Ambient Warning Blooms */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-red-900/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-indigo-900/10 rounded-full blur-[100px] pointer-events-none" />
-        
-        {/* Subtle dot matrix grid overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.08),rgba(255,255,255,0))]" />
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
-            <ScrollReveal>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-semibold tracking-widest uppercase mb-4 shadow-[0_0_15px_rgba(239,68,68,0.1)]">
-                <ShieldAlert className="w-3.5 h-3.5" /> Cyber Security & Legitimacy Hub
-              </div>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={0.1}>
-              <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] bg-gradient-to-b from-white via-neutral-100 to-neutral-400 bg-clip-text text-transparent">
-                Is Speshway Solutions <br />
-                <span className="text-red-500 bg-gradient-to-r from-red-500 to-rose-400 bg-clip-text text-transparent">Real or Fake?</span>
-              </h1>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={0.2}>
-              <p className="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-                Speshway Solutions Private Limited is a registered IT services firm operating from T-Hub Hyderabad. Verify recruitment authenticity instantly using our certified security tool below.
-              </p>
-            </ScrollReveal>
-          </div>
-        </div>
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-24 md:pt-48 md:pb-40 overflow-hidden flex flex-col items-center justify-center">
+        {/* Vibrant Animated Background Orbs */}
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-red-600/10 blur-[130px] rounded-full pointer-events-none animate-pulse [animation-duration:8000ms]" />
+        <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none animate-pulse [animation-duration:10000ms]" />
+
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.02] pointer-events-none" />
+
+        <motion.div
+          style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
+          className="container mx-auto px-4 relative z-10 flex flex-col items-center text-center"
+        >
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            className="mb-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-red-500/20 bg-red-500/10 backdrop-blur-xl hover:bg-red-500/20 transition-colors cursor-pointer group shadow-[0_0_30px_rgba(239,68,68,0.15)]"
+          >
+            <Sparkles className="w-4 h-4 text-red-400 group-hover:text-red-300 transition-colors" />
+            <span className="text-sm font-semibold text-red-100 tracking-wide">
+              Official Verification
+            </span>
+            <ChevronRight className="w-4 h-4 text-red-300 group-hover:translate-x-1 transition-transform" />
+          </motion.div>
+
+          <h1 className="text-3xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-8 max-w-5xl leading-tight">
+            Fraud <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-400 to-amber-400 drop-shadow-md">Notice</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-400 leading-relaxed max-w-3xl mx-auto font-medium">
+            Speshway Solutions Private Limited is a registered IT services firm operating from T-Hub Hyderabad. Verify recruitment authenticity instantly using our certified security tool below.
+          </p>
+        </motion.div>
       </section>
 
       {/* Interactive Domain Verification Section */}

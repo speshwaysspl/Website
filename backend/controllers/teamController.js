@@ -6,7 +6,7 @@ const { cloudinary } = require('../config/cloudinary');
 // @access  Public
 const getTeamMembers = async (req, res) => {
   try {
-    const team = await Team.find().sort({ createdAt: -1 });
+    const team = await Team.find().sort({ index: 1, createdAt: -1 });
     res.json(team);
   } catch (error) {
     res.status(500).json({ message: error.message });

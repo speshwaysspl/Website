@@ -364,8 +364,9 @@ const Gallery = () => {
                 <Sparkles className="w-3.5 h-3.5" />
                 Speshway Insights
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-none">
-                Stories, News & <span className="bg-gradient-to-r from-indigo-400 via-purple-300 to-indigo-300 bg-clip-text text-transparent">Tech Innovations</span>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-tight">
+                Stories, News &<br />
+                <span className="bg-gradient-to-r from-indigo-400 via-purple-300 to-indigo-300 bg-clip-text text-transparent">Tech Innovations</span>
               </h1>
               <p className="text-gray-400 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto font-medium">
                 Explore our engineering updates, memorable achievements, dynamic cultural moments, and industry-leading resources.

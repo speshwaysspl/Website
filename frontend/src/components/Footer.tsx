@@ -32,7 +32,7 @@ const Footer = () => {
 
   const quickLinks = [
     { path: "/", label: "Home", icon: Home },
-    { path: "/about", label: "About", icon: Info },
+    { path: "/about", label: "About Us", icon: Info },
     { path: "/services", label: "Services", icon: Settings },
     { path: "/projects", label: "Projects", icon: FolderOpen },
     { path: "/career", label: "Career", icon: Briefcase },

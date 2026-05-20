@@ -27,84 +27,84 @@ interface FAQItem {
   category: 'trust' | 'services' | 'process';
 }
 
+const faqs: FAQItem[] = [
+  {
+    question: "Is Speshway Solutions a real or fake company?",
+    answer:
+      "Speshway Solutions Private Limited is a fully legitimate, registered IT services company based in Hyderabad, India. Operating since 2017, we have successfully partnered with over 150+ international clients, delivering 300+ advanced software applications. You are welcome to verify our physical operations and visit our modern workspaces directly at our registered office inside T-Hub, Raidurgam, Hyderabad.",
+    category: 'trust'
+  },
+  {
+    question: "Is Speshway fake or a scam?",
+    answer:
+      "No, Speshway Solutions is absolutely NOT a scam or fake. We are a verified, legal, and operational corporate entity. Unfortunately, malicious online fraudsters occasionally misuse our brand name to circulate fake job descriptions and demand illegal security deposits. Please note: Speshway operates a strict Zero-Fee Hiring Policy and will NEVER request money, hardware fees, or training charges from applicants. Always verify official corporate offers through our official @speshway.com email addresses.",
+    category: 'trust'
+  },
+  {
+    question: "What services does Speshway Solutions offer?",
+    answer:
+      "We offer a complete suite of enterprise IT solutions, including custom web development (React, Next.js), cross-platform mobile apps (Flutter, React Native), robust cloud solutions (AWS, Azure), artificial intelligence & machine learning integrations, database management, and comprehensive cybersecurity frameworks tailored to scale growing operations.",
+    category: 'services'
+  },
+  {
+    question: "How long does it take to complete a project?",
+    answer:
+      "Timelines depend entirely on the scale and functional complexity of the project. A streamlined marketing platform typically launches in 4-6 weeks, while a complex, multitenant enterprise SaaS or marketplace portal may require 3-6 months. We establish highly detailed sprint timelines during the blueprinting phase, ensuring transparency at every stage.",
+    category: 'process'
+  },
+  {
+    question: "What is your development process?",
+    answer:
+      "We employ a high-transparency Agile development lifecycle divided into: 1) Architecture Blueprinting & Discovery, 2) Interactive Figma Prototyping & UX, 3) Active Sprint-Driven Coding & Parallel QA, 4) Secure Deployment, and 5) Long-Term Post-Launch SLA Support to guarantee seamless software stability.",
+    category: 'process'
+  },
+  {
+    question: "Do you provide ongoing support after project completion?",
+    answer:
+      "Absolutely. We offer complete Post-Launch Maintenance SLAs that include regular security patching, performance optimization, database backups, API updates, and feature upgrades to keep your software modern and resilient under high traffic volumes.",
+    category: 'process'
+  },
+  {
+    question: "What technologies do you work with?",
+    answer:
+      "Our engineering squad specializes in cutting-edge ecosystems including React, Next.js, Node.js, Python, Golang, React Native, Flutter, AWS, Azure, GCP, MongoDB, and PostgreSQL. We leverage modern containerization, serverless architectures, and CI/CD automation to deliver maximum speeds.",
+    category: 'services'
+  },
+  {
+    question: "How do you ensure project security?",
+    answer:
+      "Security is woven directly into our codebase from day one. We enforce end-to-end HTTPS/TLS data encryptions, secure JSON Web Token authentication, automated penetration testing, regular dependency vulnerability audits, and full compliance parameters to keep user records safe.",
+    category: 'services'
+  },
+  {
+    question: "What are your payment terms?",
+    answer:
+      "We utilize an output-based, milestone billing schedule: 30% upon blueprint completion, 40% tied to developmental staging goals, and 30% upon final production sign-off. For complex enterprise integrations, we customize commercial terms to sync cleanly with budget quarters.",
+    category: 'process'
+  },
+  {
+    question: "Can you work with my existing team?",
+    answer:
+      "Yes. We excel at team integrations, whether you require specialized staff augmentation to accelerate a shipping goal, senior system consultants to review architecture, or a dedicated squad to handle development end-to-end under your engineering leads.",
+    category: 'process'
+  },
+  {
+    question: "Do you sign NDAs?",
+    answer:
+      "Yes, we sign comprehensive, legally binding Non-Disclosure Agreements (NDAs) prior to any detailed project discussions. We implement strict internal access parameters to ensure your proprietary ideas, business logic, and user databases remain confidential.",
+    category: 'trust'
+  },
+  {
+    question: "What if I need to scale my project in the future?",
+    answer:
+      "We design all application architectures with microservice compatibility and high horizontal scalability. Whether you need to accommodate user spikes, migrate to serverless networks, or add complex sub-systems, we make expanding your application easy.",
+    category: 'services'
+  },
+];
+
 const FAQ = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<'all' | 'trust' | 'services' | 'process'>('all');
-
-  const faqs: FAQItem[] = [
-    {
-      question: "Is Speshway Solutions a real or fake company?",
-      answer:
-        "Speshway Solutions Private Limited is a fully legitimate, registered IT services company based in Hyderabad, India. Operating since 2017, we have successfully partnered with over 150+ international clients, delivering 300+ advanced software applications. You are welcome to verify our physical operations and visit our modern workspaces directly at our registered office inside T-Hub, Raidurgam, Hyderabad.",
-      category: 'trust'
-    },
-    {
-      question: "Is Speshway fake or a scam?",
-      answer:
-        "No, Speshway Solutions is absolutely NOT a scam or fake. We are a verified, legal, and operational corporate entity. Unfortunately, malicious online fraudsters occasionally misuse our brand name to circulate fake job descriptions and demand illegal security deposits. Please note: Speshway operates a strict Zero-Fee Hiring Policy and will NEVER request money, hardware fees, or training charges from applicants. Always verify official corporate offers through our official @speshway.com email addresses.",
-      category: 'trust'
-    },
-    {
-      question: "What services does Speshway Solutions offer?",
-      answer:
-        "We offer a complete suite of enterprise IT solutions, including custom web development (React, Next.js), cross-platform mobile apps (Flutter, React Native), robust cloud solutions (AWS, Azure), artificial intelligence & machine learning integrations, database management, and comprehensive cybersecurity frameworks tailored to scale growing operations.",
-      category: 'services'
-    },
-    {
-      question: "How long does it take to complete a project?",
-      answer:
-        "Timelines depend entirely on the scale and functional complexity of the project. A streamlined marketing platform typically launches in 4-6 weeks, while a complex, multitenant enterprise SaaS or marketplace portal may require 3-6 months. We establish highly detailed sprint timelines during the blueprinting phase, ensuring transparency at every stage.",
-      category: 'process'
-    },
-    {
-      question: "What is your development process?",
-      answer:
-        "We employ a high-transparency Agile development lifecycle divided into: 1) Architecture Blueprinting & Discovery, 2) Interactive Figma Prototyping & UX, 3) Active Sprint-Driven Coding & Parallel QA, 4) Secure Deployment, and 5) Long-Term Post-Launch SLA Support to guarantee seamless software stability.",
-      category: 'process'
-    },
-    {
-      question: "Do you provide ongoing support after project completion?",
-      answer:
-        "Absolutely. We offer complete Post-Launch Maintenance SLAs that include regular security patching, performance optimization, database backups, API updates, and feature upgrades to keep your software modern and resilient under high traffic volumes.",
-      category: 'process'
-    },
-    {
-      question: "What technologies do you work with?",
-      answer:
-        "Our engineering squad specializes in cutting-edge ecosystems including React, Next.js, Node.js, Python, Golang, React Native, Flutter, AWS, Azure, GCP, MongoDB, and PostgreSQL. We leverage modern containerization, serverless architectures, and CI/CD automation to deliver maximum speeds.",
-      category: 'services'
-    },
-    {
-      question: "How do you ensure project security?",
-      answer:
-        "Security is woven directly into our codebase from day one. We enforce end-to-end HTTPS/TLS data encryptions, secure JSON Web Token authentication, automated penetration testing, regular dependency vulnerability audits, and full compliance parameters to keep user records safe.",
-      category: 'services'
-    },
-    {
-      question: "What are your payment terms?",
-      answer:
-        "We utilize an output-based, milestone billing schedule: 30% upon blueprint completion, 40% tied to developmental staging goals, and 30% upon final production sign-off. For complex enterprise integrations, we customize commercial terms to sync cleanly with budget quarters.",
-      category: 'process'
-    },
-    {
-      question: "Can you work with my existing team?",
-      answer:
-        "Yes. We excel at team integrations, whether you require specialized staff augmentation to accelerate a shipping goal, senior system consultants to review architecture, or a dedicated squad to handle development end-to-end under your engineering leads.",
-      category: 'process'
-    },
-    {
-      question: "Do you sign NDAs?",
-      answer:
-        "Yes, we sign comprehensive, legally binding Non-Disclosure Agreements (NDAs) prior to any detailed project discussions. We implement strict internal access parameters to ensure your proprietary ideas, business logic, and user databases remain confidential.",
-      category: 'trust'
-    },
-    {
-      question: "What if I need to scale my project in the future?",
-      answer:
-        "We design all application architectures with microservice compatibility and high horizontal scalability. Whether you need to accommodate user spikes, migrate to serverless networks, or add complex sub-systems, we make expanding your application easy.",
-      category: 'services'
-    },
-  ];
 
   const categories = [
     { id: 'all', label: 'All Inquiries', icon: HelpCircle },

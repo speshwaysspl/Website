@@ -159,11 +159,12 @@ const Career = () => {
           <ScrollReveal>
             <div className="text-center max-w-3xl mx-auto space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 backdrop-blur-md">
-                <Sparkles className="w-3.5 h-3.5" />
+                <Sparkles className="w-3 h-3.5" />
                 Build the Future of Tech
               </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-none">
-                Shape the Next Gen <span className="bg-gradient-to-r from-indigo-400 via-purple-300 to-indigo-300 bg-clip-text text-transparent">Digital Landscape</span>
+                Shape the Next Gen<br />
+                <span className="bg-gradient-to-r from-indigo-400 via-purple-300 to-indigo-300 bg-clip-text text-transparent">Digital Landscape</span>
               </h1>
               <p className="text-gray-400 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto font-medium">
                 Join an elite squad of engineers, designers, and strategists inside T-Hub Hyderabad developing state-of-the-art enterprise platforms.
@@ -182,10 +183,10 @@ const Career = () => {
               <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 rounded-full blur-[80px] -z-10" />
               
               <div className="flex flex-col md:flex-row gap-6 items-center md:items-start text-center md:text-left">
-                <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400 shadow-[0_0_20px_rgba(239,68,68,0.15)] animate-pulse">
+                {/* <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400 shadow-[0_0_20px_rgba(239,68,68,0.15)] animate-pulse">
                   <AlertTriangle className="w-7 h-7" />
-                </div>
-                <div className="space-y-4 flex-1">
+                </div> */}
+                {/* <div className="space-y-4 flex-1">
                   <h3 className="text-xl sm:text-2xl font-black text-red-200 uppercase tracking-wide">
                     Zero-Fee Hiring Guarantee
                   </h3>
@@ -203,7 +204,7 @@ const Career = () => {
                       </Button>
                     </Link>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </ScrollReveal>

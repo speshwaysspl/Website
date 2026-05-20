@@ -195,7 +195,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30">
       <Helmet>
-        <title>Speshway Solutions | {SEO_KEYWORDS.seoTitles[0]} | Best IT Services in Hyderabad</title>
+        <title>Speshway Solutions | Best IT Company in Hyderabad | Website and App Development Company in Hyderabad | Best IT Company</title>
         <meta name="description" content={`Speshway Solutions is the ${SEO_KEYWORDS.highRanking[0]} at T-Hub. We provide ${SEO_KEYWORDS.seoTitles[0]}, ${SEO_KEYWORDS.primary[0]}, and ${SEO_KEYWORDS.primary[1]}.`} />
         {/* Keywords and schema preserved... */}
       </Helmet>
