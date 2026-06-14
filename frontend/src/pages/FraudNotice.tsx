@@ -57,24 +57,24 @@ const FraudNotice = () => {
       setVerificationResult({
         status: 'invalid',
         title: "Invalid Email Format",
-        description: "Please enter a fully qualified email address (e.g. recruiter@speshway.com) to verify."
+        description: "Please enter a fully qualified email address (e.g. recruiter@speshway.com or recruiter@speshwaysolutions.in) to verify."
       });
       return;
     }
 
     const domain = email.split('@')[1];
 
-    if (domain === 'speshway.com') {
+    if (domain === 'speshway.com' || domain === 'speshwaysolutions.in') {
       setVerificationResult({
         status: 'official',
         title: "VERIFIED OFFICIAL DOMAIN",
-        description: "This is a legitimate Speshway Solutions email address. This communication is secure, authentic, and safe to trust."
+        description: `This is a legitimate Speshway Solutions email address (${domain}). This communication is secure, authentic, and safe to trust.`
       });
     } else {
       setVerificationResult({
         status: 'scam',
         title: "ALERT: UNOFFICIAL DOMAIN",
-        description: `WARNING! Speshway Solutions operates exclusively under the "speshway.com" domain. Emails from "@${domain}" are NOT official and are highly likely to be a recruitment scam.`
+        description: `WARNING! Speshway Solutions operates exclusively under the "speshway.com" and "speshwaysolutions.in" domains. Emails from "@${domain}" are NOT official and are highly likely to be a recruitment scam.`
       });
     }
   };
@@ -114,8 +114,8 @@ const FraudNotice = () => {
     },
     {
       icon: <Mail className="w-6 h-6 text-indigo-400" />,
-      title: "Official @speshway.com domain",
-      desc: "All official hiring communications, online tests, and job offer announcements come strictly from verified @speshway.com email addresses."
+      title: "Official Domains",
+      desc: "All official hiring communications, online tests, and job offer announcements come strictly from verified @speshway.com or @speshwaysolutions.in email addresses."
     },
     {
       icon: <Video className="w-6 h-6 text-emerald-400" />,
@@ -195,7 +195,7 @@ const FraudNotice = () => {
                   <div className="relative">
                     <input
                       type="text"
-                      placeholder="e.g. hr@speshway.com or recruiter@gmail.com"
+                      placeholder="e.g. hr@speshway.com, hr@speshwaysolutions.in or recruiter@gmail.com"
                       value={emailInput}
                       onChange={(e) => setEmailInput(e.target.value)}
                       className="w-full h-14 pl-12 pr-4 rounded-2xl bg-white/[0.02] border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-red-500/50 focus:ring-1 focus:ring-red-500/50 transition-all font-medium"
